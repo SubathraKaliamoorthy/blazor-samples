@@ -1,4 +1,4 @@
-﻿@page "/tree-grid/observable-binding"
+@page "/tree-grid/observable-binding"
 
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.TreeGrid
@@ -15,23 +15,12 @@
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>
-        This sample demonstrates real-time observable data binding in the Blazor TreeGrid, enabling instant updates for any changes made to hierarchical support ticket data.
-    </p>
+    <p>This sample showcases how to bind an observable data source to the Tree Grid, ensuring that modifications to the underlying collection automatically propagate to the UI for real-time hierarchical data updates.</p>
 </SampleDescription>
 <ActionDescription>
-    <p>
-        The TreeGrid uses an <code>ObservableCollection</code> to reflect hierarchical changes, including adding, resolving, escalating, or removing actions, directly in the UI as users interact with the ticket list. These interactive operations instantly update the display for seamless synchronization without manual refreshing.
-    </p>
-    <p>
-        In this demo, <strong>Add Ticket</strong> opens a dialog with three required fields: Category (from existing root tickets), Title (custom user input), and Priority. New tickets automatically inherit the category and customer from their parent.
-    </p>
-    <p>
-        <strong>Additional Actions:</strong> <strong>Mark as Resolved</strong> changes the selected ticket status to resolved; <strong>Escalate Ticket</strong> changes the status to Escalated and priority to Critical; and <strong>Delete Resolved Ticket</strong> removes only the selected ticket from the collection if it has a Resolved status.
-    </p>
-    <p>
-        Underlying collections must implement <a target="_blank" href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.specialized.inotifycollectionchanged?view=net-9.0">INotifyCollectionChanged</a> and models should implement <a target="_blank" href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-9.0">INotifyPropertyChanged</a> for property-level notifications.
-    </p>
+    <p>Observable data binding is enabled by assigning an <b>ObservableCollection</b> to the Tree Grid's <code>DataSource</code> property, ensuring that add, edit, and remove operations automatically trigger UI updates without requiring a manual refresh.</p>
+    <p>In this demo, the tree column is "<b>Title</b>", and the Tree Grid displays ticket details through columns such as "<b>Ticket ID</b>", "<b>Category</b>", "<b>Priority</b>", and "<b>Status</b>". The toolbar buttons let you perform actions such as adding new tickets, marking tickets as resolved, escalating priority, and deleting resolved tickets, with all changes immediately reflected in the Tree Grid.</p>
+    <p>More information about observable data binding can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/data-binding#observable-collection">documentation</a> section.</p>
 </ActionDescription>
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
@@ -43,9 +32,11 @@
                             <SfButton Content="Add Ticket" CssClass="e-outline me-2" OnClick="AddHighPriorityTicket" />
                             <SfButton Content="Mark as Resolved"
                                       @ref="ResolveTicketButtonRef"
+                                      Disabled="@ResolveDisabled"
                                       OnClick="ResolveRandomTicket"
                                       CssClass="e-outline me-2" />
                             <SfButton Content="Escalate Ticket"
+                                      Disabled="@EscalateDisabled"
                                       @ref="EscalateTicketButtonRef"
                                       OnClick="EscalateTicket"
                                       CssClass="e-outline me-2" />
@@ -53,6 +44,7 @@
                         <div class="btn-group me-2" role="group">
                             <SfButton Content="Delete Resolved Ticket"
                                       @ref="RemoveResolvedTicketButtonRef"
+                                      Disabled="@RemoveResolvedDisabled"
                                       CssClass="e-outline me-2"
                                       OnClick="RemoveSelectedResolvedTicket" />
                         </div>
@@ -73,7 +65,7 @@
                         <TreeGridEditSettings AllowEditing="true" AllowAdding="true" AllowDeleting="true" Mode="Syncfusion.Blazor.TreeGrid.EditMode.Row" />
 
                         <TreeGridColumns>
-                            <TreeGridColumn Field="TicketID" HeaderText="Ticket ID" Width="100" TextAlign="TextAlign.Right" IsPrimaryKey="true" AllowEditing="false" />
+                            <TreeGridColumn Field="TicketID" HeaderText="Ticket ID" Width="100" ClipMode="ClipMode.EllipsisWithTooltip" TextAlign="TextAlign.Right" IsPrimaryKey="true" AllowEditing="false" />
                             <TreeGridColumn Field="Title" HeaderText="Title" Width="250" ClipMode="ClipMode.EllipsisWithTooltip" />
                             <TreeGridColumn Field="Category" HeaderText="Category" Width="120" />
                             <TreeGridColumn Field="Priority" HeaderText="Priority" Width="100">
@@ -111,7 +103,7 @@
                             </TreeGridColumn>
                             <TreeGridColumn Field="AssignedAgent" HeaderText="Assigned To" Width="150" />
                             <TreeGridColumn Field="CustomerName" HeaderText="Customer" ClipMode="ClipMode.EllipsisWithTooltip" Width="140" />
-                            <TreeGridColumn Field="CreatedDate" HeaderText="Created Date" Width="130" Format="MM/dd/yyyy" Type="ColumnType.Date" />
+                            <TreeGridColumn Field="CreatedDate" HeaderText="Created Date" Width="130" Format="MM/dd/yyyy" Type="ColumnType.Date" ClipMode="ClipMode.EllipsisWithTooltip" />
                             <TreeGridColumn Field="DueDate" HeaderText="Due Date" Width="130" Format="MM/dd/yyyy" Type="ColumnType.Date" />
                         </TreeGridColumns>
 
@@ -264,7 +256,7 @@
 
     .bg-secondary {
         --bs-bg-opacity: 1;
-        background-color: rgba(108, 117, 125, 1 !important;
+        background-color: rgba(108, 117, 125, 1) !important;
     }
 </style>
 @*End:Hidden*@

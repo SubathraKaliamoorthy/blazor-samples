@@ -66,12 +66,12 @@
 
 @code {
 
-    private SfTextBox TextBoxSearchObj;
+    private SfTextBox? TextBoxSearchObj;
     private string ZoomValue = "100%";
     
     public void OnCreateSearch()
     {
-        this.TextBoxSearchObj.AddIconAsync("prepend", "e-icons e-search");
+        this.TextBoxSearchObj?.AddIconAsync("prepend", "e-icons e-search");
     }
 
     private List<Zoom> ZoomList = new List<Zoom>
@@ -84,7 +84,7 @@
 
     public class Zoom
     {
-        public string Percentage { get; set; }
+        public string? Percentage { get; set; }
     }
 
 }

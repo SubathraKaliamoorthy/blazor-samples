@@ -1,4 +1,4 @@
-﻿@page "/sidebar/api"
+@page "/sidebar/api"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
@@ -94,11 +94,11 @@
     // Sepcify the Index value of Dropdown List component. 
     private int? Index { get; set; } = 0;
     // Specify the reference of Position button element.
-    public SfButton PositionElement;
+    public SfButton? PositionElement;
     // Specify the reference of Document Click button element.
-    public SfButton DocumentclickElement;
+    public SfButton? DocumentclickElement;
     // Specify the reference of BackDrop button element.
-    public SfButton BackDropElement;
+    public SfButton? BackDropElement;
     // Specify the value of Sidebar component CloseOnDocumentClick property.
     public bool CloseOnDocumentClick = false;
     // Specify the value of Sidebar component ShowBackdrop property.
@@ -128,7 +128,7 @@
     }
     public class TypeData
     {
-        public string Text { get; set; }
+        public string? Text { get; set; }
     }
     //Specify the value of Dropdown List DataSource property.
     private List<TypeData> Data { get; set; } = new List<TypeData>
@@ -146,7 +146,7 @@
     // Specifies the event handler for Clicked event in Position Button component. 
     private void PositionBtnClick()
     {
-        if (PositionElement.Content == "Right")
+        if (PositionElement?.Content == "Right")
         {
             Content = "Left";
             Position = SidebarPosition.Left;
@@ -162,7 +162,7 @@
     // Specifies the event handler for Clicked event in DocumentOnClick Button component. 
     private void DocBtnClick()
     {
-        if (DocumentclickElement.Content == "False")
+        if (DocumentclickElement?.Content == "False")
         {
             DocContent = "True";
             CloseOnDocumentClick = true;
@@ -179,7 +179,7 @@
     {
         if (e is MouseEventArgs || (e is KeyboardEventArgs keyboardEventArgs && keyboardEventArgs.Code == "Enter"))
         {
-            if (this.BackDropElement.Content == "True")
+            if (this.BackDropElement?.Content == "True")
             {
                 Backcontent = "False";
                 ShowBackdrop = false;

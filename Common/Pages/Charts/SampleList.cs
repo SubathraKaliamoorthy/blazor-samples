@@ -363,6 +363,11 @@ namespace BlazorDemos
                 HeaderText = "Blazor Column Rotated Labels Chart Example.",
                 MetaDescription = "Blazor Column Rotated Labels Chart example demonstrates how to render and configure a column chart with rotated labels for analyzing the company's profits.",
                 Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "ColumnRotatedLabels.razor", Id = "ColumnRotatedLabels" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -375,6 +380,11 @@ namespace BlazorDemos
                 HeaderText = "Blazor Column Drilldown Chart Example.",
                 MetaDescription ="This Blazor Column Drilldown Chart example demonstrates how to render drilldown charts for interactive analysis of population data by continent and country.",
                 Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "ColumnDrilldown.razor", Id = "ColumnDrilldown" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -435,6 +445,19 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Rounded Bar Chart | Stylized Bars | Syncfusion",
                 MetaDescription = "This Blazor Rounded Bar Chart demonstrates how to create horizontal bar charts with rounded corners for enhanced visual appeal and modern design aesthetics.",
                 Type = SampleType.None
+            },
+            new Sample
+            {
+                Name = "Bar with Gradient",
+                Category = "Bar Charts",
+                Directory = "Charts/Chart",
+                Url = "chart/bar-with-gradient",
+                FileName = "BarWithGradient.razor",
+                HeaderText = "Blazor Bar Chart with Gradient Example.",
+                MetaTitle = "Blazor Bar Chart with Gradient | Horizontal Bars | Syncfusion",
+                MetaDescription = "Blazor Bar Chart with horizontal bars, gradient colors, and rounded corners. Sorted by Q4 revenue to highlight ranking, with labels and tooltips for clarity.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]{ @"Explore product performance with gradient-filled horizontal bars that highlight ranking and relative contribution. Assess bar length and color transition to spot leaders and laggards at a glance, and hover to view precise values in tooltips." }
             },
             new Sample
             {
@@ -542,7 +565,12 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Bubble Chart Example | Scatter and Bubble | Syncfusion",
                 HeaderText = "Blazor Bubble Chart Example",
                 MetaDescription = "This example shows the Blazor Bubble Chart component capabilities for visualizing multi-dimensional data with varying bubble sizes. Click here to more details.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "Bubble.razor", Id = "Bubble" },
+                    new SourceCollection { FileName = "BubbelPointColor.cs", Id = "BubbelPointColor" }
+                }
             },
             new Sample
             {
@@ -582,6 +610,19 @@ namespace BlazorDemos
             },
             new Sample
             {
+                Name = "Donut with Gradient",
+                Category = "Accumulation Charts",
+                Directory = "Charts/Chart",
+                Url = "chart/donut-with-gradient",
+                FileName = "DonutWithGradient.razor",
+                HeaderText = "Blazor Donut Chart with Gradient Example.",
+                MetaTitle = "Blazor Donut Chart with Gradient | Accumulation Chart | Syncfusion",
+                MetaDescription = "Blazor Donut Chart visualizes percentage share by country with gradient slices, outside labels, right-side legend showing exact values, and tooltip for details.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]{ @"Explore country distribution with gradient-filled doughnut slices. Use the legend to match colors and read exact percentages, and hover to view precise values in tooltips." }
+            },
+            new Sample
+            {
                 Name = "Pyramid",
                 Category = "Accumulation Charts",
                 Directory = "Charts/Chart",
@@ -615,6 +656,19 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Pie Chart Legend | Interactive Labels | Syncfusion",
                 MetaDescription = "This Blazor Pie Chart with Legend demonstrates how to display interactive legends with pie charts for enhanced data identification and user interaction.",
                 Type = SampleType.None
+            },
+            new Sample
+            {
+                Name = "Pie with Legend Template",
+                Category = "Accumulation Charts",
+                Directory = "Charts/Chart",
+                Url = "chart/pie-legend-template",
+                FileName = "PieLegendTemplate.razor",
+                HeaderText = "Blazor Pie with Legend Template Chart Example.",
+                MetaTitle = "Blazor Pie Chart Legend Template| Custom Legend | Syncfusion",
+                MetaDescription = "This Blazor Pie Chart with legend templates showcases customizable legend items using HTML, icons, values, and conditional styling for better visualization.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]{ @"This sample demonstrates how to display a custom legend for a pie chart using an HTML template." }
             },
             new Sample
             {
@@ -745,7 +799,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Error Bar Chart Example.",
                 MetaTitle = "Blazor Error Bar Chart | Statistical Analysis | Syncfusion",
                 MetaDescription = "This Blazor Error Bar Chart demo shows how to display statistical uncertainty and variability in data measurements for scientific and analytical visualization.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "ErrorBar.razor", Id = "ErrorBar" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -805,8 +864,13 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Hilo Chart Example | Stock Chart | Syncfusion",
                 HeaderText = "Blazor Hilo Chart Example",
                 MetaDescription = "This example shows Blazor Hilo Chart component for visualizing financial data with high-low price movements and market trends. Explore here for more details.",
-                NotificationDescription = new string[]{ @" This sample highlights how the last data label in the chart is emphasized, making it easier to identify the final value in the chart series." },
-                Type = SampleType.Updated
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "Hilo.razor", Id = "Hilo" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
+
             },
             new Sample
             {
@@ -1057,7 +1121,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Remote Data Example.",
                 MetaTitle = "Blazor Chart Remote Data | API Integration | Syncfusion",
                 MetaDescription = "This Blazor Chart with Remote Data demonstrates how to bind charts to remote data sources and APIs for dynamic data visualization. Explore here to more details.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "RemoteData.razor", Id = "RemoteData" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1117,7 +1186,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Category Axis Example.",
                 MetaTitle = "Blazor Category Axis Chart | Categorical Data | Syncfusion",
                 MetaDescription = "This Blazor Chart with Category Axis example demonstrates the categorical data visualization with the string-based labels for qualitative data analysis.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "CategoryAxis.razor", Id = "CategoryAxis" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1165,7 +1239,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Inversed Axis Example.",
                 MetaTitle = "Blazor Inversed Axis Chart | Flipped Scale | Syncfusion",
                 MetaDescription = "This Blazor Chart with Inversed Axis example demonstrates inverted axis orientation for alternative data perspectives and specialized visualization needs.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "InversedAxis.razor", Id = "InversedAxis" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1189,7 +1268,8 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with StripLine Example.",
                 MetaTitle = "Blazor StripLine Chart | Reference Lines | Syncfusion",
                 MetaDescription = "This Blazor Chart with StripLine example demonstrates how to add reference lines and zones for highlighting specific values and ranges in data visualization.",
-                Type = SampleType.None
+                NotificationDescription = new string[]{ @"Displays stripline tooltips for Customer Satisfaction Rating. Hover or tap a colored band to see its label (e.g., “OK”/“Good”), start and end values, and any custom notes. Helps highlight ranges like targets or thresholds across months while comparing Product A, B, and C." },
+                Type = SampleType.Updated
             },
             new Sample
             {
@@ -1213,7 +1293,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Smart Axis Labels Example.",
                 MetaTitle = "Blazor Smart Axis Labels | Auto Formatting | Syncfusion",
                 MetaDescription = "This Blazor Chart with Smart Axis Labels example demonstrates intelligent label formatting and positioning to prevent overlapping and improve readability.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "SmartAxisLabels.razor", Id = "SmartAxisLabels" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1225,8 +1310,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Axis Label Template Example.",
                 MetaTitle = "Blazor Axis Label Template | Customization  | Syncfusion",
                 MetaDescription = "Customize axis labels in Blazor Charts using templates that support emojis, styled text, and advanced formatting for clearer, more engaging data visuals.",
-                NotificationDescription = new string[]{ @" This sample demonstrates the axis label template in Charts, allowing custom HTML elements like images, emojis, and styled text to be used as axis labels." },
-                Type = SampleType.New
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "AxisLabelTemplate.razor", Id = "AxisLabelTemplate" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1238,7 +1327,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Multiple Level Labels Example.",
                 MetaTitle = "Blazor Multi-Level Labels | Hierarchical Axes | Syncfusion",
                 MetaDescription = "This Blazor Chart with Multiple Level Labels example demonstrates the hierarchical axis labeling for complex categorical data organization and grouping.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "MultiLevelLabel.razor", Id = "MultiLevelLabel" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1314,6 +1408,19 @@ namespace BlazorDemos
             },
             new Sample
             {
+                Name = "Legend Template",
+                Category = "Chart Customization",
+                Directory = "Charts/Chart",
+                Url = "chart/chart-legend-template",
+                FileName = "LegendTemplate.razor",
+                HeaderText = "Blazor Legend Template Chart Example.",
+                MetaTitle = "Blazor Legend Template Chart | Custom Legend | Syncfusion",
+                MetaDescription = "This Blazor Chart with legend templates showcases customizable legend items using HTML, icons, values, and conditional styling for better visualization.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]{ @"This sample demonstrates how to display a custom legend for the chart using an HTML template." }
+            },
+            new Sample
+            {
                 Name = "No Data Template",
                 Category = "Chart Customization",
                 Directory = "Charts/Chart",
@@ -1322,8 +1429,7 @@ namespace BlazorDemos
                 HeaderText = "Blazor No Data Template Chart Example.",
                 MetaTitle = "Blazor No Data Template Chart | Missing Data | Syncfusion",
                 MetaDescription = "This Blazor No Data Template Chart shows how to handle an empty chart by displaying a custom HTML template with an error message. Explore more details here.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]{ @"This sample demonstrates how to handle an empty chart by displaying a custom message and image using the No Data Template." }
+                Type = SampleType.None
             },
             new Sample
             {
@@ -1396,7 +1502,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Print Example.",
                 MetaTitle = "Blazor Chart Print Example | Document Output | Syncfusion",
                 MetaDescription = "This Blazor Chart with Print demonstrates printing capabilities for generating hard copies of charts for reports and documentation. Explore to more details.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "Print.razor", Id = "Print" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1408,7 +1519,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Export Example.",
                 MetaTitle = "Blazor Chart Export | Multiple Formats | Syncfusion",
                 MetaDescription = "This Blazor Chart with Export example demonstrates the exporting charts to various formats including PNG, JPEG, SVG, and PDF for sharing and reporting.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "Export.razor", Id = "Export" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1444,7 +1560,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor Chart with Keyboard Navigation Example.",
                 MetaTitle = "Blazor Keyboard Navigation | Accessibility | Syncfusion",
                 MetaDescription = "This Blazor Chart with Keyboard Navigation demonstrates accessibility features with keyboard controls for inclusive data visualization and interaction.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "KeyboardChart.razor", Id = "KeyboardChart" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1521,7 +1642,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor 3D Chart",
                 MetaTitle = "Blazor 3D Column Chart | 3D Visualization | Syncfusion",
                 MetaDescription = "This Blazor 3D Column Chart example demonstrates the three-dimensional column visualization for enhanced depth perception and engaging data presentation.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "Column3D.razor", Id = "Column3D" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1545,7 +1671,12 @@ namespace BlazorDemos
                 HeaderText = "Blazor 3D Chart",
                 MetaTitle = "Blazor 3D Cylindrical Column | Custom Shapes | Syncfusion",
                 MetaDescription = "This Blazor 3D Cylindrical Column Chart demonstrates custom cylindrical shapes for unique and visually appealing data representation. Explore to more details.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "CylindricalColumn3D.razor", Id = "CylindricalColumn3D" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             },
             new Sample
             {
@@ -1617,7 +1748,12 @@ namespace BlazorDemos
                 MetaTitle = "3D Chart Column with null and 0 values - Syncfusion Demos",
                 HeaderText = "Blazor 3D Chart",
                 MetaDescription = "This Blazor 3D Column Chart with null and 0 values demonstrates handling missing data points in three-dimensional visualization with various empty point modes.",
-                Type = SampleType.None
+                Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "ColumnNullValues3D.razor", Id = "ColumnNullValues3D" },
+                    new SourceCollection { FileName = "PointColor.cs", Id = "PointColor" }
+                }
             }
         };
 
@@ -1791,7 +1927,12 @@ namespace BlazorDemos
                  MetaTitle = "Blazor Sparkline in Grid | Tabular Charts | Syncfusion",
                  HeaderText = "Blazor Sparkline in Grid Example",
                  MetaDescription = "This Blazor Sparkline in Grid example demonstrates the embedding compact charts within data grids for enhanced tabular data visualization and analysis.",
-                 Type = SampleType.None
+                 Type = SampleType.None,
+                 SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection { FileName = "SparklineGrid.razor", Id = "SparklineGrid" },
+                    new SourceCollection { FileName = "SparkGridData.cs", Id = "SparkGridData" }
+                }
              },
                 new Sample
               {
@@ -1923,8 +2064,7 @@ namespace BlazorDemos
                 HeaderText = "Blazor Stock Chart with Spline Example.",
                 MetaTitle = "Blazor Spline Stock Chart | Smooth Trends | Syncfusion",
                 MetaDescription = "This Blazor Spline Stock Chart example demonstrates the smooth trend visualization for financial data with curved line interpolation and trend analysis.",
-                NotificationDescription = new string[]{ @" This sample highlights how the last data label in the stock chart series is emphasized, making it easier for users to identify and interpret the final value." },
-                Type = SampleType.Updated
+                Type = SampleType.None
             },
             new Sample
             {

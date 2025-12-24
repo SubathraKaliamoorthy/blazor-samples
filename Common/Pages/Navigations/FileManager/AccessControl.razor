@@ -16,6 +16,12 @@
     <p>
         <strong>permission: {copy: false, download: false, write: false, writeContents: false, read: true, upload: false}</strong>
     </p>
+    <p>
+        Also directory upload permission is restricted for the Music folder, individual file uploads remain allowed and the permission returned in response will be as shown below:
+    </p>
+    <p>
+        <strong>permission: {copy: false, download: false, write: false, writeContents: false, read: true, upload: true, UploadContentFilter: filesonly }</strong>
+    </p>
         For more details on defining rules for access control on folder and file , refer the <a target="_blank" href="https://github.com/SyncfusionExamples/ej2-aspcore-file-provider/blob/master/Controllers/FileManagerAccessController.cs#L139" aria-label="GitHub Sample link of FileManagerAccessControl">GitHub </a>location.</p>
 </ActionDescription>
 
@@ -27,8 +33,8 @@
                                  DownloadUrl="https://ej2-aspcore-service.azurewebsites.net/api/FileManagerAccess/Download"
                                  GetImageUrl="https://ej2-aspcore-service.azurewebsites.net/api/FileManagerAccess/GetImage">
         </FileManagerAjaxSettings>
+        <FileManagerUploadSettings DirectoryUpload="@IsDirectoryUpload"></FileManagerUploadSettings>
         <FileManagerToolbarSettings ToolbarItems="@Items"></FileManagerToolbarSettings>
-        <FileManagerContextMenuSettings File="@FileItems" Layout="@LayoutItems" Visible="true"></FileManagerContextMenuSettings>
         <FileManagerDetailsViewSettings>
             <FileManagerColumns>
                 <FileManagerColumn Field="Name" HeaderText="Name"></FileManagerColumn>
@@ -39,11 +45,12 @@
     </SfFileManager>
 </div>
 
-@*Hidden:Lines*@
 @code {
+    public bool IsDirectoryUpload = true;
     public List<ToolBarItemModel> Items = new List<ToolBarItemModel>()
     {
         new ToolBarItemModel() { Name = "NewFolder" },
+        new ToolBarItemModel() { Name = "Upload" },
         new ToolBarItemModel() { Name = "Cut" },
         new ToolBarItemModel() { Name = "Copy" },
         new ToolBarItemModel() { Name = "Paste" },
@@ -67,4 +74,3 @@
         border: none !important;
     }
 </style>
-@*End:Hidden*@

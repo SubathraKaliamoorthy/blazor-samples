@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Custom-Filtering"
+@page "/AutoComplete/Custom-Filtering"
 
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Data
@@ -23,7 +23,7 @@
     <div class="col-lg-8 control-section sb-property-border">
         <div class="control-wrapper">
             <label class="example-label">Select a country</label>
-            <SfAutoComplete TValue="string" @ref="AutocompleteObj" DebounceDelay="@NumericValue" TItem="Countries" Placeholder="e.g. Australia" DataSource="@Country">
+            <SfAutoComplete TValue="string" PopupHeight="200px" @ref="AutocompleteObj" DebounceDelay="@NumericValue" TItem="Countries" Placeholder="e.g. Australia" DataSource="@Country">
                 <AutoCompleteFieldSettings Value="Name" />
                 <AutoCompleteEvents TValue="string" TItem="Countries" Filtering="OnFilter" />
             </SfAutoComplete>

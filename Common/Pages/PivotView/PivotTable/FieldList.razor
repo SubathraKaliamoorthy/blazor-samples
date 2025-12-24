@@ -1,4 +1,4 @@
-﻿@page "/pivot-table/field-list"
+@page "/pivot-table/field-list"
 
 @using Syncfusion.Blazor.PivotView
 
@@ -126,10 +126,12 @@
     protected override void OnInitialized()
     {
         Data = PivotProductDetails.GetProductData();
+        @*Hidden:Lines*@
         if (SampleService.IsDevice)
         {
             _mobileFieldList = true;
         }
+        @*End:Hidden*@
     }
     private async Task PivotEnginePopulated(EnginePopulatedEventArgs args)
     {

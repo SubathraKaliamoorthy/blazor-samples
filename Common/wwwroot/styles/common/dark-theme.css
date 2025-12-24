@@ -642,10 +642,23 @@ body.material3-dark,
 .material3-dark .all-components {
     color: #ffffff !important;
 }
+.fluent-dark #sb-content .sb-content-tab.e-tab > .e-toolbar {
+    height: 44px !important;
+}
+.fluent-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before,
+.bootstrap5\.3-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before
+{
+    height: 2px;
+}
+.fluent2-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before {
+    background: #115ea3;
+}
 
-.material3-dark .sb-content-tab.e-tab>.e-tab-header .e-toolbar-items>.e-indicator {
-    background: #d0bcff;
-    display: block;
+.material3-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active {
+    position: relative;
+}
+.material3-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before {
+    background-color: #d0bcff;
 }
 
 .material3-dark .sb-content-tab.e-tab>.e-tab-header>.e-toolbar-items>.e-toolbar-item>.e-tab-wrap>.e-text-wrap>.e-tab-text,
@@ -800,12 +813,12 @@ body.material3-dark,
     content: '\e77c';
 }
 
-.tailwind3 .sb-toolbar-splitter, .tailwind3-dark .sb-toolbar-splitter {
+.tailwind3-dark .sb-toolbar-splitter {
     height: 48px;
     margin: 0;
 }
 
-.tailwind3.e-bigger .sb-toolbar-splitter, .tailwind3-dark.e-bigger .sb-toolbar-splitter {
+.tailwind3-dark.e-bigger .sb-toolbar-splitter {
     height: 56px;
     margin: 0;
 }
@@ -821,13 +834,37 @@ body.material3-dark,
 .tailwind3-dark .sb-src-code,
 .tailwind3-dark .sb-api-section,
 .tailwind3-dark .sb-theme-popup,
-.tailwind3-dark .copy-tooltip,
-.tailwind3-dark .e-icons.copycode,
 .tailwind3-dark #search-input-wrapper input,
 .tailwind3-dark #search-input-wrapper input::placeholder {
     color: rgba(255, 255, 255, 0.87);
     background: #1D2432 !important;
     border-bottom: 1px solid #969696;
+}
+
+.tailwind3-dark .e-icons.copycode,
+.tailwind-dark .e-icons.copycode,
+.highcontrast .e-icons.copycode,
+.material3-dark .e-icons.copycode,
+.material-dark .e-icons.copycode,
+.fluent-dark .e-icons.copycode,
+.fluent2-dark .e-icons.copycode,
+.fabric-dark .e-icons.copycode,
+.bootstrap5-dark .e-icons.copycode,
+.bootstrap5\.3-dark .e-icons.copycode,
+.fluent2-highcontrast .e-icons.copycode {
+    color: rgba(255, 255, 255, 0.87);
+    background: #1D2432 !important;
+}
+
+.bootstrap5-dark .copycode::before,
+.bootstrap5\.3-dark .copycode::before,
+.fluent-dark .copycode::before,
+.fluent2-dark .copycode::before,
+.material3-dark .copycode::before,
+.fluent2-highcontrast .copycode::before,
+.tailwind3-dark .copycode::before,
+.tailwind-dark .copycode::before {
+    content: '\e77c';
 }
 
 /* tailwind3-dark theme changes */
@@ -839,7 +876,8 @@ body.material3-dark,
     color: #fff;
 }
 
-.tailwind3-dark .sb-content-tab > .e-tab.e-nested > .e-tab-header > .e-items.e-toolbar-items > .e-indicator {
+.tailwind3-dark .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before {
+    height:2px;
     background: rgba(99, 102, 241);
 }
 

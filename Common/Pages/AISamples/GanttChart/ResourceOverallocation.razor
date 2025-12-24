@@ -1,19 +1,18 @@
-﻿@page "/ai-ganttchart/resource-manager"
+@page "/ai-ganttchart/resource-manager"
 @page "/gantt-chart/ai-resource-manager"
 
-
-@inject AzureAIService OpenAIService
-@using BlazorDemos.Model
 @using Syncfusion.Blazor.Gantt
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
+
+@using BlazorDemos.Model
 @using BlazorDemos.Service
 
+@inject AzureAIService OpenAIService
 @inject IJSRuntime JsInterop
+
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-@inject NavigationManager NavigationManager
-@inject IJSRuntime JSRuntime
 @*End:Hidden*@
 
 @*Hidden:Lines*@
@@ -120,9 +119,9 @@
 @code {
 
     public SfGantt<GanttDataModel.TaskInfoModel> Gantt;
-    private List<GanttDataModel.TaskInfoModel> TaskCollection { get; set; }
-    private List<GanttDataModel.ResourceInfoModel> ResourceCollection { get; set; }
-    private static List<GanttDataModel.AssignmentModel> AssignmentCollection { get; set; }
+    public List<GanttDataModel.TaskInfoModel> TaskCollection { get; set; }
+    public List<GanttDataModel.ResourceInfoModel> ResourceCollection { get; set; }
+    public static List<GanttDataModel.AssignmentModel> AssignmentCollection { get; set; }
     private string AIPrompt = string.Empty;
     private bool showMessage;
     List<int> TaskIds = new();

@@ -1,8 +1,10 @@
-﻿@page "/chart/keyboard"
+@page "/chart/keyboard"
 
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using PointRender
 
 @inject NavigationManager NavigationManager
@@ -207,11 +209,12 @@
 
     protected override void OnInitialized()
     {
-        
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
 		FontColor = NavigationManager.Uri.IndexOf("dark") > -1 || NavigationManager.Uri.IndexOf("highcontrast") > -1 ? "#F3F2F1" : "#353535";
 		List<string> FillColors = new List<string>();

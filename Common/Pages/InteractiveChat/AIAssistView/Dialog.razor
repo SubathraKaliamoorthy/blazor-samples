@@ -1,4 +1,4 @@
-﻿@page "/ai-assistview/dialog"
+@page "/ai-assistview/dialog"
 @using Syncfusion.Blazor.InteractiveChat
 @using Syncfusion.Blazor.Popups
 @using Syncfusion.Blazor.Buttons
@@ -8,7 +8,6 @@
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @inject NavigationManager NavigationManager
-@inject IJSRuntime JSRuntime
 
 
 @*End:Hidden*@
@@ -21,8 +20,8 @@
 <ActionDescription>
     <p>
         In this example, the AI AssistView is shown inside a dialog component, which opens with a floating action button (FAB) click.
-        It uses predefined <code>PromptSuggestions</code> that are displayed based on user configuration and a custom toolbar item as a close icon to close the dialog.
-        The <code>PromptRequested</code> event finds matching prompts and displays the responses.
+        It uses predefined <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_PromptSuggestions">PromptSuggestions</a> that are displayed based on user configuration and a custom toolbar item as a close icon to close the dialog.
+        The <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_PromptRequested">PromptRequested</a> event finds matching prompts and displays the responses.
     </p>
 </ActionDescription>
 <div class="control-section">

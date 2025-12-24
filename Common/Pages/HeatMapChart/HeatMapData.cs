@@ -5,13 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 using Syncfusion.Blazor;
-using Syncfusion.Blazor.HeatMap;
 
 namespace sf_blazor_heatmapdata
 {

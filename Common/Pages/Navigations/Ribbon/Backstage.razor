@@ -1,11 +1,10 @@
-﻿@page "/ribbon/backstage"
+@page "/ribbon/backstage"
 
 @*Hidden:Lines*@
 
 @using Syncfusion.Blazor.Ribbon;
 @using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.SplitButtons;
-@using Syncfusion.Blazor.Navigations;
 @using Syncfusion.Blazor.Notifications;
 @using DisplayMode = Syncfusion.Blazor.Ribbon.DisplayMode;
 @inherits SampleBaseComponent
@@ -20,9 +19,9 @@
     <p>The blazor <code>Ribbon</code> backstage provides a centralized interface for managing files, settings, and document-related tasks. It streamlines user interactions by organizing document management and application preferences in one place, enhancing usability and efficiency.</p>
 </ActionDescription>
 
-<div class="col-lg-12 control-section default-ribbon-section">
+<div class="col-lg-12 control-section backstage-ribbon-section">
     <div id="ribbonContainer">
-        <SfRibbon @ref=@ribbonRef ID="ribbon" LauncherIconClick="LauncherIconClick">
+        <SfRibbon @ref=@ribbonRef ID="backstage-ribbon" LauncherIconClick="LauncherIconClick">
             <RibbonBackstageMenuSettings @ref="ribbonBackstage" Text="File" Visible="true" BackButtonSettings="@backStageBackButton" BackstageItemClick="HandleBackstageItemClicked">
                 <BackstageMenuItems>
                     <BackstageMenuItem ID="home" Text="Home" IconCss="e-icons e-home"> @GetBackstageContent("home") </BackstageMenuItem>
@@ -339,10 +338,10 @@
 </div>
 
 @code {
-    SfToast toast = new SfToast();
-    SfRibbon ribbonRef = new SfRibbon();
+    SfToast? toast = new SfToast();
+    SfRibbon? ribbonRef = new SfRibbon();
     bool isDisabled = true;
-    RibbonBackstageMenuSettings ribbonBackstage = new RibbonBackstageMenuSettings();
+    RibbonBackstageMenuSettings? ribbonBackstage = new RibbonBackstageMenuSettings();
     bool isPasteDisabled = true;
     private bool checkedState = true;
     private string colorValue = "#123456";
@@ -603,8 +602,8 @@
 
     private class ComboBoxItem
     {
-        public string Text { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+        public string? Text { get; set; } = string.Empty;
+        public string? Value { get; set; } = string.Empty;
     }
 
     List<ComboBoxItem> fontFamilyItems = new List<ComboBoxItem>
@@ -829,7 +828,7 @@
         height: 550px;
     }
 
-    #ribbon {
+    #backstage-ribbon {
         box-sizing: border-box;
     }
 

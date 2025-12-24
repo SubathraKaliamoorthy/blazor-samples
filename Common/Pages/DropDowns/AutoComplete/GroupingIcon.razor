@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Grouping-Icon"
+@page "/AutoComplete/Grouping-Icon"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -25,7 +25,7 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Grouping</label>
-            <SfAutoComplete TValue="string" TItem="Vegetables" Placeholder="Select a vegetable" DataSource="@GroupData" ShowPopupButton="true">
+            <SfAutoComplete TValue="string" TItem="Vegetables" PopupHeight="200px" Placeholder="Select a vegetable" DataSource="@GroupData" ShowPopupButton="true">
                 <AutoCompleteFieldSettings GroupBy="Category" Value="Vegetable"/>
             </SfAutoComplete>
         </div>
@@ -33,13 +33,16 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Icons</label>
-            <SfAutoComplete TValue="string" TItem="SocialMedia" Placeholder="Select a social media" DataSource="@IconData" ShowPopupButton="true">
+            <SfAutoComplete TValue="string" TItem="SocialMedia" PopupHeight="200px" Placeholder="Select a social media" DataSource="@IconData" ShowPopupButton="true">
                 <AutoCompleteFieldSettings IconCss="Class" Value="SocialMediaName"/>
             </SfAutoComplete>
         </div>
     </div>
 </div>
+
+@*Hidden:Lines*@
 <link href="@(SampleService.WebAssetsPath + "styles/dropdown-list/grouping.css")" rel="stylesheet" />
+@*End:Hidden*@
 
 @code{
     

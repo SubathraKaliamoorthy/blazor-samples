@@ -1,4 +1,4 @@
-﻿@page "/pager/paging-api"
+@page "/pager/paging-api"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Inputs
@@ -28,7 +28,7 @@
     <div class="content-wrapper">
         <div class="row">
             <div class="frame" style="margin-top: 90px;">
-            <SfPager @ref="Pager" CurrentPage="@CurrentPage" TotalItemsCount=@TotalItemsCount NumericItemsCount=@PageCount PageSize=@PageSize ></SfPager>
+            <SfPager @ref="Pager" CurrentPage="@CurrentPage" TotalItemsCount=@TotalCount NumericItemsCount=@PageCount PageSize=@PageSize ></SfPager>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
             <tr>
                 <td class="left-side" style="padding-right:15px;">Total Items </td>
                 <td>
-                    <SfNumericTextBox TValue="int" @bind-Value="@TotalItemsCount" Width="115px" Min="1">
+                    <SfNumericTextBox TValue="int" @bind-Value="@TotalCount" Width="115px" Min="1">
                         <NumericTextBoxEvents TValue="int" ValueChange="@TotalItemsCountChanged"></NumericTextBoxEvents>
                     </SfNumericTextBox>
                 </td>
@@ -77,7 +77,7 @@
 @code
 {
     public SfPager? Pager { get; set; }
-    public int TotalItemsCount { get; set; } = 20;
+    public int TotalCount { get; set; } = 20;
     public int CurrentPage { get; set; } = 1;
     public int PageSize { get; set; } = 1;
     public int PageCount { get; set; } = 4;
@@ -93,8 +93,8 @@
 
     public void PageSizeChanged(ChangeEventArgs<int> args)
     {
-        PageSize = PageSize > TotalItemsCount ? TotalItemsCount : args.Value;
-        double calculatePages = (double)TotalItemsCount / (double)PageSize;
+        PageSize = PageSize > TotalCount ? TotalCount : args.Value;
+        double calculatePages = (double)TotalCount / (double)PageSize;
         int totalPages = (int)calculatePages;
         if (calculatePages.ToString().Contains("."))
         {
@@ -113,15 +113,15 @@
 
     public void TotalItemsCountChanged(ChangeEventArgs<int> args)
     {
-        TotalItemsCount = args.Value;
-        double calculatePages = (double)TotalItemsCount / (double)PageSize;
+        TotalCount = args.Value;
+        double calculatePages = (double)TotalCount / (double)PageSize;
         int totalPages = (int)calculatePages;
         if (calculatePages.ToString().Contains("."))
         {
             totalPages = (int)calculatePages + 1;
         }
         MaxCurrentPage = totalPages;
-        MaxPageSize = TotalItemsCount;
+        MaxPageSize = TotalCount;
         MaxPageCount = totalPages <= 5 ? totalPages : 5;
         CurrentPage = CurrentPage > totalPages ? totalPages : CurrentPage;
         PageCount = PageCount > totalPages ? totalPages : PageCount;

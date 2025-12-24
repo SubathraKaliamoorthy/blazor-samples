@@ -6,21 +6,34 @@
 @inherits SampleBaseComponent;
 @using TreeWrapdata
 @*End:Hidden*@
-
 <SampleDescription>
-    <p>This example demonstrates the Persist State in the Blazor Tree Grid Component. Explore <a aria-label="Navigate to explore the tree grid component" target="_blank" href="https://www.syncfusion.com/blazor-components/blazor-tree-grid">here</a> for more details.</p>
+    <p>
+        This sample demonstrates the Persist state functionality of Tree Grid, which saves user configurations such as sorting, filtering, column layout changes, search terms, and the tree column index so that the same working view is restored across sessions.
+    </p>
 </SampleDescription>
 
 <ActionDescription>
-    <p>In this example, you can see how to save the Tree Grid state, reset the current state, refresh the Tree Grid with the original state, and load the Tree Grid with an already saved state. The following are the Tree Grid properties persisted in local storage:</p>
+    <p>
+        State persistence in Tree Grid can be enabled by setting the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_EnablePersistence">EnablePersistence</a> property to <b>true</b>. This allows the Tree Grid to retain user settings such as sorting, filtering, column visibility, column order, column width, search text, and the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_TreeColumnIndex">TreeColumnIndex</a> value across browser sessions.
+    </p>
+
+    <p>
+        The persisted state can also be managed programmatically using the following methods:
+    </p>
     <ul>
-        <li>Sorting</li>
-        <li>Filtering</li>
-        <li>Column (resizing, reorder, show/hide columns)</li>
-        <li>Searching</li>
-        <li>TreeColumnIndex</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_GetPersistDataAsync">GetPersistDataAsync</a> - Retrieves the current persisted state as a string.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_SetPersistDataAsync_System_String_">SetPersistDataAsync</a> - Applies a previously saved state to the Tree Grid.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_ResetPersistDataAsync">ResetPersistDataAsync</a> - Clears the persisted state and resets the grid to its default configuration.</li>
     </ul>
-    <p>More information on state management can be found in this <a aria-label="Navigate to the documentation for state management in the tree grid component" target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/state-management/">documentation</a> section.</p>
+
+    <p>
+        In this demo, the toolbar includes custom commands to save, load, and reset the Tree Grid state. These actions demonstrate how the persisted settings can be controlled interactively.
+    </p>
+
+    <p>
+        More information about state management in Tree Grid can be found in this
+        <a target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/state-management/">documentation</a> section.
+    </p>
 </ActionDescription>
 
 <style>
@@ -172,12 +185,12 @@
                 <TreeGridEvents TValue="WrapData" OnToolbarClick="ToolBarClick"></TreeGridEvents>
                  <TreeGridFilterSettings HierarchyMode="Syncfusion.Blazor.TreeGrid.FilterHierarchyMode.Both" Type="Syncfusion.Blazor.TreeGrid.FilterType.Excel"></TreeGridFilterSettings>
                 <TreeGridColumns>
-                    <TreeGridColumn Field="TaskId" HeaderText="Task ID" Width="150" IsPrimaryKey="true" ValidationRules="@(new Syncfusion.Blazor.Grids.ValidationRules() { Required=true})" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="TaskName" HeaderText="Task Name" ValidationRules="@(new Syncfusion.Blazor.Grids.ValidationRules() { Required=true})" Width="190"></TreeGridColumn>
-                    <TreeGridColumn Field="StartDate" HeaderText="Start Date" Format="d" Type=Syncfusion.Blazor.Grids.ColumnType.Date Width="150" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" EditType=Syncfusion.Blazor.Grids.EditType.DatePickerEdit></TreeGridColumn>
-                    <TreeGridColumn Field="Duration" HeaderText="Duration" Width="140" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
+                    <TreeGridColumn Field="TaskId" HeaderText="Task ID" Width="100" IsPrimaryKey="true" ValidationRules="@(new Syncfusion.Blazor.Grids.ValidationRules() { Required=true})" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
+                    <TreeGridColumn Field="TaskName" HeaderText="Task Name" ClipMode="Syncfusion.Blazor.Grids.ClipMode.EllipsisWithTooltip" ValidationRules="@(new Syncfusion.Blazor.Grids.ValidationRules() { Required = true })" Width="190"></TreeGridColumn>
+                    <TreeGridColumn Field="StartDate" HeaderText="Start Date" Format="d" Type=Syncfusion.Blazor.Grids.ColumnType.Date Width="130" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" EditType=Syncfusion.Blazor.Grids.EditType.DatePickerEdit></TreeGridColumn>
+                    <TreeGridColumn Field="Duration" HeaderText="Duration (In Days)" ClipMode="Syncfusion.Blazor.Grids.ClipMode.EllipsisWithTooltip" Width="130" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
                     <TreeGridColumn Field="Progress" HeaderText="Progress" Width="140"></TreeGridColumn>
-                    <TreeGridColumn Field="Priority" HeaderText="Priority" Width="140" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
+                    <TreeGridColumn Field="Priority" HeaderText="Priority" Width="120" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
                 </TreeGridColumns>
             </SfTreeGrid>
         </div>

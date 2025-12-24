@@ -5,22 +5,21 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System.IO.Compression;
-using System.Text.RegularExpressions;
+using BlazorDemos.Service;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using BlazorDemos.Service;
-using System.Collections.Generic;
 using SmartComponents.LocalEmbeddings;
-using Syncfusion.Blazor.FileManager;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Buttons;
+using Syncfusion.Blazor.FileManager;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace FileManagerAI.Services
 {
@@ -686,7 +685,16 @@ namespace FileManagerAI.Services
                     throw new UnauthorizedAccessException("Access denied for Directory-traversal");
                 }
                 string physicalPath = GetPath(path);
-                if (!showFileExtension)
+                if (data == null || data.Length == 0 || data[0] == null)
+                {
+                    renameResponse.Error = new ErrorDetails
+                    {
+                        Code = "400",
+                        Message = "The file metadata (data[0]) is missing or not provided."
+                    };
+                    return renameResponse;
+                }
+                if (!showFileExtension && data[0].IsFile)
                 {
                     name = name + data[0].Type;
                     newName = newName + data[0].Type;

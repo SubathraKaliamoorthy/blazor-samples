@@ -17,7 +17,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Tags</label>
-                <SfMultiSelect TItem="Status" TValue="string[]" Placeholder="Select Tags" DataSource="@Data" AllowFiltering="true" ShowDropDownIcon=true>
+                <SfMultiSelect TItem="Status" TValue="string[]" PopupHeight="200px" Placeholder="Select Tags" DataSource="@Data" AllowFiltering="true" ShowDropDownIcon=true>
                     <MultiSelectFieldSettings Text="Text" Value="Id" Disabled="State" />
                 </SfMultiSelect>
             </div>
@@ -25,7 +25,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Vegetables</label>
-                <SfMultiSelect TValue="string[]" TItem="Vegetables" Placeholder="Select Vegetables" Mode="@VisualMode.CheckBox" DataSource="@GroupData" ShowDropDownIcon=true>
+                <SfMultiSelect TValue="string[]" TItem="Vegetables" PopupHeight="200px" Placeholder="Select Vegetables" Mode="@VisualMode.CheckBox" DataSource="@GroupData" ShowDropDownIcon=true>
                     <MultiSelectFieldSettings GroupBy="Category" Text="Vegetable" Value="Id" Disabled="State" />
                 </SfMultiSelect>
             </div>

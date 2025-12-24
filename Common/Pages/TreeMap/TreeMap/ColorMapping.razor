@@ -1,11 +1,13 @@
-﻿@page "/treemap/color-mapping"
+@page "/treemap/color-mapping"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.TreeMap
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
 @using System.Globalization
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -19,8 +21,8 @@
     <p>More information about color mapping can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/color-mapping" aria-label="Blazor TreeMap Color Mapping documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap Format="N0" EnableGroupingSeparator="true" RangeColorValuePath="@ColorValuePath" EqualColorValuePath="@EqualColorValuePath" WeightValuePath="Area" DataSource="@ColorDataSource" Theme="@Theme">
+<div class="col-lg-9 control-section">
+    <SfTreeMap @ref='TreeMap' Format="N0" EnableGroupingSeparator="true" RangeColorValuePath="@ColorValuePath" EqualColorValuePath="@EqualColorValuePath" WeightValuePath="Area" DataSource="@ColorDataSource" Theme="@Theme">
         <TreeMapTitleSettings Text="Top 10 Largest Islands in the World">
             <TreeMapTitleTextStyle Size="15px" FontFamily="Segoe UI" />
         </TreeMapTitleSettings>
@@ -45,10 +47,7 @@
         </TreeMapLeafItemSettings>
     </SfTreeMap>
 </div>
-<div id="color-mapping" class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -92,9 +91,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -110,6 +107,7 @@
 </style>
 @code{
     public Theme Theme { get; set; }
+    public SfTreeMap<LeafData>? TreeMap;
     public string ColorMappingValueType = "Range";
     public string EqualColorValuePath = null!;
     public string LegendText = "Area";
@@ -153,7 +151,7 @@
     }
     private void OnColorMappingValueTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, ColorType> args)
     {
-        ColorMappingValueType = args.Value;
+        ColorMappingValueType = args?.Value ?? ColorMappingValueType;
         if (ColorMappingValueType == "Range")
         {
             MinDisplay = "none";
@@ -308,4 +306,17 @@
         new LeafData { Name = "Great Britain", Area = 209331, Population = 60800000, Location = "Europe" },
         new LeafData { Name = "Ellesmere Island", Area = 183965, Population = 146, Location = "North America" }
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
+    }
 }

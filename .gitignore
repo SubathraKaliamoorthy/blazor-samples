@@ -9,6 +9,7 @@ sitemap-demos.xml/
 /Common/wwwroot/scripts/**/*.txt
 /Common/wwwroot/scripts/**/*.min.js
 /Common/wwwroot/styles/**/*.min.css
+!/Common/wwwroot/styles/component-samples/**
 /**/wwwroot/*.min.js
 /**/*.user
 /**/**/bin

@@ -5,6 +5,7 @@
 	<DefineConstants>$(DefineConstants);WASM;STAGING</DefineConstants>
 	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	<RootNamespace>BlazorDemos</RootNamespace>
+	<WasmAllowUndefinedSymbols>true</WasmAllowUndefinedSymbols>
     <ImplicitUsings>disable</ImplicitUsings>
 	<ShouldIncludeNativeSkiaSharp>True</ShouldIncludeNativeSkiaSharp>
 	<SelfContained>true</SelfContained>
@@ -16,6 +17,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	<DefineConstants>RELEASE;NET8_0;WASM;STAGING</DefineConstants>
 	<ConfigurationValue>Release</ConfigurationValue>
+	<Staging Condition="'$(DefineConstants)' != '' and $(DefineConstants.Contains('STAGING'))">true</Staging>
   </PropertyGroup>
 
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +29,19 @@
 		<DefineConstants>$(DefineConstants);ISSTAGING</DefineConstants>
 	</PropertyGroup>
 
+	<!-- Set AppEnvironment to Debug if Configuration is Debug OR STAGING is true -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Staging)' == 'true'">
+		<AppEnvironment>Debug</AppEnvironment>
+	</PropertyGroup>
+	<!-- Default to Release if AppEnvironment is not already set -->
+	<PropertyGroup Condition="'$(AppEnvironment)' == ''">
+		<AppEnvironment>Release</AppEnvironment>
+	</PropertyGroup>
+	<!-- Set AppEnvironment to Staging if Configuration is Release AND Staging is true -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' And '$(Staging)' == 'true'">
+		<AppEnvironment>Staging</AppEnvironment>
+	</PropertyGroup>
+
 	<Target Name="RemoveStaticFiles" AfterTargets="AfterPublish">
 		<PropertyGroup>
 			<Files>$(PublishDir)\wwwroot\_content</Files>
@@ -34,22 +49,10 @@
 
 		<ItemGroup>
 			<Directories Include="$(Files)\**"
-				  Exclude="$(Files)\**\syncfusion-blazor.min.js;$(Files)\**\syncfusion-blazor.min.js.gz;$(Files)\**\syncfusion-blazor.min.js.br;$(Files)\**\syncfusion-blazor-sfpdfviewer.min.js;$(Files)\**\syncfusion-blazor-sfpdfviewer.min.js.gz;$(Files)\**\syncfusion-blazor-sfpdfviewer.min.js.br;$(Files)\**\pdfium.js;$(Files)\**\pdfium.js.gz;$(Files)\**\pdfium.js.br;$(Files)\**\pdfium.wasm;$(Files)\**\pdfium.wasm.gz;$(Files)\**\pdfium.wasm.br;
-      $(Files)\**\syncfusion-blazor-documenteditor.min.js;$(Files)\**\syncfusion-blazor-documenteditor.min.js.gz;$(Files)\**\syncfusion-blazor-documenteditor.min.js.br;$(Files)\**\syncfusion-blazor-spreadsheet.min.js;$(Files)\**\syncfusion-blazor-spreadsheet.min.js.gz;$(Files)\**\syncfusion-blazor-spreadsheet.min.js.br;$(Files)\Syncfusion.Blazor.Themes\**;$(Files)\Blazor_WASM_Common_NET8\**;
-      $(Files)\**\syncfusion-blazor-base.min.js;$(Files)\**\syncfusion-blazor-base.min.js.gz;$(Files)\**\syncfusion-blazor-base.min.js.br;$(Files)\**\syncfusion-blazor-extended.min.js;$(Files)\**\syncfusion-blazor-extended.min.js.gz;$(Files)\**\syncfusion-blazor-extended.min.js.br;$(Files)\**\data.min.js;$(Files)\**\data.min.js.gz;$(Files)\**\data.min.js.br;$(Files)\**\diagrams.min.js;$(Files)\**\diagrams.min.js.gz;$(Files)\**\diagrams.min.js.br" />
+				  Exclude="$(Files)\Syncfusion.Blazor.*\**;$(Files)\Blazor_WASM_Common_NET8\**;" />
 		</ItemGroup>
 
 		<Delete Files="@(Directories)" ContinueOnError="true" />
-	</Target>
-
-	<Target Name="UpdateScriptReference" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'=='Release'">
-		<ReadLinesFromFile File="Components\App.razor">
-			<Output TaskParameter="Lines" ItemName="AppRazorLines" />
-		</ReadLinesFromFile>
-		<ItemGroup>
-			<AppRazorLinesUpdated Include="@(AppRazorLines->Replace('importResources.js','importResources.min.js'))" />
-		</ItemGroup>
-		<WriteLinesToFile File="Components\App.razor" Lines="@(AppRazorLinesUpdated)" Overwrite="true" />
 	</Target>
 
 	<Target Name="MinifyAssets" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'=='Release'">
@@ -78,7 +81,7 @@
 
 	<Target Name="ProductionBuild" BeforeTargets="BeforeBuild">
 		<Delete Files="wwwroot/version.js" />
-		<WriteLinesToFile File="wwwroot/version.js" Lines='export const data={"version":"net8.0","configuration":"$(ConfigurationValue)"}' />
+		<WriteLinesToFile File="wwwroot/version.js" Lines='export const data={"version":"net8.0","configuration":"$(AppEnvironment)"}' />
 	</Target>
 
   <ItemGroup>
@@ -105,6 +108,8 @@
 		<Content Remove="Pages\DocumentProcessing\Excel\EncryptAndDecrypt.razor" />
 		<Content Remove="Pages\DocumentProcessing\PDF\CompressExistingPdf.razor" />
 		<Content Remove="Pages\DocumentProcessing\PDF\Redaction.razor" />
+		<Content Remove="wwwroot\Blazor_WASM_Demos_NET9.lib.module.js" />
+		<Content Remove="wwwroot\Blazor_WASM_Demos_NET10.lib.module.js" />
 	</ItemGroup>
 
 </Project>

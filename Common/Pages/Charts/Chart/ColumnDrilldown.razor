@@ -1,7 +1,9 @@
 @page "/chart/column-drilldown"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using PointRender
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
@@ -59,9 +61,8 @@
             <ChartAxisMinorTickLines Width="0"></ChartAxisMinorTickLines>
         </ChartPrimaryYAxis>
         <ChartSeriesCollection>
-            <ChartSeries  Fill="@Fill" DataSource="@DataSource" Name="Population" XName="Drilldown" Width="2" Opacity="1"
-                YName="Y" Type="ChartSeriesType.Column"
-                CornerRadius="@(new ChartCornerRadius { TopLeft = 5, TopRight = 5})">
+            <ChartSeries  Fill="@Fill" DataSource="@DataSource" Name="Population" XName="Drilldown" Width="2" Opacity="1" YName="Y" Type="ChartSeriesType.Column">
+                <ChartCornerRadius TopLeft="5" TopRight="5" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Outer"></ChartDataLabel>
                 </ChartMarker>
@@ -124,12 +125,14 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-         if (SampleService != null && SampleService.IsDevice)
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
         {
             LabelIntersectActions = Syncfusion.Blazor.Charts.LabelIntersectAction.None;
             Width = "100%";
             LabelRotation = -45;
         }
+        @*End:Hidden*@
         this.SetTheme(null!);
     }
 

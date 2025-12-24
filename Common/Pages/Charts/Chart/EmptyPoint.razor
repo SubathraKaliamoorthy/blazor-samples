@@ -1,7 +1,9 @@
-﻿@page "/chart/empty-point"
+@page "/chart/empty-point"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
 
@@ -21,8 +23,8 @@
     <p>More information about the empty points can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/working-with-data/#empty-points' aria-label="Navigate to the documentation for Empty points in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Annual Product-Wise Profit Analysis" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="Annual Product-Wise Profit Analysis" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Interval="1" LabelRotation="@Rotation">
@@ -45,10 +47,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table id="property" style="width: 100%;">
                 <tr style="height: 50px">
                     <td style="width: 50%">
@@ -77,14 +76,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
-
-    
-    private Theme Theme { get; set; }
+    public SfChart? ChartRef { get; set; }
+    public Theme Theme { get; set; }
     public ChartSeriesType SeriesType { get; set; } = ChartSeriesType.Column;
     public EmptyPointMode Mode { get; set; } = EmptyPointMode.Gap;
     public bool Visible { get; set; } = false;
@@ -120,15 +116,29 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             Rotation = -45;
+        }
+        @*End:Hidden*@
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync();
         }
     }
 
     public void ChangeType(ChangeEventArgs<string, DropDownData> args)
     {
-        SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args.Value.ToString(), true);
+        SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args?.Value?.ToString() ?? string.Empty, true);
         if(SeriesType == ChartSeriesType.Spline)
         {
             Visible = true;
@@ -141,7 +151,7 @@
 
     public void ChangeMode(ChangeEventArgs<string, DropDownData> args)
     {
-        Mode = (EmptyPointMode)Enum.Parse(typeof(EmptyPointMode), args.Value.ToString(), true);
+        Mode = (EmptyPointMode)Enum.Parse(typeof(EmptyPointMode), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public class DropDownData

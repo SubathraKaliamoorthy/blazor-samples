@@ -1,7 +1,9 @@
-﻿@page "/chart/pie-radius"
+@page "/chart/pie-radius"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
@@ -65,17 +67,20 @@
 
     protected override void OnInitialized()
     {
-        
+
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        Name = SampleService != null && SampleService.IsDevice ? "MappingName" : "Country";
+        Name = "Country";
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
+            Name = "MappingName";
             DataLabelPosition = AccumulationLabelPosition.Inside;
             Wrap = TextWrap.Wrap;
             Width = 60;
             ConnectorLength = "10px";
             Size = "7px";
         }
+        @*End:Hidden*@
     }
 
     public class PieData

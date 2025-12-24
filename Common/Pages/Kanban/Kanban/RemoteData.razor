@@ -1,4 +1,4 @@
-﻿@page "/kanban/remote-data"
+@page "/kanban/remote-data"
 
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.Kanban
@@ -34,7 +34,7 @@
 
 <div class="col-lg-12 control-section">
     <SfKanban TValue="KanbanDataModel" KeyField="Status" AllowDragAndDrop="false">
-        <SfDataManager Url="http://localhost:63028/api/Kanban" Adaptor="@Syncfusion.Blazor.Adaptors.WebApiAdaptor" CrossDomain="true"/>
+        <SfDataManager Url="https://blazor.syncfusion.com/services/production/api/Kanban" Adaptor="@Syncfusion.Blazor.Adaptors.WebApiAdaptor" CrossDomain="true"/>
         <KanbanColumns>
             @foreach (ColumnModel item in ColumnData)
             {
@@ -59,14 +59,14 @@
     public class KanbanDataModel
     {
         public int Id { get; set; }
-        public string Status { get; set; }
-        public string Summary { get; set; }
-        public string Type { get; set; }
-        public string Priority { get; set; }
-        public string Tags { get; set; }
+        public string? Status { get; set; }
+        public string? Summary { get; set; }
+        public string? Type { get; set; }
+        public string? Priority { get; set; }
+        public string? Tags { get; set; }
         public double Estimate { get; set; }
-        public string Assignee { get; set; }
-        public string ImgUrl { get; set; }
+        public string? Assignee { get; set; }
+        public string? ImgUrl { get; set; }
         public int RankId { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "/datagrid/pager-template"
+@page "/datagrid/pager-template"
 
 @using System.Globalization;
 @using Syncfusion.Blazor.Grids
@@ -28,6 +28,7 @@
                 <GridEvents OnActionBegin="UpdatePageNumber" TValue="OrderPage"></GridEvents>
                 <GridPageSettings PageSize="10">
                     <Template>
+                        @*Hidden:Lines*@
                         @if (SampleService.IsDevice && (Layout != null && !Layout.isTablet))
                         {
                             <div class="PagerTemplate">
@@ -45,6 +46,7 @@
                             </div>
                         }
                         else{
+                            @*End:Hidden*@
                             <div class="PagerTemplate">
                                 <div class="@($"e-first e-icons e-icon-first {ValidateFirst()} align-icons e-firstpage")" @onclick="ShowFirstPage" title="Go to first page">
                                 </div>
@@ -58,7 +60,9 @@
                                 <div class="@($"e-next e-icons e-icon-next   {ValidateForward()} align-icons e-next")" @onclick="ShowNextPage" title="Go to next page"></div>
                                 <div class="@($"e-last e-icons e-icon-last {ValidateLast()} align-icons")" @onclick="ShowLastPage" title="Go to last page"></div>
                             </div>
+                            @*Hidden:Lines*@
                         }
+                        @*End:Hidden*@
 
                         <style>
                             .PagerTemplate {

@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Default-Functionalities"
+@page "/MultiSelect-Dropdown/Default-Functionalities"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -27,19 +27,19 @@
     <div class="control-wrapper">
         <div class="control-modes">
             <label class="example-label">Default Mode</label>
-            <SfMultiSelect TValue="string[]" TItem="GameFields" Mode="@VisualMode.Default" Placeholder="Favorite sports" DataSource="@Games">
+            <SfMultiSelect TValue="string[]" TItem="GameFields" PopupHeight="200px" Mode="@VisualMode.Default" Placeholder="Favorite sports" DataSource="@Games">
                 <MultiSelectFieldSettings Text="Text" Value="Id"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>
         <div class="control-modes">
             <label class="example-label">Box Mode</label>
-            <SfMultiSelect TValue="string[]" TItem="GameFields" Mode="@VisualMode.Box" Placeholder="Favorite sports" DataSource="@Games">
+            <SfMultiSelect TValue="string[]" TItem="GameFields" PopupHeight="200px" Mode="@VisualMode.Box" Placeholder="Favorite sports" DataSource="@Games">
                 <MultiSelectFieldSettings Text="Text" Value="Id"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>
         <div class="control-modes">
             <label class="example-label">Delimiter Mode</label>
-            <SfMultiSelect TValue="string[]" TItem="GameFields" Mode="@VisualMode.Delimiter" Placeholder="Favorite sports" DataSource="@Games">
+            <SfMultiSelect TValue="string[]" TItem="GameFields" PopupHeight="200px" Mode="@VisualMode.Delimiter" Placeholder="Favorite sports" DataSource="@Games">
                 <MultiSelectFieldSettings Text="Text" Value="Id"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>

@@ -152,7 +152,6 @@
       /* overflow: auto; */
       width: 100%;
       height: auto;
-      min-height: auto;
     }
     .action-description {
 	  display: none;
@@ -230,10 +229,16 @@
         width: 280px;
         height: 100%;
     }
-    .property-panel-section, .property-section {
+    .property-panel-section, .property-section .sf-property-section {
         padding-left: 0px;
         padding-right: 0px;
     }
+    .sf-property-section {
+        position: unset;
+        width: 95%;
+        border-left: unset !important;
+    }
+
     .property-panel-header {
         padding: 22px 0px 0px 20px;
         font-size: 16px;
@@ -241,11 +246,13 @@
         height: 60px;
         border-bottom: 1px solid #cccccc;
     }
+
     .property-panel-content {
         padding-left: 20px !important;
         padding-right: 20px !important;
         padding-top: 12px !important;
     }
+
     .sf-sidebar{
         margin-top:50px;
     }
@@ -673,7 +680,7 @@
     .header-logo .syncfusion-logo {
         margin: 10px 20px;
     }
-    .header-logo a span {
+    .header-logo span {
         display: none;
     }
     .sf-blazor-home span.sb-icons.sf-search-icon {
@@ -821,6 +828,9 @@
     .sf-footer-copyright,
     .sf-contact-details {
         width: 50%;
+    }
+    .desktop-search-container {
+        display: none;
     }
 }
 @media (max-width: 950px) {
@@ -1447,4 +1457,12 @@
         #cardList .card-footer-content a {
             font-size: 11px !important;
         }
+}
+
+/*SB Spinner style*/
+@media (max-width: 1024px){
+    .comp-loading.sb-body-overlay {
+        top: 0;
+        height: 100%;
+    }
 }

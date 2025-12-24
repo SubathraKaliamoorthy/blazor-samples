@@ -1,4 +1,4 @@
-﻿@page "/tabs/orientation"
+@page "/tabs/orientation"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Lists
@@ -49,7 +49,7 @@
                                                 <Template>
                                                     <div class="template-container">
                                                         <div class="left">
-                                                           <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
+                                                           <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
                                                         </div>
                                                         <div class="left empl-info">
                                                             <div class="name">@context.Name</div>
@@ -74,7 +74,7 @@
                                                 <Template>
                                                     <div class="template-container">
                                                         <div class="left">
-                                                            <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
+                                                            <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
                                                         </div>
                                                         <div class="left empl-info">
                                                             <div class="name">@context.Name</div>
@@ -99,7 +99,7 @@
                                                 <Template>
                                                     <div class="template-container">
                                                         <div class="left">
-                                                            <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
+                                                            <img class="empImg" src=@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/tabs/{context.Image}.png") alt=@context.Image />
                                                         </div>
                                                         <div class="left empl-info">
                                                             <div class="name">@context.Name</div>
@@ -144,10 +144,10 @@
     };
     public class DataModel
     {
-        public string Name { get; set; }
-        public string Designation { get; set; }
-        public string Id { get; set; }
-        public string Image { get; set; }
+        public string? Name { get; set; }
+        public string? Designation { get; set; }
+        public string? Id { get; set; }
+        public string? Image { get; set; }
     }
 
     private List<PositionData> PositionTabs { get; set; } = new List<PositionData>()
@@ -159,9 +159,9 @@
     };
     public class PositionData
     {
-        public string Position { get; set; }
+        public string? Position { get; set; }
         public HeaderPosition PositionMode { get; set; }
-        public string TabHeight { get; set; }
+        public string? TabHeight { get; set; }
     }
 }
 

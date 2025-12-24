@@ -1,4 +1,4 @@
-﻿@page "/barcodes/code-128c"
+@page "/barcodes/code-128c"
 
 @using Syncfusion.Blazor.BarcodeGenerator
 @using Syncfusion.Blazor.Inputs
@@ -36,7 +36,7 @@
         <span style="font-weight: 600;"> Allowed input characters:</span> The Code 128C barcode supports all numeric digit pairs from 00 through 99.
     </div>
 </div>
-<div class="col-lg-3 property-section" style="padding-right: 0px; min-width:36%;border-left:1px solid #D7D7D7; height:750px">
+<PropertyPanel ControlSecClass="col-lg-9">
     <div class="property-panel-header">
         Appearance
     </div>
@@ -56,7 +56,7 @@
                         Width
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=150 Max="250" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeWidthChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -66,7 +66,7 @@
                         Height
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=100 Max="200" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeHeightChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -209,7 +209,7 @@
             </div>
         </div>
     </div>
-</div>
+</PropertyPanel>
 <style>
     .centercontrol {
         margin: auto;

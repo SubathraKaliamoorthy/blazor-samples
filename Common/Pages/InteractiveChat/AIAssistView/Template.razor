@@ -1,11 +1,9 @@
-﻿@page "/ai-assistview/template"
+@page "/ai-assistview/template"
 @using Syncfusion.Blazor.InteractiveChat
 @using Syncfusion.Blazor.Inputs
-@using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.SplitButtons
 @using Syncfusion.Blazor.InteractiveChatDemo
-@inject IJSRuntime JSRuntime
 
 @inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
 
@@ -23,10 +21,10 @@
 </SampleDescription>
 <ActionDescription>
     <p>
-        In this example, the AI AssistView component uses customizable templates for the banner, prompts, responses, and suggestions. We have used the <code>BannerTemplate</code>, <code>PromptItemTemplate</code>, <code>ResponseItemTemplate</code> and <code>PromptSuggestionItemTemplate</code> to define the structure and appearance of these elements.
+        In this example, the AI AssistView component uses customizable templates for the banner, prompts, responses, and suggestions. We have used the  <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistView.html#Syncfusion_Blazor_InteractiveChat_AssistView_BannerTemplate">BannerTemplate</a>,  <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistView.html#Syncfusion_Blazor_InteractiveChat_AssistView_PromptItemTemplate">PromptItemTemplate</a>,  <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistView.html#Syncfusion_Blazor_InteractiveChat_AssistView_ResponseItemTemplate">ResponseItemTemplate</a> and  <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistView.html#Syncfusion_Blazor_InteractiveChat_AssistView_PromptSuggestionItemTemplate">PromptSuggestionItemTemplate</a> to define the structure and appearance of these elements.
     </p>
     <p>
-        By using the <code>ExecutePromptAsync</code> method you can trigger the prompt request externally and generate the output based on the <code>PromptRequested</code> data returned. If found, the response will be displayed and suggestions updated.
+        By using the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_ExecutePromptAsync_System_String_">ExecutePromptAsync</a> method you can trigger the prompt request externally and generate the output based on the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_PromptRequested">PromptRequested</a> data returned. If found, the response will be displayed and suggestions updated.
     </p>
 </ActionDescription>
 
@@ -100,8 +98,6 @@
 </div>
 @code {
     private SfAIAssistView AIAssist = new SfAIAssistView();
-    private SfTextArea TextArea = new SfTextArea();
-    private string textAreaValue = string.Empty;
     private bool shouldShowSuggestion { get; set; } = true;
     private Dictionary<int, bool> promptCopiedState = new Dictionary<int, bool>();
     private Dictionary<int, bool> responseCopiedState = new Dictionary<int, bool>();
@@ -125,12 +121,12 @@
         new CarouselModel() { ImagePath = "tokyo.png", Suggestion = "What tools or apps can help me prioritize tasks?" }
     };
 
-    private void OnCarouselItemClick(CarouselModel carouselItem)
+    private async Task OnCarouselItemClick(CarouselModel carouselItem)
     {
         string prompt = carouselItem.Suggestion;
         if (!string.IsNullOrEmpty(prompt))
         {
-            AIAssist.ExecutePromptAsync(prompt);
+            await AIAssist.ExecutePromptAsync(prompt);
         }
     }
     private async Task PromptRequest(AssistViewPromptRequestedEventArgs args)

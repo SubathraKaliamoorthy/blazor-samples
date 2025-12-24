@@ -38,6 +38,11 @@ namespace BlazorDemos.Pages.TreeGrid.TreeGrid
         private SfButton RemoveResolvedTicketButtonRef;
         private SfDialog AddDialogRef;
 
+        // Disabled state flags for buttons (bind in markup)
+        private bool ResolveDisabled = true;
+        private bool EscalateDisabled = true;
+        private bool RemoveResolvedDisabled = true;
+
         private SupportTicketData SelectedRecord = null;
 
         protected override void OnInitialized()
@@ -49,20 +54,13 @@ namespace BlazorDemos.Pages.TreeGrid.TreeGrid
         {
             if (firstRender)
             {
-                // Initialize button states after first render when references are available
-                if (ResolveTicketButtonRef != null)
-                    ResolveTicketButtonRef.Disabled = true;
-
-                if (EscalateTicketButtonRef != null)
-                    EscalateTicketButtonRef.Disabled = true;
-
-                if (RemoveResolvedTicketButtonRef != null)
-                    RemoveResolvedTicketButtonRef.Disabled = true;
+                // Ensure dialog is hidden initially
                 if (AddDialogRef != null)
                 {
-                    AddDialogRef.Visible = false; // Ensure dialog is hidden initially
+                    AddDialogRef.Visible = false;
                 }
 
+                // Buttons are disabled by default via bound flags; trigger re-render
                 StateHasChanged();
             }
         }
@@ -141,15 +139,10 @@ namespace BlazorDemos.Pages.TreeGrid.TreeGrid
             bool hasSelection = SelectedRecord != null;
             bool hasResolvedSelection = SelectedRecord?.Status == "Resolved";
 
-            // Enable/disable buttons based on current selection
-            if (ResolveTicketButtonRef != null)
-                ResolveTicketButtonRef.Disabled = !hasSelection;
-
-            if (EscalateTicketButtonRef != null)
-                EscalateTicketButtonRef.Disabled = !hasSelection;
-
-            if (RemoveResolvedTicketButtonRef != null)
-                RemoveResolvedTicketButtonRef.Disabled = !hasResolvedSelection;
+            // Update bound disabled flags (reliable across .NET versions)
+            ResolveDisabled = !hasSelection;
+            EscalateDisabled = !hasSelection;
+            RemoveResolvedDisabled = !hasResolvedSelection;
         }
 
         private void RemoveSelectedResolvedTicket()

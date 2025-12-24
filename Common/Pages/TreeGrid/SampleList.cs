@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -24,7 +20,15 @@ namespace BlazorDemos
                 FileName = "Overview.razor",
                 MetaTitle = "Blazor Tree Grid Overview | Hierarchical Data | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Overview",
-                MetaDescription = "Blazor Tree Grid overview demo shows hierarchical data visualization with tree structure, expandable nodes, and comprehensive grid features for data management."
+                MetaDescription = "Blazor Tree Grid overview demo shows hierarchical data visualization with tree structure, expandable nodes, and comprehensive grid features for data management.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="OverviewData",
+                        FileName="Overview.razor"
+                    }
+                }
             },
             new Sample
             {
@@ -47,7 +51,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Data",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -61,80 +65,18 @@ namespace BlazorDemos
                 Type = SampleType.None,
                 MetaTitle = "Blazor Tree Grid Adaptive | Responsive Design | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Adaptive Layout",
-                MetaDescription = "This Blazor Tree Grid with Adaptive Layout demonstrates responsive design that automatically adjusts to different screen sizes and device orientations."
-            },
-            new Sample
-            {
-                Name = "Sorting",
-                Category = "Tree Grid",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/sorting",
-                Type = SampleType.None,
-                FileName="Sorting.razor",
-                MetaTitle = "Blazor Tree Grid Sorting | Data Organization | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Sorting",
-                MetaDescription = "This Blazor Tree Grid Sorting demonstrates the hierarchical data organization with multi-column sorting while maintaining tree structure relationships.",
+                MetaDescription = "This Blazor Tree Grid with Adaptive Layout demonstrates responsive design that automatically adjusts to different screen sizes and device orientations.",
                 SourceFiles = new List<SourceCollection>()
                 {
                     new SourceCollection
                     {
-                        Id="Sorting",
-                        FileName="Sorting.razor"
+                        Id="AdaptiveData",
+                        FileName="Adaptive.razor"
                     },
                     new SourceCollection
                     {
-                        Id="SortData",
-                        FileName="ShipmentData.cs"
-                    }
-                }
-            },
-            new Sample
-            {
-                Name = "Paging",
-                Category = "Tree Grid",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/paging",
-                Type = SampleType.None,
-                FileName="Paging.razor",
-                MetaTitle = "Blazor Tree Grid Paging | Data Navigation | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Paging",
-                MetaDescription = "This Blazor Tree Grid Paging demonstrates the hierarchical data navigation with page-based browsing while preserving tree structure and relationships.",
-                SourceFiles = new List<SourceCollection>()
-                {
-                    new SourceCollection
-                    {
-                        Id="Paging",
-                        FileName="Paging.razor"
-                    },
-                    new SourceCollection
-                    {
-                        Id="Data",
+                        Id="AdaptiveDataSource",
                         FileName="SelfData.cs"
-                    }
-                }
-            },
-            new Sample
-            {
-                Name = "Aggregates",
-                Category = "Tree Grid",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/aggregate",
-                Type = SampleType.None,
-                FileName="Aggregate.razor",
-                MetaTitle = "Blazor Tree Grid Aggregates | Summary Data | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Aggregates",
-                MetaDescription = "This Blazor Tree Grid Aggregates demonstrates summary calculations and statistical data display for hierarchical data with parent-child relationships.",
-                SourceFiles = new List<SourceCollection>()
-                {
-                    new SourceCollection
-                    {
-                        Id="Aggregate",
-                        FileName="Aggregate.razor"
-                    },
-                    new SourceCollection
-                    {
-                        Id="Aggregatedata",
-                        FileName="SummaryRowData.cs"
                     }
                 }
             },
@@ -144,7 +86,7 @@ namespace BlazorDemos
                 Category = "Tree Grid",
                 Directory = "TreeGrid/TreeGrid",
                 Url = "tree-grid/empty-record-template",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 FileName="EmptyRecordTemplate.razor",
                 MetaTitle = "Blazor TreeGrid Empty Record Template | Custom Record | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Empty Record Template",
@@ -187,36 +129,12 @@ namespace BlazorDemos
             },
             new Sample
             {
-                Name = "ExpandoObject Binding",
-                Category = "Data Binding",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/expando-object",
-                FileName = "TreeGridExpandoObject.razor",
-                Type = SampleType.None,
-                MetaTitle = "Blazor Tree Grid ExpandoObject | Dynamic Binding | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - ExpandoObject Binding",
-                MetaDescription = "This Blazor Tree Grid ExpandoObject Binding demonstrates the dynamic data binding with flexible object structures for hierarchical data visualization."
-            },
-            new Sample
-            {
-                Name = "DynamicObject Binding",
-                Category = "Data Binding",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/dynamic-object",
-                FileName = "TreeGridDynamicObject.razor",
-                Type = SampleType.None,
-                MetaTitle = "Blazor Tree Grid DynamicObject | Flexible Data | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - DynamicObject Binding",
-                MetaDescription = "This Blazor Tree Grid DynamicObject Binding demonstrates the flexible data binding with runtime object creation for the dynamic hierarchical structures."
-            },
-            new Sample
-            {
                 Name = "Observable Collection",
                 Category = "Data Binding",
                 Directory = "TreeGrid/TreeGrid",
                 Url = "tree-grid/observable-binding",
                 FileName = "ObservableCollection.razor",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 MetaTitle = "Blazor Tree Grid ObservableCollection | Real-time Updates | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Observable Collection Binding",
                 MetaDescription = "Blazor Tree Grid observable collection demo shows automatic UI updates when data changes. Track changes for real-time grid updates without manual refresh.",
@@ -245,60 +163,30 @@ namespace BlazorDemos
                     }
                 }
             },
-#if !(WASM)
             new Sample
             {
-                Name = "List Binding",
-                Category = "Virtual Scrolling",
+                Name = "ExpandoObject Binding",
+                Category = "Data Binding",
                 Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/virtual-scrolling",
+                Url = "tree-grid/expando-object",
+                FileName = "TreeGridExpandoObject.razor",
                 Type = SampleType.None,
-                FileName="VirtualScrolling.razor",
-                MetaTitle = "Blazor Tree Grid Virtual Scrolling | Performance | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - List Binding",
-                MetaDescription = "Blazor Tree Grid Virtual Scrolling showcases efficient rendering of extensive hierarchical data with optimized memory management for superior performance.",
-                SourceFiles = new List<SourceCollection>()
-                {
-                    new SourceCollection
-                    {
-                        Id = "VirtualScrolling",
-                        FileName = "VirtualScrolling.razor"
-                    },
-                    new SourceCollection
-                    {
-                        Id = "VirtualScrollData",
-                        FileName = "VirtualData.cs"
-                    }
-                },
+                MetaTitle = "Blazor Tree Grid ExpandoObject | Dynamic Binding | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - ExpandoObject Binding",
+                MetaDescription = "This Blazor Tree Grid ExpandoObject Binding demonstrates the dynamic data binding with flexible object structures for hierarchical data visualization."
             },
-#endif
-
-#if (WASM)
             new Sample
             {
-                Name = "Virtual Scrolling",
-                Category = "Virtual Scrolling",
+                Name = "DynamicObject Binding",
+                Category = "Data Binding",
                 Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/remote-data-with-virtualization",
-                FileName = "RemoteDataWithVirtualization.razor",
-                MetaTitle = "Blazor Tree Grid Virtual Scrolling | Performance | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Virtual Scrolling",
-                MetaDescription = "This Blazor Tree Grid Virtual Scrolling demonstrates high-performance rendering of large hierarchical datasets with optimized memory usage for performance.",
+                Url = "tree-grid/dynamic-object",
+                FileName = "TreeGridDynamicObject.razor",
+                Type = SampleType.None,
+                MetaTitle = "Blazor Tree Grid DynamicObject | Flexible Data | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - DynamicObject Binding",
+                MetaDescription = "This Blazor Tree Grid DynamicObject Binding demonstrates the flexible data binding with runtime object creation for the dynamic hierarchical structures."
             },
-#endif
-#if !(WASM)
-            new Sample
-            {
-                Name = "Remote Data Binding",
-                Category = "Virtual Scrolling",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/remote-data-with-virtualization",
-                FileName = "RemoteDataWithVirtualization.razor",
-                MetaTitle = "Blazor Tree Grid Remote Virtual | API Performance | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Remote Data Binding",
-                MetaDescription = "This Blazor Tree Grid Remote Data with Virtualization example demonstrates high-performance hierarchical data loading from APIs with virtual scrolling.",
-            },
-#endif
 
             new Sample
             {
@@ -371,7 +259,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ReorderData",
-                        FileName="SelfData.cs"
+                        FileName="EmployeeData.cs"
                     }
                 }
             },
@@ -396,7 +284,33 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ResizeData",
-                        FileName="SelfData.cs"
+                        FileName="SupportTicketData.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Stacked Header",
+                Category = "Columns",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/stacked-header",
+                Type = SampleType.New,
+                FileName="Resizing.razor",
+                MetaTitle = "Blazor Tree Grid Stacked Header | Column Width | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Stacked Header",
+                MetaDescription = "Explore Blazor Tree Grid Stacked Header with grouped column headers for clear categorization, better hierarchy, and improved readability in complex datasets.",
+                NotificationDescription = new string[]{"This sample demonstrates the Tree Grid component, which includes stacked headers and a customizable column chooser template."},
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="StackedHeader",
+                        FileName="StackedHeader.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="StackedHeaderData",
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -421,7 +335,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="MenuData",
-                        FileName="SelfData.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -445,8 +359,8 @@ namespace BlazorDemos
                     },
                     new SourceCollection
                     {
-                        Id="WrapData",
-                        FileName="WrapData.cs"
+                        Id="SupportTicketData",
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -471,7 +385,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="TreeData",
-                        FileName="SelfData.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -496,7 +410,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ShowOrHideData",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -521,7 +435,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="FrozenData",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -531,7 +445,7 @@ namespace BlazorDemos
                 Category = "Columns",
                 Directory = "TreeGrid/TreeGrid",
                 Url = "tree-grid/sticky-header",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 FileName="StickyHeader.razor",
                 MetaTitle = "Blazor Tree Grid Sticky Header | Fixed Headers | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Sticky Header",
@@ -543,6 +457,32 @@ namespace BlazorDemos
                     {
                         Id="StickyHeader",
                         FileName="StickyHeader.razor"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Column Spanning",
+                Category = "Columns",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/row-and-column-spanning",
+                Type = SampleType.New,
+                FileName="StickyHeader.razor",
+                MetaTitle ="Blazor Tree Grid Row and Column Spanning | Layout Control | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Row and Column Spanning",
+                MetaDescription = "This Blazor Tree Grid Row and Column Spanning example demonstrates flexible cell merging across rows and columns for enhanced hierarchical data visualization.",
+                NotificationDescription = new string[]{@"This demo illustrates the row and column spanning feature of the Blazor Tree Grid. It merges adjacent cells with identical values vertically, horizontally, or both, improving readability and reducing redundancy. NOTE: Row and column spanning are showcased in the same sample for clarity."},
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="RowandColumnSpanning",
+                        FileName="TreeGridAutoSpanMode.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="RowandColumnSpanningData",
+                        FileName="ProjectTask.cs"
                     }
                 }
             },
@@ -567,7 +507,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="RowData",
-                        FileName="TemplateData.cs"
+                        FileName="ProjectPortfolioData.cs"
                     }
                 }
             },
@@ -617,7 +557,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DragData",
-                        FileName="WrapData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -642,7 +582,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DropData",
-                        FileName="WrapData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -668,7 +608,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="HoverData",
-                        FileName="SelfData.cs"
+                        FileName="ShipmentData.cs"
                     }
                 }
             },
@@ -699,6 +639,32 @@ namespace BlazorDemos
             },
             new Sample
             {
+                Name ="Row Spanning",
+                Category = "Rows",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/row-and-column-spanning",
+                Type = SampleType.New,
+                FileName="TreeGridAutoSpanMode.razor",
+                MetaTitle = "Blazor Tree Grid Row and Column Spanning | Layout Control | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Row and Column Spanning",
+                MetaDescription = "This Blazor Tree Grid Row and Column Spanning example demonstrates flexible cell merging across rows and columns for enhanced hierarchical data visualization.",
+                NotificationDescription = new string[]{ @"This demo illustrates the row and column spanning feature of the Blazor Tree Grid. It merges adjacent cells with identical values vertically, horizontally, or both, improving readability and reducing redundancy. NOTE: Row and column spanning are showcased in the same sample for clarity."},
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="RowandColumnSpanning",
+                        FileName="TreeGridAutoSpanMode.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="RowandColumnSpanning",
+                        FileName="ProjectTask.cs"
+                    }
+                }
+            },
+            new Sample
+            {
                 Name = "Inline Editing",
                 Category = "Editing",
                 Directory = "TreeGrid/TreeGrid",
@@ -717,7 +683,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Data",
-                        FileName="Dateonlytimeonlydata.cs"
+                        FileName="FieldServiceScheduleData.cs"
                     }
                 }
             },
@@ -742,7 +708,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DialogData",
-                        FileName="SelfData.cs"
+                        FileName="EmployeeData.cs"
                     }
                 }
             },
@@ -791,7 +757,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="CommandData",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -845,6 +811,57 @@ namespace BlazorDemos
                     }
                 }
             },
+             new Sample
+            {
+                Name = "Default Sorting",
+                Category = "Sorting",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/sorting",
+                Type = SampleType.None,
+                FileName="Sorting.razor",
+                MetaTitle = "Blazor Tree Grid Sorting | Data Organization | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Sorting",
+                MetaDescription = "This Blazor Tree Grid Sorting demonstrates the hierarchical data organization with multi-column sorting while maintaining tree structure relationships.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Sorting",
+                        FileName="Sorting.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="SortData",
+                        FileName="ShipmentData.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Custom Sorting",
+                Category = "Sorting",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/customsorting",
+                Type = SampleType.New,
+                FileName="CustomSorting.razor",
+                MetaTitle = "Blazor TreeGrid Sorting | Sort Comparer | Syncfusion",
+                HeaderText = "Blazor TreeGrid Example - Custom Sorting",
+                MetaDescription = "The Blazor TreeGrid custom sorting demo demonstrates custom logic for unique sorting needs, enabling the specialized comparison rules to ordering data.",
+                NotificationDescription = new string[]{ "This sample demonstrates how to apply custom sorting logic in the Tree Grid." },
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="CustomSorting",
+                        FileName="CustomSorting.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="CustomSorting",
+                        FileName="TaskData.cs"
+                    }
+                }
+            },
             new Sample
             {
                 Name = "Default Filtering",
@@ -866,7 +883,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Data",
-                        FileName="SelfData.cs"
+                        FileName="EmployeeData.cs"
                     }
                 }
             },
@@ -891,7 +908,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="FilterBarTemplateData",
-                        FileName="SelfData.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -916,7 +933,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="FilterData",
-                        FileName="Dateonlytimeonlydata.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 },
             },
@@ -941,7 +958,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="FilterData",
-                        FileName="Dateonlytimeonlydata.cs"
+                        FileName="EmployeeData.cs"
                     }
                 },
             },
@@ -966,7 +983,83 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Data",
-                        FileName="SelfData.cs"
+                        FileName="EmployeeData.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Default Paging",
+                Category = "Paging",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/paging",
+                Type = SampleType.None,
+                FileName="Paging.razor",
+                MetaTitle = "Blazor Tree Grid Paging | Data Navigation | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Paging",
+                MetaDescription = "This Blazor Tree Grid Paging demonstrates the hierarchical data navigation with page-based browsing while preserving tree structure and relationships.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Paging",
+                        FileName="Paging.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="ShipmentData.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Default Aggregates",
+                Category = "Aggregates",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/aggregate",
+                Type = SampleType.None,
+                FileName="Aggregate.razor",
+                MetaTitle = "Blazor Tree Grid Aggregates | Summary Data | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Aggregates",
+                MetaDescription = "This Blazor Tree Grid Aggregates demonstrates summary calculations and statistical data display for hierarchical data with parent-child relationships.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Aggregate",
+                        FileName="Aggregate.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Aggregatedata",
+                        FileName="SummaryRowData.cs"
+                    }
+                }
+            },
+             new Sample
+            {
+                Name = "Custom Aggregates",
+                Category = "Aggregates",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/custom-aggregate",
+                Type = SampleType.New,
+                FileName="CustomAggregates.razor",
+                MetaTitle = "Blazor Tree Grid Custom Aggregates | Shipment Data | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Custom Aggregates",
+                MetaDescription = "Blazor Tree Grid Custom Aggregates example demonstrates applying user-defined summary calculations to hierarchical data for advanced custom business logic.",
+                NotificationDescription = new string[]{"This sample demonstrates how to use custom aggregates in the Tree Grid to display user-defined summary values in the footer."},
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="CustomAggregate",
+                        FileName="CustomAggregates.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="CustomAggregatedata",
+                        FileName="ShipmentData.cs"
                     }
                 }
             },
@@ -991,32 +1084,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="SelectionData",
-                        FileName="SelfData.cs"
-                    }
-                }
-            },
-            new Sample
-            {
-                Name = "Selection API",
-                Category = "Selection",
-                Directory = "TreeGrid/TreeGrid",
-                Url = "tree-grid/selection-api",
-                Type = SampleType.None,
-                FileName="SelectionAPI.razor",
-                MetaTitle = "Blazor Tree Grid Selection API | Programmatic | Syncfusion",
-                HeaderText = "Blazor Tree Grid Example - Selection API",
-                MetaDescription = "This Blazor Tree Grid Selection API example demonstrates the programmatic selection control with methods for the managing hierarchical data selections.",
-                SourceFiles = new List<SourceCollection>()
-                {
-                    new SourceCollection
-                    {
-                        Id="SelectionAPI",
-                        FileName="SelectionAPI.razor"
-                    },
-                    new SourceCollection
-                    {
-                        Id="SelectionAPIData",
-                        FileName="SelfData.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -1041,10 +1109,92 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="CheckBoxData",
-                        FileName="SelfData.cs"
+                        FileName="EmployeeData.cs"
                     }
                 }
             },
+            new Sample
+            {
+                Name = "Selection API",
+                Category = "Selection",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/selection-api",
+                Type = SampleType.None,
+                FileName="SelectionAPI.razor",
+                MetaTitle = "Blazor Tree Grid Selection API | Programmatic | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Selection API",
+                MetaDescription = "This Blazor Tree Grid Selection API example demonstrates the programmatic selection control with methods for the managing hierarchical data selections.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="SelectionAPI",
+                        FileName="SelectionAPI.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="SelectionAPIData",
+                        FileName="SupportTicketData.cs"
+                    }
+                }
+            },
+            #if !(WASM)
+            new Sample
+            {
+                Name = "List Binding",
+                Category = "Virtual Scrolling",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/virtual-scrolling",
+                Type = SampleType.None,
+                FileName="VirtualScrolling.razor",
+                MetaTitle = "Blazor Tree Grid Virtual Scrolling | Performance | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - List Binding",
+                MetaDescription = "Blazor Tree Grid Virtual Scrolling showcases efficient rendering of extensive hierarchical data with optimized memory management for superior performance.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id = "VirtualScrolling",
+                        FileName = "VirtualScrolling.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "VirtualScrollData",
+                        FileName = "VirtualData.cs"
+                    }
+                },
+            },
+#endif
+
+#if (WASM)
+            new Sample
+            {
+                Name = "Virtual Scrolling",
+                Category = "Virtual Scrolling",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/remote-data-with-virtualization",
+                Type = SampleType.Updated,
+                FileName = "RemoteDataWithVirtualization.razor",
+                MetaTitle = "Blazor Tree Grid Virtual Scrolling | Performance | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Virtual Scrolling",
+                MetaDescription = "This Blazor Tree Grid Virtual Scrolling demonstrates high-performance rendering of large hierarchical datasets with optimized memory usage for performance.",
+            },
+#endif
+#if !(WASM)
+            new Sample
+            {
+                Name = "Remote Data Binding",
+                Category = "Virtual Scrolling",
+                Directory = "TreeGrid/TreeGrid",
+                Url = "tree-grid/remote-data-with-virtualization",
+                Type = SampleType.Updated,
+                FileName = "RemoteDataWithVirtualization.razor",
+                MetaTitle = "Blazor Tree Grid Remote Virtual | API Performance | Syncfusion",
+                HeaderText = "Blazor Tree Grid Example - Remote Data Binding",
+                MetaDescription = "This Blazor Tree Grid Remote Data with Virtualization example demonstrates high-performance hierarchical data loading from APIs with virtual scrolling.",
+                NotificationDescription = new string[]{"This sample demonstrates virtualization with remote data binding in Tree Grid."},
+            },
+#endif
             new Sample
             {
                 Name = "Default Exporting",
@@ -1066,7 +1216,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultExportingData",
-                        FileName="SelfData.cs"
+                        FileName="BillOfMaterials.cs"
                     }
                 }
             },
@@ -1091,7 +1241,7 @@ namespace BlazorDemos
                    new SourceCollection
                    {
                        Id="PrintData",
-                       FileName="SelfData.cs"
+                       FileName="ShipmentData.cs"
                    }
                }
             },
@@ -1104,7 +1254,20 @@ namespace BlazorDemos
                 FileName = "Persistence.razor",
                 MetaTitle = "Blazor Tree Grid Persist State | Save Settings | Syncfusion",
                 HeaderText = "Blazor Tree Grid Example - Persist State",
-                MetaDescription = "This Blazor Tree Grid Persist State example demonstrates the saving and restoring grid settings including column order, filters, and user preferences."
+                MetaDescription = "This Blazor Tree Grid Persist State example demonstrates the saving and restoring grid settings including column order, filters, and user preferences.",
+                SourceFiles = new List<SourceCollection>()
+               {
+                   new SourceCollection
+                   {
+                       Id="PersistState",
+                       FileName="Persistence.razor"
+                   },
+                   new SourceCollection
+                   {
+                       Id="PersistenceData",
+                       FileName="WrapData.cs"
+                   }
+               }
             },
             new Sample
             {
@@ -1126,7 +1289,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ContextData",
-                        FileName="TreeData.cs"
+                        FileName="SupportTicketData.cs"
                     }
                 }
             },
@@ -1175,7 +1338,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Clipboard",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -1199,8 +1362,8 @@ namespace BlazorDemos
                     },
                     new SourceCollection
                     {
-                        Id="formatdata",
-                        FileName="Selfdata.cs"
+                        Id="TaskData",
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -1225,7 +1388,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ToolBarTemplateData",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             },
@@ -1250,7 +1413,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="KeyboardInteractionData",
-                        FileName="SelfData.cs"
+                        FileName="TaskData.cs"
                     }
                 }
             }

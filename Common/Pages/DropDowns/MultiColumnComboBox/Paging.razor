@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/Paging"
+@page "/MultiColumn-ComboBox/Paging"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 @using Syncfusion.Blazor.Inputs
@@ -31,7 +31,7 @@
     <div class="col-lg-8 control-section sb-property-border">
         <div class="control-wrapper">
             <label class="example-label">Select a service</label>
-            <SfMultiColumnComboBox TItem="Service" TValue="string" Placeholder="e.g. Web Development" PopupWidth="600px" AllowFiltering="true" PageCount="@PageCount" PageSize="@PageSize" DataSource="GridData" AllowPaging="true" TextField="Name" ValueField="Name">
+            <SfMultiColumnComboBox TItem="Service" TValue="string" PopupHeight="200px" Placeholder="e.g. Web Development" PopupWidth="600px" AllowFiltering="true" PageCount="@PageCount" PageSize="@PageSize" DataSource="GridData" AllowPaging="true" TextField="Name" ValueField="Name">
             </SfMultiColumnComboBox>
         </div>
     </div>
@@ -253,7 +253,7 @@
         padding: 0px 0px 20px 0px;
     }
 
-        .property-panel-content:last-child {
-            padding: 0px 0px 40px 0px;
-        }
+    .property-panel-content:last-child {
+        padding: 0px 0px 40px 0px;
+    }
 </style>

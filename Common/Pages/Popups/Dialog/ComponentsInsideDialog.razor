@@ -16,6 +16,7 @@
 @using blazor_griddata;
 
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent
 @*End:Hidden*@
 
@@ -313,27 +314,7 @@
     {
         GridData = OrdersDetails.GetAllRecords();
         DataSource = new ScheduleData().GetScheduleData();
-        CurrentUri = NavigationManager.Uri;
-        if (CurrentUri.IndexOf("material") > -1)
-        {
-            Theme = Syncfusion.Blazor.Theme.Material;
-        }
-        else if (CurrentUri.IndexOf("fabric") > -1)
-        {
-            Theme = Syncfusion.Blazor.Theme.Fabric;
-        }
-        else if (CurrentUri.IndexOf("bootstrap") > -1)
-        {
-            Theme = Syncfusion.Blazor.Theme.Bootstrap;
-        }
-        else if (CurrentUri.IndexOf("highcontrast") > -1)
-        {
-            Theme = Syncfusion.Blazor.Theme.HighContrast;
-        }
-        else
-        {
-            Theme = Syncfusion.Blazor.Theme.Bootstrap4;
-        }
+        Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
 
     private void ValidSubmit(EditContext context)

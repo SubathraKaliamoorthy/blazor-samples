@@ -1,10 +1,12 @@
-﻿@page "/linear-gauge/container"
+@page "/linear-gauge/container"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.LinearGauge
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Popups;
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -33,8 +35,8 @@
     }
 </style>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfLinearGauge Title="Temparature Measure" Orientation="@GaugeOrientation" Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section">
+    <SfLinearGauge @ref='LinearGaugue' Title="Temparature Measure" Orientation="@GaugeOrientation" Theme="@Theme" Background="transparent">
         <LinearGaugeTitleStyle FontFamily="inherit"></LinearGaugeTitleStyle>
         <LinearGaugeContainer Width="13" RoundedCornerRadius="5" Type="@GaugeContainerType">
             <LinearGaugeContainerBorder Width="1"></LinearGaugeContainerBorder>
@@ -65,10 +67,7 @@
         </LinearGaugeContainer>
     </SfLinearGauge>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table class="full-width-element">
                 <tbody>
                     <tr>
@@ -106,9 +105,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 <style>
     .full-width-element {
@@ -117,6 +114,7 @@
 </style>
 
 @code {
+    public SfLinearGauge? LinearGaugue;
     public SfTooltip? DropdownTooltip;
     public bool IsOpen { get; set; }
     public Theme Theme { get; set; }
@@ -140,13 +138,13 @@
 
     private void OrintationChange(ChangeEventArgs<string, OrientationData> args)
     {
-        OrientationValue = (args.Value).ToString();
+        OrientationValue = (args?.Value)?.ToString() ?? OrientationValue;
         GaugeOrientation = this.OrientationValue == "Vertical" ? Orientation.Vertical : Orientation.Horizontal;
     }
 
     private void ContainerTypeChange(ChangeEventArgs<string, ContainerTypeData> args)
     {
-        ContainerTypeValue = (args.Value).ToString();
+        ContainerTypeValue = (args?.Value)?.ToString() ?? ContainerTypeValue;
         if (ContainerTypeValue == "Thermometer")
             GaugeContainerType = ContainerType.Thermometer;
         else if (ContainerTypeValue == "Normal")
@@ -181,5 +179,18 @@
     public class ContainerTypeData
     {
         public string? Name { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (LinearGaugue != null)
+        {
+            await LinearGaugue.RefreshAsync();
+        }
     }
 }

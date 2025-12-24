@@ -6,7 +6,7 @@
 @using BlazorDemos.Shared;
 @using System.Globalization;
 @using System.Text.RegularExpressions;
-
+@namespace BlazorDemos.Shared
 @inject IJSRuntime JsRuntime;
 @inject NavigationManager UriHelper;
 @inject SampleService SampleService;
@@ -14,91 +14,24 @@
 
 @inherits LayoutComponentBase;
 @implements IDisposable;
-@{#if SERVER}
-@attribute [StreamRendering]
-@{#endif}
+@attribute [StreamRendering];
 
-@{#if SERVER}
 <CascadingValue Value="@this">
-    <CascadingValue Value="enableLazyLoad" Name="EnableLazyLoad">
-    <SpinnerComponent @ref="spinnerRef"></SpinnerComponent>
-    @if (SampleUtils.IsHomePage(UriHelper))
+    @if (isPrerendered)
     {
-        foreach (var fileName in SampleBrowser.PreLoadFiles)
-        {
-            <link rel="preload" href="@fileName" as="font" type="font/woff2" crossorigin />
-        }
-    }
+        <style>
+			@@media (max-width: 1024px) {
+	            .sb-body-overlay.prerendering-overlay-spinner {
+	                z-index: 100000025 !important;
+	            }
+			}
 
-    @*Set empty layout to home page and components which have open in new window functionality.*@
-    @{
-        var isEmptyLayout = SampleService.SampleInfo != null && !UriHelper.Uri.Contains(SampleService.SampleInfo.Url) && SampleService.SampleInfo.MappingSampleName != null;
+            .prerendering-overlay-spinner {
+                visibility: visible !important;
+            }
+        </style>
+        <SpinnerComponent CssClass="prerendering-overlay-spinner"></SpinnerComponent>
     }
-    @if (SampleUtils.IsHomePage(UriHelper) || isEmptyLayout)
-    {
-        <CascadingValue Value="isDeviceMode" Name="IsDevice">
-            <div>
-                @Body
-            </div>
-        </CascadingValue>
-    }
-    else
-    {
-	    <div class="sample-browser e-view sf-new" @onclick="OnAppClick">
-            <div class="sb-mobile-overlay sb-hide"></div>
-            <HeaderComponent @ref="headerRef" OnToggleClick="@OnToggleClick" OnRightToggleClick="@OnRightToggleClick" HomeIconClick="@HomeIconClick" OnSearchRender="@OnSearchRender"></HeaderComponent>
-            <div class="sb-content e-view">
-                @if (enableLazyLoad)
-                {
-                <div class="@searchContainer">
-                    <div class="index-search-container">
-                        <SearchComponent @ref="@searchRef"></SearchComponent>
-                    </div>
-                </div>
-                <LeftPaneComponent @ref="LeftPaneRef"></LeftPaneComponent>
-                }
-                <RightPaneComponent @ref="RightPaneRef">
-                    @if (enableLazyLoad)
-                    {
-                        <ErrorBoundary @ref="errorBoundaryRef" Context="Exception">
-                            <ChildContent>            
-                                    @Body
-                            </ChildContent>
-                            <ErrorContent>
-                                <div class="e-error-ui">
-                                    <div class="e-error-content">
-                                        <div class="e-error-ui-text">Try that again</div>
-                                        <div class="e-error-text-ui">Page could not be loaded. Please try again later.</div>
-                                        <div class="border p-4 text-danger">
-                                            Error Type : @Exception.GetType() <br><br>
-                                            Error Message : @Exception.Message <br><br>
-                                            Error Stack Trace : @Exception.StackTrace <br><br>
-                                            Error Base Exception : @Exception.GetBaseException() <br><br>
-                                        </div>
-                                        <div class="e-page-refresh">
-                                            <SfButton CssClass="e-primary" OnClick="OnRefresh">Refresh the page</SfButton>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ErrorContent>
-                        </ErrorBoundary>
-                    }
-                </RightPaneComponent>
-                @if (SampleService.IsDevice && enableLazyLoad)
-                {
-                    <SideBarComponent IsExpanded="@rightSidebarExpanded" Position="SidebarPlacement.Right">
-                        <Preferences IsMobile="true"></Preferences>
-                    </SideBarComponent>
-                    <SampleNavigator @ref="SampleNavigatorRef"></SampleNavigator>
-                }
-            </div>
-        </div>
-    }
-    </CascadingValue>
-</CascadingValue>
-@{#else}
-<CascadingValue Value="@this">
-    <SpinnerComponent @ref="spinnerRef"></SpinnerComponent>
     @if (SampleUtils.IsHomePage(UriHelper))
     {
         foreach (var fileName in SampleBrowser.PreLoadFiles)
@@ -166,7 +99,6 @@
         </div>
     }
 </CascadingValue>
-@{#endif}
 <Syncfusion.Blazor.Popups.SfDialogProvider/>
 
 @code {
@@ -180,14 +112,11 @@
     private bool isSearchIconClick { get; set; }
     private string? searchContainer { get; set; }
     private bool rightSidebarExpanded { get; set; }
-    public SpinnerComponent? spinnerRef { get; set; }
+    private bool isPrerendered { get; set; }
     private DotNetObjectReference<object>? dotnetObjectRef { get; set; }
     private SearchComponent? searchRef { get; set; }
     public HeaderComponent? headerRef { get; set; }
     private ErrorBoundary? errorBoundaryRef { get; set; }
-#if SERVER
-    private bool enableLazyLoad { get; set; }
-#endif
 
     /// <summary>
     /// Specifies the app is rendering in tablet or not.
@@ -369,6 +298,18 @@
     }
 
     /// <summary>
+    /// Collapse right sidebar if it is expanded on Theme Switch.
+    /// </summary>
+    public void CollapseRightSidebarOnThemeSwitch()
+    {
+        if (rightSidebarExpanded)
+        {
+            rightSidebarExpanded = !rightSidebarExpanded;
+            StateHasChanged();
+        }
+    }
+
+    /// <summary>
     /// Collapse left sidebar component.
     /// </summary>
     public void Collapse()
@@ -402,6 +343,65 @@
         StateHasChanged();
     }
 
+    [JSInvokable]
+    public async void LoadDynamicResourcesDuringBrowserNav(string sampleName, bool isThemeChanged, string url)
+    {
+        if (!SampleUtils.IsHomePage(UriHelper))
+        {
+            if ((SampleService.IsBrowserNav && (SampleService.SampleName?.Split('/')[0] != sampleName.Split('/')[0])) || (SampleService.SampleName?.Split('/')[0] == "buttons") || isThemeChanged)
+            {
+                if (isThemeChanged)
+                {
+                    SampleService.IsThemeChangeOnBrowserNav = isThemeChanged;
+                    SampleService.BrowserNavTheme = SampleUtils.GetThemeName(url);
+                    await this.JsRuntime.InvokeVoidAsync("addCurrentThemeToBody", SampleUtils.GetThemeName(url), SampleUtils.GetThemeName(UriHelper.Uri));
+                }
+                SampleService.IsResourcesLoadedOnInternalNav = true;
+                RightPaneRef.Refresh();
+                SampleService.SampleName = sampleName;
+                SampleService?.DynamicResourceLoader?.Refresh();
+                SampleService?.Spinner?.Show();
+                await Task.Delay(10);
+            }
+            LeftPaneRef?.NavMenuRef?.HighlightSelectedSampleItem(sampleName);
+        }
+    }
+
+    [JSInvokable]
+    public void OnCompStylesLoaded()
+    {
+        if (SampleService.HideSpinnerOnStylesLoad)
+        {
+            SampleService.HideSpinnerOnStylesLoad = false;
+            RefreshRightPane();
+        }
+        else
+        {
+            SampleService.HideSpinnerOnScriptsLoad = true;
+        }
+    }
+
+    [JSInvokable]
+    public void OnCompScriptsLoaded()
+    {
+        if (SampleService.HideSpinnerOnScriptsLoad)
+        {
+            SampleService.HideSpinnerOnScriptsLoad = false;
+            RefreshRightPane();
+        }
+        else
+        {
+            SampleService.HideSpinnerOnStylesLoad = true;
+        }
+    }
+
+    [JSInvokable]
+    public void RefreshRightPane()
+    {
+        RightPaneRef?.spinnerRef?.Hide();
+        SampleService.IsResourcesLoadedOnInternalNav = false;
+        RightPaneRef?.Refresh();
+    }
     /// <summary>
     /// Close both theme and preference popups
     /// </summary>
@@ -417,6 +417,15 @@
     protected override async void OnInitialized()
     {
         base.OnInitialized();
+#if NET8_0
+#if WASM
+        isPrerendered = !OperatingSystem.IsBrowser();
+#else
+        isPrerendered = true;
+#endif
+#else
+        isPrerendered = !RendererInfo.IsInteractive;
+#endif
         // UriHelper.LocationChanged += LocationChanged;
         // Enable ripple effect to the material theme.
         SyncfusionService?.EnableRipple(UriHelper.Uri.IndexOf("material") > 0);
@@ -445,32 +454,26 @@
 
         if (firstRender)
         {
-            // Add Spinner ref to the sample servie to get access in SampleBaseComponent class.
-            if (SampleService.Spinner == null)
-            {
-                SampleService.Spinner = spinnerRef;
-            }
-
             dotnetObjectRef = DotNetObjectReference.Create<object>(this);
-           
             // Get device information for mobile sidebar rendering
             this.SampleService.IsDevice = await this.JsRuntime.InvokeAsync<bool>("sfBlazorSB.isDevice", dotnetObjectRef);
             this.DeviceMode.Isdevice = this.SampleService.IsDevice;
             this.isTablet = await this.JsRuntime.InvokeAsync<bool>("sfBlazorSB.isTablet");
             this.isDeviceMode = this.SampleService.IsDevice;
-#if WASM
+#if NET8_0 && SERVER
+            isPrerendered = false;
+            if (!this.SampleService.IsDevice)
+            {
+                StateHasChanged();
+            }
+#endif
             if (this.SampleService.IsDevice)
             {
                 LeftPaneRef?.UpdateExpandedState();
                 StateHasChanged();
             }
-#endif
             // Update home page or demo page loaded property in SampleService.
-            // SampleUtils.GetDynamicResources(UriHelper, SampleService);
-#if SERVER
-            enableLazyLoad = true;
-            StateHasChanged();
-#endif        
+            // SampleUtils.GetDynamicResources(UriHelper, SampleService);       
         }
         else
         {

@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/format-painter"
+@page "/rich-text-editor/format-painter"
 
 @using Syncfusion.Blazor.Popups
 @using Syncfusion.Blazor.RichTextEditor
@@ -106,10 +106,10 @@
 </style>
 
 @code {
-    private string allowedFormatText { get; set; }
-    private string allowedFormats { get; set; } = "b; em; font; sub; sup; kbd; i; s; u; code; strong; span; p; div; h1; h2; h3; h4; h5; h6; blockquote; ol; ul; li; pre;";
-    private string deniedFormats { get; set; } = null;
-    private string deniedFormatText { get; set; }
+    private string? allowedFormatText { get; set; }
+    private string? allowedFormats { get; set; } = "b; em; font; sub; sup; kbd; i; s; u; code; strong; span; p; div; h1; h2; h3; h4; h5; h6; blockquote; ol; ul; li; pre;";
+    private string? deniedFormats { get; set; } = null;
+    private string? deniedFormatText { get; set; }
 
     private void allowedFormatsPainterBlur ( Microsoft.AspNetCore.Components.Web.FocusEventArgs e )
     {

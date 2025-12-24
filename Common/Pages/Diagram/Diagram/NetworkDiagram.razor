@@ -1,4 +1,4 @@
-﻿@page "/diagram/networkdiagram"
+@page "/diagram/networkdiagram"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Diagram.SymbolPalette
@@ -340,7 +340,7 @@
 
 @code{
     public DiagramSize? SymbolPreview { get; set; }
-    public SymbolMargin? SymbolMargin { get; set; } = new SymbolMargin { Left = 15, Right = 15, Top = 15, Bottom = 15 };
+    public SymbolMargin? SymbolMargin { get; set; } = new SymbolMargin { Left = 10, Right = 10, Top = 10, Bottom = 10 };
     public SfDiagramComponent? DiagramInstance { get; set; }
     public SfSymbolPaletteComponent? PaletteInstance { get; set; }
     public DiagramPoint? sourcePoint;

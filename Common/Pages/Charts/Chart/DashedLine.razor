@@ -1,7 +1,9 @@
-﻿@page "/chart/dashed-line"
+@page "/chart/dashed-line"
 
 @using Syncfusion.Blazor.Charts
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
@@ -306,12 +308,14 @@ g[id^="chart"][id$="SeriesGroup11"] {
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Rotation = -45;
             Label = LabelIntersectAction.None;
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     private void AxisLabelRender(AxisLabelRenderEventArgs args)

@@ -1,4 +1,4 @@
-﻿@page "/kanban/wip-validation"
+@page "/kanban/wip-validation"
 
 @using Syncfusion.Blazor.KanbanDemo
 @using Syncfusion.Blazor.Buttons
@@ -119,8 +119,8 @@
 @code{
     private int? ColumnMinCount;
     private int? ColumnMaxCount;
-    private string ColumnKeyValue;
-    private string ColumnDataValue;
+    private string? ColumnKeyValue;
+    private string? ColumnDataValue;
     private bool IsSwimlaneEnable = false;
     private string ColumnConstraintValue = "Column";
     private List<string> ColumnConstraints = new List<string>() { "Column", "Swimlane" };
@@ -145,9 +145,9 @@
         else
         {
             this.ColumnDataValue = args.Value;
-            ColumnModel ColumnData = _columnData.Where(e => e.HeaderText == this.ColumnDataValue).FirstOrDefault();
-            this.ColumnMinCount = ColumnData.MinCount;
-            this.ColumnMaxCount = ColumnData.MaxCount;
+            ColumnModel? ColumnData = _columnData.Where(e => e.HeaderText == this.ColumnDataValue).FirstOrDefault();
+            this.ColumnMinCount = ColumnData?.MinCount;
+            this.ColumnMaxCount = ColumnData?.MaxCount;
         }
     }
 
@@ -155,9 +155,12 @@
     {
         if (this.ColumnDataValue != null)
         {
-            ColumnModel ColumnData = _columnData.Where(e => e.HeaderText == this.ColumnDataValue).FirstOrDefault();
-            ColumnData.MinCount = (int)this.ColumnMinCount;
-            ColumnData.MaxCount = (int)this.ColumnMaxCount;
+            ColumnModel? ColumnData = _columnData.Where(e => e.HeaderText == this.ColumnDataValue).FirstOrDefault();
+            if (ColumnData != null)
+            {
+                ColumnData.MinCount = this.ColumnMinCount ?? 0;
+                ColumnData.MaxCount = this.ColumnMaxCount ?? 0;
+            }
             this.ColumnKeyValue = null;
             this.ColumnDataValue = null;
         }

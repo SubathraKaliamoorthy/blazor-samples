@@ -5,11 +5,11 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System.Linq;
 using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
-using System;
 using Microsoft.JSInterop;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorDemos.Shared
 {
@@ -34,6 +34,41 @@ namespace BlazorDemos.Shared
         /// Specifies the current sample details.
         /// </summary>
         public Sample? SampleInfo { get; set; }
+        /// <summary>
+        /// Specifies the DynamicResourceLoader component reference.
+        /// </summary>
+        public DynamicResourceLoader? DynamicResourceLoader { get; set; }
+        /// <summary>
+        /// Specifies the sample name of the selected component for the DynamicResourceLoader.
+        /// </summary>
+		public string SampleName { get; set; }
+        /// <summary>
+        /// Indicates whether the theme has changed due to browser navigation.
+        /// Returns true if the theme was updated during navigation; otherwise, false.
+        /// </summary>
+        public bool IsThemeChangeOnBrowserNav { get; set; }
+        /// <summary>
+        /// Stores the theme applied during browser navigation.
+        /// This value represents the theme name.
+        /// </summary
+        public string BrowserNavTheme { get; set; }
+        /// <summary>
+        /// Indicates whether dynamic resource loading has started. 
+        /// Returns true when loading begins and false once the resources are fully loaded.
+        /// </summary>
+        public bool IsResourcesLoadedOnInternalNav { get; set; }
+        /// <summary>
+        /// Indicates whether component samples-specific resources should be loaded during browser forward/backward navigation.
+        /// </summary>
+        public bool IsBrowserNav { get; set; }
+        /// <summary>
+        /// Specifies whether to hide the spinner once the component samples-specific styles have been loaded. 
+        /// </summary>
+        public bool HideSpinnerOnStylesLoad { get; set; }
+        /// <summary>
+        /// Specifies whether to hide the spinner once the component samples-specific scripts have been loaded.
+        /// </summary>
+        public bool HideSpinnerOnScriptsLoad { get; set; }
         /// <summary>
         /// Specifies the meta data component reference.
         /// </summary>
@@ -80,48 +115,6 @@ namespace BlazorDemos.Shared
         /// Specifies the Demos Type whether its WASM or Server.
         /// </summary>
         public string DemoType { get; set; }
-        ///// <summary>
-        ///// Specifies the Common base script path..
-        ///// </summary>
-        //public string CommonScriptPath { get; set; }
-
-        ///// <summary>
-        ///// Specifies the Common base script path..
-        ///// </summary>
-        //public string SBScriptPath { get; set; }
-
-        ///// <summary>
-        ///// Specifies the diagram component script path.
-        ///// </summary>
-        //public string DiagramScriptPath { get; set; }
-        ///// <summary>
-        ///// Specifies the pdfviewer2 script path.
-        ///// </summary>
-        //public string PdfScriptPath2 { get; set; }
-        ///// <summary>
-        ///// Specifies the document viewer script path.
-        ///// </summary>
-        //public string ViewerScriptPath { get; set; }
-        ///// <summary>
-        ///// Specifies the document editor script path.
-        ///// </summary>
-        //public string DocScriptPath { get; set; }
-        ///// <summary>
-        ///// Specifies the spreadsheet script path.
-        ///// </summary>
-        //public string SpreadsheetScriptPath { get; set; }
-        /// <summary>
-        /// Specifies the pdfviewer Script loaded or not.
-        /// </summary>
-        public bool IsPdfScript2Loaded { get; set; }
-        /// <summary>
-        /// Specifies the document editor script loaded or not.
-        /// </summary>
-        public bool IsDocScriptLoaded { get; set; }
-        /// <summary>
-        /// Specifies the spreadsheet script loaded or not.
-        /// </summary>
-        public bool IsSpreadsheetScriptLoaded { get; set; }
         /// <summary>
         /// Specifies the diagram interop script loaded or not.
         /// </summary>
@@ -130,35 +123,35 @@ namespace BlazorDemos.Shared
         /// Specifies the Blazor Samples Common Static Web Assets location based on the project.
         /// </summary>
         public string WebAssetsPath { get; set; }
+
         /// <summary>
-        /// Specifies the current sample is PDF Viewer.
-        /// </summary>
-        public bool IsPdfViewerSample { get; set; }
-        /// <summary>
-        /// Specifies the current sample is Document Editor/Word Editor.
-        /// </summary>
-        public bool IsWordEditorSample { get; set; }
-        /// <summary>
-        /// Specifies the current sample is Spreadsheet.
-        /// </summary>
-        public bool IsSpreadsheetSample { get; set; }
-        /// <summary>
-        /// Specifies the current sample is DiagramComponent.
-        /// </summary>
-        public bool IsDiagramSample { get; set; }
+		/// Occurs when the input mode preference (touch vs. mouse) changes.
+		/// </summary>
+        public event Action? TouchMousePreferenceChanged;
+
+		/// <summary>
+		/// Raises <see cref="TouchMousePreferenceChanged"/> to notify subscribers of a
+		/// touch/mouse preference change. If there are no subscribers, this is a no-op.
+		/// </summary>
+        public void NotifyTouchMousePreferenceChanged()
+            => TouchMousePreferenceChanged?.Invoke();
 
         public static string AssetsPath =
 #if WASM
     #if NET8_0
             "_content/Blazor_WASM_Common_NET8/";
-    #else
+    #elif NET9_0
             "_content/Blazor_WASM_Common_NET9/";
+    #else
+            "_content/Blazor_WASM_Common_NET10/";
     #endif
 #else
     #if NET8_0
             "_content/Blazor_Server_Common_NET8/";
-    #else
+    #elif NET9_0
             "_content/Blazor_Server_Common_NET9/";
+    #else
+            "_content/Blazor_Server_Common_NET10/";
     #endif
 #endif
         public SampleService()
@@ -172,29 +165,22 @@ namespace BlazorDemos.Shared
 #if DEBUG || STAGING
             ImagePath = WebAssetsPath + "images/common/";
             ShowCaseImagePath = WebAssetsPath + "images/showcase/";
-            //PdfScriptPath2 = "_content/Syncfusion.Blazor.SfPdfViewer/scripts";
-            //DocScriptPath = "_content/Syncfusion.Blazor.WordProcessor/scripts";
-            //SpreadsheetScriptPath = "_content/Syncfusion.Blazor.Spreadsheet/scripts";
-            //CommonScriptPath = "_content/Syncfusion.Blazor.Core/scripts";
-            //DiagramScriptPath = WebAssetsPath + "scripts/diagram/interop.js";
-            //SBScriptPath = WebAssetsPath + "scripts/common/highlight.min.js";
-            //ViewerScriptPath = WebAssetsPath + "scripts/pdfviewer/interop.js";
 #else
             ImagePath = "https://cdn.syncfusion.com/blazor/images/demos/";
             ShowCaseImagePath = "https://cdn.syncfusion.com/blazor/images/showcase/";
-            //PdfScriptPath2 = "https://cdn.syncfusion.com/blazor/27.1.48";
-            //DocScriptPath = "https://cdn.syncfusion.com/blazor/27.1.48";
-            //SpreadsheetScriptPath = "_content/Syncfusion.Blazor.Spreadsheet/scripts";
-            //CommonScriptPath = "https://cdn.syncfusion.com/blazor/27.1.48";
-            //DiagramScriptPath = WebAssetsPath + "scripts/diagram/interop.min.js";
-            //SBScriptPath = WebAssetsPath + "scripts/common/demos.min.js";
-            //ViewerScriptPath = WebAssetsPath + "scripts/pdfviewer/interop.min.js";
 #endif
         }
 
-        public async void SwicthToDemo(string id, NavigationManager UriHelper, IJSRuntime JsRuntime)
+        public async void SwicthToDemo(string id, NavigationManager UriHelper, bool isAISample, IJSRuntime JsRuntime)
         {
             var Navigation_Url = SampleUtils.IsHomePage(UriHelper) ?  UriHelper.BaseUri + "datagrid/overview/" : UriHelper.Uri;
+            if (isAISample)
+            {
+                var controllerName = this.SampleInfo.Directory.Replace("AISamples/", "");
+                var controlInfo = SampleBrowser.SampleList.FirstOrDefault<SampleList>(control => (control.ControllerName.Equals(controllerName)));
+                var samplesURL = controllerName.Equals("AI") || controllerName.Equals("SmartTextArea") || controllerName.Equals("SmartPaste") ? "datagrid/overview" : controlInfo.Samples[0].Url;
+                Navigation_Url = UriHelper.BaseUri + samplesURL;
+            }
 #if DEBUG || STAGING
     #if NET8_0
         #if SERVER
@@ -203,12 +189,19 @@ namespace BlazorDemos.Shared
         #if WASM
             Navigation_Url =  id == "wasm" ? Navigation_Url : Navigation_Url.Replace("wasm/net8/demos", "net8/demos");
         #endif
-    #else
+     #elif NET9_0
         #if SERVER
             Navigation_Url = id == "server" ? Navigation_Url : Navigation_Url.Replace("net9/demos", "wasm/net9/demos");
         #endif
         #if WASM
             Navigation_Url =  id == "wasm" ? Navigation_Url : Navigation_Url.Replace("wasm/net9/demos", "net9/demos");
+        #endif
+    #else
+        #if SERVER
+            Navigation_Url = id == "server" ? Navigation_Url : Navigation_Url.Replace("net10/demos", "wasm/net10/demos");
+        #endif
+        #if WASM
+            Navigation_Url =  id == "wasm" ? Navigation_Url : Navigation_Url.Replace("wasm/net10/demos", "net10/demos");
         #endif
     #endif
 #else
@@ -350,26 +343,11 @@ namespace BlazorDemos.Shared
                 this.DocumentLink = "https://blazor.syncfusion.com/documentation/" + DocLink;
             }
         }
-        
-        // Method for checking current Sample is PDF / Word / Diagram
-        public void checkSampleType(string currentUrl)
+
+        public bool IsOldTheme(string theme)
         {
-            if(currentUrl.IndexOf("pdf-") != -1 || currentUrl.IndexOf("powerpoint") != -1)
-            {
-                IsPdfViewerSample = true;
-            } 
-            else if (currentUrl.IndexOf("document-") != -1)
-            {
-                IsWordEditorSample = true;
-            } 
-            else if (currentUrl.IndexOf("spreadsheet") != -1)
-            {
-                IsSpreadsheetSample = true;
-            }
-            else if (currentUrl.IndexOf("diagramcomponent") != -1)
-            {
-                IsDiagramSample = true;
-            }
+            var oldThemes = new List<string> { "material", "material-dark", "fluent", "fluent-dark", "bootstrap4", "bootstrap5", "bootstrap5-dark", "tailwind", "tailwind-dark", "fabric", "fabric-dark", "highcontrast" };
+            return oldThemes.Contains(theme);
         }
 
     }

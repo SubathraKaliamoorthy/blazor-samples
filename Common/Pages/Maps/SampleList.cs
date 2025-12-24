@@ -5,7 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 namespace BlazorDemos
 {
     internal partial class SampleConfig

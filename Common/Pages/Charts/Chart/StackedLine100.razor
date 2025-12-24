@@ -1,7 +1,9 @@
-﻿@page "/chart/percent-stacked-line"
+@page "/chart/percent-stacked-line"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -127,12 +129,14 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Label = LabelIntersectAction.None;
             Width = "100%";
             Rotation = -45;
         }
+        @*End:Hidden*@
     }
 
     public class StackedChartData

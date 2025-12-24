@@ -1,7 +1,10 @@
 @page "/chart/column-stacked-and-grouped"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
+
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
@@ -87,10 +90,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
     
     public class CoffeeProduction

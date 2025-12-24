@@ -1,4 +1,4 @@
-﻿@page "/speech-to-text/default-functionalities"
+@page "/speech-to-text/default-functionalities"
 
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Buttons
@@ -50,10 +50,9 @@
     </div>
 </div>
 
-<div class="col-lg-4 default-speechToText property-section">
-    <div class="property-panel-header"> Properties </div>
+<PropertyPanel ControlSecClass="col-lg-8">
     <div class="property-panel-content">
-        <table>
+        <table class="default-speechToText-table">
             <tbody>
                 <tr>
                     <td> Styling </td>
@@ -92,7 +91,7 @@
             </tbody>
         </table>
     </div>
-</div>
+</PropertyPanel>
 
 @code {
     private string Transcript = String.Empty;
@@ -199,6 +198,9 @@
 }
 
 <style>
+    .default-speechToText-table td   {
+        padding: 7px;
+    }
     .default-speechToText-section,
     .default-speechToText-section .output-container {
         display: flex;

@@ -1,4 +1,4 @@
-﻿@namespace BlazorDemos.Shared
+@namespace BlazorDemos.Shared
 
 @using Syncfusion.Blazor.Cards;
 
@@ -7,49 +7,42 @@
 
 <div class="popular-components">
     <h2>Most Popular UI components</h2>
-    @if(!isPrerendering) 
-    {
-        <div class="sf-popular-components">
-            @foreach (var component in this.popularComponents ?? new List<PopularComponents>())
-            {
-                <div class="sf-popular-component @component.ImageName">
-                    <SfCard @onclick="@(() => { NavToSample(component.DemoPath); })">
-                        <CardImage Image="@(SampleService.ImagePath + component.ImageName + ".svg")"></CardImage>
-                        <CardContent>@component.ComponentName</CardContent>
-                    </SfCard>
-            </div>
-            }
+    <div class="sf-popular-components">
+        @foreach (var component in this.popularComponents ?? new List<PopularComponents>())
+        {
+            <div class="sf-popular-component @component.ImageName" tabindex="0" @onkeydown="@((e) => OnNavToSampleKeyDown(component.DemoPath, e))">
+                <SfCard @onclick="@(() => { NavToSample(component.DemoPath); })">
+                    <CardImage Image="@(SampleService.ImagePath + component.ImageName + ".svg")"></CardImage>
+                    <CardContent>@component.ComponentName</CardContent>
+                </SfCard>
         </div>
-    }
+        }
+    </div>
 </div>
 
 @code {
-    private bool isPrerendering { get; set; }
     private List<PopularComponents>? popularComponents { get; set; }
 
     // Sample click event handler method.
-    private void NavToSample(string path)
+    public void NavToSample(string path)
     {
-        SampleService.Spinner?.Show();
         var newUri = UriHelper.GetUriWithQueryParameters(path, new Dictionary<string, object?>{
             ["theme"] = "fluent2"
         });
         UriHelper.NavigateTo(newUri, true);
     }
 
+    private void OnNavToSampleKeyDown(string path, KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            NavToSample(path);
+        }
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        isPrerendering = true;
         this.popularComponents = new PopularComponents().GetComponents();
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if(firstRender)
-        {
-            isPrerendering = !firstRender;
-            StateHasChanged();
-        }  
     }
 }

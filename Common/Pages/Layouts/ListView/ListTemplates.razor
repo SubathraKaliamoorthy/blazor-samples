@@ -1,4 +1,4 @@
-﻿@page "/listview/list-templates"
+@page "/listview/list-templates"
 @inject NavigationManager UriHelper
 
 @using Syncfusion.Blazor.Lists
@@ -29,13 +29,13 @@
                     <div class="@(context.Category != null ? "clearfix desc e-list-wrapper e-list-multi-line e-list-avatar" : "clearfix e-list-wrapper e-list-multi-line e-list-avatar")">
                         @if (context.ImgSrc != string.Empty)
                         {
-                            <img class="e-avatar" src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/list-view/{context.ImgSrc}.png")" alt="Blazor ListView with Item Template">
+                            <img class="e-avatar" src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/list-view/{context.ImgSrc}.png")" alt="Blazor ListView with Item Template">
                         }
                         <span class="e-list-item-header">@context.Title</span>
                         <span class="e-list-content e-text-overflow">@context.Description</span>
                         @if (context.TimeStamp != string.Empty)
                         {
-                            <div id="list-logo" onclick="event.stopPropagation();">
+                            <div id="list-logo" onclick="(e) => e.stopPropagation();">
                                 <span class="bookmark" title="We can customize this element to perform our own action"></span>
                                 <span class="comments" title="We can customize this element to perform our own action"></span>
                                 <span class="share" title="We can customize this element to perform our own action"></span>

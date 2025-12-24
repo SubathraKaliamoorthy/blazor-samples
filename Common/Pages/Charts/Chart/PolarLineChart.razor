@@ -1,7 +1,9 @@
-﻿@page "/chart/polar-line"
+@page "/chart/polar-line"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
@@ -23,8 +25,8 @@
     <p>More information about the polar and radar series with a line type chart can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/chart-types/polar/#line' aria-label="Navigate to the documentation for line in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Alaska Weather Statistics - 2016" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="Alaska Weather Statistics - 2016" Theme="@Theme">
         <ChartTooltipSettings Enable="true" EnableHighlight="true">
         </ChartTooltipSettings>
         <ChartPrimaryXAxis IsInversed="@IsInversed" StartAngle="@StartAngle" Interval="1" LabelPlacement="LabelPlacement.OnTicks" ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Months" Coefficient="@Coefficient"></ChartPrimaryXAxis>
@@ -41,10 +43,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 50%">
@@ -99,13 +98,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private Boolean IsInversed { get; set; } = false;
     private Boolean IsClosed { get; set; } = true;
@@ -135,14 +132,20 @@
 
     protected override void OnInitialized()
     {
-        
+
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        Coefficient = SampleService != null && SampleService.IsDevice ? 80 : 100;
+        Coefficient = 100;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            Coefficient = 80;
+        }
+        @*End:Hidden*@
     }
 
     public void ChangeSeriesType(ChangeEventArgs<string, DropDownData> args)
     {
-        this.SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args.Value.ToString(), true);
+        this.SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public void checkInversed(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
@@ -170,6 +173,18 @@
         public string? Month { get; set; }
         public double GER_Temp { get; set; }
         public double ENG_Temp { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

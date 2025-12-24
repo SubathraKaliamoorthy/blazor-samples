@@ -1,4 +1,4 @@
-﻿@page "/datagrid/adaptive-rendering"
+@page "/datagrid/adaptive-rendering"
 
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.Buttons
@@ -207,6 +207,12 @@
     .e-adaptive-demo .e-pager .e-input-group:not(.e-disabled) .e-ddl-icon:hover,
     .e-adaptive-demo .e-input-group .e-clear-icon:hover {
         background: transparent;
+    }
+    /* Apply styles for Safari on macOS desktop and other Apple devices */
+    @@supports (font: -apple-system-body) {
+        .e-mobile-layout {
+            width: 390px;
+        }
     }
 }
  </style>

@@ -4,12 +4,11 @@
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.PivotView
 @using Syncfusion.Blazor
-@using ThemeHelper
-@inject NavigationManager NavigationManager
-
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent;
 @*End:Hidden*@
+@inject NavigationManager NavigationManager
 
 <SampleDescription>
     <p>
@@ -168,7 +167,7 @@
                             <PivotChartPrimaryYAxisBorder Width="0"></PivotChartPrimaryYAxisBorder>
                         </PivotChartPrimaryYAxis>
                     </PivotChartSettings>
-                    <PivotViewEvents TValue="PivotProductDetails" OnActionBegin="ActionBegin"> </PivotViewEvents>
+                    <PivotViewEvents TValue="PivotProductDetails" OnActionBegin="ActionBegin" EnginePopulated="@pivotenginepopulated"> </PivotViewEvents>
                 </SfPivotView>
             </div>
         </div>
@@ -352,11 +351,13 @@
     {
         this.data = PivotProductDetails.GetProductData().ToList();
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService.IsDevice)
         {
             _mobileFieldList = true;
             SidebarToggle = false;
         }
+        @*End:Hidden*@
     }
     private List<PivotProductDetails> data = new List<PivotProductDetails>();
     private bool isChecked = true;

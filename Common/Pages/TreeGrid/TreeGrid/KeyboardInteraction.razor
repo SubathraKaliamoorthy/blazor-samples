@@ -4,18 +4,19 @@
 @using Syncfusion.Blazor.Grids
 
 @*Hidden:Lines*@
-@using Selfdata
+@using TaskData;
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>Tree Grid functionalities can be interactive with keyboard shortcuts. In the following sample, various key combinations can be used to interact with the Tree Grid.</p>
+    <p>The Tree Grid supports comprehensive keyboard navigation and shortcuts for focus movement, expand and collapse, paging, selection, editing, copy, and print to improve accessibility and efficiency.</p>
 </SampleDescription>
 <ActionDescription>
-    <p>All the Tree Grid actions can be controlled via keyboard keys. The applicable key combinations and its relative functionalities are listed below.</p>
+    <p>Keyboard interaction is enabled by default and supports executing navigation and actions through standard shortcuts, and the applicable key combinations and their functions are listed below.</p>
+    <p>In this demo, keyboard shortcuts cover focus management, expand and collapse of hierarchy, pager navigation, multi-row selection, editing workflows, clipboard copy, and printing; the grid is configured with selection enabled, paging enabled, and row editing mode to demonstrate these scenarios.</p>
     <ul>
         <li>
-            <b>FOCUS</b>
+            <b>FOCUS:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Alt</kbd> + <kbd>J</kbd></span>
@@ -56,7 +57,7 @@
             </ul>
         </li>
         <li>
-            <b>Expand/Collapse</b>
+            <b>Expand/Collapse:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Down arrow</kbd></span>
@@ -77,7 +78,7 @@
             </ul>
         </li>
         <li>
-            <b>PAGER</b>
+            <b>PAGER:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Page down</kbd></span>
@@ -106,7 +107,7 @@
             </ul>
         </li>
         <li>
-            <b>SELECTION</b>
+            <b>SELECTION:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Shift</kbd> + <kbd>Down arrow</kbd></span>
@@ -167,7 +168,7 @@
             </ul>
         </li>
         <li>
-            <b>EDITING</b>
+            <b>EDITING:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>F2</kbd></span>
@@ -204,7 +205,7 @@
             </ul>
         </li>
         <li>
-            <b>COPY</b>
+            <b>COPY:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Ctrl</kbd> + <kbd>C</kbd></span>
@@ -217,7 +218,7 @@
             </ul>
         </li>
         <li>
-            <b>PRINT</b>
+            <b>PRINT:</b>
             <ul class="key-class">
                 <li>
                     <span><kbd>Ctrl</kbd> + <kbd>P</kbd></span>
@@ -226,22 +227,25 @@
             </ul>
         </li>
     </ul>
-    <p> More information can be found in this <a aria-label="Navigate to the documentation for keyboard interaction in the tree grid component" target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/accessibility/?no-cache=1" >documentation </a> section.</p>
+    <p> More information can be found in this <a aria-label="Navigate to the documentation for keyboard interaction in the tree grid component" target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/accessibility/?no-cache=1" >documentation</a> section.</p>
 </ActionDescription>
 
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
-              <SfTreeGrid DataSource="@TreeData" IdMapping="TaskID" ParentIdMapping="ParentID" AllowPaging="true" Height="390" TreeColumnIndex="1" AllowSelection="true">
+            <SfTreeGrid DataSource="@TreeData" IdMapping="TaskID" ParentIdMapping="ParentID" AllowPaging="true" Height="390" TreeColumnIndex="1" AllowSelection="true">
                 <TreeGridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple" Mode="Syncfusion.Blazor.Grids.SelectionMode.Row"></TreeGridSelectionSettings>
                 <TreeGridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="Syncfusion.Blazor.TreeGrid.EditMode.Row"></TreeGridEditSettings>
                 <TreeGridPageSettings PageSize="2"></TreeGridPageSettings>
                 <TreeGridColumns>
                     <TreeGridColumn Field="TaskID" HeaderText="Task ID" Width="80" ValidationRules="@(new ValidationRules() { Required = true, Number = true })" IsPrimaryKey="true" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="TaskName" HeaderText="Task Name" ValidationRules="@(new ValidationRules() { Required = true })" Width="165"></TreeGridColumn>
+                    <TreeGridColumn Field="TaskName" HeaderText="Task Name" ClipMode="ClipMode.EllipsisWithTooltip" ValidationRules="@(new ValidationRules() { Required = true })" Width="140"></TreeGridColumn>
+                    <TreeGridColumn Field="AssignedTo" HeaderText="Assignee" Width="140"></TreeGridColumn>
+                    <TreeGridColumn Field="Priority" HeaderText="Priority" Width="110"></TreeGridColumn>
+                    <TreeGridColumn Field="Progress" HeaderText="Progress" Width="120"></TreeGridColumn>
                     <TreeGridColumn Field="StartDate" HeaderText="Start Date" Format="d" Type=Syncfusion.Blazor.Grids.ColumnType.Date Width="100" ValidationRules="@(new ValidationRules() { Required = true })" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" EditType=Syncfusion.Blazor.Grids.EditType.DatePickerEdit></TreeGridColumn>
-                    <TreeGridColumn Field="Duration" HeaderText="Duration" Width="100" ValidationRules="@(new ValidationRules() { Number = true, Min = 0 })" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right"></TreeGridColumn>
+                    <TreeGridColumn Field="EndDate" HeaderText="End Date" Format="d" Type=Syncfusion.Blazor.Grids.ColumnType.Date Width="100" TextAlign="Syncfusion.Blazor.Grids.TextAlign.Right" EditType=Syncfusion.Blazor.Grids.EditType.DatePickerEdit></TreeGridColumn>
                 </TreeGridColumns>
             </SfTreeGrid>
         </div>
@@ -249,11 +253,11 @@
 </div>
 
 @code {
-    private List<SelfReferenceData> TreeData { get; set; } = new List<SelfReferenceData>();
-    
+    private List<TaskData> TreeData { get; set; } = new List<TaskData>();
+
     protected override void OnInitialized()
     {
-        TreeData = SelfReferenceData.GetTree().ToList();
+        TreeData = TaskData.GetTree();
     }
 }
 

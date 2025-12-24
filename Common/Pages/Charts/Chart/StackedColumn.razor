@@ -1,7 +1,9 @@
-﻿@page "/chart/stacked-column"
+@page "/chart/stacked-column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Globalization
 
@@ -70,7 +72,7 @@
             </ChartSeries>         
         </ChartSeriesCollection>
         <ChartStackLabelSettings Visible="true" Format="{value}M">
-            <ChartStackLabelFont Size="@(SampleService != null && SampleService.IsDevice ? "10px" : "12px")"></ChartStackLabelFont>
+            <ChartStackLabelFont Size="@Size"></ChartStackLabelFont>
         </ChartStackLabelSettings>
         <ChartTooltipSettings Enable="true" Header="<b>${point.x}</b>" Format="${series.name}: <b>${point.y}</b>" EnableHighlight="true" Opacity="@Opacity"></ChartTooltipSettings>
         <ChartLegendSettings Visible="true"  ShapeHeight="8" ShapeWidth="8" EnableHighlight="true"></ChartLegendSettings>
@@ -92,6 +94,7 @@
     private string DataLabelColor { get; set; } = "";
     private double Opacity = 1;
     public string Width { get; set; } = "90%";
+    public string Size { get; set; } = "12px";
     public class DataPoint
     {
         public string? X { get; set; }
@@ -130,12 +133,15 @@
 
     protected override void OnInitialized()
     {
-        
+
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
+            Size = "10px";
         }
+        @*End:Hidden*@
         DataLabelColor = (Theme == Theme.Material3 || Theme == Theme.Fluent2HighContrast) ? "black" : (Theme == Theme.Bootstrap5 || Theme == Theme.Fluent2Dark || Theme == Theme.Tailwind3Dark) ? "white" : "";
     }
 

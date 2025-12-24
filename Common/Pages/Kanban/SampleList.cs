@@ -21,7 +21,20 @@ namespace BlazorDemos
                 FileName = "Overview.razor",
                 MetaTitle = "Blazor Kanban Board Overview | Task Management | Syncfusion",
                 HeaderText = "Blazor Kanban Board Component - Overview",
-                MetaDescription = "This Blazor Kanban Board overview demonstrates essential features for task management. Visualize workflows with columns, cards, and drag-and-drop functionality."
+                MetaDescription = "This Blazor Kanban Board overview demonstrates essential features for task management. Visualize workflows with columns, cards, and drag-and-drop functionality.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="Overview.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -32,7 +45,20 @@ namespace BlazorDemos
                 FileName = "DefaultFunctionalities.razor",
                 MetaTitle = "Blazor Kanban Default Functionalities | Task Boards | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Default Functionalities",
-                MetaDescription = "This Kanban demo shows default functionalities including drag-and-drop, column definition, card layout, status visualization for efficient workflow management."
+                MetaDescription = "This Kanban demo shows default functionalities including drag-and-drop, column definition, card layout, status visualization for efficient workflow management.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="DefaultFunctionalities.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -44,7 +70,20 @@ namespace BlazorDemos
                 FileName = "Swimlane.razor",
                 MetaTitle = "Blazor Kanban Swimlane | Categorized Workflows | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Swimlane Visualization",
-                MetaDescription = "This Blazor Kanban swimlane example shows horizontal categorization of tasks by team, priority, or status. Organize workflows with multiple parallel tracks."
+                MetaDescription = "This Blazor Kanban swimlane example shows horizontal categorization of tasks by team, priority, or status. Organize workflows with multiple parallel tracks.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="Swimlane.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -55,7 +94,20 @@ namespace BlazorDemos
                 FileName = "Workflow.razor",
                 MetaTitle = "Blazor Kanban Workflow | Process Management | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Workflow Management",
-                MetaDescription = "Blazor Kanban demo shows process visualization with custom states and transitions. Define progression rules and visualize work moving through different stages."
+                MetaDescription = "Blazor Kanban demo shows process visualization with custom states and transitions. Define progression rules and visualize work moving through different stages.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="Workflow.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -66,7 +118,20 @@ namespace BlazorDemos
                 FileName = "StackedHeader.razor",
                 MetaTitle = "Blazor Kanban Stacked Headers | Column Grouping | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Stacked Headers",
-                MetaDescription = "This Blazor Kanban stacked header demo shows hierarchical column organization. Group related statuses under common headers for logical workflow visualization."
+                MetaDescription = "This Blazor Kanban stacked header demo shows hierarchical column organization. Group related statuses under common headers for logical workflow visualization.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="StackedHeader.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -77,7 +142,20 @@ namespace BlazorDemos
                 FileName = "DialogEditing.razor",
                 MetaTitle = "Blazor Kanban Dialog Editing | Card Editing | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Dialog Editing",
-                MetaDescription = "Blazor Kanban dialog editing demo shows built-in dialogs for adding, editing, managing cards. Modify task details with form validation and structured inputs."
+                MetaDescription = "Blazor Kanban dialog editing demo shows built-in dialogs for adding, editing, managing cards. Modify task details with form validation and structured inputs.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="DialogEditing.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -88,7 +166,20 @@ namespace BlazorDemos
                 FileName = "SearchFilter.razor",
                 MetaTitle = "Blazor Kanban Search & Filter | Card Filtering | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Search and Filter Cards",
-                MetaDescription = "Blazor Kanban search and filter demo shows finding and filtering cards by keywords, status, assignee, priority. Quickly locate relevant tasks in complex boards."
+                MetaDescription = "Blazor Kanban search and filter demo shows finding and filtering cards by keywords, status, assignee, priority. Quickly locate relevant tasks in complex boards.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="SearchFilter.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
 #if SERVER
             new Sample
@@ -128,7 +219,20 @@ namespace BlazorDemos
                 FileName = "LocalData.razor",
                 MetaTitle = "Blazor Kanban Local Data Binding | Client-Side Data | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Local Data Binding",
-                MetaDescription = "Blazor Kanban local data binding demo shows connecting the board to client-side data collections. Bind to arrays, lists, objects to populate and manage tasks."
+                MetaDescription = "Blazor Kanban local data binding demo shows connecting the board to client-side data collections. Bind to arrays, lists, objects to populate and manage tasks.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="LocalData.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -183,7 +287,20 @@ namespace BlazorDemos
                 FileName = "HeaderTemplate.razor",
                 MetaTitle = "Blazor Kanban Header Template | Custom Headers | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Header Template Customization",
-                MetaDescription = "This Blazor Kanban header template demo shows customizing column headers with HTML, CSS, components. Create visual indicators, counters, rich column headers."
+                MetaDescription = "This Blazor Kanban header template demo shows customizing column headers with HTML, CSS, components. Create visual indicators, counters, rich column headers.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="HeaderTemplate.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -194,7 +311,20 @@ namespace BlazorDemos
                 FileName = "SwimlaneTemplate.razor",
                 MetaTitle = "Blazor Kanban Swimlane Template | Custom Swimlanes | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Swimlane Template Customization",
-                MetaDescription = "Blazor Kanban swimlane template demo shows customize swimlane headers with rich content. Add images, progress bars, interactive elements to swimlane categories."
+                MetaDescription = "Blazor Kanban swimlane template demo shows customize swimlane headers with rich content. Add images, progress bars, interactive elements to swimlane categories.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="SwimlaneTemplate.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -205,7 +335,20 @@ namespace BlazorDemos
                 FileName = "CardTemplate.razor",
                 MetaTitle = "Blazor Kanban Card Template | Custom Task Cards | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Card Template Customization",
-                MetaDescription = "Blazor Kanban card template demo shows creating rich, custom task cards. Add images, progress indicators, custom layouts, interactive elements to task cards."
+                MetaDescription = "Blazor Kanban card template demo shows creating rich, custom task cards. Add images, progress indicators, custom layouts, interactive elements to task cards.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="CardTemplate.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -216,7 +359,20 @@ namespace BlazorDemos
                 FileName = "TooltipTemplate.razor",
                 MetaTitle = "Blazor Kanban Tooltip Template | Custom Tooltips | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Tooltip Template Customization",
-                MetaDescription = "Blazor Kanban tooltip template demo shows create rich, informative card tooltips. Display more task details, images, formatted content when hovering over cards."
+                MetaDescription = "Blazor Kanban tooltip template demo shows create rich, informative card tooltips. Display more task details, images, formatted content when hovering over cards.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="TooltipTemplate.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -227,7 +383,20 @@ namespace BlazorDemos
                 FileName = "ToggleColumns.razor",
                 MetaTitle = "Blazor Kanban Toggle Columns | Column Visibility | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Toggle Columns",
-                MetaDescription = "This Blazor Kanban toggle columns demo shows dynamically showing and hiding columns. Control column visibility to focus on specific workflow stages as needed."
+                MetaDescription = "This Blazor Kanban toggle columns demo shows dynamically showing and hiding columns. Control column visibility to focus on specific workflow stages as needed.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="ToggleColumns.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -238,7 +407,20 @@ namespace BlazorDemos
                 FileName = "ShowHideColumns.razor",
                 MetaTitle = "Blazor Kanban Show/Hide Columns | Column Management | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Show/Hide Columns",
-                MetaDescription = "This Blazor Kanban show/hide columns example shows programmatic column visibility control. Toggle specific columns on demand to customize the workflow view."
+                MetaDescription = "This Blazor Kanban show/hide columns example shows programmatic column visibility control. Toggle specific columns on demand to customize the workflow view.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="ShowHideColumns.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -249,7 +431,20 @@ namespace BlazorDemos
                 FileName = "WipValidation.razor",
                 MetaTitle = "Blazor Kanban WIP Validation | Work Limits | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Work-In-Progress Validation",
-                MetaDescription = "This Blazor Kanban WIP validation demo shows setting limits on cards per column. Implement work-in-progress constraints to prevent workflow bottlenecks."
+                MetaDescription = "This Blazor Kanban WIP validation demo shows setting limits on cards per column. Implement work-in-progress constraints to prevent workflow bottlenecks.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="WipValidation.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -260,7 +455,20 @@ namespace BlazorDemos
                 FileName = "Api.razor",
                 MetaTitle = "Blazor Kanban API | Component Methods | Syncfusion",
                 HeaderText = "Blazor Kanban Board - API Reference",
-                MetaDescription = "This API demo shows key component methods and properties. Control board behavior, manage cards programmatically, interact with control via its public interface."
+                MetaDescription = "This API demo shows key component methods and properties. Control board behavior, manage cards programmatically, interact with control via its public interface.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="Api.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -271,7 +479,20 @@ namespace BlazorDemos
                 FileName = "Events.razor",
                 MetaTitle = "Blazor Kanban Events | Event Handling | Syncfusion",
                 HeaderText = "Blazor Kanban Board - Event Handling",
-                MetaDescription = "This events demo shows respond to user interactions like drag-drop, card selection, column changes. Create workflows with custom logic based on board events."
+                MetaDescription = "This events demo shows respond to user interactions like drag-drop, card selection, column changes. Create workflows with custom logic based on board events.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="Events.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="KanbanDataModels.cs"
+                    }
+                }
             }
         };
     }

@@ -1,14 +1,14 @@
-﻿@page "/chart/column-placement"
+@page "/chart/column-placement"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -103,12 +103,14 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             AngleRotate = -90;
             Rotation = true;
             Width = "100%";
         }
+        @*End:Hidden*@
     }
     
     public void AxisLabelRender(AxisLabelRenderEventArgs args)

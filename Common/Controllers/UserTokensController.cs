@@ -8,10 +8,7 @@
 using BlazorDemos.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Syncfusion.Blazor.InteractiveChat;
-using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BlazorDemos.Controllers

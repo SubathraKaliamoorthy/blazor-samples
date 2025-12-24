@@ -1,4 +1,4 @@
-﻿@page "/ai-diagram/text-to-flowchart"
+@page "/ai-diagram/text-to-flowchart"
 @page "/diagram/ai-text-to-flowchart"
 
 @using Syncfusion.Blazor.Diagram
@@ -85,8 +85,8 @@
             <div style="display: none;visibility: hidden;">
                 <SfUploader @ref="@uploadFiles" ID="UploadFiles" ShowFileList="false" AllowedExtensions="@ExtensionType">
                     <UploaderEvents OnUploadStart="@OnUploadFileSelected"></UploaderEvents>
-                    <UploaderAsyncSettings SaveUrl="http://localhost:63028/api/FileUploader/Save"
-                                           RemoveUrl="http://localhost:63028/api/FileUploader/Remove"></UploaderAsyncSettings>
+                    <UploaderAsyncSettings SaveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Save"
+                                           RemoveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Remove"></UploaderAsyncSettings>
                 </SfUploader>
             </div>
         </div>
@@ -476,7 +476,7 @@
         if (args.FileData!.Type == "json")
         {
             IsDiagramLoading = true;
-            string json = await FileUtil.LoadFile(jsRuntime!, args.FileData);
+            string json = await BlazorDemos.Model.FileUtil.LoadFile(jsRuntime!, args.FileData);
             json = json.Replace(System.Environment.NewLine, string.Empty);
             await Diagram!.LoadDiagramAsync(json.ToString());
             await uploadFiles!.ClearAllAsync();

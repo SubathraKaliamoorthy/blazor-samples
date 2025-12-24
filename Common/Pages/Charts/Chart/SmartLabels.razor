@@ -1,7 +1,9 @@
-﻿@page "/chart/smart-labels"
+@page "/chart/smart-labels"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -69,6 +71,7 @@
     {
 
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Radius = "40%";
@@ -92,6 +95,7 @@
             ConnectorLength = "2px";
             Size = "7px";
         }
+        @*End:Hidden*@
     }
 
     public class PieData

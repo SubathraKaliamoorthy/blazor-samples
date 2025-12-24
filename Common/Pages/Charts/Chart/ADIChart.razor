@@ -1,15 +1,15 @@
-﻿@page "/chart/accumulation-distribution-indicator"
+@page "/chart/accumulation-distribution-indicator"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -81,12 +81,13 @@
 
     protected override void OnInitialized()
     {
-        
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void AxisLabelRender(AxisLabelRenderEventArgs args)

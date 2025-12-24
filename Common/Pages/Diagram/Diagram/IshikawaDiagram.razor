@@ -1,4 +1,4 @@
-﻿@page "/diagram/ishikawadiagram"
+@page "/diagram/ishikawadiagram"
 
 @using Syncfusion.Blazor.Diagram
 @*Hidden:Lines*@
@@ -127,7 +127,7 @@
     }
 
     // Method is used to create a Annotations for the connectors.
-    private DiagramObjectCollection<PathAnnotation> CreateAnnotations(string content1, string color, string fontFamily, int fontSize,string fill, bool bold, TextDecoration decoration, double offset, DiagramPoint displacement,AnnotationAlignment alignment )
+    private DiagramObjectCollection<PathAnnotation> CreateAnnotations(string content1, string color, string fontFamily, int fontSize, string fill, bool bold, TextDecoration decoration, double offset, DiagramPoint displacement, AnnotationAlignment alignment)
     {
         DiagramObjectCollection<PathAnnotation> Annotations = new DiagramObjectCollection<PathAnnotation>()
         {

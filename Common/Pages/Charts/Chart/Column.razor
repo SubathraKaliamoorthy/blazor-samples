@@ -1,7 +1,9 @@
-﻿@page "/chart/column"
+@page "/chart/column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Globalization
 @inject NavigationManager NavigationManager
@@ -38,9 +40,11 @@
             <ChartAxisLineStyle Width="0"></ChartAxisLineStyle>
         </ChartPrimaryYAxis>
         <ChartSeriesCollection>
-            <ChartSeries DataSource="@ChartPoints" XName="Country" YName="Walnuts" Name="Walnuts" ColumnSpacing="0.4" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Country" YName="Walnuts" Name="Walnuts" ColumnSpacing="0.4" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Country" YName="Almonds" Name="Almonds" ColumnSpacing="0.4" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Country" YName="Almonds" Name="Almonds" ColumnSpacing="0.4" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
             </ChartSeries>
         </ChartSeriesCollection>
         <ChartLegendSettings Visible="true" EnableHighlight="true" ShapeWidth="9" ShapeHeight="9"></ChartLegendSettings>
@@ -68,12 +72,14 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Label = LabelIntersectAction.None;
             Width = "100%";
             Rotation = -45;
         }
+        @*End:Hidden*@
     }
 
     public class ColumnChartData

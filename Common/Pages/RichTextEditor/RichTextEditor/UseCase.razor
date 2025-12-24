@@ -65,7 +65,7 @@
                                         <td>
                                             <button id="button-spacing" class="e-btn e-flat e-primary tag">
                                                 <span class='e-icon e-like questionSide'>
-                                                    <img class='e-icon' src='@(SampleService.WebAssetsPath + "images/rich-text-editor/like.svg")' alt='Like Icon'>
+                                                    <img class='e-icon' src='@(SampleService?.WebAssetsPath + "images/rich-text-editor/like.svg")' alt='Like Icon'>
                                                     <span>Like</span>
                                                 </span>
                                             </button>
@@ -73,7 +73,7 @@
                                         <td>
                                             <button id="button-spacing" class="e-btn e-flat tag">
                                                 <span class='e-icon e-dislike'>
-                                                    <img class='e-icon' src='@(SampleService.WebAssetsPath + "images/rich-text-editor/dislike.svg")' alt='Dislike Icon'>
+                                                    <img class='e-icon' src='@(SampleService?.WebAssetsPath + "images/rich-text-editor/dislike.svg")' alt='Dislike Icon'>
                                                     <span>Dislike</span>
                                                 </span>
                                             </button>
@@ -110,7 +110,7 @@
                                 </tr>
                             </table>
                             <div class='posting'>
-                                @((MarkupString)this._answersList[i].Comment)
+                                @((MarkupString)(this._answersList[i].Comment ?? string.Empty))
                             </div>
                             <div class='likeAnswer'>
                                 <table>
@@ -118,7 +118,7 @@
                                         <td>
                                             <button class="e-btn e-flat e-primary tag">
                                                 <span class='e-icon e-like questionSide'>
-                                                    <img class='e-icon' src='@(SampleService.WebAssetsPath + "images/rich-text-editor/like.svg")' alt='like'>
+                                                    <img class='e-icon' src='@(SampleService?.WebAssetsPath + "images/rich-text-editor/like.svg")' alt='like'>
                                                     <span>Like</span>
                                                 </span>
                                             </button>
@@ -126,7 +126,7 @@
                                         <td>
                                             <button class="e-btn e-flat tag">
                                                 <span class='e-icon e-dislike'>
-                                                    <img class='e-icon' src='@(SampleService.WebAssetsPath + "images/rich-text-editor/dislike.svg")' alt='dislike'>
+                                                    <img class='e-icon' src='@(SampleService?.WebAssetsPath + "images/rich-text-editor/dislike.svg")' alt='dislike'>
                                                     <span>Dislike</span>
                                                 </span>
                                             </button>
@@ -148,7 +148,7 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <button class="samplebtn e-control e-btn" data-ripple="true" type="reset" @onclick="OnCancelClick">Cancel</button>
+                                        <button class="samplebtn e-control e-btn" data-ripple="true" type="button" @onclick="OnCancelClick">Cancel</button>
                                     </td>
                                     <td>
                                         <button class="samplebtn e-control e-btn" data-ripple="true" type="submit">Reply</button>
@@ -164,7 +164,7 @@
 </div>
 
 @code{
-    private SfRichTextEditor _rteObj;
+    private SfRichTextEditor? _rteObj;
     private string[] _empList = new string[] { "emp1", "emp2", "emp3" };
     private string[] _nameList = new string[] { "Anne Dodsworth", "Janet Leverling", "Laura Callahan" };
     private int _count { get; set; }
@@ -185,17 +185,17 @@
 
     private class Answers
     {
-        public string Comment { get; set; }
-        public string Time { get; set; }
-        public string Name { get; set; }
-        public string Icon { get; set; }
+        public string? Comment { get; set; }
+        public string? Time { get; set; }
+        public string? Name { get; set; }
+        public string? Icon { get; set; }
     }
 
     private class FormModel
     {
         [Required]
         [MinLength(20, ErrorMessage = "Please enter at least 20 characters based on HTML.")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 
     private FormModel Model = new FormModel();
@@ -209,7 +209,7 @@
     {
         _answersList.Add(new Answers
         {
-            Comment = this._rteObj.Value,
+            Comment = this._rteObj?.Value,
             Name = _count < 4 ? _nameList[_count - 1] : "User",
             Time = "Answered on " + DateTime.Now.ToString("MMM") + " " + DateTime.Now.ToString("dd") + ", " + DateTime.Now.ToString("yyyy") + " " + DateTime.Now.ToString("h:mm tt"),
             Icon = _count < 4 ? _empList[_count - 1] : "logo"
@@ -403,7 +403,7 @@
 
     .questionar {
         width: 32px;
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/emp1.png")");
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/emp1.png")");
         height: 32px;
         float: left;
         -ms-flex-line-pack: center;
@@ -448,7 +448,7 @@
     }
 
     .logos {
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/emp2.png")");
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/emp2.png")");
         height: 32px;
         -ms-flex-line-pack: center;
         align-content: center;
@@ -464,25 +464,25 @@
     }
 
     .logo {
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/author.png")") no-repeat scroll 0 0 transparent;
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/author.png")") no-repeat scroll 0 0 transparent;
         height: 32px;
         width: 32px;
     }
 
     .emp1 {
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/1.png")") no-repeat scroll 0 0 transparent;
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/1.png")") no-repeat scroll 0 0 transparent;
         height: 32px;
         width: 32px;
     }
 
     .emp2 {
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/2.png")") no-repeat scroll 0 0 transparent;
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/2.png")") no-repeat scroll 0 0 transparent;
         height: 32px;
         width: 32px;
     }
 
     .emp3 {
-        background: url("@(SampleService.WebAssetsPath + "images/rich-text-editor/3.png")") no-repeat scroll 0 0 transparent;
+        background: url("@(SampleService?.WebAssetsPath + "images/rich-text-editor/3.png")") no-repeat scroll 0 0 transparent;
         height: 32px;
         width: 32px;
     }

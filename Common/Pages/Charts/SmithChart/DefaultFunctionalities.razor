@@ -1,9 +1,11 @@
-﻿@page "/smith-chart/default-functionalities"
+@page "/smith-chart/default-functionalities"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 
 @*Hidden:Lines*@
@@ -19,8 +21,8 @@
     <p>More information about the smith chart can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/smith-chart/getting-started-webapp" aria-label="Documentation section">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfSmithChart RenderType="@ChartRenderType" Theme="@CurrentTheme">
+<div class="col-lg-8 control-section">
+    <SfSmithChart @ref="ChartRef" RenderType="@ChartRenderType" Theme="@CurrentTheme">
         <SmithChartTitle Visible="true" Text="Transmission Details">
         </SmithChartTitle>
         <SmithChartLegendSettings Visible="true" Shape="Shape.Circle">
@@ -45,10 +47,7 @@
         </SmithChartSeriesCollection>
     </SfSmithChart>
 </div>
-<div class="col-md-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                 <tr>
@@ -66,11 +65,10 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
+    public SfSmithChart? ChartRef { get; set; }
     public Theme CurrentTheme { get; set; }
     public RenderType ChartRenderType { get; set; } = RenderType.Impedance;
     public string TypeValue { get; set; } = "Impedance";
@@ -133,8 +131,23 @@
 
     public void RenderTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, RenderData> args)
     {
-        TypeValue = args.Value;
-        ChartRenderType = args.Value == "Admittance" ? RenderType.Admittance : RenderType.Impedance;
+        if (args != null)
+        {
+            TypeValue = args.Value ?? TypeValue;
+            ChartRenderType = args.Value == "Admittance" ? RenderType.Admittance : RenderType.Impedance;
+        }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

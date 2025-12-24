@@ -1,7 +1,9 @@
-﻿@page "/chart/range-column"
+@page "/chart/range-column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -35,7 +37,8 @@
             <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
         </ChartPrimaryYAxis>
         <ChartSeriesCollection>
-            <ChartSeries DataSource="@ChartPoints" XName="Month" High="Max" Low="Min" Name="India" ColumnSpacing="0.4" Type="ChartSeriesType.RangeColumn" TooltipMappingName="Text" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4, BottomLeft = 4, BottomRight = 4 })">
+            <ChartSeries DataSource="@ChartPoints" XName="Month" High="Max" Low="Min" Name="India" ColumnSpacing="0.4" Type="ChartSeriesType.RangeColumn" TooltipMappingName="Text" >
+                <ChartCornerRadius TopLeft="4" TopRight="4" BottomLeft="4" BottomRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Outer">
                     </ChartDataLabel>
@@ -72,10 +75,12 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public class RangeColumnChartData

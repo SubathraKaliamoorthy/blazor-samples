@@ -1,4 +1,4 @@
-﻿@page "/range-selector/range-navigator"
+@page "/range-selector/range-navigator"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @using System.Net.Http.Json
@@ -19,7 +19,7 @@
     </p>
     <p>More information about the range navigator can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/range-selector/getting-started' aria-label="documentation section">documentation section</a>.</p>
 </ActionDescription>
- 
+
 
 @if (BitcoinPriceData == null)
 {
@@ -66,7 +66,15 @@ else
     private void SetThemeAndColors()
     {
         string currentUri = NavigationManager.Uri;
-        DateInterval = SampleService != null && SampleService.IsDevice ? 2 : 1;
+        DateInterval = 1;
+        @*Hidden:Lines*@
+
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            DateInterval = 2;
+        }
+        @*End:Hidden*@
+
 
         if (currentUri.Contains("material3"))
         {

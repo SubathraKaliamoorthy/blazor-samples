@@ -1,4 +1,4 @@
-﻿@page "/file-manager/flat-Data"
+@page "/file-manager/flat-Data"
 
 @using Syncfusion.Blazor.FileManager
 @using BlazorDemos.Pages.FileManager
@@ -87,7 +87,7 @@
 
     public void BeforeImageLoadAsync(BeforeImageLoadEventArgs<FileManagerDirectoryContent> args)
     {
-        string relativePath = $"{SampleService.WebAssetsPath}images/filemanager/{args.FileDetails.Name}";
+        string relativePath = $"{SampleService?.WebAssetsPath}images/filemanager/{args.FileDetails.Name}";
         args.ImageUrl = UriHelper.ToAbsoluteUri(relativePath).ToString();
     }
 }

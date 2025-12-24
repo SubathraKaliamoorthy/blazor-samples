@@ -1,7 +1,9 @@
-﻿@page "/chart/range-selection"
+@page "/chart/range-selection"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
@@ -28,8 +30,8 @@
     <p>More information about the rectangular selection can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/selection#rectangular-selection' aria-label="Navigate to the documentation for Rectangular selection in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Profit Comparison of A and B" SelectionMode="@Mode" AllowMultiSelection="@AllowMultiSelect" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="Profit Comparison of A and B" SelectionMode="@Mode" AllowMultiSelection="@AllowMultiSelect" Theme="@Theme">
         <ChartMargin Bottom="12"></ChartMargin>
         <ChartPrimaryXAxis Minimum="1970" Maximum="2016">
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
@@ -54,10 +56,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 40%">
@@ -79,13 +78,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private bool AllowMultiSelect { get; set; } = false;
     private Syncfusion.Blazor.Charts.SelectionMode Mode { get; set; } = Syncfusion.Blazor.Charts.SelectionMode.DragXY;
@@ -152,7 +149,7 @@
 
     public void ChangeMode(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        this.Mode = (Syncfusion.Blazor.Charts.SelectionMode)Enum.Parse(typeof(Syncfusion.Blazor.Charts.SelectionMode), args.Value.ToString(), true);
+        this.Mode = (Syncfusion.Blazor.Charts.SelectionMode)Enum.Parse(typeof(Syncfusion.Blazor.Charts.SelectionMode), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     private void ChangeSelection(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
@@ -171,6 +168,18 @@
         public double Period { get; set; }
         public double ProductA_Sales { get; set; }
         public double ProductB_Sales { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

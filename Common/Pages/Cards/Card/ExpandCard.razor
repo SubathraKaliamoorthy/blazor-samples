@@ -1,4 +1,4 @@
-﻿@page "/card/expand-card"
+@page "/card/expand-card"
 
 @inject IJSRuntime jsRuntime
 @using Syncfusion.Blazor.Cards
@@ -7,10 +7,10 @@
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 <SampleDescription>
-    <p>This sample demonstrates the expansion of the Card.</p>
+    <p>This sample demonstrates how the Card component can be expanded to reveal additional content or details, enhancing the user experience by allowing more information to be displayed dynamically within a compact layout</p>
 </SampleDescription>
 <ActionDescription>
-    <p>This Card shows the weather details of a city.</p>
+    <p>The Card is a small content display space where a specific content structure can be displayed. This sample shows the weather details of a city.</p>
 </ActionDescription>
 
 <div class="control-section">
@@ -93,8 +93,8 @@
 
     private class WeatherDay
     {
-        public string Day{ get; set; }
-        public string WeatherType{ get; set; }
+        public string? Day{ get; set; }
+        public string? WeatherType{ get; set; }
         public int HighTemp{ get; set; }
         public int LowTemp{ get; set; }
     }

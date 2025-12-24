@@ -1,4 +1,4 @@
-﻿@page "/pivot-table/hyperlink"
+@page "/pivot-table/hyperlink"
 
 @using Syncfusion.Blazor.PivotView
 @using Syncfusion.Blazor.DropDowns
@@ -75,10 +75,7 @@
                     <PivotViewDrilledMember Name="Country" Items="@(new string[] {"United Kingdom", "United States" })"></PivotViewDrilledMember>
                 </PivotViewDrilledMembers>
             </PivotViewDataSourceSettings>
-            <PivotViewHyperlinkSettings ShowValueCellHyperlink="@_showValueCellHyperlink" ShowHyperlink="@_showHyperlink" ShowColumnHeaderHyperlink="@_showColumnHeaderHyperlink" ShowRowHeaderHyperlink="@_showRowHeaderHyperlink" ShowSummaryCellHyperlink="@_showSummaryCellHyperlink" HeaderText="@_hyperHeaderText" CssClass="e-custom-class">
-                <PivotViewConditionalSettings>
-                    <PivotViewConditionalSetting Measure="@_measure" Conditions="_hyperlinkCondition" Value1="_conditionalValue1" Value2="_conditionalValue2"></PivotViewConditionalSetting>
-                </PivotViewConditionalSettings>
+            <PivotViewHyperlinkSettings ConditionalSettings="@conditionalSettings" ShowValueCellHyperlink="@_showValueCellHyperlink" ShowHyperlink="@_showHyperlink" ShowColumnHeaderHyperlink="@_showColumnHeaderHyperlink" ShowRowHeaderHyperlink="@_showRowHeaderHyperlink" ShowSummaryCellHyperlink="@_showSummaryCellHyperlink" HeaderText="@_hyperHeaderText" CssClass="e-custom-class">
             </PivotViewHyperlinkSettings>
             <PivotViewGridSettings ColumnWidth="120"></PivotViewGridSettings>
             <PivotViewEvents TValue="PivotProductDetails" HyperlinkCellClicked="@HyperlinkClick"></PivotViewEvents>
@@ -324,6 +321,7 @@
     private string _hyperlinkMode { get; set; } = "valuecells";
     private string _condition { get; set; } = "Equals";
     private bool _showClearButton = false;
+    private List<PivotViewConditionalSetting> conditionalSettings;
     
     protected override void OnInitialized()
     {
@@ -412,6 +410,14 @@
             _hyperlinkCondition = (Syncfusion.Blazor.PivotView.Condition)Enum.Parse(typeof(Syncfusion.Blazor.PivotView.Condition), Conditions.Value, true);
             _conditionalValue1 = Value1.Value;
             _conditionalValue2 = Value2 != null ? Value2.Value : 0;
+            PivotViewConditionalSetting conditionalSetting = new PivotViewConditionalSetting();
+            conditionalSetting.Measure = _measure;
+            conditionalSetting.Value1 = _conditionalValue1;
+            conditionalSetting.Value2 = _conditionalValue2;
+            conditionalSetting.Conditions = _hyperlinkCondition;
+            conditionalSettings = new List<PivotViewConditionalSetting>() {
+                conditionalSetting
+            };
         }
         else if (_hyperlinkMode == "headertext" && HeaderText != null)
         {

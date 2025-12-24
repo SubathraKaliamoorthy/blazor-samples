@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/cell-selection"
+@page "/heatmap-chart/cell-selection"
 @inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -16,7 +16,7 @@
     <p>The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item on touch-enabled devices.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section">
+<div class="col-lg-8 control-section">
     <div id="container" align="center">
         <SfHeatMap @ref="Heatmap" Height="300px" DataSource="@DataSource" Theme="@Theme" AllowSelection=true>
             <HeatMapEvents CellSelected="@CellSelected"></HeatMapEvents>
@@ -39,7 +39,7 @@
         </SfHeatMap>
     </div>
     <div id="container1" align="center">
-        <SfChart Theme="@Theme" EnableAnimation=true Height="300px">
+        <SfChart @ref="Chart" Theme="@Theme" EnableAnimation=true Height="300px">
             <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category">
                 <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
@@ -67,8 +67,7 @@
         </SfChart>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
             <tr style="height: 50px">
@@ -80,9 +79,11 @@
             </tr>
         </tbody>
     </table>
-</div>
+</PropertyPanel>
 
 @code {
+    public SfHeatMap<double[,]>? Map { get; set; }
+    public SfChart? Chart { get; set; }
     public Theme Theme { get; set; }
     public string AxisLabelColor = "Black";
     public SfHeatMap<double[,]>? Heatmap;
@@ -115,7 +116,7 @@
         public string? XValue { get; set; }
         public string? YValue { get; set; }
     }
-    public async Task ClearSelection()
+    public void ClearSelection()
     {
         SeriesCollection.Clear();
         YIndex = 0;
@@ -192,7 +193,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
+
         Theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (Theme.ToString().IndexOf("Dark") > -1 || Theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
         GetInitialChartData();
@@ -227,10 +228,20 @@
         YIndex++;
         return data;
     }
-}
 
-<style>
-    .col-lg-3.property-section {
-        padding-top: 60px;
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
+        if(Chart != null)
+        {
+            await Chart.RefreshAsync(false);
+        }
     }
-</style>
+}

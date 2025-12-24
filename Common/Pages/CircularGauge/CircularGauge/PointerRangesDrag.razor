@@ -3,7 +3,9 @@
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -37,8 +39,8 @@
     <p>More information on the pointer drag can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/circular-gauge/pointers#dragging-pointer" aria-label="Blazor Circular Gauge Pointer Drag documentation" >documentation section</a>. Likewise, the range drag information can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/circular-gauge/ranges#dragging-ranges" aria-label="Blazor Circular Gauge Range Drag documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfCircularGauge EnablePointerDrag="@PointerDrags" EnableRangeDrag="@RangeDrag" Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section">
+    <SfCircularGauge @ref='SfCircularGauge' EnablePointerDrag="@PointerDrags" EnableRangeDrag="@RangeDrag" Theme="@Theme" Background="transparent">
         <CircularGaugeEvents OnDragEnd="OnDragEnd" />
         <CircularGaugeAxes>
             <CircularGaugeAxis EndAngle="140" StartAngle="220" Radius="80%" Minimum="0" Maximum="120">
@@ -74,10 +76,7 @@
     </SfCircularGauge>
 </div>
 
-<div id="pointer-range" class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <colgroup>
                     <col span="1" style="width: 50%;">
@@ -120,11 +119,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfCircularGauge? SfCircularGauge { get; set; }
     public double Offset = 0;
     public string StartWidth = "8";
     public string EndWidth = "8";
@@ -182,13 +180,27 @@
     }
 
     protected override void OnInitialized()
-    {
+    {   
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             StartWidth = "15";
             EndWidth = "15";
             Offset = 11;
         }
+        @*End:Hidden*@
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (SfCircularGauge != null)
+        {
+            await SfCircularGauge.RefreshAsync();
+        }
     }
 }

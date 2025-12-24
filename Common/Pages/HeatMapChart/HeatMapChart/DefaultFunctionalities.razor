@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/default-functionalities"
+@page "/heatmap-chart/default-functionalities"
 @inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -54,13 +54,17 @@
     {
         _theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (_theme.ToString().IndexOf("Dark") > -1 || _theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             IsShowLabel = false;
         }
         else
         {
+            @*End:Hidden*@
             IsShowLabel = true;
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
 }

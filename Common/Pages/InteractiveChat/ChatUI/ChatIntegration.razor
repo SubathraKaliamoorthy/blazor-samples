@@ -1,4 +1,4 @@
-﻿@page "/chat-ui/chat-integration"
+@page "/chat-ui/chat-integration"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.InteractiveChat
@@ -77,6 +77,7 @@
                                     <HeaderToolbarItem Type="ItemType.Spacer"></HeaderToolbarItem>
                                     <HeaderToolbarItem IconCss="e-icons sf-icon-phone-call" Tooltip="Audio call"></HeaderToolbarItem>
                                 </HeaderToolbar>
+                                <ChatUIAttachment Enable SaveUrl="@SaveURL" RemoveUrl="@RemoveURL"></ChatUIAttachment>
                             </SfChatUI>
                         </div>
                     </ContentTemplate>
@@ -246,6 +247,8 @@
     private string activeBreakpoint { get; set; } = "Large";
     private string HeaderText = "Albert";
     private string HeaderIconCss = "chat_user1_avatar";
+    private string SaveURL = "https://blazor.syncfusion.com/services/production/api/FileUploader/Save";
+    private string RemoveURL = "https://blazor.syncfusion.com/services/production/api/FileUploader/Remove";
     private UserModel User = new UserModel();
     private List<ChatMessage> Messages = new List<ChatMessage>();
     private List<string> ChatSuggestions = new List<string>();

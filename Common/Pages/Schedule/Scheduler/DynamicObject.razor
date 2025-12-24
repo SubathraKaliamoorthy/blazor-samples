@@ -1,4 +1,4 @@
-﻿@page "/scheduler/dynamicobject"
+@page "/scheduler/dynamicobject"
 
 @using Syncfusion.Blazor.Schedule
 @using System.Dynamic
@@ -37,7 +37,7 @@
 @code {
     private DateTime CurrentDate { get; set; }
     private List<DynamicDictionary> eventsCollection = new List<DynamicDictionary>() { };
-    
+
     protected override void OnInitialized()
     {
         CurrentDate = new DateTime(DateTime.Today.Year, 8, 10);
@@ -59,14 +59,17 @@
     public class DynamicDictionary : System.Dynamic.DynamicObject
     {
         Dictionary<string, object> dictionary = new Dictionary<string, object>();
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        public override bool TryGetMember(GetMemberBinder binder, out object? result)
         {
             string name = binder.Name;
             return dictionary.TryGetValue(name, out result);
         }
-        public override bool TrySetMember(SetMemberBinder binder, object value)
+        public override bool TrySetMember(SetMemberBinder binder, object? value)
         {
-            dictionary[binder.Name] = value;
+            if (value != null)
+            {
+                dictionary[binder.Name] = value;
+            }
             return true;
         }
         public override System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames()

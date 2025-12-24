@@ -1,11 +1,13 @@
-﻿@page "/circular-gauge/print-export"
+@page "/circular-gauge/print-export"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge;
 @using Syncfusion.Blazor.Buttons;
 @using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.Inputs;
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -38,7 +40,7 @@
     }
 </style>
 
-<div class="col-lg-8 control-section sb-property-border">
+<div class="col-lg-8 control-section">
     <SfCircularGauge @ref="@Gauge" AllowPdfExport="true" AllowPrint="true" AllowImageExport="true" Theme="@Theme">
         <CircularGaugeAxes>
             <CircularGaugeAxis Radius="80%" StartAngle="0" EndAngle="0" Direction="GaugeDirection.AntiClockWise">
@@ -62,10 +64,7 @@
         </CircularGaugeAxes>
     </SfCircularGauge>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table id="property" title="Properties" style="width: 100%">
                 <tbody>
                     <tr>
@@ -101,9 +100,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
     public Theme Theme { get; set; }
@@ -121,12 +118,12 @@
 
     private void GaugeValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FileTypeList> args)
     {
-        FileType = args.Value;
+        FileType = args?.Value ?? FileType;
     }
 
     private void NameChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
-        FileName = args.Value;
+        FileName = args?.Value ?? FileName;
     }
 
     private async Task ExportClick(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
@@ -165,5 +162,17 @@
     public class FileTypeList
     {
         public string? Name { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Gauge != null)
+        {
+            await Gauge.RefreshAsync();
+        }
     }
 }

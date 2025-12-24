@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -19,11 +15,11 @@ namespace BlazorDemos
              new Sample{
                 Name = "Overview",
                 Category = "Gantt Chart",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/overview",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Overview | Project Management | Syncfusion",
-                HeaderText = "Blazor Gantt Chart Example - Component Overview",
+                HeaderText = "Blazor Gantt Chart Example - Overview",
                 MetaDescription = "This Blazor Gantt Chart demo shows the comprehensive view of project tasks, timelines, dependencies, and resources. Perfect for visualizing project schedules.",
                 SourceFiles = new List<SourceCollection>()
                 {
@@ -39,8 +35,13 @@ namespace BlazorDemos
                     },
                     new SourceCollection
                     {
+                        Id="Overview",
+                        FileName="Overview.razor.css"
+                    },
+                    new SourceCollection
+                    {
                         Id="OverviewRecord",
-                        FileName="OverviewData.cs"
+                        FileName="Data/OverviewData.cs"
                     }
                 },
                 IsHideInMobile= true
@@ -49,7 +50,7 @@ namespace BlazorDemos
             {
                 Name = "Default Functionalities",
                 Category = "Gantt Chart",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/default-functionalities",
                 MetaTitle = "Gantt Chart Default Functionalities - Syncfusion Demos",
                 HeaderText = "Blazor Gantt Chart Example - Default Functionalities",
@@ -62,10 +63,15 @@ namespace BlazorDemos
                         Id="Default",
                         FileName="DefaultFunctionalities.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="DefaultFunctionalities.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -73,7 +79,7 @@ namespace BlazorDemos
             {
                 Name = "Editing",
                 Category = "Gantt Chart",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/editing",
                 MetaTitle = "Blazor Gantt Chart Editing | Task Modifications | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Task Editing Capabilities",
@@ -88,7 +94,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="EditData",
-                        FileName="GanttData.cs"
+                        FileName="Data/GanttData.cs"
                     }
                 },
                 Type = SampleType.None
@@ -97,7 +103,7 @@ namespace BlazorDemos
             {
                 Name = "Sorting",
                 Category = "Gantt Chart",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/sorting",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Sorting | Task Organization | Syncfusion",
@@ -113,7 +119,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -121,7 +127,7 @@ namespace BlazorDemos
             {
                 Name = "Selection",
                 Category = "Gantt Chart",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/selection",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Selection | Task Focus | Syncfusion",
@@ -134,10 +140,15 @@ namespace BlazorDemos
                         Id="Schedule",
                         FileName="Selection.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="Schedule",
+                        FileName="Selection.razor.cs"
+                    },
                     new SourceCollection
                     {
                         Id="SelectionRecord",
-                        FileName="SelectionData.cs"
+                        FileName="Data/SelectionData.cs"
                     }
                 },
             },
@@ -173,7 +184,7 @@ namespace BlazorDemos
             {
                 Name = "Airline Tracker",
                 Category = "Use Case",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/airline-tracker",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Airline Tracker | Flight Scheduling | Syncfusion",
@@ -191,10 +202,15 @@ namespace BlazorDemos
                         Id="AirlineTracker",
                         FileName="AirlineTracker.razor.cs"
                     },
+					new SourceCollection
+                    {
+                        Id="AirlineTracker",
+                        FileName="AirlineTracker.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="AirlineTracker",
-                        FileName="AirlineTrackerData.cs"
+                        FileName="Data/AirlineTrackerData.cs"
                     }
                 }
             },
@@ -202,7 +218,7 @@ namespace BlazorDemos
             {
                 Name = "Digital Marketing",
                 Category = "Use Case",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/digital-marketing",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Marketing | Campaign Management | Syncfusion",
@@ -220,10 +236,15 @@ namespace BlazorDemos
                        Id="DigitalMarketing",
                        FileName="DigitalMarketing.razor.cs"
                    },
+				   new SourceCollection
+                   {
+                       Id="DigitalMarketing",
+                       FileName="DigitalMarketing.razor.css"
+                   },
                    new SourceCollection
                    {
                        Id="DigitalMarketing",
-                       FileName="DigitalMarketingData.cs"
+                       FileName="Data/DigitalMarketingData.cs"
                    }
                 }
             },
@@ -231,7 +252,7 @@ namespace BlazorDemos
             {
                 Name = "Human Resource",
                 Category = "Use Case",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/human-resource-management",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart HR Management | Resource Allocation | Syncfusion",
@@ -249,10 +270,15 @@ namespace BlazorDemos
                         Id="HumanResourceManagement",
                         FileName="HumanResourceManagement.razor.cs"
                     },
+					new SourceCollection
+                    {
+                        Id="HumanResourceManagement",
+                        FileName="HumanResourceManagement.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="HumanResourceManagement",
-                        FileName="HumanResourceData.cs"
+                        FileName="Data/HumanResourceData.cs"
                     }
                 }
             },
@@ -260,7 +286,7 @@ namespace BlazorDemos
             {
                 Name = "Education Scheduler",
                 Category = "Use Case",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/education-scheduler",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Education Planner | Course Scheduling | Syncfusion",
@@ -278,10 +304,15 @@ namespace BlazorDemos
                         Id="EducationScheduler",
                         FileName="EducationScheduler.razor.cs"
                     },
+					new SourceCollection
+                    {
+                        Id="EducationScheduler",
+                        FileName="EducationScheduler.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="EducationScheduler",
-                        FileName="EducationSchedulerData.cs"
+                        FileName="Data/EducationSchedulerData.cs"
                     }
                 }
             },
@@ -289,55 +320,108 @@ namespace BlazorDemos
             {
                 Name = "Remote Data",
                 Category = "Data Binding",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/remote-data",
-                FileName="RemoteData.razor",
+                Directory = "GanttChart",
+                Url = "gantt-chart/remote-data",                
                 MetaTitle = "Blazor Gantt Chart Remote Data | API Integration | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Remote Data Binding",
                 MetaDescription = "Blazor Gantt Chart demo shows data binding with remote data sources like web APIs and services. Enables integration with backend systems for management data.",
                 Type = SampleType.None,
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="RemoteData",
+                        FileName = "RemoteData.razor",
+                    },
+					new SourceCollection
+                    {
+                        Id="RemoteData",
+                        FileName = "RemoteData.razor.cs",
+                    },
+				}
             },
             new Sample
             {
                 Name = "DynamicObject Binding",
                 Category = "Data Binding",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/dynamic-data",
-                FileName="DynamicData.razor",
+                Directory = "GanttChart",
+                Url = "gantt-chart/dynamic-data",                
                 MetaTitle = "Blazor Gantt Chart Dynamic Data | Flexible Binding | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - DynamicObject Data Binding",
                 MetaDescription = "Blazor GanttChart demo shows binding with DynamicObject data type for flexible property access. Support dynamic data structure without fixed schema requirement.",
                 Type = SampleType.None,
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="DynamicData",
+                        FileName = "DynamicData.razor",
+                    },
+					new SourceCollection
+                    {
+                        Id="DynamicData",
+                        FileName = "DynamicData.razor.cs",
+                    },
+				}
             },
             new Sample
             {
                 Name = "ExpandoObject Binding",
                 Category = "Data Binding",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/expando-data",
-                FileName="ExpandoData.razor",
+                Directory = "GanttChart",
+                Url = "gantt-chart/expando-data",                
                 MetaTitle = "Blazor Gantt ExpandoObject Binding | Dynamic Properties | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - ExpandoObject Data Binding",
                 MetaDescription = "This sample demonstrates the usage of ExpandoObject (dynamic) data binding with CRUD operations and sorting functionalities in the Blazor Gantt component.",
                 Type = SampleType.None,
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="ExpandoData",
+                        FileName = "ExpandoData.razor",
+                    },
+					new SourceCollection
+                    {
+                        Id="ExpandoData",
+                        FileName = "ExpandoData.razor.cs",
+                    },
+				}
             },
             new Sample
             {
                 Name = "Observable Collection",
                 Category = "Data Binding",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/observable-collection",
-                FileName="ObservableBinding.razor",
+                Directory = "GanttChart",
+                Url = "gantt-chart/observable-collection",                
                 MetaTitle = "Blazor Gantt Observable Collection | Real-time Updates | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Observable Collection Binding",
                 MetaDescription = "Blazor GanttChart demo shows binding with ObservableCollection for automatic UI updates when data changes. Real-time project tracking with dynamic task updates.",
                 Type = SampleType.None,
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="ObservableBinding",
+                        FileName = "ObservableBinding.razor",
+                    },
+                    new SourceCollection
+                    {
+                        Id="ObservableBinding",
+                        FileName = "ObservableBinding.razor.cs",
+                    },
+                    new SourceCollection
+                    {
+                        Id="ObservableBinding",
+                        FileName = "Data/ObservableBindingData.cs",
+                    },
+                }
             },
             new Sample
             {
                 Name = "Big Data Set",
                 Category = "Data Binding",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/load-on-demand",
                 FileName="LoadOnDemand.razor",
                 MetaTitle = "Blazor Gantt Chart Large Datasets | Virtualization | Syncfusion",
@@ -349,7 +433,7 @@ namespace BlazorDemos
             {
                 Name = "Scheduling Mode",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/scheduling-mode",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Scheduling Modes | Project Planning | Syncfusion",
@@ -365,7 +449,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ScheduleRecord",
-                        FileName="ScheduleData.cs"
+                        FileName="Data/ScheduleData.cs"
                     }
                 }
             },
@@ -373,7 +457,7 @@ namespace BlazorDemos
             {
                 Name = "Work Week",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/work-week",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Work Week | Custom Calendars | Syncfusion",
@@ -389,7 +473,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ResourceRecord",
-                        FileName="WorkData.cs"
+                        FileName="Data/WorkData.cs"
                     }
                 }
             },
@@ -397,7 +481,7 @@ namespace BlazorDemos
             {
                 Name = "Work Time Range",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/working-time-range",
                 MetaTitle = "Blazor Gantt Chart Working Hours | Time Configuration | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Working Time Range Settings",
@@ -412,7 +496,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="WorkTimeRangeRecord",
-                        FileName="WorkTimeRangeData.cs"
+                        FileName="Data/WorkTimeRangeData.cs"
                     }
                 },
                 Type = SampleType.None,
@@ -421,7 +505,7 @@ namespace BlazorDemos
             {
                 Name = "Holidays",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/holidays",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Holidays | Calendar Exceptions | Syncfusion",
@@ -437,7 +521,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -445,7 +529,7 @@ namespace BlazorDemos
             {
                 Name = "Unscheduled Task",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/unscheduled-task",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Unscheduled Tasks | Pending Items | Syncfusion",
@@ -461,7 +545,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="UnscheduledData",
-                        FileName="UnscheduleData.cs"
+                        FileName="Data/UnscheduleData.cs"
                     }
                 }
             },
@@ -469,7 +553,7 @@ namespace BlazorDemos
             {
                 Name = "Baseline",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/baseline",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Baseline | Schedule Comparison | Syncfusion",
@@ -485,7 +569,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="BaseRecord",
-                        FileName="BaseData.cs"
+                        FileName="Data/BaseData.cs"
                     }
                 }
             },
@@ -493,7 +577,7 @@ namespace BlazorDemos
             {
                 Name = "Event Markers",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/eventmarkers",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Event Markers | Timeline Indicators | Syncfusion",
@@ -509,7 +593,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="EventRecord",
-                        FileName="EventData.cs"
+                        FileName="Data/EventData.cs"
                     }
                 }
             },
@@ -517,16 +601,12 @@ namespace BlazorDemos
             {
                 Name = "Timezone",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/timezone",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Timezone Support | Global Scheduling | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Timezone",
                 MetaDescription = "This Syncfusion Blazor GanttChart Timezone Support example demonstrates precise task scheduling across regions, ensuring accurate timelines in global projects.",
-                NotificationDescription = new string[]
-                {
-                    @"The sample has been added to demonstrate the Timezone feature in the Gantt Chart."
-                },
                 SourceFiles = new List<SourceCollection>()
                 {
                     new SourceCollection
@@ -534,10 +614,15 @@ namespace BlazorDemos
                         Id = "Timezone",
                         FileName = "Timezone.razor"
                     },
+					new SourceCollection
+                    {
+                        Id = "Timezone",
+                        FileName = "Timezone.razor.cs"
+                    },
                     new SourceCollection
                     {
                         Id = "TimezoneRecord",
-                        FileName = "TimezoneData.cs"
+                        FileName = "Data/TimezoneData.cs"
                     }
                 }
             },
@@ -545,7 +630,7 @@ namespace BlazorDemos
             {
                 Name = "Critical Path",
                 Category = "Scheduling Concepts",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/criticalpath",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Critical Path | Project Timeline | Syncfusion",
@@ -561,7 +646,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="CriticalRecord",
-                        FileName="GanttData.cs"
+                        FileName="Data/CriticalPathData.cs"
                     }
                 }
             },
@@ -569,7 +654,7 @@ namespace BlazorDemos
             {
                 Name = "Timeline API",
                 Category = "Timeline",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/timeline",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Timeline API | Custom Date Range | Syncfusion",
@@ -582,10 +667,15 @@ namespace BlazorDemos
                         Id="TimeTask",
                         FileName = "Timeline.razor",
                     },
+					new SourceCollection
+                    {
+                        Id="TimeTask",
+                        FileName = "Timeline.razor.cs",
+                    },
                     new SourceCollection
                     {
                         Id="TimeRecord",
-                        FileName="TimelineData.cs"
+                        FileName="Data/TimelineData.cs"
                     }
                 }
             },
@@ -593,7 +683,7 @@ namespace BlazorDemos
             {
                 Name = "Zooming",
                 Category = "Timeline",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/zooming",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Zooming | Timeline Navigation | Syncfusion",
@@ -609,15 +699,58 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ZoomRecord",
-                        FileName="ZoomingData.cs"
+                        FileName="Data/ZoomingData.cs"
                     }
                 }
             },
             new Sample
             {
+                Name = "Column Validation",
+                Category = "Columns",
+                Directory = "GanttChart",
+                Type = SampleType.New,
+                Url = "gantt-chart/column-validation",
+                MetaTitle = "Blazor Gantt Chart Column Validation | Data Validation | Syncfusion",
+                HeaderText = "Blazor Gantt Chart Example - Column Validation",
+                MetaDescription = "This Blazor Gantt Chart demo shows column validation in cell editing and add/edit dialogs, enforcing required, range, and format rules with clear errors.",
+                NotificationDescription = new string[]
+                {
+                    @"The sample has been added to demonstrate the Column Validation feature in the Gantt Chart."
+                },
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id = "ColumnValidation",
+                        FileName = "ColumnValidation.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ColumnValidation",
+                        FileName = "ColumnValidation.razor.cs"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ColumnValidation",
+                        FileName = "ColumnValidation.razor.css"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ColumnValidationRecord",
+                        FileName ="Data/ColumnValidationData.cs"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ColumnValidator",
+                        FileName ="Data/ColumnValidator.cs"
+                    }
+                },
+            },
+            new Sample
+            {
                 Name = "Column Template",
                 Category = "Columns",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/column-template",
                 MetaTitle = "Blazor Gantt Chart Column Templates | Custom Cells | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Custom Column Templates",
@@ -632,7 +765,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ColumnTemplateRecord",
-                        FileName="ColumnTemplateData.cs"
+                        FileName="Data/ColumnTemplateData.cs"
                     }
                 },
                 Type = SampleType.None,
@@ -641,7 +774,7 @@ namespace BlazorDemos
             {
                 Name = "Reorder",
                 Category = "Columns",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/column-reordering",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Column Reordering | Custom Layout | Syncfusion",
@@ -657,7 +790,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -665,7 +798,7 @@ namespace BlazorDemos
             {
                 Name = "Resizing",
                 Category = "Columns",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/column-resizing",
                 FileName="ColumnResizing.razor",
                 MetaTitle = "Blazor Gantt Chart Column Resizing | Width Adjustment | Syncfusion",
@@ -681,7 +814,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ColumnResizingRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 },
                 Type = SampleType.None,
@@ -690,7 +823,7 @@ namespace BlazorDemos
             {
                 Name = "Column Menu",
                 Category = "Columns",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/column-menu",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Column Menu | Quick Actions | Syncfusion",
@@ -706,24 +839,50 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
-			new Sample
+            new Sample
+            {
+                Name = "Frozen Columns",
+                Category = "Columns",
+                Directory = "GanttChart",
+                Url = "gantt-chart/frozen-column",
+                MetaTitle = "Blazor Gantt Chart Frozen Columns | Pinned Fields | Syncfusion",
+                HeaderText = "Blazor Gantt Chart Example - Column Freezing",
+                MetaDescription = "This Blazor Gantt Chart demo shows frozen columns functionality. Pin important columns to keep them visible while horizontally scrolling through extensive task.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="FrozenColumn",
+                        FileName="FrozenColumn.razor",
+                    },
+                    new SourceCollection
+                    {
+                        Id="FrozenColumn",
+                        FileName="FrozenColumn.razor.cs",
+                    },
+                    new SourceCollection
+                    {
+                        Id="FrozenColumnRecord",
+                        FileName="Data/GanttData.cs"
+                    }
+                },
+                Type = SampleType.None,
+                IsHideInMobile= true,
+            },
+            new Sample
 			{
 				Name = "WBS Column",
 				Category = "Columns",
-				Directory = "GanttChart/GanttChart",
+				Directory = "GanttChart",
 				Url = "gantt-chart/wbs-column",
-				Type = SampleType.New,
+				Type = SampleType.None,
 				MetaTitle = "Blazor Gantt Chart WBS Column | Auto-Generated Task Codes | Syncfusion",
 				HeaderText = "Blazor Gantt Chart Example - Work Breakdown Structure (WBS) Column",
 				MetaDescription = "Blazor Gantt Chart demo shows WBS and auto-generate hierarchical task codes, visualize dependencies, and ensure project clarity. optimized for large datasets.",
-				NotificationDescription = new string[]
-                {
-                    @"The sample has been added to demonstrate the WBS Column feature in Gantt Chart."
-                },
                 SourceFiles = new List<SourceCollection>()
 				{
 					new SourceCollection
@@ -734,7 +893,7 @@ namespace BlazorDemos
 					new SourceCollection
 					{
 						Id="WbsColumnRecord",
-						FileName="WbsColumnData.cs"
+						FileName="Data/WbsColumnData.cs"
 					}
 				}
 			},
@@ -742,7 +901,7 @@ namespace BlazorDemos
             {
                 Name = "Resource Allocation",
                 Category = "Resource",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/resource-allocation",
                 Type = SampleType.None, 
                 MetaTitle = "Blazor Gantt Chart Resource Allocation | Staff Assignment | Syncfusion",
@@ -758,7 +917,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ResourceRecord",
-                        FileName="ResourceModel.cs"
+                        FileName="Data/ResourceModel.cs"
                     }
                 },
             },
@@ -766,19 +925,35 @@ namespace BlazorDemos
             {
                 Name = "Resource View",
                 Category = "Resource",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/resource-view",
                 Type = SampleType.None,
-                FileName="ResourceView.razor",
                 MetaTitle = "Blazor Gantt Chart Resource View | Team Scheduling | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Resource-Centric View",
                 MetaDescription = "Blazor Gantt Chart demo shows a resource-centric visualization of project tasks. View assignments by employee or resource to evaluate workload distribution.",
-            },
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="ResourceView",
+                        FileName = "ResourceView.razor",
+                    },
+					new SourceCollection
+                    {
+                        Id="ResourceView",
+                        FileName = "ResourceView.razor.cs",
+                    },new SourceCollection
+                    {
+                        Id="ResourceView",
+                        FileName = "Data/ResourceViewData.cs",
+                    },
+				}
+			},
              new Sample
             {
                 Name = "Resource Multi Taskbar",
                 Category = "Resource",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/multi-taskbar",
                 MetaTitle = "Blazor Gantt Chart Multi-Taskbar | Resource Tasks | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Multiple Taskbars Per Resource",
@@ -793,7 +968,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="MultiTaskbarRecord",
-                        FileName="MultiTaskbarData.cs"
+                        FileName="Data/MultiTaskbarData.cs"
                     }
                 },
                 
@@ -803,7 +978,7 @@ namespace BlazorDemos
             {
                 Name = "Header Template",
                 Category = "Templates",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/header-template",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Header Template | Custom Headers | Syncfusion",
@@ -816,10 +991,15 @@ namespace BlazorDemos
                         Id="HeaderTemplate",
                         FileName="GanttHeaderTemplate.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="HeaderTemplate",
+                        FileName="GanttHeaderTemplate.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="TaskbarRecord",
-                        FileName="ResourceModel.cs"
+                        FileName="Data/ResourceModel.cs"
                     }
                 }
             },
@@ -827,7 +1007,7 @@ namespace BlazorDemos
             {
                 Name = "Taskbar Template",
                 Category = "Templates",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/taskbar-template",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Taskbar Template | Custom Task Visuals | Syncfusion",
@@ -840,10 +1020,15 @@ namespace BlazorDemos
                         Id="TaskbarTemplate",
                         FileName="GanttTaskbarTemplate.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="TaskbarTemplate",
+                        FileName="GanttTaskbarTemplate.razor.css"
+                    },
                     new SourceCollection
                     {
                         Id="TaskbarRecord",
-                        FileName="TaskbarTemplateData.cs"
+                        FileName="Data/TaskbarTemplateData.cs"
                     }
                 }
             },
@@ -851,7 +1036,7 @@ namespace BlazorDemos
             {
                 Name = "Tooltip Template",
                 Category = "Templates",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/tooltip-template",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Tooltip Template | Task Details | Syncfusion",
@@ -867,7 +1052,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="TooltipTemplateRecord",
-                        FileName="TooltipTemplateData.cs"
+                        FileName="Data/TooltipTemplateData.cs"
                     }
                 }
             },
@@ -875,44 +1060,35 @@ namespace BlazorDemos
             {
                 Name = "Virtual Scrolling",
                 Category = "Scrolling",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/virtual-scroll",
-                FileName="VirtualScroll.razor",
+                Directory = "GanttChart",
+                Url = "gantt-chart/virtual-scroll",                
                 MetaTitle = "Blazor Gantt Chart Virtual Scrolling | Performance | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Virtual Scrolling for Large Datasets",
-                MetaDescription = "This Blazor Gantt Chart example shows how to render only visible rows for optimal performance while managing extensive project plans with numerous tasks."
-            },
-            new Sample
-            {
-                Name = "Frozen Columns",
-                Category = "Scrolling",
-                Directory = "GanttChart/GanttChart",
-                Url = "gantt-chart/frozen-column",
-                MetaTitle = "Blazor Gantt Chart Frozen Columns | Pinned Fields | Syncfusion",
-                HeaderText = "Blazor Gantt Chart Example - Column Freezing",
-                MetaDescription = "This Blazor Gantt Chart demo shows frozen columns functionality. Pin important columns to keep them visible while horizontally scrolling through extensive task.",
-                SourceFiles = new List<SourceCollection>()
+                MetaDescription = "This Blazor Gantt Chart example shows how to render only visible rows for optimal performance while managing extensive project plans with numerous tasks.",
+				SourceFiles = new List<SourceCollection>()
                 {
                     new SourceCollection
                     {
-                        Id="FrozenColumn",
-                        FileName="FrozenColumn.razor",
+                        Id="VirtualScroll",
+                        FileName = "VirtualScroll.razor",
                     },
-                    new SourceCollection
+					new SourceCollection
                     {
-                        Id="FrozenColumnRecord",
-                        FileName="GanttData.cs"
-                    }
-                },
-                Type = SampleType.None,
-                IsHideInMobile= true,
-               
-            },
+                        Id="VirtualScroll",
+                        FileName = "VirtualScroll.razor.cs",
+                    },
+					new SourceCollection
+                    {
+                        Id="VirtualScroll",
+                        FileName = "Data/VirtualScrollData.cs",
+                    },
+				}
+			},
             new Sample
             {
                 Name = "Row Drag and Drop",
                 Category = "Rows",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/row-drag-and-drop",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Row Reordering | Task Prioritization | Syncfusion",
@@ -928,7 +1104,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -936,7 +1112,7 @@ namespace BlazorDemos
             {
                 Name = "Row Height",
                 Category = "Rows",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/row-height",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Row Height | Visual Density | Syncfusion",
@@ -949,10 +1125,15 @@ namespace BlazorDemos
                         Id="RowHeight",
                         FileName="RowHeight.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="RowHeight",
+                        FileName="RowHeight.razor.cs"
+                    },					
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -960,7 +1141,7 @@ namespace BlazorDemos
             {
                 Name = " Menu Filtering",
                 Category = "Filtering",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/filtering",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Filtering | Task Filtering | Syncfusion",
@@ -973,27 +1154,28 @@ namespace BlazorDemos
                         Id="Filtering",
                          FileName = "Filtering.razor",
                     },
+					new SourceCollection
+                    {
+                        Id="Filtering",
+                         FileName = "Filtering.razor.cs",
+                    },
                     new SourceCollection
                     {
                         Id="Filter",
-                        FileName="FilterData.cs"
+                        FileName="Data/FilterData.cs"
                     }
                 }
             },           
-               new Sample
+            new Sample
             {
                 Name = "Excel Filtering",
                 Category = "Filtering",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/excel-filtering",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Filtering | Task Filtering | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Excel Filtering",
                 MetaDescription = "This Blazor Gantt Chart example demonstrates Excel filtering capabilities. Filter tasks by various criteria to focus on specific aspects of your project.",
-                NotificationDescription = new string[]
-                {
-                    @"The sample has been added to demonstrate the Excel Filtering feature in Gantt Chart."
-                },
                 SourceFiles = new List<SourceCollection>()
                 {
                     new SourceCollection
@@ -1001,10 +1183,15 @@ namespace BlazorDemos
                         Id="Filtering",
                          FileName = "ExcelFiltering.razor",
                     },
+					new SourceCollection
+                    {
+                        Id="Filtering",
+                         FileName = "ExcelFiltering.razor.cs",
+                    },
                     new SourceCollection
                     {
                         Id="Filter",
-                        FileName="FilterData.cs"
+                        FileName="Data/FilterData.cs"
                     }
                 }
             },
@@ -1012,7 +1199,7 @@ namespace BlazorDemos
             {
                 Name = "Advanced Filtering",
                 Category = "Filtering",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/advanced-filtering",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Advanced Filtering | Complex Queries | Syncfusion",
@@ -1025,10 +1212,20 @@ namespace BlazorDemos
                          Id="AdvancedFiltering",
                          FileName = "AdvancedFiltering.razor",
                     },
+					new SourceCollection
+                    {
+                         Id="AdvancedFiltering",
+                         FileName = "AdvancedFiltering.razor.cs",
+                    },
+					new SourceCollection
+                    {
+                         Id="AdvancedFiltering",
+                         FileName = "AdvancedFiltering.razor.css",
+                    },
                     new SourceCollection
                     {
                         Id="AdvancedFiltering",
-                        FileName="FilterData.cs"
+                        FileName="Data/FilterData.cs"
                     }
                 },
             },
@@ -1036,7 +1233,7 @@ namespace BlazorDemos
             {
                 Name = "Default Exporting",
                 Category = "Exporting",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/exporting",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Exporting | Project Sharing | Syncfusion",
@@ -1049,10 +1246,15 @@ namespace BlazorDemos
                         Id="ExportTask",
                         FileName = "Exporting.razor",
                     },
+					new SourceCollection
+                    {
+                        Id="ExportTask",
+                        FileName = "Exporting.razor.cs",
+                    },
                     new SourceCollection
                     {
                         Id="ExportRecord",
-                        FileName="GanttData.cs"
+                        FileName="Data/GanttData.cs"
                     }
                 },
             },
@@ -1060,31 +1262,93 @@ namespace BlazorDemos
             {
                 Name = "Advanced Exporting",
                 Category = "Exporting",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/advanced-exporting",
                 Type = SampleType.None,
-                FileName = "AdvancedExporting.razor",
                 MetaTitle = "Blazor Gantt Chart Advanced Export | Custom Options | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Advanced Export Customization",
                 MetaDescription = "This Blazor Gantt Chart example demonstrates how to control page setup, header/footer content, and formatting options when exporting to various formats.",
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="AdvancedExporting",
+                        FileName = "AdvancedExporting.razor",
+                    },
+					new SourceCollection
+                    {
+                        Id="AdvancedExporting",
+                        FileName = "AdvancedExporting.razor.cs",
+                    },
+					new SourceCollection
+                    {
+                        Id="AdvancedExporting",
+                        FileName = "AdvancedExporting.razor.css",
+                    },
+					new SourceCollection
+                    {
+                        Id="AdvancedExporting",
+                        FileName = "Data/AdvancedExportingData.cs",
+                    },
+				}
+			},
+            new Sample
+            {
+                Name = "Undo Redo",
+                Category = "Miscellaneous",
+                Directory = "GanttChart",
+                Url = "gantt-chart/undo-redo",
+                Type = SampleType.New,
+                MetaTitle = "Blazor Gantt Chart Undo and Redo | Revert and Reapply | Syncfusion",
+                HeaderText = "Blazor Gantt Chart Example - Undo and Redo",
+                MetaDescription = "Blazor Gantt Chart demo showcases built-in undo and redo functionality, enabling quick reversal or reapplication of recent changes for precise project control.",
+                NotificationDescription = new string[]
+                {
+                    @"The sample has been added to demonstrate the Undo Redo feature in the Gantt Chart."
+                },
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id = "UndoRedo",
+                        FileName = "UndoRedo.razor",
+                    },
+                    new SourceCollection
+                    {
+                        Id = "UndoRedo",
+                        FileName = "Data/UndoRedoData.cs",
+                    },
+                }
             },
-             new Sample
+            new Sample
             {
                 Name = "Split Tasks",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/split-tasks",
                 Type = SampleType.None,
-                FileName="SplitTasks.razor",
                 MetaTitle = "Blazor Gantt Chart Split Tasks | Segmented Work | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - Split Task Management",
                 MetaDescription = "This Blazor Gantt Chart demo shows how to handle non-continuous work by dividing tasks into multiple segments to represent interruptions in project schedules.",
-            },
+				SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="SplitTasks",
+                        FileName = "SplitTasks.razor",
+                    },					
+					new SourceCollection
+                    {
+                        Id="SplitTasks",
+                        FileName = "Data/SplitTasksData.cs",
+                    },
+				}
+			},
 			new Sample
             {
                 Name = "Responsive",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/ganttresponsive",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Responsive Design | Mobile Friendly | Syncfusion",
@@ -1097,10 +1361,15 @@ namespace BlazorDemos
                         Id="GanttResponsive",
                         FileName="GanttResponsive.razor"
                     },
+					new SourceCollection
+                    {
+                        Id="GanttResponsive",
+                        FileName="GanttResponsive.razor.cs"
+                    },
                     new SourceCollection
                     {
                         Id="GanttResponsiveRecord",
-                        FileName="WorkData.cs"
+                        FileName="Data/WorkData.cs"
                     }
                 },
             },
@@ -1110,7 +1379,7 @@ namespace BlazorDemos
             {
                 Name = "Persist State",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/persistence",
                 MetaTitle = "Blazor Gantt Chart State Persistence | User Preferences | Syncfusion",
                 HeaderText = "Blazor Gantt Chart Example - State Persistence",
@@ -1122,10 +1391,15 @@ namespace BlazorDemos
                         Id="PersistState",
                         FileName="Persistence.razor",
                     },
+					new SourceCollection
+                    {
+                        Id="PersistState",
+                        FileName="Persistence.razor.cs",
+                    },
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 },
             },
@@ -1134,7 +1408,7 @@ namespace BlazorDemos
             {
                 Name = "Context Menu",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/context-menu",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Context Menu | Quick Actions | Syncfusion",
@@ -1150,7 +1424,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="ContextMenuData",
-                        FileName="GanttData.cs"
+                        FileName="Data/GanttData.cs"
                     }
                 }
             },
@@ -1158,7 +1432,7 @@ namespace BlazorDemos
             {
                 Name = "Clipboard",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/clipboard",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Clipboard | Copy Paste Tasks | Syncfusion",
@@ -1174,7 +1448,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="Clipboard",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }
             },
@@ -1182,7 +1456,7 @@ namespace BlazorDemos
             {
                 Name = "Keyboard Navigation",
                 Category = "Miscellaneous",
-                Directory = "GanttChart/GanttChart",
+                Directory = "GanttChart",
                 Url = "gantt-chart/keyboard-navigation",
                 Type = SampleType.None,
                 MetaTitle = "Blazor Gantt Chart Keyboard Navigation | Accessibility | Syncfusion",
@@ -1198,7 +1472,7 @@ namespace BlazorDemos
                     new SourceCollection
                     {
                         Id="DefaultRecord",
-                        FileName="DefaultData.cs"
+                        FileName="Data/DefaultData.cs"
                     }
                 }, 
                 IsHideInMobile= true,

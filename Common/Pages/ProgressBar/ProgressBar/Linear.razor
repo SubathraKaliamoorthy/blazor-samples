@@ -1,7 +1,9 @@
-﻿@page "/progress-bar/linear"
+@page "/progress-bar/linear"
 @using Syncfusion.Blazor.ProgressBar
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager Navigation
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -56,8 +58,8 @@
 
     protected override void OnInitialized()
     {
-        CurrentUri = Navigation.Uri;
-        FontFamily = ThemeHelper.GetFontFamily(CurrentUri);
+        CurrentUri = NavigationManager.Uri;
+        FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
 
         // Initialize ProgressBarModels
         ProgressBarModels = new List<ProgressBarModel>

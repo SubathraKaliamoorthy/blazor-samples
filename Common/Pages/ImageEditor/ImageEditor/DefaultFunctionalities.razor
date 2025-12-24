@@ -1,7 +1,6 @@
-﻿@page "/image-editor/default-functionalities"
+@page "/image-editor/default-functionalities"
 
 @using Syncfusion.Blazor.ImageEditor
-
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @*End:Hidden*@
@@ -30,6 +29,7 @@
         <li><code>Redact</code> : Redacting sensitive information in images involves covering or obscuring specific areas to make the information unreadable or unidentifiable.</li>
     </ul>
 </ActionDescription>
+
 <div class="control-section">
     <SfImageEditor @ref="ImageEditor" Height="500px">
         <ImageEditorEvents Created="OnCreated"></ImageEditorEvents>
@@ -37,10 +37,12 @@
 </div>
 
 @code {
-    SfImageEditor ImageEditor { get; set; }
-
+    SfImageEditor? ImageEditor { get; set; }
     private void OnCreated()
     {
-        ImageEditor.OpenAsync($"{SampleService.WebAssetsPath}images/image-editor/desktop.png");
+        if (ImageEditor != null)
+        {
+            ImageEditor.OpenAsync("https://cdn.syncfusion.com/blazor/images/image-editor/desktop.png");
+        }
     }
 }

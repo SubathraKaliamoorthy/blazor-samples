@@ -17,7 +17,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Status</label>
-                <SfComboBox TItem="Status" TValue="string" Placeholder="Select Status" DataSource="@Data" AllowFiltering="true">
+                <SfComboBox TItem="Status" TValue="string" PopupHeight="200px" Placeholder="Select Status" DataSource="@Data" AllowFiltering="true">
                     <ComboBoxFieldSettings Text="Text" Value="Id" Disabled="State" />
                 </SfComboBox>
             </div>
@@ -25,7 +25,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Vegetable</label>
-                <SfComboBox TValue="string" TItem="Vegetables" Placeholder="Select Vegetable" DataSource="@GroupData">
+                <SfComboBox TValue="string" TItem="Vegetables" PopupHeight="200px" Placeholder="Select Vegetable" DataSource="@GroupData">
                     <ComboBoxFieldSettings GroupBy="Category" Text="Vegetable" Value="Id" Disabled="State" />
                 </SfComboBox>
             </div>

@@ -43,7 +43,7 @@
 </div>
 @code
 {
-    private SfRichTextEditor richTextEditorObj;
+    private SfRichTextEditor? richTextEditorObj;
     private string editorPlaceholder = "Type \"/\" and choose format";
     private string meetingNotes = @"<p><strong>Meeting Notes</strong></p><table class=""e-rte-table"" style=""width: 100%; min-width: 0px; height: 150px;""> <tbody> <tr style=""height: 20%;""> <td style=""width: 50%;""><strong>Attendees</strong></td> <td style=""width: 50%;""><br></td> </tr> <tr style=""height: 20%;""> <td style=""width: 50%;""><strong>Date &amp; Time</strong></td> <td style=""width: 50%;""><br></td> </tr> <tr style=""height: 20%;""> <td style=""width: 50%;""><strong>Agenda</strong></td> <td style=""width: 50%;""><br></td> </tr> <tr style=""height: 20%;""> <td style=""width: 50%;""><strong>Discussed Items</strong></td> <td style=""width: 50%;""><br></td> </tr> <tr style=""height: 20%;""> <td style=""width: 50%;""><strong>Action Items</strong></td> <td style=""width: 50%;""><br></td> </tr> </tbody> </table>";
     private string signature = "<p><br></p><p>Warm regards,</p><p>John Doe<br>Event Coordinator<br>ABC Company</p>";
@@ -96,6 +96,7 @@
         new SlashMenuItemModel() {Command = SlashMenuCommand.Heading4},
         new SlashMenuItemModel() {Command = SlashMenuCommand.OrderedList},
         new SlashMenuItemModel() {Command = SlashMenuCommand.UnorderedList},
+        new SlashMenuItemModel() {Command = SlashMenuCommand.Checklist},
         new SlashMenuItemModel() {Command = SlashMenuCommand.Blockquote},
         new SlashMenuItemModel() {Command = SlashMenuCommand.CodeBlock},
         new SlashMenuItemModel() {Command = SlashMenuCommand.Image},
@@ -108,13 +109,16 @@
     };
     public async Task OnSlashMenuItemSelect ( SlashMenuSelectEventArgs args )
     {
-        if (args.ItemData.Text == "Meeting Notes")
+        if (richTextEditorObj != null)
         {
-            await richTextEditorObj.ExecuteCommandAsync (CommandName.InsertHTML, meetingNotes);
-        }
-        else if (args.ItemData.Text == "Signature")
-        {
-            await richTextEditorObj.ExecuteCommandAsync (CommandName.InsertHTML, signature);
+            if (args.ItemData.Text == "Meeting Notes")
+            {
+                await richTextEditorObj.ExecuteCommandAsync (CommandName.InsertHTML, meetingNotes);
+            }
+            else if (args.ItemData.Text == "Signature")
+            {
+                await richTextEditorObj.ExecuteCommandAsync (CommandName.InsertHTML, signature);
+            }
         }
     }
 }

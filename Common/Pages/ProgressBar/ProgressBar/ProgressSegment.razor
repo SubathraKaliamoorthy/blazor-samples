@@ -1,7 +1,9 @@
-﻿@page "/progress-bar/progress-segment"
+@page "/progress-bar/progress-segment"
 @using Syncfusion.Blazor.ProgressBar
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager Navigation
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -22,24 +24,24 @@
         <div>
             <div class="col-lg-12 col-sm-12 progressbar-mode"></div>
             <SfProgressBar @ref="LinearProgressBar" Type="ProgressType.Linear" ID="LinearSegment"
-                           Height="30" Width="@ProgressBarWidth" SegmentCount="@SegmentCount" GapWidth="@GapWidth"
-                           Value="@ProgressValue" Minimum="0" Maximum="100" CornerRadius="CornerType.Square"
-                           Theme="@Theme"
-                           TrackThickness="15"
-                           ProgressThickness="15"
-                           TrackColor="@TrackColor">
+            Height="30" Width="@ProgressBarWidth" SegmentCount="@SegmentCount" GapWidth="@GapWidth"
+            Value="@ProgressValue" Minimum="0" Maximum="100" CornerRadius="CornerType.Square"
+            Theme="@Theme"
+            TrackThickness="15"
+            ProgressThickness="15"
+            TrackColor="@TrackColor">
                 <ProgressBarAnimation Enable="true" Duration="2000" Delay="0" />
             </SfProgressBar>
         </div>
         <div>
             <div class="col-lg-12 col-sm-12 progressbar-mode"></div>
             <SfProgressBar @ref="CircularProgressBar" Type="ProgressType.Circular" ID="CircularSegment"
-                           Height="200px" Width="200px" TrackThickness="15" ProgressThickness="15"
-                           Value="@ProgressValue" Minimum="0" Maximum="100" StartAngle="220"
-                           EndAngle="140" SegmentCount="50" GapWidth="5"
-                           CornerRadius="CornerType.Square"
-                           Theme="@Theme"
-                           TrackColor="@TrackColor">
+            Height="200px" Width="200px" TrackThickness="15" ProgressThickness="15"
+            Value="@ProgressValue" Minimum="0" Maximum="100" StartAngle="220"
+            EndAngle="140" SegmentCount="50" GapWidth="5"
+            CornerRadius="CornerType.Square"
+            Theme="@Theme"
+            TrackColor="@TrackColor">
                 <ProgressBarAnnotations>
                     <ProgressBarAnnotation>
                         <ContentTemplate>
@@ -67,11 +69,19 @@
 
     protected override void OnInitialized()
     {
-        currentUri = Navigation.Uri;
-        FontFamily = ThemeHelper.GetFontFamily(Navigation.Uri);
-        SegmentCount = SampleService != null && SampleService.IsDevice ? 35 : 50;
-        GapWidth = SampleService != null && SampleService.IsDevice ? 4 : 5;
-        ProgressBarWidth = SampleService != null && SampleService.IsDevice ? "100%" : "70%";
+        currentUri = NavigationManager.Uri;
+        FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
+        SegmentCount = 50;
+        GapWidth = 5;
+        ProgressBarWidth = "70%";
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            SegmentCount = 35;
+            GapWidth = 4;
+            ProgressBarWidth = "100%";
+        }
+        @*End:Hidden*@
 
         SetThemeAndContent();
     }

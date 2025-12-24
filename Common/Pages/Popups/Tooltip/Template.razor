@@ -1,4 +1,4 @@
-﻿@page "/tooltip/template"
+@page "/tooltip/template"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Popups
@@ -28,7 +28,7 @@
 
 <div id="targetContainer" class="col-lg-12 control-section">
     @* Initializes the Tooltip component *@
-    <SfTooltip Width="170px" ID="Tooltip" OffsetX="70" ShowTipPointer="false" Target="#Toolbar [title]" OnRender="OnTooltipRender">
+    <SfTooltip Width="170px" ID="Tooltip" OffsetX="70" ShowTipPointer="false" Target="#Toolbar .e-toolbar-item" OnRender="OnTooltipRender">
         <ContentTemplate>
             <h6>@Name</h6>
             <p>@Description</p>

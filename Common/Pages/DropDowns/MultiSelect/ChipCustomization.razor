@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Chip-Customization"
+@page "/MultiSelect-Dropdown/Chip-Customization"
 
 @using Syncfusion.Blazor.DropDowns;
 
@@ -21,7 +21,7 @@
 <div class="col-lg-12 control-section">
     <div class="control-wrapper">
         <label class="example-label">Select favorite colors</label>
-        <SfMultiSelect TValue="string[]" TItem="GameFields" @bind-Value="@ChipValue" ID="default" Placeholder="e.g. Dark Orange" Mode="@Syncfusion.Blazor.DropDowns.VisualMode.Box" DataSource="@ColorsData">
+        <SfMultiSelect TValue="string[]" TItem="GameFields" PopupHeight="200px" @bind-Value="@ChipValue" ID="default" Placeholder="e.g. Dark Orange" Mode="@Syncfusion.Blazor.DropDowns.VisualMode.Box" DataSource="@ColorsData">
             <MultiSelectFieldSettings Text="Color" Value="Code"></MultiSelectFieldSettings>
             <MultiSelectEvents TValue="string[]" TItem="GameFields" OnChipTag="@OnTagging"></MultiSelectEvents>
         </SfMultiSelect>

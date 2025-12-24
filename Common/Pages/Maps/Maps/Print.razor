@@ -3,7 +3,9 @@
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -17,7 +19,7 @@
     <p>More information about print functionality can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/print-and-export/#print" aria-label="Blazor Maps Print and Export documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
+<div class="col-lg-8 control-section" align='center'>
     <SfMaps @ref="@MapRef" Format="N0" EnableGroupingSeparator="true" AllowPrint="true" Theme="@Theme">
         <MapsTitleSettings Text="State-Wise US Population - 2010">
             <MapsTitleTextStyle Size="16px" FontFamily="Segoe UI" />
@@ -51,10 +53,7 @@
         <a href="https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population" target="_blank">en.wikipedia.org</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr style="height: 50px">
@@ -64,9 +63,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 @code {
     public SfMaps? MapRef;
     public string[] ShapePropertyPath = { "name" };
@@ -77,7 +74,7 @@
     public string[] ShapeColorFive = { "#4c96cb" };
     public string[] ShapeColorSix = { "#3182bd" };
     public string[] ShapeColorSeven = { "#004374" };
-    
+
     public class State
     {
         public string? Name { get; set; }
@@ -142,11 +139,12 @@
     public async Task PrintButton()
     {
         if (MapRef != null)
-        await MapRef.PrintAsync();
+            await MapRef.PrintAsync();
     }
     public Theme Theme { get; set; }
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
+
 }

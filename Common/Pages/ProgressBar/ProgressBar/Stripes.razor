@@ -1,6 +1,6 @@
-﻿@page "/progress-bar/stripes"
+@page "/progress-bar/stripes"
 @using Syncfusion.Blazor.ProgressBar
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -67,7 +67,7 @@
     protected override void OnInitialized()
     {
         SetProgressBarData();
-        SetThemeBasedOnUri(Navigation.Uri);
+        SetThemeBasedOnUri(NavigationManager.Uri);
     }
 
 // Toggles animation on or off

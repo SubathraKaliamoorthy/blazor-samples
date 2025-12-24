@@ -1,9 +1,10 @@
-﻿@page "/chart-3d/stacked-column"
+@page "/chart-3d/stacked-column"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
+@*Hidden:Lines*@
 @using ThemeHelper
-
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -43,7 +44,7 @@
     public string? ChartWidth { get; set; }
     public string ChartHeight { get; set; } = "400";
     public double YAxisMaximum { get; set; }
-    
+
     public List<SteelProductionData> AsiaSteelProductionIran { get; set; } = new List<SteelProductionData>()
     {
         new SteelProductionData { Year = "2018", Production = 24.5 },
@@ -83,8 +84,15 @@
     protected override void OnInitialized()
     {
         CurrentTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "75%";
-        YAxisMaximum = SampleService != null && SampleService.IsDevice ? 50 : 60;
+        ChartWidth = "75%";
+        YAxisMaximum = 60;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+            YAxisMaximum = 50;
+        }
+        @*End:Hidden*@
     }
 
     public void OnAxisLabelRender(Chart3DAxisLabelRenderEventArgs args)

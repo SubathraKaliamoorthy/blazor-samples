@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -169,7 +165,7 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Pivot Chart FieldList | Integration | Syncfusion",
                 HeaderText = "Blazor Pivot Table Example - Pivot Chart with Field List",
                 MetaDescription = "This Blazor Pivot Chart with field List example shows the integration of pivot chart with static field list for enhanced data analysis and visualization.",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 NotificationDescription = new string[] { @"Added a demo to render a pivot table and chart with an Excel-like field list and interactive display mode switching." }
             },
              new Sample
@@ -206,7 +202,7 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Pivot Sparkline Chart | Component Sync | Syncfusion",
                 HeaderText = "Blazor Pivot Table Example - Sparkline Chart",
                 MetaDescription = "This Blazor Pivot Table Sparkline Chart example demonstrates the integration of embedded sparkline charts in grand total cells for visualizing trends.",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 NotificationDescription = new string[] { @"Added a demo to embed sparkline charts in pivot table cells for quick visualization of sales trends and comparisons." }
             },
             new Sample
@@ -410,7 +406,7 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Pivot External Filtering | Date Filter | Syncfusion",
                 HeaderText = "Blazor Pivot Table Example - External Filtering",
                 MetaDescription = "This Blazor Pivot Table Filtering demo shows how to externally filter data using start and end dates, enhancing performance and responsiveness for analysis.",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 NotificationDescription = new string[] { @"Added a demo to apply external date range filtering to the pivot table for improved performance with large datasets." }
             },
             new Sample
@@ -518,9 +514,9 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Pivot Table Export | Data Export | Syncfusion",
                 HeaderText = "Blazor Pivot Table Example - Export As Pivot",
                 MetaDescription = "This demo shows data export as a pivot table, with capabilities to export to Excel formats for reporting and data sharing while preserving formatting.",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 NotificationDescription = new string[] { @"Added a sample that demonstrates how to export a server-side Syncfusion Pivot Table as a fully interactive Excel Pivot Table, preserving all pivot functionalities such as filtering, sorting, drill-down, and more." }
-            }               
+            }
         };
     }
 }

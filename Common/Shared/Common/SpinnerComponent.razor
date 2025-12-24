@@ -1,8 +1,8 @@
-﻿@namespace BlazorDemos.Shared
+@namespace BlazorDemos.Shared
 <style>
     .sb-body-overlay {
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        z-index: 100000025;
+        z-index: 10000024;
         display: block;
         position: absolute;
         width: 100%;
@@ -83,16 +83,6 @@
         margin: 2px;
     }
 </style>
-@{#if SERVER}
-<style>
-    /*  Apply styles specifically for devices with a screen width of 767px or less (typically smartphones)  */
-    @@media (max-width: 767px) {
-        .sb-body-overlay {
-            display: none;
-        }
-    }
-</style>
-@{#endif}
 <div class="@classNames @CssClass">
     <div id="loader" class="@loadingClass">
         <svg class="circular prerender-style" height="40" width="40" role="progressbar">
@@ -105,7 +95,7 @@
     </div>
 </div>
 @code {
-    private string classNames = "sb-body-overlay";
+    private string classNames = "sb-body-overlay sf-hidden";
     private string loadingClass = "sb-loading";
     private string? demoName { get; set; }
     [Parameter]
@@ -146,19 +136,6 @@
         classNames = SampleUtils.AddClass(classNames, SampleUtils.HIDDEN);
         classNames = SampleUtils.AddClass(classNames, "sb-body-overlay");
         loadingClass = SampleUtils.RemoveClass(loadingClass, SampleUtils.HIDDEN);
-        StateHasChanged();
-    }
-
-    /// <summary>
-    /// Sets model layout to the app background to prevent mouse interaction.
-    /// </summary>
-    public void ShowModalSpinner()
-    {
-        classNames = SampleUtils.RemoveClass(classNames, SampleUtils.MODAL_CLASS);
-        if (classNames.Contains("sb-body-overlay"))
-        {
-             classNames = SampleUtils.AddClass(classNames, SampleUtils.HIDDEN);
-        }
         StateHasChanged();
     }
 

@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/Remote-Data-Binding"
+@page "/MultiColumn-ComboBox/Remote-Data-Binding"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 @using Syncfusion.Blazor.Data
@@ -44,8 +44,8 @@
 <div class="col-lg-12 control-section">
     <div class="control-wrapper">
         <label class="example-label">Select an employee</label>
-        <SfMultiColumnComboBox TItem="EmployeeData" TValue="string" Query="RemoteQuery" @bind-Value="@EmployeeValue" ValueField="EmployeeID" TextField="FirstName" PopupWidth="600px" Placeholder="e.g. Andrew">
-            <SfDataManager Url="http://localhost:63028/api/Employees" Offline="true" CrossDomain="true" Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
+        <SfMultiColumnComboBox TItem="EmployeeData" TValue="string" PopupHeight="200px" Query="RemoteQuery" @bind-Value="@EmployeeValue" ValueField="EmployeeID" TextField="FirstName" PopupWidth="600px" Placeholder="e.g. Andrew">
+            <SfDataManager Url="https://blazor.syncfusion.com/services/production/api/Employees" Offline="true" CrossDomain="true" Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
         </SfMultiColumnComboBox>
     </div>
 </div>

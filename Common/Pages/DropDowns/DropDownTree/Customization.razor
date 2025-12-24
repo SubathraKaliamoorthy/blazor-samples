@@ -44,7 +44,7 @@
 
                     <ItemTemplate>
                         <div>
-                            <img class="eimage" src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/dropdown-tree/employees/{(context as EmployeeData).Eimg}.png")" />
+                            <img class="eimage" src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/dropdown-tree/employees/{(context as EmployeeData).Eimg}.png")" />
                             <span class="e-badge icons">
                                 <span class="@((context as EmployeeData).Status)"></span>
                             </span>
@@ -107,7 +107,7 @@
     /* Loading sprite image for Dropdown Tree component  */
     .dropdowntree-icon .e-treeview .e-list-icon {
         background-repeat: no-repeat;
-        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/dropdown-tree/file-icons.png")');
+        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/dropdown-tree/file-icons.png")');
         height: 20px;
     }
 
@@ -374,8 +374,8 @@
                         Icon = "folder",
                         NodeChild = new List<TreeItem>
                         {
-                            new TreeItem { NodeId = "04-01-01", NodeText = "WIN_20160726_094117.JPG", Image = $"{SampleService.WebAssetsPath}images/dropdown-tree/employees/9.png" },
-                            new TreeItem { NodeId = "04-01-02", NodeText = "WIN_20160726_094118.JPG", Image = $"{SampleService.WebAssetsPath}images/dropdown-tree/employees/3.png" }
+                            new TreeItem { NodeId = "04-01-01", NodeText = "WIN_20160726_094117.JPG", Image = $"{SampleService?.WebAssetsPath}images/dropdown-tree/employees/9.png" },
+                            new TreeItem { NodeId = "04-01-02", NodeText = "WIN_20160726_094118.JPG", Image = $"{SampleService?.WebAssetsPath}images/dropdown-tree/employees/3.png" }
                         }
                     }
                 }
@@ -398,24 +398,24 @@
 
     public class TreeItem
     {
-        public string NodeId { get; set; }
-        public string NodeText { get; set; }
-        public string Icon { get; set; }
-        public string Image { get; set; }
+        public string? NodeId { get; set; }
+        public string? NodeText { get; set; }
+        public string? Icon { get; set; }
+        public string? Image { get; set; }
         public bool Expanded { get; set; }
         public bool Selected { get; set; }
-        public List<TreeItem> NodeChild { get; set; }
+        public List<TreeItem>? NodeChild { get; set; }
     }
 
     public class EmployeeData
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Job { get; set; }
-        public string Eimg { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public string? Job { get; set; }
+        public string? Eimg { get; set; }
         public bool HasChild { get; set; }
         public bool Expanded { get; set; }
-        public string Status { get; set; }
-        public string PId { get; set; }
+        public string? Status { get; set; }
+        public string? PId { get; set; }
     }
 }

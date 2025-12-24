@@ -5,35 +5,35 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Syncfusion.Blazor.KanbanDemo
 {
     public class KanbanDataModel
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public int ListId { get; set; }
-        public string Title { get; set; }
-        public string Status { get; set; }
-        public string Summary { get; set; }
-        public string Type { get; set; }
-        public string Priority { get; set; }
-        public List<string> CardTags { get; set; }
-        public string Tags { get; set; }
+        public string? Title { get; set; }
+        public string? Status { get; set; }
+        public string? Summary { get; set; }
+        public string? Type { get; set; }
+        public string? Priority { get; set; }
+        public List<string>? CardTags { get; set; }
+        public string? Tags { get; set; }
         public double Estimate { get; set; }
-        public string Assignee { get; set; }
+        public string? Assignee { get; set; }
         public int RankId { get; set; }
-        public string Color { get; set; }
-        public string Value { get; set; }
-        public string OrderID { get; set; }
-        public string Size { get; set; }
-        public string ImageURL { get; set; }
-        public string Description { get; set; }
-        public string Category { get; set; }
-        public string Price { get; set; }
-        public string AssigneeKey { get; set; }
-        public List<string> ClassName { get; set; }
+        public string? Color { get; set; }
+        public string? Value { get; set; }
+        public string? OrderID { get; set; }
+        public string? Size { get; set; }
+        public string? ImageURL { get; set; }
+        public string? Description { get; set; }
+        public string? Category { get; set; }
+        public string? Price { get; set; }
+        public string? AssigneeKey { get; set; }
+        public List<string>? ClassName { get; set; }
         public DateTime? Date { get; set; }
 
 

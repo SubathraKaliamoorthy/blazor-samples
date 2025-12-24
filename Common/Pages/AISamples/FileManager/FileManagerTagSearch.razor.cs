@@ -78,7 +78,7 @@ namespace BlazorDemos.Pages.AISamples.FileManager
 
         public async Task ItemRenamingAsync(ItemRenameEventArgs<FileManagerDirectoryContent> args)
         {
-            args.Response = await FileManagerService.Rename(args.Path, args.File.Name, args.NewName, false, args.ShowFileExtension, args.File);
+            args.Response = await FileManagerService.Rename(args.Path, args.Name, args.NewName, false, args.ShowFileExtension, args.File);
         }
 
         public async Task ItemsMovingAsync(ItemsMoveEventArgs<FileManagerDirectoryContent> args)

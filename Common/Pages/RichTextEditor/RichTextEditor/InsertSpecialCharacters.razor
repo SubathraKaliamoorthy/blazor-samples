@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/insert-special-characters"
+@page "/rich-text-editor/insert-special-characters"
 
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Popups
@@ -76,7 +76,7 @@
 </div>
 
 @code{
-    private SfRichTextEditor RteObj;
+    private SfRichTextEditor? RteObj;
     private string Value { get; set; } = "The custom command <b>Ω - Insert Symbol</b> is configured in the Toolbar. Click on the command and choose the symbol you want to include from the popup.";
     public string[] CharactersArray = new string[] { "^", "_", "`", "{", "|", "}", "~", " ", "¡", "¢", "£", "¤", "¥", "₹", "¦", "§", "¨", "©", "ª", "«", "¬", "-", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã" };
 
@@ -128,7 +128,10 @@
     private async Task ClickHandler()
     {
         this.DialogVisible = true;
-        await this.RteObj.SaveSelectionAsync();
+        if (this.RteObj != null)
+        {
+            await this.RteObj.SaveSelectionAsync();
+        }
     }
 
     private async Task OnInsert()
@@ -137,8 +140,11 @@
         {
             ExecuteCommandOption executeCommandOption = new ExecuteCommandOption();
             executeCommandOption.Undo = true;
-            await this.RteObj.RestoreSelectionAsync();
-            await this.RteObj.ExecuteCommandAsync(CommandName.InsertText, this.CharactersArray[this.CurrentIndex], executeCommandOption);
+            if (this.RteObj != null)
+            {
+                await this.RteObj.RestoreSelectionAsync();
+                await this.RteObj.ExecuteCommandAsync(CommandName.InsertText, this.CharactersArray[this.CurrentIndex], executeCommandOption);
+            }
             this.DialogVisible = false;
             this.CurrentIndex = -1;
         }

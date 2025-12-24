@@ -53,23 +53,32 @@
 </div>
 
 @code {
-    private SfStepper StepperComponentOrientation { get; set; }
+    private SfStepper? StepperComponentOrientation { get; set; }
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            StepperComponentOrientation.LabelPosition = StepperLabelPosition.End;
-            StepperComponentOrientation.Orientation = StepperOrientation.Horizontal;
+            if (StepperComponentOrientation != null)
+            {
+                StepperComponentOrientation.LabelPosition = StepperLabelPosition.End;
+                StepperComponentOrientation.Orientation = StepperOrientation.Horizontal;
+            }
             StateHasChanged();
         }
     }
     private void UpdateOrientation(Microsoft.AspNetCore.Components.ChangeEventArgs args)
     {
-        StepperComponentOrientation.Orientation = (StepperOrientation)Enum.Parse(typeof(StepperOrientation), args.Value.ToString());
+        if (StepperComponentOrientation != null)
+        {
+            StepperComponentOrientation.Orientation = (StepperOrientation)Enum.Parse(typeof(StepperOrientation), args.Value?.ToString()!);
+        }
     }
     private void UpdateLabelPosition(Microsoft.AspNetCore.Components.ChangeEventArgs args)
     {
-        StepperComponentOrientation.LabelPosition = (StepperLabelPosition)Enum.Parse(typeof(StepperLabelPosition), args.Value.ToString());
+        if (StepperComponentOrientation != null)
+        {
+            StepperComponentOrientation.LabelPosition = (StepperLabelPosition)Enum.Parse(typeof(StepperLabelPosition), args.Value?.ToString()!);
+        }
     }
 }
 

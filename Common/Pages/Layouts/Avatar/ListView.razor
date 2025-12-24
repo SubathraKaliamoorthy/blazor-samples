@@ -1,4 +1,4 @@
-﻿@page "/avatar/listview"
+@page "/avatar/listview"
 @using Syncfusion.Blazor.Lists
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -48,10 +48,10 @@
     // Specifies the model class for ListView datasource.
     public class DataModel
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public string Avatar { get; set; }
-        public string Pic { get; set; }
+        public string? Id { get; set; }
+        public string? Text { get; set; }
+        public string? Avatar { get; set; }
+        public string? Pic { get; set; }
     }
 }
 <style>
@@ -141,16 +141,16 @@
     }
     /* Avatar images using 'background-image' property */
     .pic01 {
-        background-image: url(@(SampleService.WebAssetsPath + "images/avatar/pic01.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "images/avatar/pic01.png"));
     }
     .pic02 {
-        background-image: url(@(SampleService.WebAssetsPath + "images/avatar/pic02.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "images/avatar/pic02.png"));
     }
     .pic03 {
-        background-image: url(@(SampleService.WebAssetsPath + "images/avatar/pic03.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "images/avatar/pic03.png"));
     }
     .pic04 {
-        background-image: url(@(SampleService.WebAssetsPath + "images/avatar/pic04.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "images/avatar/pic04.png"));
     }
     .bootstrap4 .e-listview .e-text .e-headertext {
         font-size: 16px;

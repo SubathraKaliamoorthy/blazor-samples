@@ -3,7 +3,9 @@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -19,7 +21,7 @@
     <p>More information about the marker can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/sparkline/markers" aria-label="documentation section">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
+<div class="col-lg-8 control-section">
     <div class="control-section">
         <div id="spark-container" class="row">
             <div class="cols-sample-area" align="center">
@@ -72,11 +74,7 @@
         <a href=" http://carsalesbase.com/global-car-sales-2017" target="_blank">carsalesbase.com</a>
     </div>
 </div>
-<div class="col-lg-4 property-section">
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table id="property" style="width:100%" title="Properties">
                 <tbody>
                     <tr style="height: 30px">
@@ -174,12 +172,9 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
-    
     public Theme CurrentTheme { get; set; }
     public SfSparkline<SparkData>? SalesPercentageSparkline { get; set; }
     public SfSparkline<SparkData>? SalesCountSparkline { get; set; }
@@ -387,6 +382,22 @@
         if (IsFirstCheckboxChecked) { typ.Add(VisibleType.Start); }
         if (IsLastCheckboxChecked) { typ.Add(VisibleType.End); }
         return typ;
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (SalesPercentageSparkline != null)
+        {
+            await SalesPercentageSparkline.RefreshAsync();
+        }
+        if (SalesCountSparkline != null)
+        {
+            await SalesCountSparkline.RefreshAsync();
+        }
     }
 }
 

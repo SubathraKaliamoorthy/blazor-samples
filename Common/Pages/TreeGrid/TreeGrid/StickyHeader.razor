@@ -1,33 +1,43 @@
-﻿@page "/tree-grid/sticky-header"
+@page "/tree-grid/sticky-header"
 
 @using Syncfusion.Blazor.TreeGrid
 @using Syncfusion.Blazor.Grids
 @*Hidden:Lines*@
 @inherits SampleBaseComponent;
 @*End:Hidden*@
-
 <SampleDescription>
-    <p>This sample demonstrates the Tree Grid component with the sticky header feature. While scrolling the demo page, the Tree Grid header is fixed at the top of its parent element.</p>
+    <p>
+        This sample demonstrates the sticky header functionality in Tree Grid. Sticky headers keep the column headers fixed at the top of the container while scrolling vertically, making it easier to read and compare data in long lists of the page.
+    </p>
 </SampleDescription>
+
 <ActionDescription>
     <p>
-        The Tree Grid headers can be fixed while scrolling the record vertically. This is a useful feature for large datasets as it allows users to easily understand the context of the data being displayed without losing sight of the column headers. To implement this set the <code>EnableStickyHeader</code> property to <b>true</b>.
+        Sticky headers are enabled by setting the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_EnableStickyHeader">EnableStickyHeader</a> property to <b>true</b>.
     </p>
-    <p>More information on the sticky header can be found in  <a aria-label="Navigate to the documentation for searching in tree grid component" target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/">documentation</a> section.</p>
+    <p>
+        In this demo, the header remains pinned to the top of its container during vertical scrolling, ensuring column headers remain visible and context is maintained when working with large datasets.
+    </p>
+    <p>
+        More information about sticky headers can be found in the <a target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/scrolling#sticky-header">documentation</a> section.
+    </p>
 </ActionDescription>
+
+
 
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
             <div class="treestickyheader">
-                <SfTreeGrid @ref="TreeGrid" AllowSorting=true DataSource="@AssetData" IdMapping="AssetID" ParentIdMapping="ParentID" TreeColumnIndex="1" EnableStickyHeader="true" GridLines="GridLine.Both">
+                <SfTreeGrid @ref="TreeGrid" AllowSorting=true DataSource="@AssetData" IdMapping="AssetID" ParentIdMapping="ParentID" TreeColumnIndex="1" EnableStickyHeader="true" GridLines="GridLine.Horizontal" AllowFiltering="true">
+                    <TreeGridFilterSettings Type="Syncfusion.Blazor.TreeGrid.FilterType.Excel"></TreeGridFilterSettings>
                     <TreeGridColumns>
-                        <TreeGridColumn Field="AssetID" HeaderText="Asset ID" Width="110" IsPrimaryKey="true" TextAlign="TextAlign.Right"></TreeGridColumn>
+                        <TreeGridColumn Field="AssetID" HeaderText="Asset ID" Width="110" IsPrimaryKey="true" TextAlign="TextAlign.Right" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
                         <TreeGridColumn Field="AssetName" HeaderText="Asset Name" Width="225" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
-                        <TreeGridColumn Field="SerialNumber" HeaderText="Serial Number" Width="125" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
-                        <TreeGridColumn Field="AssetType" HeaderText="Category" Width="90" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
-                        <TreeGridColumn Field="Status" HeaderText="Status" Width="88" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
-                        <TreeGridColumn Field="PurchaseDate" HeaderText="Purchase Date" Format="dd/MM/yyyy" Type="ColumnType.Date" Width="126" TextAlign="TextAlign.Right" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
+                        <TreeGridColumn Field="SerialNumber" HeaderText="Serial Number" Width="150" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
+                        <TreeGridColumn Field="AssetType" HeaderText="Category" Width="130" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
+                        <TreeGridColumn Field="Status" HeaderText="Status" Width="110" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
+                        <TreeGridColumn Field="PurchaseDate" HeaderText="Purchase Date" Format="dd/MM/yyyy" Type="ColumnType.Date" Width="146" TextAlign="TextAlign.Right" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
                         <TreeGridColumn Field="WarrantyEndDate" HeaderText="Warranty Expire Date" Format="dd/MM/yyyy" Type="ColumnType.Date" Width="173" TextAlign="TextAlign.Right" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
                     </TreeGridColumns>
                 </SfTreeGrid>
@@ -40,6 +50,7 @@
     .treestickyheader .e-headertext {
         font-weight: bold;
     }
+
     .treestickyheader .e-gridheader {
         position: sticky !important;
         top: 0 !important;

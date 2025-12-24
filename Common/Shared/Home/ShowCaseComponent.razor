@@ -81,7 +81,8 @@
                 <div class="sf-showcase-steps">
                     @for (var i = 0; i < dataCount - count; i++)
                     {
-                        <span class="sf-showcase-step"></span>
+                        var currentIndex = i;
+                        <span class="sf-showcase-step" @onclick="() => ScrollToCard(currentIndex)"></span>
                     }
                 </div>
             </div>
@@ -116,7 +117,7 @@
            new ShowCaseItem("Logic Circuit Designer", "Design and simulate logic circuits with gates and I/O components.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/logic-circuit-designer.webp", "logic-circuit-designer/", gitHubPath + "logic-circuit-designer", "#E9F4FF", true, true),
            new ShowCaseItem("Floor Planner", "Plan building layouts with this design tool.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/floor-planner.webp", "floor-planner/", gitHubPath + "floor-planner", "#E8FCD4", true, true),
            new ShowCaseItem("Fitness Tracker", "Track routines and visualize fitness metrics.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/fitness-tracker.webp", "fitness-tracker/", gitHubPath + "fitness-tracker", "#FEEBEB", true, false),
-           new ShowCaseItem("Loan Calculator", "Effortlessly Calculate and track the loan details easily.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/loan-calculator.webp", "wasm/loan-calculator/", gitHubPath + "loan-calculator", "#EFEFFF", false, true),
+           new ShowCaseItem("Loan Calculator", "Effortlessly Calculate and track the loan details easily.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/loan-calculator.webp", "loan-calculator/", gitHubPath + "loan-calculator", "#EFEFFF", false, true),
            new ShowCaseItem("Stay Reservation", "Manage bookings and room occupancy efficiently.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/hotel-booking-app.webp", "stay-reservation/", gitHubPath + "stay-reservation", "#FAECFC", true, false),
            new ShowCaseItem("Stockmarket Dashboard", "Monitor stock prices with a dynamic dashboard.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/stock-market.webp", "stockmarket-dashboard/", gitHubPath + "stockmarket-dashboard", "#FEEBEB", true, false),
            new ShowCaseItem("Sprint Management", "Manage task progress using an agile sprint board.", "https://cdn.syncfusion.com/content/images/products/ShowcaseSamples/blazor-samples/sprint-management.webp", "sprint-management/", gitHubPath + "sprint-management", "#FEEBEB", true, false),
@@ -148,12 +149,18 @@
         await JS.InvokeVoidAsync("scrollPrev");
     }
 
+    private async Task ScrollToCard(int i)
+    {
+        await JS.InvokeVoidAsync("scrollToCard", i);
+    }
+
     private async Task NavigateDemo(MenuEventArgs args, string demoUrl)
     {
         if(args.Item.Text == "Server App") {
             NavDemo_Url = "https://blazor.syncfusion.com/showcase/" + demoUrl;
         }
         else{
+            demoUrl = (demoUrl.Equals("appointmentplanner/")) ? "appointment-planner/" : demoUrl;
             NavDemo_Url = "https://blazor.syncfusion.com/showcase/wasm/" + demoUrl;
         }
         await JS.InvokeVoidAsync("open", NavDemo_Url, "_blank");

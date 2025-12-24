@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/insert-emoticons"
+@page "/rich-text-editor/insert-emoticons"
 
 @using Syncfusion.Blazor.Popups
 @using Syncfusion.Blazor.Navigations
@@ -106,7 +106,7 @@
 </SfDialog>
 
 @code{
-    private SfRichTextEditor RteObj;
+    private SfRichTextEditor? RteObj;
     private string Value { get; set; } = "The custom command item 🙂 - <b>Insert Emoticons</b> is added to the Toolbar. Click on the command and choose the emoticon you want to include from the popup.";
     private int CurrentIndex { get; set; } = -1;
     private int CurrentTabIndex { get; set; }
@@ -263,7 +263,7 @@
             this.ButtonClass = "e-btn e-tbar-btn";
         }
     }
-    
+
     private void OnIconClick(int index, int tabIndex)
     {
         this.DisableInsertButton = false;
@@ -274,7 +274,10 @@
     private async Task ClickHandler()
     {
         this.DialogVisible = true;
-        await this.RteObj.SaveSelectionAsync();
+        if (this.RteObj != null)
+        {
+            await this.RteObj.SaveSelectionAsync();
+        }
     }
 
     private async Task OnInsert()
@@ -284,8 +287,11 @@
             ExecuteCommandOption executeCommandOption = new ExecuteCommandOption();
             executeCommandOption.Undo = true;
             string value = this.CurrentTabIndex == 1 ? this.AnimalsList.Keys.ToList()[this.CurrentIndex] : this.SmileyList.Keys.ToList()[this.CurrentIndex];
-            await this.RteObj.RestoreSelectionAsync();
-            await this.RteObj.ExecuteCommandAsync(CommandName.InsertHTML, value, executeCommandOption);
+            if (this.RteObj != null)
+            {
+                await this.RteObj.RestoreSelectionAsync();
+                await this.RteObj.ExecuteCommandAsync(CommandName.InsertHTML, value, executeCommandOption);
+            }
             this.DialogVisible = false;
             this.CurrentIndex = -1;
         }

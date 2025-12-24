@@ -1,16 +1,18 @@
-﻿@page "/chart/range-step-area"
+@page "/chart/range-step-area"
 
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
-@inherits SampleBaseComponent;
 @inject HttpClient Http
 @using System.IO
 @using System.Net.Http.Json
 @*Hidden:Lines*@
 
+@inherits SampleBaseComponent;
 
 @*End:Hidden*@
 
@@ -68,11 +70,13 @@
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         SetTheme();
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
             EdgeLabelPlacement = EdgeLabelPlacement.Shift;
         }
+        @*End:Hidden*@
     }
     private void SetTheme()
     {

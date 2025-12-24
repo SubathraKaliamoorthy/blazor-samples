@@ -1,7 +1,9 @@
-﻿@page "/chart/area"
+@page "/chart/area"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -203,6 +205,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Size = "6px";
@@ -210,6 +213,7 @@
             Width = "100%";
             StateHasChanged();
         }
+        @*End:Hidden*@
         FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
     }
 }

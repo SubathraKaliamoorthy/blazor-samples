@@ -5,10 +5,10 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
-using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using System;
+using System.Text;
 
 namespace BlazorDemos.Shared
 {
@@ -33,7 +33,7 @@ namespace BlazorDemos.Shared
         {
 
             string ogImage = "https://cdn.syncfusion.com/content/images/company-logos/Syncfusion_Logo_Image.png";
-            if(UriHelper != null)SampleService?.Update(UriHelper);
+            if(UriHelper != null && UriHelper.Uri != UriHelper.BaseUri + "error")SampleService?.Update(UriHelper);
             StringBuilder sb = new StringBuilder();
             sb.Append(Environment.NewLine);
             // Meta data content generation for component demos.

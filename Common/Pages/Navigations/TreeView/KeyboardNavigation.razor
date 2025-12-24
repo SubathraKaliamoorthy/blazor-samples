@@ -1,4 +1,4 @@
-﻿@page "/treeview/keyboard-navigation"
+@page "/treeview/keyboard-navigation"
 
 @using Syncfusion.Blazor.Navigations
 
@@ -132,10 +132,10 @@
 
     public class TreeItem
     {
-        public string NodeId { get; set; }
-        public string NodeText { get; set; }
+        public string? NodeId { get; set; }
+        public string? NodeText { get; set; }
         public bool Expanded { get; set; }
-        public List<TreeItem> Child { get; set; }
+        public List<TreeItem>? Child { get; set; }
     }
 }
 <style>

@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/mention-integration"
+@page "/rich-text-editor/mention-integration"
 
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.RichTextEditor
@@ -29,7 +29,7 @@
             <ItemTemplate>
                 <table>
                     <tr>
-                        <td><div id="mention-TemplateList"><img class="mentionEmpImage" src="@(SampleService.WebAssetsPath)images/dropdown-list/employees/@((context as PersonData).EmployeeImage).png" alt="Employee Profile" />
+                        <td><div id="mention-TemplateList"><img class="mentionEmpImage" src="@(SampleService?.WebAssetsPath)images/dropdown-list/employees/@((context as PersonData).EmployeeImage).png" alt="Employee Profile" />
                             <span class="e-badge e-badge-success e-badge-overlap e-badge-dot e-badge-bottom @((context as PersonData).Status)"></span></div></td>
                         <td><span class="person">@((context as PersonData).Name)</span><span class="email">@((context as PersonData).EmailId)</span></td>
                     </tr>
@@ -97,10 +97,10 @@
 @code {
     public class PersonData
     {
-        public string Name { get; set; }
-        public string EmailId { get; set; }
-        public string EmployeeImage { get; set; }
-        public string Status { get; set; }
+        public string? Name { get; set; }
+        public string? EmailId { get; set; }
+        public string? EmployeeImage { get; set; }
+        public string? Status { get; set; }
     }
 
     private List<PersonData> EmailData = new List<PersonData>

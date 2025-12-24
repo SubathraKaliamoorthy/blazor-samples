@@ -3,14 +3,14 @@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Layouts
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using System.Timers
 
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -255,24 +255,44 @@
     protected override void OnInitialized()
     {
 
-
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Radius = "70%";
         }
+        @*End:Hidden*@
 
         theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         CurrentUri = NavigationManager.Uri;
-        cellAspectRatio = SampleService != null && SampleService.IsDevice ? 1 : 0.8;
-        columns = SampleService != null && SampleService.IsDevice ? 2 : 8;
-        columnSizeX = SampleService != null && SampleService.IsDevice ? 1 : 5;
-        columnSizeY = SampleService != null && SampleService.IsDevice ? 1 : 2;
-        pieColumn = SampleService != null && SampleService.IsDevice ? 1 : 5;
-        pieSizeX = SampleService != null && SampleService.IsDevice ? 1 : 3;
-        pieSizeY = SampleService != null && SampleService.IsDevice ? 1 : 2;
-        splineRow = SampleService != null && SampleService.IsDevice ? 1 : 2;
-        splineSizeX = SampleService != null && SampleService.IsDevice ? 2 : 8;
-        splineSizeY = SampleService != null && SampleService.IsDevice ? 1 : 3;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            cellAspectRatio = 1;
+            columns = 2;
+            columnSizeX = 1;
+            columnSizeY = 1;
+            pieColumn = 1;
+            pieSizeX = 1;
+            pieSizeY = 1;
+            splineRow = 1;
+            splineSizeX = 2;
+            splineSizeY = 1;
+        } else
+        {
+        @*End:Hidden*@
+            cellAspectRatio = 0.8;
+            columns = 8;
+            columnSizeX = 5;
+            columnSizeY = 2;
+            pieColumn = 5;
+            pieSizeX = 3;
+            pieSizeY = 2;
+            splineRow = 2;
+            splineSizeX = 8;
+            splineSizeY = 3;
+        @*Hidden:Lines*@
+        }
+        @*End:Hidden*@
         FillColor = String.Concat(valueUrl, "(#gradient-chart)");
         FillColor2 = String.Concat(valueUrl, "(#gradient-chart1)");   
         if (CurrentUri.IndexOf("dark") > -1)

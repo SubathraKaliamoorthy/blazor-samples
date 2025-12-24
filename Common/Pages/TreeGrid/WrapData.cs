@@ -7,9 +7,6 @@
 #endregion
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace TreeWrapdata
 {
     public class WrapData
@@ -19,7 +16,7 @@ namespace TreeWrapdata
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int? Duration { get; set; }
-        public String? Progress { get; set; }
+        public string? Progress { get; set; }
         public string? Priority { get; set; }
         public bool Approved { get; set; }
         public int Resources { get; set; }
@@ -27,15 +24,15 @@ namespace TreeWrapdata
         public static List<WrapData> GetWrapData()
         {
             List<WrapData> BusinessObjectCollection = new List<WrapData>();
-
+            // === PLANNING (March - July 2025) ===
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 1,
+                TaskId = 4871,
                 TaskName = "Planning",
-                StartDate = new DateTime(2021, 03, 02),
-                EndDate = new DateTime(2021, 07, 03),
+                StartDate = new DateTime(2025, 3, 2),
+                EndDate = new DateTime(2025, 7, 11),
                 Progress = "Open",
-                Duration = 5,
+                Duration = 132, // Mar 2 ? Jul 11
                 Priority = "Normal",
                 Resources = 6,
                 Approved = false,
@@ -43,64 +40,65 @@ namespace TreeWrapdata
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 2,
+                TaskId = 4872,
                 TaskName = "Plan timeline",
-                StartDate = new DateTime(2021, 03, 04),
-                EndDate = new DateTime(2021, 07, 05),
+                StartDate = new DateTime(2025, 3, 4),
+                EndDate = new DateTime(2025, 3, 8),
                 Progress = "In Progress",
                 Duration = 5,
                 Resources = 4,
                 Priority = "Normal",
                 Approved = false,
-                ParentId = 1
+                ParentId = 4871
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 3,
+                TaskId = 4873,
                 TaskName = "Plan budget",
-                StartDate = new DateTime(2021, 03, 06),
-                EndDate = new DateTime(2021, 07, 07),
+                StartDate = new DateTime(2025, 3, 6),
+                EndDate = new DateTime(2025, 3, 10),
                 Duration = 5,
                 Progress = "Started",
                 Approved = true,
                 Resources = 6,
                 Priority = "Low",
-                ParentId = 1
+                ParentId = 4871
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 4,
+                TaskId = 4874,
                 TaskName = "Allocate resources",
-                StartDate = new DateTime(2021, 03, 08),
-                EndDate = new DateTime(2021, 07, 09),
+                StartDate = new DateTime(2025, 3, 8),
+                EndDate = new DateTime(2025, 3, 12),
                 Duration = 5,
                 Progress = "Open",
                 Priority = "Critical",
-                ParentId = 1,
                 Resources = 3,
-                Approved = false
+                Approved = false,
+                ParentId = 4871
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 5,
+                TaskId = 4875,
                 TaskName = "Planning complete",
-                StartDate = new DateTime(2021, 07, 10),
-                EndDate = new DateTime(2021, 07, 11),
-                Duration = 1,
+                StartDate = new DateTime(2025, 7, 10),
+                EndDate = new DateTime(2025, 7, 11),
+                Duration = 2,
                 Progress = "Open",
                 Priority = "Low",
                 Resources = 5,
-                ParentId = 1,
+                ParentId = 4871,
                 Approved = true
             });
+            // === DESIGN (July - September 2025) ===
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 6,
+                TaskId = 4876,
                 TaskName = "Design",
-                StartDate = new DateTime(2021, 10, 12),
-                EndDate = new DateTime(2021, 02, 13),
+                StartDate = new DateTime(2025, 7, 15),
+                EndDate = new DateTime(2025, 9, 20),
                 Progress = "In Progress",
-                Duration = 3,
+                Duration = 68,
                 Priority = "High",
                 Resources = 4,
                 Approved = false,
@@ -108,381 +106,384 @@ namespace TreeWrapdata
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 7,
+                TaskId = 4877,
                 TaskName = "Software specification",
-                StartDate = new DateTime(2021, 10, 14),
-                EndDate = new DateTime(2021, 02, 15),
-                Duration = 3,
+                StartDate = new DateTime(2025, 7, 16),
+                EndDate = new DateTime(2025, 7, 25),
+                Duration = 10,
                 Progress = "Started",
                 Resources = 3,
                 Priority = "Normal",
-                ParentId = 6,
+                ParentId = 4876,
                 Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 8,
+                TaskId = 4878,
                 TaskName = "Develop prototype",
-                StartDate = new DateTime(2021, 10, 16),
-                EndDate = new DateTime(2021, 02, 17),
-                Duration = 3,
+                StartDate = new DateTime(2025, 7, 26),
+                EndDate = new DateTime(2025, 8, 10),
+                Duration = 16,
                 Progress = "In Progress",
                 Resources = 2,
                 Priority = "Critical",
-                ParentId = 6,
+                ParentId = 4876,
                 Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 9,
+                TaskId = 4879,
                 TaskName = "Get approval from customer",
-                StartDate = new DateTime(2021, 02, 18),
-                EndDate = new DateTime(2021, 02, 19),
-                Duration = 2,
+                StartDate = new DateTime(2025, 8, 11),
+                EndDate = new DateTime(2025, 8, 15),
+                Duration = 5,
                 Progress = "In Progress",
                 Resources = 3,
                 Priority = "Low",
                 Approved = true,
-                ParentId = 6
+                ParentId = 4876
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 10,
+                TaskId = 4880,
                 TaskName = "Design complete",
-                StartDate = new DateTime(2021, 02, 20),
-                EndDate = new DateTime(2021, 02, 21),
-                Duration = 1,
+                StartDate = new DateTime(2025, 9, 18),
+                EndDate = new DateTime(2025, 9, 20),
+                Duration = 3,
                 Progress = "In Progress",
                 Resources = 6,
                 Priority = "Normal",
-                ParentId = 6,
+                ParentId = 4876,
                 Approved = true
             });
+            // === IMPLEMENTATION (September - December 2025) ===
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 12,
+                TaskId = 4881,
                 TaskName = "Implementation phase",
-                StartDate = new DateTime(2021, 02, 22),
-                EndDate = new DateTime(2021, 02, 23),
+                StartDate = new DateTime(2025, 9, 21),
+                EndDate = new DateTime(2025, 12, 31),
                 Priority = "Normal",
                 Approved = false,
-                Duration = 11,
+                Duration = 102,
                 Resources = 5,
                 Progress = "Started",
                 ParentId = null
             });
+            // Phase 1
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 13,
+                TaskId = 4882,
                 TaskName = "Phase 1",
-                StartDate = new DateTime(2021, 02, 24),
-                EndDate = new DateTime(2021, 02, 25),
+                StartDate = new DateTime(2025, 9, 22),
+                EndDate = new DateTime(2025, 10, 15),
                 Priority = "High",
                 Approved = false,
-                Duration = 11,
+                Duration = 24,
                 Progress = "Open",
                 Resources = 4,
-                ParentId = 12
+                ParentId = 4881
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 14,
+                TaskId = 4883,
                 TaskName = "Implementation module 1",
-                StartDate = new DateTime(2021, 02, 26),
-                EndDate = new DateTime(2021, 02, 27),
+                StartDate = new DateTime(2025, 9, 23),
+                EndDate = new DateTime(2025, 10, 14),
                 Priority = "Normal",
-                Duration = 11,
+                Duration = 22,
                 Progress = "Started",
                 Resources = 3,
                 Approved = false,
-                ParentId = 13
+                ParentId = 4882
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 15,
+                TaskId = 4884,
                 TaskName = "Development task 1",
-                StartDate = new DateTime(2021, 06, 18),
-                EndDate = new DateTime(2021, 06, 19),
-                Duration = 3,
+                StartDate = new DateTime(2025, 9, 24),
+                EndDate = new DateTime(2025, 9, 28),
+                Duration = 5,
                 Progress = "In Progress",
                 Priority = "High",
                 Resources = 2,
-                ParentId = 14,
+                ParentId = 4883,
                 Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 16,
+                TaskId = 4885,
                 TaskName = "Development task 2",
-                StartDate = new DateTime(2021, 02, 13),
-                EndDate = new DateTime(2021, 03, 01),
-                Duration = 3,
+                StartDate = new DateTime(2025, 9, 29),
+                EndDate = new DateTime(2025, 10, 3),
+                Duration = 5,
                 Progress = "Closed",
                 Priority = "Low",
                 Resources = 5,
-                ParentId = 14,
+                ParentId = 4883,
                 Approved = true
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 17,
+                TaskId = 4886,
                 TaskName = "Testing",
-                StartDate = new DateTime(2021, 03, 02),
-                EndDate = new DateTime(2021, 03, 03),
-                Duration = 2,
+                StartDate = new DateTime(2025, 10, 4),
+                EndDate = new DateTime(2025, 10, 7),
+                Duration = 4,
                 Progress = "Closed",
                 Priority = "Normal",
-                ParentId = 14,
+                ParentId = 4883,
                 Resources = 1,
                 Approved = true
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 18,
+                TaskId = 4887,
                 TaskName = "Bug fix",
-                StartDate = new DateTime(2021, 03, 04),
-                EndDate = new DateTime(2021, 03, 05),
-                Duration = 2,
+                StartDate = new DateTime(2025, 10, 8),
+                EndDate = new DateTime(2025, 10, 10),
+                Duration = 3,
                 Progress = "Validated",
                 Priority = "Critical",
-                ParentId = 14,
+                ParentId = 4883,
                 Resources = 6,
                 Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 19,
+                TaskId = 4888,
                 TaskName = "Customer review meeting",
-                StartDate = new DateTime(2021, 03, 06),
-                EndDate = new DateTime(2021, 03, 07),
-                Duration = 2,
+                StartDate = new DateTime(2025, 10, 11),
+                EndDate = new DateTime(2025, 10, 14),
+                Duration = 4,
                 Progress = "Open",
                 Priority = "High",
-                ParentId = 14,
+                ParentId = 4883,
                 Resources = 6,
                 Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 20,
+                TaskId = 4889,
                 TaskName = "Phase 1 complete",
-                StartDate = new DateTime(2021, 04, 27),
-                EndDate = new DateTime(2021, 07, 27),
+                StartDate = new DateTime(2025, 10, 14),
+                EndDate = new DateTime(2025, 10, 15),
                 Duration = 2,
                 Progress = "Closed",
                 Priority = "Low",
-                ParentId = 14,
+                ParentId = 4883,
+                Resources = 5,
+                Approved = true
+            });
+            // Phase 2
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4890,
+                TaskName = "Phase 2",
+                StartDate = new DateTime(2025, 10, 16),
+                EndDate = new DateTime(2025, 11, 15),
+                Priority = "High",
+                Approved = false,
+                Progress = "Open",
+                ParentId = 4881,
+                Resources = 3,
+                Duration = 31
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4891,
+                TaskName = "Implementation module 2",
+                StartDate = new DateTime(2025, 10, 17),
+                EndDate = new DateTime(2025, 11, 14),
+                Priority = "Critical",
+                Approved = false,
+                Progress = "In Progress",
+                ParentId = 4890,
+                Resources = 3,
+                Duration = 29
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4892,
+                TaskName = "Development task 1",
+                StartDate = new DateTime(2025, 10, 18),
+                EndDate = new DateTime(2025, 10, 25),
+                Duration = 8,
+                Progress = "Closed",
+                Priority = "Normal",
+                ParentId = 4891,
+                Resources = 2,
+                Approved = true
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4893,
+                TaskName = "Development task 2",
+                StartDate = new DateTime(2025, 10, 26),
+                EndDate = new DateTime(2025, 11, 2),
+                Duration = 8,
+                Progress = "Closed",
+                Priority = "Critical",
+                ParentId = 4891,
                 Resources = 5,
                 Approved = true
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 21,
-                TaskName = "Phase 2",
-                StartDate = new DateTime(2021, 07, 17),
-                EndDate = new DateTime(2021, 09, 28),
-                Priority = "High",
-                Approved = false,
-                Progress = "Open",
-                ParentId = 12,
-                Resources = 3,
-                Duration = 12,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 22,
-                TaskName = "Implementation module 2",
-                StartDate = new DateTime(2021, 01, 17),
-                EndDate = new DateTime(2021, 02, 28),
-                Priority = "Critical",
-                Approved = false,
-                Progress = "In Progress",
-                ParentId = 21,
-                Resources =3,
-                Duration = 12
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 23,
-                TaskName = "Development task 1",
-                StartDate = new DateTime(2021, 08, 17),
-                EndDate = new DateTime(2021, 09, 20),
-                Duration = 4,
-                Progress = "Closed",
-                Priority = "Normal",
-                ParentId = 22,
-                Resources =2,
-                Approved = true,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 24,
-                TaskName = "Development task 2",
-                StartDate = new DateTime(2021, 04, 17),
-                EndDate = new DateTime(2021, 03, 20),
-                Duration = 4,
-                Progress = "Closed",
-                Priority = "Critical",
-                ParentId = 22,
-                Resources = 5,
-                Approved = true,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 25,
+                TaskId = 4894,
                 TaskName = "Testing",
-                StartDate = new DateTime(2021, 01, 21),
-                EndDate = new DateTime(2021, 01, 24),
-                Duration = 2,
+                StartDate = new DateTime(2025, 11, 3),
+                EndDate = new DateTime(2025, 11, 6),
+                Duration = 4,
                 Progress = "Open",
                 Priority = "High",
-                ParentId = 22,
+                ParentId = 4891,
                 Resources = 3,
-                Approved = false,
+                Approved = false
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 26,
+                TaskId = 4895,
                 TaskName = "Bug fix",
-                StartDate = new DateTime(2021, 03, 25),
-                EndDate = new DateTime(2021, 08, 26),
-                Duration = 2,
+                StartDate = new DateTime(2025, 11, 7),
+                EndDate = new DateTime(2025, 11, 10),
+                Duration = 4,
                 Progress = "Validated",
                 Priority = "Low",
                 Approved = false,
-                Resources =6,
-                ParentId = 22
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 27,
-                TaskName = "Customer review meeting",
-                StartDate = new DateTime(2021, 07, 27),
-                EndDate = new DateTime(2021, 06, 28),
-                Duration = 2,
-                Progress = "In Progress",
-                Priority = "Critical",
-                ParentId = 22,
-                Resources =4,
-                Approved = true,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 28,
-                TaskName = "Phase 2 complete",
-                StartDate = new DateTime(2021, 07, 19),
-                EndDate = new DateTime(2021, 05, 28),
-                Duration = 2,
-                Priority = "Normal",
-                Progress = "Open",
-                ParentId = 22,
-                Resources =3,
-                Approved = false,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 29,
-                TaskName = "Phase 3",
-                StartDate = new DateTime(2021, 07, 17),
-                EndDate = new DateTime(2021, 02, 12),
-                Priority = "Normal",
-                Approved = false,
-                Duration = 11,
-                Progress = "In Progress",
-                Resources =4,
-                ParentId = 12
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 30,
-                TaskName = "Implementation module 3",
-                StartDate = new DateTime(2021, 08, 17),
-                EndDate = new DateTime(2021, 09, 27),
-                Priority = "High",
-                Approved = false,
-                Duration = 11,
-                Resources =5,
-                Progress = "Validated",
-                ParentId = 29,
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 31,
-                TaskName = "Development task 1",
-                StartDate = new DateTime(2021, 11, 17),
-                EndDate = new DateTime(2021, 12, 19),
-                Duration = 3,
-                Progress = "Closed",
-                Priority = "Low",
-                Approved = true,
-                Resources =3,
-                ParentId = 30
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 32,
-                TaskName = "Development task 2",
-                StartDate = new DateTime(2021, 12, 17),
-                EndDate = new DateTime(2021, 02, 19),
-                Duration = 3,
-                Progress = "Closed",
-                Priority = "Normal",
-                Approved = false,
-                Resources =2,
-                ParentId = 30
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 33,
-                TaskName = "Testing",
-                StartDate = new DateTime(2021, 01, 01),
-                EndDate = new DateTime(2021, 07, 21),
-                Duration = 2,
-                Progress = "Closed",
-                Priority = "Critical",
-                ParentId = 30,
-                Resources =4,
-                Approved = true,
-
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 34,
-                TaskName = "Bug fix",
-                StartDate = new DateTime(2021, 01, 24),
-                EndDate = new DateTime(2021, 01, 25),
-                Duration = 2,
-                Progress = "Open",
-                Priority = "High",
-                Approved = false,
-                Resources =3,
-                ParentId = 30
-            });
-            BusinessObjectCollection.Add(new WrapData()
-            {
-                TaskId = 35,
-                TaskName = "Customer review meeting",
-                StartDate = new DateTime(2021, 12, 26),
-                EndDate = new DateTime(2021, 12, 27),
-                Duration = 2,
-                Progress = "In Progress",
-                Priority = "Normal",
-                ParentId = 30,
                 Resources = 6,
-                Approved = true,
+                ParentId = 4891
             });
             BusinessObjectCollection.Add(new WrapData()
             {
-                TaskId = 36,
+                TaskId = 4896,
+                TaskName = "Customer review meeting",
+                StartDate = new DateTime(2025, 11, 11),
+                EndDate = new DateTime(2025, 11, 14),
+                Duration = 4,
+                Progress = "In Progress",
+                Priority = "Critical",
+                ParentId = 4891,
+                Resources = 4,
+                Approved = true
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4897,
+                TaskName = "Phase 2 complete",
+                StartDate = new DateTime(2025, 11, 14),
+                EndDate = new DateTime(2025, 11, 15),
+                Duration = 2,
+                Priority = "Normal",
+                Progress = "Open",
+                ParentId = 4891,
+                Resources = 3,
+                Approved = false
+            });
+            // Phase 3
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4898,
+                TaskName = "Phase 3",
+                StartDate = new DateTime(2025, 11, 16),
+                EndDate = new DateTime(2025, 12, 20),
+                Priority = "Normal",
+                Approved = false,
+                Duration = 35,
+                Progress = "In Progress",
+                Resources = 4,
+                ParentId = 4881
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4899,
+                TaskName = "Implementation module 3",
+                StartDate = new DateTime(2025, 11, 17),
+                EndDate = new DateTime(2025, 12, 19),
+                Priority = "High",
+                Approved = false,
+                Duration = 33,
+                Resources = 5,
+                Progress = "Validated",
+                ParentId = 4898
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4900,
+                TaskName = "Development task 1",
+                StartDate = new DateTime(2025, 11, 18),
+                EndDate = new DateTime(2025, 11, 25),
+                Duration = 8,
+                Progress = "Closed",
+                Priority = "Low",
+                Approved = true,
+                Resources = 3,
+                ParentId = 4899
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4901,
+                TaskName = "Development task 2",
+                StartDate = new DateTime(2025, 11, 26),
+                EndDate = new DateTime(2025, 12, 3),
+                Duration = 8,
+                Progress = "Closed",
+                Priority = "Normal",
+                Approved = false,
+                Resources = 2,
+                ParentId = 4899
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4902,
+                TaskName = "Testing",
+                StartDate = new DateTime(2025, 12, 4),
+                EndDate = new DateTime(2025, 12, 10),
+                Duration = 7,
+                Progress = "Closed",
+                Priority = "Critical",
+                ParentId = 4899,
+                Resources = 4,
+                Approved = true
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4903,
+                TaskName = "Bug fix",
+                StartDate = new DateTime(2025, 12, 11),
+                EndDate = new DateTime(2025, 12, 15),
+                Duration = 5,
+                Progress = "Open",
+                Priority = "High",
+                Approved = false,
+                Resources = 3,
+                ParentId = 4899
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4904,
+                TaskName = "Customer review meeting",
+                StartDate = new DateTime(2025, 12, 16),
+                EndDate = new DateTime(2025, 12, 19),
+                Duration = 4,
+                Progress = "In Progress",
+                Priority = "Normal",
+                ParentId = 4899,
+                Resources = 6,
+                Approved = true
+            });
+            BusinessObjectCollection.Add(new WrapData()
+            {
+                TaskId = 4905,
                 TaskName = "Phase 3 complete",
-                StartDate = new DateTime(2021, 05, 27),
-                EndDate = new DateTime(2021, 05, 27),
+                StartDate = new DateTime(2025, 12, 19),
+                EndDate = new DateTime(2025, 12, 20),
                 Duration = 2,
                 Priority = "Critical",
                 Progress = "Open",
                 Resources = 5,
-                ParentId = 30,
-                Approved = false,
+                ParentId = 4899,
+                Approved = false
             });
             return BusinessObjectCollection;
         }

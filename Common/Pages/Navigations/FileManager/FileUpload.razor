@@ -1,11 +1,10 @@
-﻿@page "/file-manager/file-upload"
+@page "/file-manager/file-upload"
 
 @using Syncfusion.Blazor.FileManager;
 @using Syncfusion.Blazor.Inputs;
 @using Syncfusion.Blazor.Buttons;
 @using Syncfusion.Blazor.Popups;
 
-@inject IJSRuntime JsRuntime;
 
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -30,7 +29,7 @@
         @if (IsFileSelected)
         {
             <SfUploader>
-                <UploaderAsyncSettings SaveUrl="http://localhost:63028/api/FileUploader/Save" RemoveUrl="http://localhost:63028/api/FileUploader/Remove"></UploaderAsyncSettings>
+                <UploaderAsyncSettings SaveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Save" RemoveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Remove"></UploaderAsyncSettings>
                 <UploaderFiles>
                     @foreach (var file in documentFiles)
                     {
@@ -128,9 +127,9 @@
 
     public class DocumentFile
     {
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
         public double FileSize { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
     }
 }
 

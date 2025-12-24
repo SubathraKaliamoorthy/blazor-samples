@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/Filtering"
+@page "/MultiColumn-ComboBox/Filtering"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 @using Syncfusion.Blazor.DropDowns
@@ -8,7 +8,7 @@
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This example demonstrates the filtering capabilities of the <a href="https://www.syncfusion.com/blazor-components/blazor-multicolumn-combobox" aria-label="Feature Tour of Blazor MultiColumn ComboBox">Blazor MultiColumn ComboBox</a>. Users can type in the ComboBox to filter and narrow down the list of items across multiple columns, making it easier to find specific entries.</p>
+    <p>This example demonstrates the filtering capabilities of the <a href="https://www.syncfusion.com/blazor-components/blazor-multicolumn-combobox" aria-label="Feature Tour of Blazor MultiColumn ComboBox">Blazor MultiColumn ComboBox</a>. Users can enter text directly into the ComboBox input field to initiate real-time filtering, which dynamically narrows down the list of displayed items. The filtering applies across multiple columns, making it significantly easier to locate specific entries based on partial matches in any column, thereby improving both efficiency and user experience when working with large or complex datasets.</p>
 </SampleDescription>
 <ActionDescription>
     <p>The MultiColumn ComboBox supports filtering, which allows users to search for and select items by typing keywords. The available items are dynamically filtered based on the input, ensuring quick access to the desired data.</p>
@@ -22,7 +22,7 @@
     <div class="col-lg-8 control-section sb-property-border">
         <div class="control-wrapper">
             <label class="example-label">Select an employee</label>
-            <SfMultiColumnComboBox TItem="Employee" TValue="string" AllowFiltering="true" PopupWidth="600px"
+            <SfMultiColumnComboBox TItem="Employee" TValue="string" PopupHeight="200px" AllowFiltering="true" PopupWidth="600px"
                                    @bind-Value="@Value" DataSource="@Employees" ValueField="Name"
                                    TextField="Name" Placeholder="e.g. Alice Johnson">
             </SfMultiColumnComboBox>
@@ -34,7 +34,7 @@
             <div class="property-panel-content">
                 <label class="example-label">Choose filter type</label>
                 <SfDropDownList TValue="Syncfusion.Blazor.MultiColumnComboBox.FilterType" 
-                                TItem="string" Placeholder="Select a filter type"
+                                TItem="string" Placeholder="Select a filter type" PopupHeight="200px"
                                 DataSource="@EnumValues" @bind-Value="@SelectedFilterType" Id="ddlFilterType">
                 </SfDropDownList>
             </div>

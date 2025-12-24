@@ -1,9 +1,10 @@
-﻿@page "/chart-3d/stacked-bar"
+@page "/chart-3d/stacked-bar"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
+@*Hidden:Lines*@
 @using ThemeHelper
-
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -82,15 +83,28 @@
     protected override void OnInitialized()
     {
         ChartTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "75%";
-        YAxisInterval = SampleService != null && SampleService.IsDevice ? 20 : 10;
+        ChartWidth = "75%";
+        YAxisInterval = 10;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+            YAxisInterval = 20;
+        }
+        @*End:Hidden*@
     }
 
     public void OnAxisLabelRender(Chart3DAxisLabelRenderEventArgs args)
     {
         if (args.Axis.Name == "PrimaryXAxis" && args.Text.Contains("Pyeongchang"))
         {
-            args.Text = SampleService != null && SampleService.IsDevice ? "Pyeongchang<br>2018" : "Pyeongchang 2018";
+            args.Text = "Pyeongchang 2018";
+            @*Hidden:Lines*@
+            if (SampleService != null && SampleService.IsDevice)
+            {
+                args.Text = "Pyeongchang<br>2018";
+            }
+            @*End:Hidden*@
         }
     }
 

@@ -1,7 +1,9 @@
-﻿@page "/chart/rounded-bar"
+@page "/chart/rounded-bar"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -85,6 +87,7 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             AxislabelRotation = LabelIntersectAction.None;
@@ -92,10 +95,12 @@
             Width = "100%";
             Rotate = true;
         }
+        @*End:Hidden*@
     }
-
+#pragma warning disable BL0005
     public void PointRender(PointRenderEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             if (args.Point.Index >= 2 && args.Point.Index <= 9)
@@ -115,10 +120,14 @@
         }
         else
         {
+        @*End:Hidden*@
             args.Series.CornerRadius.BottomLeft  = 10;
             args.Series.CornerRadius.TopLeft  = 10;
             args.Series.CornerRadius.TopRight  = 10;
             args.Series.CornerRadius.BottomRight  = 10;
+        @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
+#pragma warning restore BL0005
 }

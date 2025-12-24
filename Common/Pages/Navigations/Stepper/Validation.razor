@@ -1,9 +1,9 @@
 @page "/stepper/validation"
 @using System.Text.RegularExpressions;
+@using Syncfusion.Blazor.Navigations
 
 @*Hidden:Lines*@
 
-@using Syncfusion.Blazor.Navigations
 @inherits SampleBaseComponent
 
 @*End:Hidden*@
@@ -77,10 +77,10 @@
 </div>
 
 @code {
-    private SfStepper SurveyStepper { get; set; }
-    private StepperStep SurveyStepIntro { get; set; }
-    private StepperStep SurveyStepFeedback { get; set; }
-    private StepperStep SurveyStepConfirmation { get; set; }
+    private SfStepper? SurveyStepper { get; set; }
+    private StepperStep? SurveyStepIntro { get; set; }
+    private StepperStep? SurveyStepFeedback { get; set; }
+    private StepperStep? SurveyStepConfirmation { get; set; }
 
     private string EmailErrorMessage { get; set; } = "";
     private string FeedbackErrorMessage { get; set; } = "";
@@ -122,20 +122,29 @@
 
     private void ValidateCurrentStep(StepperChangeEventArgs args)
     {
-        switch (SurveyStepper.ActiveStep)
+        switch (SurveyStepper?.ActiveStep)
         {
             case 0:
                 ValidateEmail();
                 IsCurrentStepValid = !string.IsNullOrEmpty(Email) && IsEmailValid;
-                SurveyStepIntro.IsValid = IsCurrentStepValid;
+                if (SurveyStepIntro != null)
+                {
+                    SurveyStepIntro.IsValid = IsCurrentStepValid;
+                }
                 break;
             case 1:
                 IsCurrentStepValid = IsUserSelectionMade && IsFeedbackValid;
-                SurveyStepFeedback.IsValid = IsCurrentStepValid;
+                if (SurveyStepFeedback != null)
+                {
+                    SurveyStepFeedback.IsValid = IsCurrentStepValid;
+                }
                 break;
             case 2:
                 IsCurrentStepValid = true;
-                SurveyStepConfirmation.IsValid = IsCurrentStepValid;
+                if (SurveyStepConfirmation != null)
+                {
+                    SurveyStepConfirmation.IsValid = IsCurrentStepValid;
+                }
                 break;
         }
 
@@ -149,21 +158,39 @@
         IsReturningUser = !isNewUser;
     }
 
-    private async void NextStep() => await SurveyStepper.NextStepAsync();
-    private async void PreviousStep() => await SurveyStepper.PreviousStepAsync();
+    private async Task NextStep()
+    {
+        if (SurveyStepper != null)
+        {
+            await SurveyStepper.NextStepAsync();
+        }
+    }
+    private async Task PreviousStep()
+    {
+        if (SurveyStepper != null)
+        {
+            await SurveyStepper.PreviousStepAsync();
+        }
+    }
 
     private void ConfirmSubmission()
     {
         ConfirmStepClass = "";
         ResetStepClass = "step-active";
-        SurveyStepConfirmation.IsValid = true;
-        SurveyStepConfirmation.Status = StepperStatus.Completed;
+        if (SurveyStepConfirmation != null)
+        {
+            SurveyStepConfirmation.IsValid = true;
+            SurveyStepConfirmation.Status = StepperStatus.Completed;
+        }
     }
 
     private async void ResetForm()
     {
         IsCurrentStepValid = false;
-        await SurveyStepper.ResetAsync();
+        if (SurveyStepper != null)
+        {
+            await SurveyStepper.ResetAsync();
+        }
         IsNewUser = true;
         IsReturningUser = false;
         FeedbackText = "";
@@ -173,23 +200,26 @@
         ResetStepClass = "";
         FeedbackErrorVisibility = "hidden";
         EmailErrorVisibility = "hidden";
-        SurveyStepIntro.IsValid = null;
-        SurveyStepFeedback.IsValid = null;
-        SurveyStepConfirmation.IsValid = null;
+        if (SurveyStepIntro != null && SurveyStepFeedback != null && SurveyStepConfirmation != null)
+        {
+            SurveyStepIntro.IsValid = null;
+            SurveyStepFeedback.IsValid = null;
+            SurveyStepConfirmation.IsValid = null;
+        }
         StateHasChanged();
     }
 
     private void OnFeedbackInput(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
-        FeedbackText = e.Value?.ToString();
-        if (FeedbackText.Length == 0)
+        FeedbackText = e.Value?.ToString() ?? string.Empty;
+        if (FeedbackText?.Length == 0)
         {
             FeedbackErrorMessage = "Feedback cannot be empty.";
             IsFeedbackValid = false;
         }
         else
         {
-            IsFeedbackValid = FeedbackText.Length > 15;
+            IsFeedbackValid = FeedbackText?.Length > 15;
             FeedbackErrorMessage = IsFeedbackValid ? "" : "Please enter at least 15 characters.";
         }
 
@@ -198,7 +228,7 @@
 
     private void OnEmailInput(Microsoft.AspNetCore.Components.ChangeEventArgs e)
     {
-        Email = e.Value?.ToString();
+        Email = e.Value?.ToString() ?? string.Empty;
         ValidateEmail();
     }
 

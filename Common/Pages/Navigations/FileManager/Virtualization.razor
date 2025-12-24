@@ -1,4 +1,4 @@
-﻿@page "/file-manager/virtualization"
+@page "/file-manager/virtualization"
 
 @using Syncfusion.Blazor.FileManager;
 
@@ -29,7 +29,6 @@
 </div>
 
 @code {
-    @*Hidden:Lines*@
     public List<ToolBarItemModel> Items = new List<ToolBarItemModel>()
     {
         new ToolBarItemModel() { Name = "NewFolder" },
@@ -47,5 +46,4 @@
     };
     public string[] LayoutItems = new string[] { "SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll" };
     public string[] FileItems = new string[] { "Cut", "Copy", "|", "Delete", "Download", "Rename", "|", "Details" };
-    @*End:Hidden*@
 }                              

@@ -2,9 +2,6 @@
 
 @using System.Linq
 @using Syncfusion.Blazor.Schedule
-@using Syncfusion.Blazor.Buttons
-@using Syncfusion.Blazor.Notifications
-@using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Grids
 
 @*Hidden:Lines*@
@@ -77,6 +74,13 @@
     .content-wrapper.grid-to-schedule .schedule-container {
         display: flex;
         height: 500px;
+    }
+
+    .grid-to-schedule .e-drag-clone,
+    .grid-to-schedule .e-schedule-event-clone {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .content-wrapper.grid-to-schedule .schedule-container .grid-content {

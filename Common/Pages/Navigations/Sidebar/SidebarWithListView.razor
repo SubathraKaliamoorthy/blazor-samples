@@ -1,4 +1,4 @@
-﻿@page "/sidebar/sidebar-with-listview"
+@page "/sidebar/sidebar-with-listview"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Lists
@@ -62,8 +62,8 @@
     public string ContentText = "Before getting into any programming language, one should have basic knowledge about HTML, CSS, and JavaScript. These are the basic building blocks of web designing. HTML describes the structure of a web page whereas CSS describes the presentation of the web page";
     // Specify the value of Sidebar component state. It indicates whether the sidebar component is in an open/close state.
     public bool SidebarToggle = true;
-    
-    
+
+
     // Specifies the value of ListView component Datasource property.
     public List<ListData> List = new List<ListData>
     {
@@ -76,15 +76,18 @@
 
     public class ListData
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public string Pic { get; set; }
-        public string Description { get; set; }
+        public string? Id { get; set; }
+        public string? Text { get; set; }
+        public string? Pic { get; set; }
+        public string? Description { get; set; }
     }
     // Specifies the event handler for Clicked event in ListView component.
     public void OnSelect(Syncfusion.Blazor.Lists.ClickEventArgs<ListData> args)
     {
-        ContentText = args.ItemData.Description;
+        if (args.ItemData.Description != null)
+        {
+            ContentText = args.ItemData.Description;
+        }
     }
     // Specifies the event handler for Clicked event in Toolbar component.
     public void Toggle(ClickEventArgs args)
@@ -257,19 +260,19 @@
         padding: 12px 14px;
     }
     .javascript {
-        background-image: url('@(SampleService.WebAssetsPath + "images/listbox/javascript.svg")');
+        background-image: url('@(SampleService?.WebAssetsPath + "images/listbox/javascript.svg")');
     }
     .typescript {
-        background-image: url('@(SampleService.WebAssetsPath + "images/listbox/typescript.svg")')
+        background-image: url('@(SampleService?.WebAssetsPath + "images/listbox/typescript.svg")')
     }
     .angular {
-        background-image: url('@(SampleService.WebAssetsPath + "images/listbox/angular.svg")');
+        background-image: url('@(SampleService?.WebAssetsPath + "images/listbox/angular.svg")');
     }
     .vue {
-        background-image: url('@(SampleService.WebAssetsPath + "images/listbox/vue.svg")');
+        background-image: url('@(SampleService?.WebAssetsPath + "images/listbox/vue.svg")');
     }
     .react {
-        background-image: url('@(SampleService.WebAssetsPath + "images/listbox/react.svg")');
+        background-image: url('@(SampleService?.WebAssetsPath + "images/listbox/react.svg")');
     }
     /* Specifies the styles for Toolbar component*/
     .e-folder {

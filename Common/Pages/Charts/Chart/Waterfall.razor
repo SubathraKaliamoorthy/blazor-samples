@@ -1,7 +1,9 @@
-﻿@page "/chart/waterfall"
+@page "/chart/waterfall"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -60,8 +62,8 @@
         <ChartSeriesCollection>
             <ChartSeries ColumnWidth="0.5" NegativeFillColor="#e56590" DataSource="@ChartPoints" Name="USA" XName="X"
                 Width="2" IntermediateSumIndexes="@IntermediateSumIndexes" SumIndexes="@SumIndexes" YName="Y"
-                Type="ChartSeriesType.Waterfall"
-                CornerRadius="@(new ChartCornerRadius { TopLeft= 3, BottomLeft= 3, BottomRight= 3, TopRight= 3})">
+                Type="ChartSeriesType.Waterfall">
+                <ChartCornerRadius TopLeft="3" BottomLeft="3" BottomRight="3" TopRight="3" />
                 <ChartSeriesAnimation Enable="true"></ChartSeriesAnimation>
                 <ChartMarker>
                     <ChartDataLabel Visible="true" EnableRotation="@Rotate" Angle="@AngleRotate">
@@ -103,6 +105,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             AxisLabelRotation = LabelIntersectAction.None;
@@ -112,6 +115,7 @@
             Rotate = true;
             AngleRotate = -90;
         }
+        @*End:Hidden*@
     }
 
     public class WaterfallChartData

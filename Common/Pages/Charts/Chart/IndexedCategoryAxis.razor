@@ -1,7 +1,9 @@
-﻿@page "/chart/indexed-category-axis"
+@page "/chart/indexed-category-axis"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 
@@ -20,8 +22,8 @@
     <p>More information about the indexed category axis can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/category-axis/#indexed-category-axis' aria-label="Navigate to the documentation for Indexed category axis in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-10 control-section sb-property-border">
-    <SfChart Title="GDP by Countries" SubTitle="Source: ourworldindata.org" Theme="@Theme">
+<div class="col-lg-10 control-section">
+    <SfChart @ref="ChartRef" Title="GDP by Countries" SubTitle="Source: ourworldindata.org" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartMargin Bottom="12"></ChartMargin>
@@ -43,8 +45,8 @@
             <ChartSeries DataSource="@GDP_2022" Name="2022" XName="Country" Width="2" Opacity="1" YName="GDPGrowthRate" Type="@Series2">
                 <ChartCornerRadius TopLeft="4" TopRight="4"></ChartCornerRadius>
                 <ChartMarker Visible="@Marker2" Height="10" Width="10">
-                     <ChartDataLabel Visible="true" EnableRotation="@Rotation" Angle="@RotateAngle" Position="Syncfusion.Blazor.Charts.LabelPosition.Top" Name="TextMapping">
-                     </ChartDataLabel>
+                    <ChartDataLabel Visible="true" EnableRotation="@Rotation" Angle="@RotateAngle" Position="Syncfusion.Blazor.Charts.LabelPosition.Top" Name="TextMapping">
+                    </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
         </ChartSeriesCollection>
@@ -52,10 +54,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-2 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-10" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 50%">
@@ -68,12 +67,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 @code{
 
-
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     bool Rotation { get; set; } = false;
     public double RotateAngle {get; set;} = 0;
@@ -101,6 +98,7 @@
     {
 
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Label = LabelIntersectAction.None;
@@ -108,6 +106,7 @@
             Rotation = true;
             RotateAngle = -90;
         }
+        @*End:Hidden*@
     }
 
     private void CheckValue(ChangeEventArgs<bool> args)
@@ -117,8 +116,15 @@
         {
             Series1 = Series2 = ChartSeriesType.Column;
             Marker1 = Marker2 = false;
-            LabelRotate = SampleService != null && SampleService.IsDevice ? -45 : 0;
-            Label = SampleService != null && SampleService.IsDevice ? LabelIntersectAction.None : LabelIntersectAction.Rotate45;
+            LabelRotate = 0;
+            Label = LabelIntersectAction.Rotate45;
+            @*Hidden:Lines*@
+            if (SampleService != null && SampleService.IsDevice)
+            {
+                Label = LabelIntersectAction.None;
+                LabelRotate = -45;
+            }
+            @*End:Hidden*@
         }
         else
         {
@@ -132,5 +138,17 @@
     {
         public string? Country { get; set; }
         public double GDPGrowthRate { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 }

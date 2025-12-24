@@ -1,4 +1,4 @@
-﻿@page "/ai-charts/smart-chart"
+@page "/ai-charts/smart-chart"
 @page "/chart/ai-smart-chart"
 
 @inject AzureAIService OpenAIService
@@ -13,7 +13,9 @@
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.InteractiveChat
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using BlazorDemos.Model
 @using BlazorDemos.Service
 @*Hidden:Lines*@
@@ -48,34 +50,25 @@
 </ActionDescription>
 
 <div class="main-container">
-    <SfSidebar ID="Sidebar"
-               Type="SidebarType.Push"
-               Width="280px"
-               @bind-IsOpen="SidebarToggle"
-               Target=".maincontent"
-               EnablePersistence="false"
-               Position="SidebarPosition.Right">
+    <SfSidebar ID="Sidebar" Type="SidebarType.Push" Width="280px" @bind-IsOpen="SidebarToggle" Target=".maincontent" EnablePersistence="false" Position="SidebarPosition.Right">
         <ChildContent>
             <div class="sidebar-content">
                 <div class="sidebar-header">
                     <h3>Chat History</h3>
-                    <SfButton IconCss="e-icons e-close"
-                              CssClass="close-btn-sf"
-                              OnClick="@ToggleSidebar"
-                              Title="Close">
+                    <SfButton IconCss="e-icons e-close" CssClass="close-btn-sf" OnClick="@ToggleSidebar"  Title="Close">
                     </SfButton>
                 </div>
                 <div class="chat-history-list">
                     @foreach (var history in chatHistories)
                     {
                         <div class="history-item @(currentChatHistory?.Title == history.Title ? "active" : "")"
-                             @onclick="() => LoadChatHistory(history)">
+                        @onclick="() => LoadChatHistory(history)">
                             <div class="history-title">@history.Title</div>
                             <div class="history-date">@history.ConversationCreatedDate.ToString("MMM dd, yyyy")</div>
                             <div class="history-actions">
                                 <SfButton IconCss="e-icons e-trash"
-                                          CssClass="action-btn-sf"
-                                          OnClick="@(() => DeleteChatHistory(history))">
+                                CssClass="action-btn-sf"
+                                OnClick="@(() => DeleteChatHistory(history))">
                                 </SfButton>
                             </div>
                         </div>
@@ -275,10 +268,10 @@
         }
     }
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        await LoadChatHistories();
+        LoadChatHistories();
         InitializeHeaderPrompts();
     }
 
@@ -327,7 +320,7 @@
         }
     }
 
-    private async Task LoadChatHistories()
+    private void LoadChatHistories()
     {
         chatHistories = new List<ChatHistoryModel>();
         StartNewChat();
@@ -499,7 +492,7 @@
         }
     }
 
-    private async Task DeleteChatHistory(ChatHistoryModel history)
+    private void DeleteChatHistory(ChatHistoryModel history)
     {
         isDeleteCalled = true;
         chatHistories.Remove(history);

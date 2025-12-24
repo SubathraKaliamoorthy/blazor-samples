@@ -3,7 +3,9 @@
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -55,7 +57,7 @@
     }
 </style>
 
-<div class="col-lg-9 control-section sb-property-border">
+<div class="col-lg-9 control-section">
     <div style="width:205px;margin:auto;padding-bottom:20px;padding-left:10px">
         <img src="@(SampleService?.WebAssetsPath + "images/maps/bus-icon.png")" alt="Bus" style="width:25px;height:25px;float:left">
         <div style="padding-left:30px;font-size:20px;font-weight:400;">Bus Seat Selection</div>
@@ -78,8 +80,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
+<PropertyPanel ControlSecClass="col-lg-9">
         <div id="seat-text" class="property-panel-header">Seat Selection</div>
         <table id="property" title="Seat Selection" style="width: 100%;font-weight:400 !important">
             <tbody>
@@ -115,13 +116,12 @@
             </tbody>
         </table>
         <div id="selectedseats">@SelectedSeats</div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
+    public SfMaps? MapRef;
     public Theme Theme { get; set; }
     public string SelectedSeats { get; set; } = string.Empty;
-    public SfMaps? MapRef;
     private List<string> SelectedItems = new List<string>();
     private bool _shapeSelectionCheck = true;
     
@@ -176,4 +176,5 @@
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
+
 }

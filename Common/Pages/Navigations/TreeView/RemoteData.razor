@@ -1,4 +1,4 @@
-﻿@page "/treeview/remote-data"
+@page "/treeview/remote-data"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Data
@@ -39,14 +39,17 @@
 </div>
 @code{
     // Specify the reference of Spinner element.
-    private SfSpinner SpinnerRef { get; set; }
-    
+    private SfSpinner? SpinnerRef { get; set; }
+
     // Specifies the event handler for Created event in TreeView component.
     public async Task OnCreated()
     {
         await Task.Delay(500);
-        await SpinnerRef?.HideAsync();
-        SpinnerRef?.Dispose();
+        if (SpinnerRef != null)
+        {
+            await SpinnerRef.HideAsync();
+            SpinnerRef?.Dispose();
+        }
     }
     // Specify the column value of employee table.
     public static List<string> EmployeeDetails = new List<string>() { "EmployeeID", "FirstName", "Title" };
@@ -60,8 +63,8 @@
     {
         public int? EmployeeID { get; set; }
         public int OrderID { get; set; }
-        public string ShipName { get; set; }
-        public string FirstName { get; set; }
+        public string? ShipName { get; set; }
+        public string? FirstName { get; set; }
     }
 }
 <style>

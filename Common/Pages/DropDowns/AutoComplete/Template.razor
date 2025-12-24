@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Template"
+@page "/AutoComplete/Template"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -27,7 +27,7 @@
 <div class="col-lg-12 control-section">
     <div class="control-wrapper">
         <label class="example-label">Select an employee</label>
-        <SfAutoComplete TValue="string" TItem="EmployeeData" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
+        <SfAutoComplete TValue="string" TItem="EmployeeData" PopupHeight="200px" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
             <AutoCompleteTemplates TItem="EmployeeData">
                 <ItemTemplate>
                     <div>
@@ -300,9 +300,5 @@
 
     .e-bigger.bootstrap4 .template.e-popup .job {
         margin-top: -15px;
-    }
-
-    .template .e-dropdownbase.e-content {
-        max-height: 200px !important;
     }
 </style>

@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Template"
+@page "/MultiSelect-Dropdown/Template"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -25,7 +25,7 @@
 <div class="col-lg-12 control-section multiselect-height">
     <div class="control-wrapper">
         <label class="example-label">Select customers</label>
-        <SfMultiSelect TValue="string[]" TItem="EmployeeData" CssClass="template" ModelType="@_models" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
+        <SfMultiSelect TValue="string[]" TItem="EmployeeData" PopupHeight="200px" CssClass="template" ModelType="@_models" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
             <MultiSelectTemplates TItem="EmployeeData">
                 <ItemTemplate>
                     <div>
@@ -283,10 +283,6 @@
 
     .e-bigger.bootstrap4 .template.e-popup .job {
         margin-top: -15px;
-    }
-
-    .template .e-dropdownbase.e-content {
-        max-height: 200px !important;
     }
 
     .multiselect-height {

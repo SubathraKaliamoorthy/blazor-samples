@@ -3,7 +3,9 @@
 @page "/chart/combo-chart"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
@@ -54,13 +56,19 @@
         <ChartSeriesCollection>
             <ChartSeries DataSource="@DataSource" XName="Category" YName="CivilianWorkers"
                 Type="Syncfusion.Blazor.Charts.ChartSeriesType.Column" Name="Civilian Workers"
-                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1" CornerRadius="@(new ChartCornerRadius { TopLeft = 8, TopRight = 5})"></ChartSeries>
+                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1">
+                <ChartCornerRadius TopLeft="8" TopRight="5" />
+            </ChartSeries>
             <ChartSeries DataSource="@DataSource" XName="Category" YName="PrivateIndustryWorkers"
                 Type="Syncfusion.Blazor.Charts.ChartSeriesType.Column" Name="Private Industry Workers"
-                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1" CornerRadius="@(new ChartCornerRadius { TopLeft = 8, TopRight = 5})"></ChartSeries>
+                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1">
+                <ChartCornerRadius TopLeft="8" TopRight="5" />
+            </ChartSeries>
             <ChartSeries DataSource="@DataSource" XName="Category" YName="StateLocalGovernmentWorkers"
                 Type="Syncfusion.Blazor.Charts.ChartSeriesType.Column" Name="State Local Government Workers"
-                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1" CornerRadius="@(new ChartCornerRadius { TopLeft = 8, TopRight = 5})"></ChartSeries>
+                LegendShape="LegendShape.Circle" ColumnWidth="0.7" ColumnSpacing="0.1">
+                <ChartCornerRadius TopLeft="8" TopRight="5" />
+            </ChartSeries>
             <ChartSeries DataSource="@DataSource" XName="Category" YName="Average"
                 Type="Syncfusion.Blazor.Charts.ChartSeriesType.Line" Name="Average" Width="2">
                 <ChartMarker Visible="true"></ChartMarker>
@@ -102,10 +110,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public class Data

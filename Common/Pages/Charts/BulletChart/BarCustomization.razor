@@ -1,11 +1,11 @@
-﻿@page "/bullet-chart/bar-customization"
+@page "/bullet-chart/bar-customization"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
-@using ThemeHelper
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 
@@ -20,9 +20,9 @@
 </ActionDescription>
 
 <div class="row" style="height:auto">
-    <div class="control-section col-md-8">
+    <div class="control-section col-lg-8" align='center'>
         <SfBulletChart DataSource="@BulletChartData" Type="@Type" ValueField="ActualValue" Theme="@SelectedTheme" TargetField="TargetValue" Minimum="0" Maximum="300" Interval="50"
-                       ValueFill="@ValueFillColor" TargetColor="@TargetFillColor" Title="New Customers" Subtitle="in Thousands" TitlePosition="@(SampleService != null && SampleService.IsDevice ? TextPosition.Top : TextPosition.Left)" >
+        ValueFill="@ValueFillColor" TargetColor="@TargetFillColor" Title="New Customers" Subtitle="in Thousands" TitlePosition="@TitlePosition" >
             <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
             <BulletChartRangeCollection>
                 <BulletChartRange End="150"> </BulletChartRange>
@@ -31,7 +31,8 @@
             </BulletChartRangeCollection>
         </SfBulletChart>
     </div>
-    <div class="col-md-4 property-section">
+    
+    <PropertyPanel ControlSecClass="col-lg-8">
         <table style="width: 100%">
             <tr style="height:50px"><th>Properties</th></tr>
             <tr style="height: 50px">
@@ -41,7 +42,7 @@
                 <td style="width: 50%;">
                     <div>
                         <SfNumericTextBox TValue="int?" Value="@SelectedActualValue" Max=300 Min=0 Step=10>
-                                <NumericTextBoxEvents TValue="int?" ValueChange="OnChangeActualValue" />
+                            <NumericTextBoxEvents TValue="int?" ValueChange="OnChangeActualValue" />
                         </SfNumericTextBox>
                     </div>
                 </td>
@@ -53,7 +54,7 @@
                 <td style="width: 50%;">
                     <div>
                         <SfNumericTextBox TValue="int?" Value="@SelectedTargetValue" Max=300 Min=0 Step=10>
-                                <NumericTextBoxEvents TValue="int?" ValueChange="OnChangeTargetValue" />
+                            <NumericTextBoxEvents TValue="int?" ValueChange="OnChangeTargetValue" />
                         </SfNumericTextBox>
                     </div>
                 </td>
@@ -90,14 +91,8 @@
                 </td>
             </tr>
         </table>
-    </div>
+    </PropertyPanel>
 </div>
-<style>
-    .control-section, .sb-content-section { 
-        min-height: auto !important;
-        height: auto !important;
-    }
-</style>
 
 @code{
     public int SelectedTargetValue { get; set; } = 250;
@@ -106,15 +101,16 @@
     public string ValueFillColor { get; set; } = "#000000";
     public string TargetFillColor { get; set; } = "#000000";
     public string Value = "Rect";
+    public TextPosition TitlePosition { get; set; } = TextPosition.Left;
 
     public void OnFeatureBarColor(ColorPickerEventArgs args)
     {
-        ValueFillColor = args.CurrentValue.Hex;
+        ValueFillColor = args?.CurrentValue?.Hex ?? ValueFillColor;
     }
 
     public void OnTargetColorChange(ColorPickerEventArgs args)
     {
-        TargetFillColor = args.CurrentValue.Hex;
+        TargetFillColor = args?.CurrentValue?.Hex ?? TargetFillColor;
     }
 
 
@@ -150,7 +146,7 @@
         public string? Id { get; set; }
     }
 
-// Dropdown data options
+    // Dropdown data options
     private List<Data> _dropDownData = new List<Data>()
     {
         new Data() { Id = "Rect" },
@@ -159,7 +155,7 @@
 
     private void OnChangeType(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, Data> args)
     {
-        this.Type = (FeatureType)Enum.Parse(typeof(FeatureType), args.Value, true);
+        this.Type = (FeatureType)Enum.Parse(typeof(FeatureType), args?.Value ?? string.Empty, true);
         StateHasChanged();
     }
 
@@ -178,8 +174,13 @@
 
     protected override void OnInitialized()
     {
-// Theme initialization based on the current URI
+        // Theme initialization based on the current URI
         SelectedTheme= ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            TitlePosition = TextPosition.Top;
+        }
+        @*End:Hidden*@
     }
-
 }

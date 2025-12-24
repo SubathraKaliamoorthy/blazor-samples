@@ -1,9 +1,10 @@
-﻿@page "/chart/step-line"
+@page "/chart/step-line"
 
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
-
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -86,10 +87,12 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void TooltipRender(TooltipRenderEventArgs args)

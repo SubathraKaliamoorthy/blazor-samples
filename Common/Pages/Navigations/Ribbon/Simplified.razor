@@ -20,9 +20,9 @@
     <p>The <code>Ribbon</code> component offers two layouts: <code>Classic</code> and <code>Simplified</code>. The <code>ActiveLayout</code> property determines the current layout of the ribbon. In Simplified mode, ribbon items are displayed in a single row, maximizing screen space for the application's content while maintaining functionality and accessibility.</p>
 </ActionDescription>
 
-<div class="col-lg-12 control-section default-ribbon-section">
+<div class="col-lg-12 control-section simplified-ribbon-section">
     <div id="ribbonContainer">
-        <SfRibbon @ref=@ribbonRef ID="ribbon" @bind-ActiveLayout="@ribbonLayout" LauncherIconClick="LauncherIconClick">
+        <SfRibbon @ref=@ribbonRef ID="simplified-ribbon" @bind-ActiveLayout="@ribbonLayout" LauncherIconClick="LauncherIconClick">
             <RibbonFileMenuSettings Visible=true MenuItems="@fileMenuItems" ItemSelecting="@HandleFilemenuSelection"></RibbonFileMenuSettings>
             <RibbonTabs>
                 <RibbonTab HeaderText="Home">
@@ -324,8 +324,8 @@
 </div>
 
 @code {
-    SfToast toast = new SfToast();
-    SfRibbon ribbonRef = new SfRibbon();
+    SfToast? toast = new SfToast();
+    SfRibbon? ribbonRef = new SfRibbon();
     bool isDisabled = true;
     private RibbonLayout ribbonLayout = RibbonLayout.Simplified;
     bool isPasteDisabled = true;
@@ -401,8 +401,8 @@
 
     private class ComboBoxItem
     {
-        public string Text { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+        public string? Text { get; set; } = string.Empty;
+        public string? Value { get; set; } = string.Empty;
     }
 
     FieldSettingsModel fieldSetings = new FieldSettingsModel
@@ -646,7 +646,7 @@
         height: 550px;
     }
 
-    #ribbon {
+    #simplified-ribbon {
         box-sizing: border-box;
     }
 

@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -96,9 +92,6 @@ namespace BlazorDemos
                 MetaTitle = "AI AssistView Default Functionalities - Syncfusion Demos",
                 HeaderText = "Blazor AI AssistView Example - File Attachment Support",
                 MetaDescription = "Blazor AI AssistView demo shows file attachment capabilities, allowing users to upload, share various file types within AI conversations for enhanced context.",
-                NotificationDescription = new string[] {
-                    @"Showcases how users can enhance their AI conversations by uploading and sharing files directly within the chat, providing additional context and improving the overall communication experience."
-                },
                 FileName = "Attachments.razor",
                 SourceFiles = new List<SourceCollection>
                 {
@@ -141,7 +134,7 @@ namespace BlazorDemos
             new Sample
             {
                 Name = "Notes Assistant",
-                Category = "Integration",
+                Category = "Use Cases",
                 Directory = "InteractiveChat/AIAssistView",
                 Url = "ai-assistview/dialog",
                 FileName = "Dialog.razor",
@@ -159,6 +152,90 @@ namespace BlazorDemos
                     {
                         FileName = "PromptResponseData.cs",
                         Id="PromptResponseData",
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Multiple AI Models",
+                Category = "Use Cases",
+                Type = SampleType.AI,
+                Directory = "AISamples/AIAssistView",
+                Url = "ai-assistview/ai-models",
+                FileName = "MultiModelAI.razor",
+                MetaTitle = "Blazor AI AssistView Multiple AI Models | Modal Chat | Syncfusion",
+                HeaderText = "Blazor AI AssistView Example - Multiple AI Models",
+                MetaDescription = "This Blazor AI AssistView example shows how to use a custom view that supports multiple AI models, including Gemini and Azure OpenAI, for seamless integration.",
+                NotificationDescription = new string[] {
+                    @"Showcases a Blazor AI AssistView that unifies multiple AI model providers including Gemini, Azure OpenAI and Deepseek into a single conversational interface, illustrating a clean approach to multi-model integration."
+                },
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection
+                    {
+                        FileName = "MultiModelAI.razor",
+                        Id="MultiModelAI",
+                    },
+                    new SourceCollection
+                    {
+                        FileName = "AIService.cs",
+                        Id="AIService",
+                    }
+                }
+            },
+             new Sample
+            {
+                Name = "Speech To Text",
+                Category = "Speech",
+                Type = SampleType.New,
+                Directory = "InteractiveChat/AIAssistView",
+                Url = "ai-assistview/ai-speechtotext",
+                FileName = "SpeechToText.razor",
+                MetaTitle = "Blazor AI AssistView Speech To Text - Syncfusion Demos",
+                HeaderText = "Blazor AI AssistView Example - Speech To Text",
+                MetaDescription = "This Blazor AI AssistView example shows how to integrate with Speech-to-Text functionality, enabling users to interact using voice input transcribed into text.",
+                NotificationDescription = new string[] {
+                    @"Illustrates a Blazor AI AssistView that accepts voice input via speech-to-text, converting spoken words into prompts for conversational AI responses."
+                },
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection
+                    {
+                        FileName = "SpeechToText.razor",
+                        Id="SpeechToText",
+                    },
+                    new SourceCollection
+                    {
+                        FileName = "OpenAIService.cs",
+                        Id="OpenAIService",
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Text To Speech",
+                Category = "Speech",
+                Type = SampleType.New,
+                Directory = "InteractiveChat/AIAssistView",
+                Url = "ai-assistview/ai-texttospeech",
+                FileName = "TextToSpeech.razor",
+                MetaTitle = "Blazor AI AssistView Text To Speech - Syncfusion Demos",
+                HeaderText = "Blazor AI AssistView Example - Text To Speech",
+                MetaDescription = "This Blazor AI AssistView demo integrates Text-to-Speech with the AIAssistView control, using Azure OpenAI to vocalize the dynamic AI-generated responses.",
+                NotificationDescription = new string[] {
+                    @"Presents a Blazor AI AssistView that converts AI responses into spoken audio using browser speech synthesis, demonstrating text-to-speech in a conversational UI."
+                },
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection
+                    {
+                        FileName = "TextToSpeech.razor",
+                        Id="TextToSpeech",
+                    },
+                    new SourceCollection
+                    {
+                        FileName = "AzureOpenAIService.cs",
+                        Id="AzureOpenAIService",
                     }
                 }
             }
@@ -215,6 +292,29 @@ namespace BlazorDemos
             },
             new Sample
             {
+                Name = "File Attachments",
+                Category = "Chat UI",
+                Directory = "InteractiveChat/ChatUI",
+                Url = "chat-ui/attachments",
+                FileName = "Attachments.razor",
+                MetaTitle = "Blazor ChatUI Attachments | File Attachment | Syncfusion",
+                HeaderText = "Blazor ChatUI Example - File Attached Messages",
+                MetaDescription = "This Blazor Chat component demo illustrates a complete solution for file transfers from user upload to seamless display and access within message history.",
+                NotificationDescription = new string[] {
+                    @"Demonstrates file sharing in the Chat UI, allowing users to attach and manage images, videos, and documents directly within a conversation."
+                },
+                Type = SampleType.New,
+                SourceFiles = new List<SourceCollection>
+                {
+                    new SourceCollection
+                    {
+                        FileName = "Attachments.razor",
+                        Id="Attachments",
+                    }
+                }
+            },
+            new Sample
+            {
                 Name = "Template",
                 Category = "Chat UI",
                 Directory = "InteractiveChat/ChatUI",
@@ -244,13 +344,9 @@ namespace BlazorDemos
                 Directory = "InteractiveChat/ChatUI",
                 Url = "chat-ui/api",
                 FileName = "Api.razor",
-                Type = SampleType.Updated,
                 MetaTitle = "Blazor ChatUI API Methods | Programmatic Control | Syncfusion",
                 HeaderText = "Blazor ChatUI Example - API Methods Usage",
                 MetaDescription = "This Blazor ChatUI example demonstrates the component's API methods for programmatic control, including adding messages, scrolling to specific points.",
-                NotificationDescription = new string[] {
-                    @"Highlights the Chat UI's mention users feature that enables tagging participants with '@' symbol in messages, for building interactive chat experiences."
-                },
                 SourceFiles = new List<SourceCollection>
                 {
                     new SourceCollection
@@ -292,5 +388,4 @@ namespace BlazorDemos
 
         };
     }
-
 }

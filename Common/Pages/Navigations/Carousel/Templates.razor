@@ -1,4 +1,4 @@
-﻿@page "/carousel/templates"
+@page "/carousel/templates"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
@@ -32,7 +32,7 @@
                     {
                         <CarouselItem>
                             <figure class="img-container">
-                                <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/carousel/{item.ImageName}")" alt="@item.AltText" style="height:100%;width:100%;" />
+                                <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/carousel/{item.ImageName}")" alt="@item.AltText" style="height:100%;width:100%;" />
                             </figure>
                         </CarouselItem>
                     }
@@ -53,7 +53,7 @@
                 </NextButtonTemplate>
                 <IndicatorsTemplate>
                     <div class="indicator">
-                        <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/carousel/" + IndicatorImage[context.Index] + ".png")" alt="image" style="height:100%;width:100%;" />
+                        <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/carousel/" + IndicatorImage[context.Index] + ".png")" alt="image" style="height:100%;width:100%;" />
                     </div>
                 </IndicatorsTemplate>
             </SfCarousel>
@@ -75,8 +75,8 @@
 
     public class CarouselItemModel
     {
-        public string ImageName { get; set; }
-        public string AltText { get; set; }
+        public string? ImageName { get; set; }
+        public string? AltText { get; set; }
     }
 }
 

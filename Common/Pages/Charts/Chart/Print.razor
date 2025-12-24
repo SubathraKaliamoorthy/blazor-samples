@@ -1,4 +1,4 @@
-﻿@page "/chart/print"
+@page "/chart/print"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -20,7 +20,7 @@
     <p>More information about the print can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/chart-print/#print' aria-label="Navigate to the documentation for print in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="control-section col-lg-9 sb-property-border" align="center">
+<div class="control-section col-lg-9" align="center">
     <SfChart @ref="@chartInstance" Title="Sales Comparision" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
@@ -47,10 +47,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                     <tr style="height: 50px; text-align: center">
@@ -65,9 +62,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 <style>
     #button-control {
@@ -121,8 +116,6 @@
 </style>
 
 @code{
-
-    
     private SfChart? chartInstance;
     private Theme Theme { get; set; }
     public List<ExportData> ChartPoints { get; set; } = new List<ExportData>
@@ -327,5 +320,16 @@
         public string? DataLabelMappingName{ get; set; }
     }
 
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (chartInstance != null)
+        {
+            await chartInstance.RefreshAsync(false);
+        }
+    }
 }
 

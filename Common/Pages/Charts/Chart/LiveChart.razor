@@ -1,7 +1,9 @@
-﻿@page "/chart/live-chart"
+@page "/chart/live-chart"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Collections.ObjectModel
 @using System.Timers
@@ -55,11 +57,12 @@
     {
         
         theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
-
+        @*End:Hidden*@
         // Provide the chart with initial data during page load.
         DataPoints = new ObservableCollection<ChartDataPoint>();
         for (int i = 0; i < dataLength; i++)

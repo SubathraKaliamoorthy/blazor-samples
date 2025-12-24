@@ -1,4 +1,4 @@
-﻿@page "/diagram/organization-model"
+@page "/diagram/organization-model"
 
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Diagram
@@ -169,17 +169,17 @@
             </div>
             <div id="orientation">
                 <div class="row" style="padding-top: 8px">
-                    <div title="Top to bottom Orientation" class="@dict!["topToBottom"]" @onclick="ToptoBottomClick" id="topToBottom" style="background-image: url(@(SampleService!.WebAssetsPath + "images/diagram/common-orientation/top-to-bottom.png"));
+                        <div title="Top to bottom Orientation" class="@dict!["topToBottom"]" @onclick="ToptoBottomClick" id="topToBottom" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/common-orientation/top-to-bottom.png"));
         margin-right: 3px">
                     </div>
-                    <div title="Bottom to top Orientation" class="@dict["bottomToTop"]" id="bottomToTop" @onclick="BottomtoTopClick" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/common-orientation/bottom-to-top.png"));
+                        <div title="Bottom to top Orientation" class="@dict["bottomToTop"]" id="bottomToTop" @onclick="BottomtoTopClick" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/common-orientation/bottom-to-top.png"));
         margin: 0px 3px">
                     </div>
-                    <div title="Left to right Orientation" class="@dict["leftToRight"]" id="leftToRight" @onclick="LefttoRightClick" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/common-orientation/left-to-right.png")); margin-right:0px 3px">
+                        <div title="Left to right Orientation" class="@dict["leftToRight"]" id="leftToRight" @onclick="LefttoRightClick" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/common-orientation/left-to-right.png")); margin-right:0px 3px">
                     </div>
                 </div>
                 <div class="row" style="padding-top: 8px">
-                    <div title="Right to left Orientation" class="@dict["rightToLeft"]" id="rightToLeft" @onclick="RighttoLeftClick" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/common-orientation/right-to-left.png"));
+                        <div title="Right to left Orientation" class="@dict["rightToLeft"]" id="rightToLeft" @onclick="RighttoLeftClick" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/common-orientation/right-to-left.png"));
         margin: 0px 3px">
                     </div>
                 </div>
@@ -189,35 +189,35 @@
             </div>
             <div id="pattern">
                 <div class="row" style="padding-top: 8px;">
-                    <div title="Sub tree alignment  : Alternate" class="@PatternDictionary!["pattern1"]" @onclick="AlternateOrientationVertical20" id="pattern1" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/vertical-alternate.png"));
+                        <div title="Sub tree alignment  : Alternate" class="@PatternDictionary!["pattern1"]" @onclick="AlternateOrientationVertical20" id="pattern1" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/vertical-alternate.png"));
         margin-right: 3px">
                     </div>
-                    <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern2"]" @onclick="LeftOrientationVertical20" id="pattern2" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/vertical-left.png"));
+                        <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern2"]" @onclick="LeftOrientationVertical20" id="pattern2" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/vertical-left.png"));
         margin: 0px 3px">
                     </div>
-                    <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern3"]" @onclick="LeftOrientationVertical50" id="pattern3" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/positive-vertical-left.png"));
+                        <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern3"]" @onclick="LeftOrientationVertical50" id="pattern3" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/positive-vertical-left.png"));
         margin: 0px 3px">
                     </div>
                 </div>
                 <div class="row" style="padding-top: 8px">
-                    <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern4"]" id="pattern4" @onclick="RightOrientationVertical50" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/negative-vertical-right.png"));
+                        <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern4"]" id="pattern4" @onclick="RightOrientationVertical50" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/negative-vertical-right.png"));
         margin: 0px 3px">
                     </div>
-                    <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern5"]" id="pattern5" @onclick="RightOrientationVertical20" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/vertical-right.png"));
+                        <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern5"]" id="pattern5" @onclick="RightOrientationVertical20" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/vertical-right.png"));
         margin-right: 3px">
                     </div>
-                    <div title="Sub tree alignment  : Balanced" class="@PatternDictionary["pattern6"]" id="pattern6" @onclick="BalancedOrientationHorizontal20" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/horizontal-balanced.png"));
+                        <div title="Sub tree alignment  : Balanced" class="@PatternDictionary["pattern6"]" id="pattern6" @onclick="BalancedOrientationHorizontal20" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/horizontal-balanced.png"));
         margin: 0px 3px">
                     </div>
                 </div>
                 <div class="row" style="padding-top: 8px">
-                    <div title="Sub tree alignment  : Center" class="@PatternDictionary["pattern7"]" id="pattern7" @onclick="CenterOrientationHorizontal50" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/horizontal-center.png"));
+                        <div title="Sub tree alignment  : Center" class="@PatternDictionary["pattern7"]" id="pattern7" @onclick="CenterOrientationHorizontal50" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/horizontal-center.png"));
         margin: 0px 3px">
                     </div>
-                    <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern8"]" id="pattern8" @onclick="LeftOrientationHorizontal20" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/horizontal-left.png"));
+                        <div title="Sub tree alignment  : Left" class="@PatternDictionary["pattern8"]" id="pattern8" @onclick="LeftOrientationHorizontal20" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/horizontal-left.png"));
         margin: 0px 3px">
                     </div>
-                    <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern9"]" id="pattern9" @onclick="RightOrientationHorizontal20" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/organization-model/horizontal-right.png"));
+                        <div title="Sub tree alignment  : Right" class="@PatternDictionary["pattern9"]" id="pattern9" @onclick="RightOrientationHorizontal20" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/organization-model/horizontal-right.png"));
         margin: 0px 3px">
                     </div>
                 </div>

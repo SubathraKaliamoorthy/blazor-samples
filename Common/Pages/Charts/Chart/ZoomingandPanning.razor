@@ -1,7 +1,9 @@
 @page "/chart/zooming"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Globalization;
 
@@ -204,12 +206,14 @@
             });
         }
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
             TitleText = "Global Warming: Monthly ";
             SubTitleText = "Temperature Anomalies";
         }
+        @*End:Hidden*@
     }
 
     public class TemperaturePoint

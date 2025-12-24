@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -714,7 +710,26 @@ namespace BlazorDemos
                 FileName = "DirectoryUpload.razor",
                 MetaTitle = "Blazor File Manager Directory Upload | Folder Upload | Syncfusion",
                 HeaderText = "Blazor File Manager Example - Directory Upload",
-                MetaDescription = "Blazor FileManager demo shows directory upload functionality.Learn to upload entire folders while preserving their structure for efficient bulk file management."
+                MetaDescription = "Blazor FileManager demo shows directory upload functionality.Learn to upload entire folders while preserving their structure for efficient bulk file management.",
+                Type = SampleType.Updated,
+                NotificationDescription = new string[] {
+                    @"Adds context menu upload options, enabling users to upload either individual files or entire folders directly from the File Manager for faster, streamlined additions."
+                }
+            },
+            new Sample
+            {
+                Name = "Sequential Upload",
+                Category = "File Manager",
+                Directory = "Navigations/FileManager",
+                Url = "file-manager/sequential-upload",
+                FileName = "SequentialUpload.razor",
+                MetaTitle = "Blazor File Manager Sequential Upload | Ordered Uploads | Syncfusion",
+                HeaderText = "Blazor File Manager Example - Sequential Upload",
+                MetaDescription = "This Blazor File Manager example demonstrates sequential uploads, sending files one by one in queue order for predictable, controlled transfers with progress.",
+                Type = SampleType.New,
+                NotificationDescription = new string[] {
+                    @"Demonstrates sequential file uploads in the File Manager, ensuring files are uploaded one-by-one in the exact queue order for predictable and controlled transfers."
+                }
             },
             new Sample
             {
@@ -729,6 +744,21 @@ namespace BlazorDemos
             },
             new Sample
             {
+                Name = "Template",
+                Category = "File Manager",
+                Directory = "Navigations/FileManager",
+                Url = "file-manager/template",
+                FileName = "Template.razor",
+                MetaTitle = "Blazor File Manager Templates | Custom Items and Nodes",
+                HeaderText = "Blazor File Manager Example - Custom Templates",
+                MetaDescription = "Customize Blazor File Manager with templates for navigation tree nodes and layout items, adding icons, images, and rich content for accessible file browsing.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]{
+                    @"Demonstrates the customization of the Blazor File Manager using templates for both the navigation pane nodes and layout items."
+                }
+            },
+            new Sample
+            {
                 Name = "Keyboard Navigation",
                 Category = "File Manager",
                 Directory = "Navigations/FileManager",
@@ -739,6 +769,31 @@ namespace BlazorDemos
                 HeaderText = "Blazor File Manager Example - Keyboard Navigation",
                 MetaDescription = "Blazor File Manager demo shows keyboard navigation support. Learn to implement keyboard shortcuts for file operations and navigation without mouse interaction."
             },
+            //new Sample
+            //{
+            //    Name = "Performance",
+            //    Category = "Benchmark",
+            //    Directory = "Navigations/FileManager",
+            //    Url = "file-manager/flatdata-performance",
+            //    Type = SampleType.New,
+            //    FileName = "Performance.razor",
+            //    MetaTitle = "Blazor File Manager Performance | Large Data | Syncfusion",
+            //    HeaderText = "Blazor File Manager Example - Performance",
+            //    MetaDescription = "This Blazor File Manager Performance demo showcases high-performance data processing and rendering for large datasets, with virtualization and responsive UI.",
+            //    SourceFiles = new List<SourceCollection>()
+            //    {
+            //        new SourceCollection
+            //        {
+            //            Id = "Performance",
+            //            FileName = "Performance.razor"
+            //        },
+            //        new SourceCollection
+            //        {
+            //            Id = "FileManagerLargeDataGenerator",
+            //            FileName = "FileManagerLargeDataGenerator.cs"
+            //        },
+            //    },
+            //},
             #if SERVER
             new Sample
             {
@@ -783,7 +838,11 @@ namespace BlazorDemos
                 FileName = "AccessControl.razor",
                 MetaTitle = "Blazor File Manager Access Control | Permissions | Syncfusion",
                 HeaderText = "Blazor File Manager Example - Access Control",
-                MetaDescription = "This Blazor File Manager example shows how to implement access control. Learn to restrict file operations based on user permissions for secure file management."
+                MetaDescription = "This Blazor File Manager example shows how to implement access control. Learn to restrict file operations based on user permissions for secure file management.",
+                Type = SampleType.Updated,
+                NotificationDescription = new string[] {
+                    @"Introduces fine-grained upload permissions for the Music folder where individual file uploads are permitted, while folder uploads are prevented using the UploadContentFilter property"
+                }
             },
             new Sample
             {

@@ -167,8 +167,8 @@
     }
     public class Fields
     {
-        public string ID { get; set; }
-        public string Text { get; set; }
+        public string? ID { get; set; }
+        public string? Text { get; set; }
     }
     private List<Fields> _dropDownListItems = new List<Fields>()
     {
@@ -201,7 +201,7 @@
 
     public void DisableEnableSelectedItems(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, Fields> args, bool disable)
     {
-        if (args.ItemData != null && _toolbarItems.TryGetValue(args.ItemData.Text, out var item))
+        if (this.File != null && args.ItemData != null && !string.IsNullOrEmpty(args.ItemData.Text) && _toolbarItems.TryGetValue(args.ItemData.Text, out var item))
         {
             if (disable)
             {

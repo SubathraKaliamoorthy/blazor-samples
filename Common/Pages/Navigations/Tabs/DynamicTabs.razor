@@ -1,4 +1,4 @@
-﻿@page "/tabs/dynamic-tabs"
+@page "/tabs/dynamic-tabs"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
@@ -55,8 +55,8 @@
     private int i;
     public class TabData
     {
-        public string Header { get; set; }
-        public RenderFragment TabContent { get; set; }
+        public string? Header { get; set; }
+        public RenderFragment? TabContent { get; set; }
     }
     private RenderFragment FragmentContent(String fragmentString) => builder =>
     {
@@ -67,7 +67,7 @@
         builder.CloseElement();
         builder.CloseElement();
     };
-    private List<TabData> TabItems { get; set; }
+    private List<TabData>? TabItems { get; set; }
     protected override void OnInitialized()
     {
         TabItems = new List<TabData>()

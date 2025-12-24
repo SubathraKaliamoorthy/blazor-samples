@@ -1,7 +1,9 @@
-﻿@page "/chart/axis-crossing"
+@page "/chart/axis-crossing"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
@@ -10,8 +12,6 @@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -25,8 +25,8 @@
     </p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Spline Interpolation" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="Spline Interpolation" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartMargin Bottom="12"></ChartMargin>
@@ -54,10 +54,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height:50px">
                     <td style="font-size:14px">
@@ -94,13 +91,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    public SfChart? ChartRef { get; set; }
     private string axis = "X";
     private bool PlaceX = true, PlaceY = true, IsChecked = true;
     private int CrossValue = 0, XCrossesAt = 0, YCrossesAt = 0;
@@ -164,7 +159,7 @@
 
     public void ChangeAxis(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        axis = Convert.ToString(args.Value);
+        axis = args?.Value ?? axis;
         if (axis == "X")
         {
             IsChecked = PlaceX;
@@ -199,6 +194,18 @@
     {
         public double XValue { get; set; }
         public double YValue { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

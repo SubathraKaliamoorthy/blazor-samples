@@ -1,10 +1,12 @@
-﻿@page "/chart/remote-data"
+@page "/chart/remote-data"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.Charts
 @using PointRender
+@*Hidden:Lines*@
 @using ThemeHelper;
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -35,7 +37,7 @@
 
 <div class="control-section" align='center'>
      <SfChart Title="Food Vs Price" Width="@Width" Theme="@Theme">
-        <SfDataManager Url="http://localhost:63028/api/chart" Adaptor="Adaptors.WebApiAdaptor"></SfDataManager>
+        <SfDataManager Url="https://blazor.syncfusion.com/services/production/api/chart" Adaptor="Adaptors.WebApiAdaptor"></SfDataManager>
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartEvents OnDataLabelRender="DataLabelEvent" OnPointRender="PointRender"></ChartEvents>
         <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelRotation="@Rotation" LabelIntersectAction="@Label"
@@ -76,12 +78,14 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Label = LabelIntersectAction.None;
             Rotation = -45;
             Width = "100%";
         }
+        @*End:Hidden*@
     }
     public void DataLabelEvent(TextRenderEventArgs args)
     {

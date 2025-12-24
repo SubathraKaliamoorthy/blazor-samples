@@ -1,15 +1,14 @@
-﻿@page "/bullet-chart/right-to-left"
+@page "/bullet-chart/right-to-left"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
-@using ThemeHelper
-
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This example shows a bullet chart in RTL mode.</p>
+    <p>This example showcases the Bullet Chart component operating in right-to-left (RTL) mode, where the entire chart layout including the feature bar, comparative bar, labels, and target indicators is rendered from right to left. RTL rendering is enabled by setting the EnableRtl property to true, making the chart suitable for languages and cultures that follow right-to-left reading patterns.</p>
 </SampleDescription>
 <ActionDescription>
     <p><code>Right-to-left (RTL)</code> is used to render the component from right to left direction, and it can be enabled by setting the <code>EnableRtl</code> property to <b>true</b>. In this demo, you can see that the <code>Feature bar</code>, <code>Comparative bar</code>, <code>Labels</code>, and <code>Targets</code> are aligned from right to left direction.</p>
@@ -22,17 +21,17 @@
 <div class="control-section" style="height: auto;">
     <div align="center">
         <SfBulletChart DataSource="@RevenueData"
-                       ValueField="CurrentValue"
-                       TargetField="TargetValue"
-                       Theme="@CurrentTheme"
-                       Minimum="0"
-                       Maximum="300"
-                       Interval="@(SampleService != null && SampleService.IsDevice ? 100 : 50)"
-                       Title="Revenue YTD"
-                       LabelFormat="${value}K"
-                       EnableRtl="true"
-                       Height="110px"
-                       Width="@(SampleService != null && SampleService.IsDevice ? "100%" : "80%")">
+                        ValueField="CurrentValue"
+                        TargetField="TargetValue"
+                        Theme="@CurrentTheme"
+                        Minimum="0"
+                        Maximum="300"
+                        Interval="@Interval"
+                        Title="Revenue YTD"
+                        LabelFormat="${value}K"
+                        EnableRtl="true"
+                        Height="110px"
+                        Width="@Width">
             <BulletChartTooltip TValue="RevenueChartData" Enable="true"></BulletChartTooltip>
             <BulletChartRangeCollection>
                 <BulletChartRange End="150"></BulletChartRange>
@@ -45,13 +44,14 @@
 
 <style>
     .control-section, .sb-content-section {
-        min-height: auto !important;
-        height: auto !important;
+    min-height: auto !important;
+    height: auto !important;
     }
 </style>
 
 @code{
-
+    public double Interval { get; set; } = 50;
+    public string Width { get; set; } = "80%";
     public class RevenueChartData
     {
         public double CurrentValue { get; set; }
@@ -62,12 +62,19 @@
     {
         new RevenueChartData { CurrentValue = 270, TargetValue = 250 }
     };
-    
+
     public Theme CurrentTheme { get; set; }
 
     protected override void OnInitialized()
     {
         CurrentTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            Interval = 100;
+            Width = "100%";
+        }
+        @*End:Hidden*@
     }
 
 }

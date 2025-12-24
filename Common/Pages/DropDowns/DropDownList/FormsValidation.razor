@@ -1,4 +1,4 @@
-﻿@page "/DropDown-List/Forms-Validation"
+@page "/DropDown-List/Forms-Validation"
 
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons;
@@ -39,7 +39,7 @@
                 <DataAnnotationsValidator/>
                 <div>
                     <label class="example-label">Select an employee</label>
-                    <SfDropDownList Placeholder="e.g. Andrew Fuller" @bind-Value="@_model.FirstName" DataSource="@Data">
+                    <SfDropDownList Placeholder="e.g. Andrew Fuller" PopupHeight="200px" @bind-Value="@_model.FirstName" DataSource="@Data">
                         <DropDownListFieldSettings Value="FirstName" Text="FirstName"/>
                     </SfDropDownList>
                     <ValidationMessage For="()=>_model.FirstName"/>

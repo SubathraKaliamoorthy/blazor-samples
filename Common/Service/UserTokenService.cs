@@ -9,8 +9,6 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -35,7 +33,7 @@ namespace BlazorDemos.Service
         public async Task<int> GetRemainingTokensAsync(string userCode)
         {
             var tokens = await CheckAndResetTokensAsync(userCode);
-            return tokens.ContainsKey(userCode) ? tokens[userCode].RemainingTokens : 15000;
+            return tokens.ContainsKey(userCode) ? tokens[userCode].RemainingTokens : 30000;
         }
 
         public async Task UpdateTokensAsync(string userCode, int tokens)
@@ -68,7 +66,7 @@ namespace BlazorDemos.Service
 
                 if (timeDifference.TotalHours > 24)
                 {
-                    userTokenInfo.RemainingTokens = 15000; // Reset tokens
+                    userTokenInfo.RemainingTokens = 30000; // Reset tokens
                     userTokenInfo.DateOfLogin = currentTime; // Update login time
                     await WriteTokensToFileAsync(tokenData);
                 }

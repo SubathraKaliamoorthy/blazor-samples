@@ -1,4 +1,4 @@
-﻿@page "/media-query/default-functionalities"
+@page "/media-query/default-functionalities"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Navigations
@@ -68,7 +68,7 @@
                         {
                         <div class="fig-container">
                             <figure class="img-container">
-                                <img src="@(SampleService.WebAssetsPath + "images/media-query/" + @PlacesToVisit[i].Replace(" ", "-").ToLowerInvariant() + ".png")" alt="@PlacesToVisit[i]" />
+                                <img src="@(SampleService?.WebAssetsPath + "images/media-query/" + @PlacesToVisit[i].Replace(" ", "-").ToLowerInvariant() + ".png")" alt="@PlacesToVisit[i]" />
                                 <figcaption class="img-caption">@PlacesToVisit[i]</figcaption>
                             </figure>
                         </div>
@@ -86,8 +86,8 @@
 </div>
 
 @code {
-    
-    SfMenu<MenuItem> CityMenu { get; set; }
+
+    SfMenu<MenuItem>? CityMenu { get; set; }
 
     private string ActiveBreakpoint { get; set; } = "Large";
     private string SelectedCity { get; set; } = "New York";
@@ -110,10 +110,13 @@
         "Empire State Building", "Central Park", "The High Line",
         "Statue of Liberty", "Brooklyn Bridge", "Times Square"
     };
-    
+
     private void OnMenuItemSelected()
     {
-        CityMenu.CloseAsync();
+        if (CityMenu != null)
+        {
+            CityMenu.CloseAsync();
+        }
     }
 
 }

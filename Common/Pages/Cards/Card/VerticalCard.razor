@@ -1,11 +1,8 @@
-﻿@page "/card/vertical-card"
+@page "/card/vertical-card"
 
 @using Syncfusion.Blazor.Cards
-@using Syncfusion.Blazor.Buttons
-@using Syncfusion.Blazor.Lists
 @*Hidden:Lines*@
 @inherits SampleBaseComponent;
-@inject NavigationManager NavigationManager
 
 
 
@@ -61,12 +58,12 @@
 
 <style>
     #MarketCard {
-        background-image: url(@(SampleService.WebAssetsPath + "../images/cards/vertical_img.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "../images/cards/vertical_img.png"));
         background-size: cover
     }
 
     #RealEstate {
-        background-image: url(@(SampleService.WebAssetsPath + "../images/cards/vertical_img01.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "../images/cards/vertical_img01.png"));
         background-size: cover
     }
 

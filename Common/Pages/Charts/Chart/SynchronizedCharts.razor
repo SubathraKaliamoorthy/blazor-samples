@@ -1,7 +1,9 @@
-﻿@page "/chart/synchronized-charts"
+@page "/chart/synchronized-charts"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 @inject NavigationManager NavigationManager
@@ -40,7 +42,7 @@
                             <ChartEmptyPointSettings Mode="EmptyPointMode.Drop"></ChartEmptyPointSettings>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>€${point.y}</b> <br> ${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>€${point.y}</b> <br> ${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -64,7 +66,7 @@
                         <ChartSeries DataSource="@ChartPoints" XName="USD" YName="JPY" Type="ChartSeriesType.Line" Width="2" Fill="@themeColors[1]">
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>¥${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>¥${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -91,7 +93,7 @@
                             <ChartSeriesBorder Width="2"></ChartSeriesBorder>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>$${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>$${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -116,7 +118,7 @@
                             <ChartSeriesBorder Width="2"></ChartSeriesBorder>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>₹${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>₹${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -146,7 +148,7 @@
                             <ChartEmptyPointSettings Mode="EmptyPointMode.Drop"></ChartEmptyPointSettings>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>€${point.y}</b> <br> ${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>€${point.y}</b> <br> ${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -170,7 +172,7 @@
                         <ChartSeries DataSource="@ChartPoints" XName="USD" YName="JPY" Type="ChartSeriesType.Line" Width="2" Fill="@themeColors[1]">
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>¥${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>¥${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -197,7 +199,7 @@
                             <ChartSeriesBorder Width="2"></ChartSeriesBorder>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>$${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>$${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -222,7 +224,7 @@
                             <ChartSeriesBorder Width="2"></ChartSeriesBorder>
                         </ChartSeries>
                     </ChartSeriesCollection>
-                    <ChartTooltipSettings Enable="true" FadeOutDuration="@(SampleService != null && SampleService.IsDevice ? 2500 : 1000)" Shared="true" Header="" Format="<b>₹${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
+                    <ChartTooltipSettings Enable="true" FadeOutDuration="@FadeOutDuration" Shared="true" Header="" Format="<b>₹${point.y}</b> <br>${point.x} 2023" EnableMarker="false"></ChartTooltipSettings>
                     <ChartCrosshairSettings Enable="true" DashArray="2,2" LineType="LineType.Vertical"></ChartCrosshairSettings>
                     <ChartZoomSettings EnableMouseWheelZooming="true" EnablePinchZooming="true" EnableScrollbar="false" EnableDeferredZooming="false" EnablePan="true" Mode="ZoomMode.X" ToolbarItems="@toolbarItems"></ChartZoomSettings>
                 </SfChart>
@@ -232,21 +234,22 @@
 </div>
 <style>
     #control-container {
-        padding: 1px !important;
+    padding: 1px !important;
     }
 
     .row {
-        display: flex;
+    display: flex;
     }
 
     .col {
-        width: 50%;
-        margin: 10px;
-        height: 270px;
+    width: 50%;
+    margin: 10px;
+    height: 270px;
     }
 </style>
 @code{
     List<ToolbarItems> toolbarItems = new List<ToolbarItems>() { ToolbarItems.Pan, ToolbarItems.Reset };
+    public double FadeOutDuration { get; set; } = 1000;
     double zoomfactor = 1, zoomPosition = 0;
     #nullable enable
     public SfChart? _chart1;
@@ -283,6 +286,12 @@
     {
 
         ChartPoints = await Http.GetFromJsonAsync<CurrencyRates[]>(NavigationManager.BaseUri + SampleService?.WebAssetsPath + "data/chart/synchronized-data.json") ?? null!;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            FadeOutDuration = 2500;
+        }
+        @*End:Hidden*@
     }
 
     protected override void OnInitialized()
@@ -370,7 +379,16 @@
 
     public void OnCrosshairMove(CrosshairMoveEventArgs changeEventArgs)
     {
-        isTapHold = isMouseMoveUpDetected ? false : ((SampleService != null && SampleService.IsDevice) || isTouch);
+        if (isMouseMoveUpDetected)
+        {
+            isTapHold = false;
+        } 
+        @*Hidden:Lines*@
+        else
+        {
+            isTapHold = ((SampleService != null && SampleService.IsDevice) || isTouch);
+        }
+        @*End:Hidden*@
     }
 
     public void ChartMouseDown(ChartMouseEventArgs changeEventArgs)
@@ -382,6 +400,7 @@
 
     public void OnMouseEventChart1(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((((SampleService != null && SampleService.IsDevice) || isTouch) && isTapHold && !isZooming) || ((!isTouch || (SampleService != null && !SampleService.IsDevice)) && !isTapHold && !isZooming))
         {
             _chart2?.ShowTooltip(args.MouseX, args.MouseY, false);
@@ -391,10 +410,12 @@
             _chart3?.ShowCrosshair(args.MouseX, args.MouseY);
             _chart4?.ShowCrosshair(args.MouseX, args.MouseY);
         }
+        @*End:Hidden*@
         isTapHold = false;
     }
     public void OnMouseEventChart2(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((((SampleService != null && SampleService.IsDevice) || isTouch) && isTapHold && !isZooming) || ((!isTouch || (SampleService != null && !SampleService.IsDevice)) && !isTapHold && !isZooming))
         {
             _chart1?.ShowTooltip(args.MouseX, args.MouseY, false);
@@ -404,10 +425,12 @@
             _chart3?.ShowCrosshair(args.MouseX, args.MouseY);
             _chart4?.ShowCrosshair(args.MouseX, args.MouseY);           
         } 
+        @*End:Hidden*@
         isTapHold = false;
     }
     public void OnMouseEventChart3(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((((SampleService != null && SampleService.IsDevice) || isTouch) && isTapHold && !isZooming) || ((!isTouch || (SampleService != null && !SampleService.IsDevice)) && !isTapHold && !isZooming))
         {
             _chart2?.ShowTooltip(args.MouseX, args.MouseY, false);
@@ -417,10 +440,12 @@
             _chart1?.ShowCrosshair(args.MouseX, args.MouseY);
             _chart4?.ShowCrosshair(args.MouseX, args.MouseY);
         }
+        @*End:Hidden*@
         isTapHold = false;
     }
     public void OnMouseEventChart4(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((((SampleService != null && SampleService.IsDevice) || isTouch) && isTapHold && !isZooming) || ((!isTouch || (SampleService != null && !SampleService.IsDevice)) && !isTapHold && !isZooming))
         {
             _chart2?.ShowTooltip(args.MouseX, args.MouseY, false);
@@ -430,6 +455,7 @@
             _chart3?.ShowCrosshair(args.MouseX, args.MouseY);
             _chart1?.ShowCrosshair(args.MouseX, args.MouseY);
         }
+        @*End:Hidden*@
         isTapHold = false;
     }
     public void OnMouseLeaveChart1()
@@ -474,6 +500,7 @@
     }
     public void OnMouseLeaveChart1(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((SampleService != null && SampleService.IsDevice) || isTouch)
         {
             isTapHold = false;
@@ -486,10 +513,12 @@
             _chart3?.HideCrosshair();
             _chart4?.HideCrosshair();
         }
+        @*End:Hidden*@
         isZooming = false;
     }
     public void OnMouseLeaveChart2(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((SampleService != null && SampleService.IsDevice) || isTouch)
         {
             isTapHold = false;
@@ -502,10 +531,12 @@
             _chart3?.HideCrosshair();
             _chart4?.HideCrosshair();
         }
+        @*End:Hidden*@
         isZooming = false;
     }
      public void OnMouseLeaveChart3(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if ((SampleService != null && SampleService.IsDevice) || isTouch)
         {
             isTapHold = false;
@@ -518,10 +549,12 @@
             _chart1?.HideCrosshair();
             _chart4?.HideCrosshair();
         }
+        @*End:Hidden*@
         isZooming = false;
     }
     public void OnMouseLeaveChart4(ChartMouseEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice || isTouch)
         {
             isTapHold = false;
@@ -534,6 +567,7 @@
             _chart3?.HideCrosshair();
             _chart1?.HideCrosshair();
         }
+        @*End:Hidden*@
         isZooming = false;
     }
 }

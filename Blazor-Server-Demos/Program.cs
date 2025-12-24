@@ -7,9 +7,7 @@
 #endregion
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-#if NET8_0_OR_GREATER
 using BlazorDemos.Components;
-#endif
 using BlazorDemos.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +27,12 @@ using Microsoft.Extensions.AI;
 using OpenAI;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using AIAssistview.Service;
+using AIAssistView_AzureAI.Components.Services;
+#if STAGING
+using Azure.AI.OpenAI;
+using System.ClientModel;
+#endif
 
 
 var licenseKey = "";
@@ -39,25 +43,38 @@ builder.Services.AddScoped(sp =>
     return new HttpClient { BaseAddress = new Uri(UriHelper.BaseUri) };
 });
 // Add services to the container.
-#if NET8_0_OR_GREATER
-builder.Services.AddRazorComponents()
-.AddInteractiveServerComponents();
-#else
-    builder.Services.AddRazorPages();
-#endif
+builder.Services.AddRazorComponents().AddInteractiveServerComponents()
+    .AddHubOptions(options =>
+    {
+        options.ClientTimeoutInterval = TimeSpan.FromMinutes(5);
+        options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+        options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+    });
 SyncfusionLicenseProvider.RegisterLicense(licenseKey);
 #region AI Integration
 builder.Services.AddScoped<FileManagerService>();
 // Local Embeddings
 builder.Services.AddSingleton<LocalEmbedder>();
 // Smart Components
+#if STAGING
+/* Azure OpenAI Service */
+string AzureApiKey = Environment.GetEnvironmentVariable("API_KEY") ?? "Your-Api-Key";
+string AzureDeploymentName = Environment.GetEnvironmentVariable("DEPLOYMENT_NAME") ?? "Your-Model-Name";
+string AzureEndpoint = Environment.GetEnvironmentVariable("END_POINT") ?? "https://your-azure-openai.openai.azure.com/";
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
+     new Uri(AzureEndpoint),
+     new ApiKeyCredential(AzureApiKey)
+);
+IChatClient AIChatClient = azureOpenAIClient.GetChatClient(AzureDeploymentName).AsIChatClient();
+#else
 /* OpenAI Service */
-string apiKey = "your api key";
-string deploymentName = "your deployment name";
+string apiKey = Environment.GetEnvironmentVariable("API_KEY") ?? "Your-Api-Key";
+string deploymentName = Environment.GetEnvironmentVariable("DEPLOYMENT_NAME") ?? "Your-Model-Name";
 
 OpenAIClient openAIClient = new OpenAIClient(apiKey);
-IChatClient openAiChatClient = openAIClient.GetChatClient(deploymentName).AsIChatClient();
-builder.Services.AddChatClient(openAiChatClient);
+IChatClient AIChatClient = openAIClient.GetChatClient(deploymentName).AsIChatClient();
+#endif
+builder.Services.AddChatClient(AIChatClient);
 builder.Services.AddSyncfusionSmartComponents()
     .InjectOpenAIInference();
 builder.Services.AddSingleton<SyncfusionAIService>();
@@ -65,13 +82,15 @@ builder.Services.AddScoped<UserTokenService>();
 builder.Services.AddScoped<AzureAIService>(sp =>
 {
     var userTokenService = sp.GetRequiredService<UserTokenService>();
-    return new AzureAIService(userTokenService, openAiChatClient);
+    return new AzureAIService(userTokenService, AIChatClient);
 });
 
 #endregion
 builder.Services.AddControllers();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<SfDialogService>();
+builder.Services.AddScoped<AIService>();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<SampleService>();
 builder.Services.AddSingleton<DeviceMode>();
 builder.Services.AddMemoryCache();
@@ -102,8 +121,18 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
         options.IncludeSubDomains = true;
         options.MaxAge = TimeSpan.FromDays(730);
     });
+	builder.Services.AddScoped<AzureOpenAIService>(sp =>
+	{
+	    var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
+	    var httpClient = httpClientFactory.CreateClient();
 
-        var app = builder.Build();
+	    var endpoint = "";
+	    var apiKey = ""; // Replace with your API key;
+	    var deploymentName = "";
+
+	    return new AzureOpenAIService(httpClient, endpoint, apiKey, deploymentName);
+	});
+	var app = builder.Build();
     #region Localization
         app.UseRequestLocalization(localizationOptions);
     #endregion
@@ -123,8 +152,8 @@ if (!app.Environment.IsDevelopment())
         Secure = CookieSecurePolicy.Always
     });
     app.UseDefaultFiles();
-#if NET9_0
-    app.MapStaticAssets();
+#if NET9_0_OR_GREATER
+app.MapStaticAssets();
     app.UseStaticFiles(new StaticFileOptions
     {
         FileProvider = new PhysicalFileProvider(
@@ -132,17 +161,12 @@ if (!app.Environment.IsDevelopment())
         RequestPath = "/DemoBaseDirectory"
     });
 #else
-    app.UseStaticFiles();
+app.UseStaticFiles();
 #endif
     app.UseRouting();
-#if NET8_0_OR_GREATER
     app.UseAntiforgery();
     app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(BlazorDemos.Pages.Index).Assembly)
     .AddInteractiveServerRenderMode();
-#else
-    app.MapBlazorHub();
-    app.MapFallbackToPage("/_Host");
-#endif
 app.MapControllers();
 app.Run();

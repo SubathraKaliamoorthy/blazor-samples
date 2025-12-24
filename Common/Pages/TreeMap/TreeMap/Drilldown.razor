@@ -5,7 +5,9 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Inputs
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -19,8 +21,8 @@
     <p>More information about drill-down can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/drill-down" aria-label="Blazor TreeMap Drilldown documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap WeightValuePath="Population" EnableDrillDown="true" DrillDownView="@DrilldownCheckBoxValue" EnableBreadcrumb="@AllowBreadcrumb" BreadcrumbConnector="@BreadCrumbConnector" Palette="@Palette"
+<div class="col-lg-9 control-section">
+    <SfTreeMap @ref='TreeMap' WeightValuePath="Population" EnableDrillDown="true" DrillDownView="@DrilldownCheckBoxValue" EnableBreadcrumb="@AllowBreadcrumb" BreadcrumbConnector="@BreadCrumbConnector" Palette="@Palette"
                DataSource="@WorldPopulation" Theme="@Theme">
         <TreeMapTitleSettings Text="Most Populated Continents 2021">
             <TreeMapTitleTextStyle Size="15px" FontFamily="Segoe UI" />
@@ -49,10 +51,7 @@
         <a href="https://en.wikipedia.org/wiki/2016_United_States_presidential_election" target="_blank">en.wikipedia.org</a>
     </div>
 </div>
-<div id="drilldown" class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -98,9 +97,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -116,6 +113,7 @@
 </style>
 @code {
     public Theme Theme { get; set; }
+    public SfTreeMap<WorldPopulationDetails>? TreeMap;
     public bool DrilldownCheckBoxValue = true;
     public string BreadCrumbConnector = " - ";
     public bool AllowBreadcrumb = true;
@@ -129,7 +127,10 @@
     }
     public void HeaderAlignmentvaluechange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, HeaderDropDownList> args)
     {
-        HeaderAlignmentValue = args.Value;
+        if (args == null)
+            return;
+
+        HeaderAlignmentValue = args.Value ?? HeaderAlignmentValue;
         if (args.Value == "Near")
         {
             Header = Alignment.Near;
@@ -436,4 +437,18 @@
         new WorldPopulationDetails() { Continent = "Africa", Country = "Saint Helena", Population = 6.077 },
         new WorldPopulationDetails() { Continent = "Europe", Population = 747636.026 }
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
+    }
+
 }

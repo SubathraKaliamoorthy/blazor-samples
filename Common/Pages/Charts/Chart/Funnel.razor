@@ -1,7 +1,9 @@
-﻿ @page "/chart/funnel"
+ @page "/chart/funnel"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Inputs 
 
@@ -64,6 +66,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "90%";
@@ -73,6 +76,7 @@
             ConnectorLength = "10px";
             Size = "7px";
         }
+        @*End:Hidden*@
     }
  
     public class FunnelData

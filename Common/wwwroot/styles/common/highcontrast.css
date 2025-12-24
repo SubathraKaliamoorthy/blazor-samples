@@ -138,9 +138,8 @@ body.highcontrast, .highcontrast #sb-header-text,
 .highcontrast .sb-left-pane .e-listview .e-list-item.e-active:hover {
     color: #ffffff;
 }
-.highcontrast .sb-content-tab.e-tab > .e-tab-header .e-toolbar-items > .e-indicator {
+.highcontrast .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active::before {
     background: #ffd939;
-    display: block;
 }
 .highcontrast .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active > .e-tab-wrap > .e-text-wrap > .e-tab-text, .highcontrast .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item > .e-tab-wrap > .e-text-wrap > .e-tab-text:hover,
 .highcontrast .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item.e-active > .e-tab-wrap > .e-text-wrap > .e-tab-icon, .highcontrast .sb-content-tab.e-tab > .e-tab-header > .e-toolbar-items > .e-toolbar-item > .e-tab-wrap > .e-text-wrap > .e-tab-icon:hover {
@@ -252,4 +251,10 @@ body.highcontrast, .highcontrast #sb-header-text,
 }
 .highcontrast .all-components {
   color: #196cff;
+}
+.highcontrast.e-bigger .e-badge.sb-badge {
+    line-height: 1;
+}
+.highcontrast .e-tooltip-wrap .e-arrow-tip-inner.e-tip-bottom::before {
+    content: '\e919';
 }

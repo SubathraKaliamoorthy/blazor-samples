@@ -1,4 +1,4 @@
-﻿@page "/tooltip/keyboard-navigation"
+@page "/tooltip/keyboard-navigation"
 @using Syncfusion.Blazor.Popups
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Buttons
@@ -79,7 +79,7 @@
             </table>
         </form>
         @*Initialize Tooltip component*@
-        <SfTooltip Target="#details [title]" OpensOn="Focus" Created="OnCreated" TargetContainer="#details"></SfTooltip>
+        <SfTooltip Target="#details .e-textbox" OpensOn="Focus" Created="OnCreated" TargetContainer="#details"></SfTooltip>
     </div>
 </div>
 

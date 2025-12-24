@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/events"
+@page "/rich-text-editor/events"
 
 @using Syncfusion.Blazor.RichTextEditor
 @using Syncfusion.Blazor.Inputs
@@ -42,6 +42,7 @@
         <li><a href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.RichTextEditor.RichTextEditorEvents.html#Syncfusion_Blazor_RichTextEditor_RichTextEditorEvents_OnResizeStop" aria-label="Class reference of OnResizeStop event in Rich Text Editor">OnResizeStop</a> – Triggers only when you stop resizing the image.</li>
         <li><a href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.RichTextEditor.RichTextEditorEvents.html#Syncfusion_Blazor_RichTextEditor_RichTextEditorEvents_OnToolbarClick" aria-label="Class reference of OnToolbarClick event in Rich Text Editor">OnToolbarClick</a> – Triggers when the Rich Text Editor toolbar items are clicked.</li>
         <li><a href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.RichTextEditor.RichTextEditorEvents.html#Syncfusion_Blazor_RichTextEditor_RichTextEditorEvents_SelectionChanged" aria-label="Class reference of SelectionChanged event in Rich Text Editor">SelectionChanged</a> – Triggers only when the selection within the editor is modified.</li>
+        <li><a href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.RichTextEditor.RichTextEditorEvents.html#Syncfusion_Blazor_RichTextEditor_RichTextEditorEvents_OnMediaDrop" aria-label="Class reference of OnMediaDrop event in Rich Text Editor">OnMediaDrop</a> – Triggers whenever a media file such as a video, audio, or image is dragged and dropped into the editor.</li>
     </ul>
 </ActionDescription>
 
@@ -98,7 +99,7 @@
                             OnImageUploadSuccess="@OnImageUploadSuccess" ImageUploadChange="@ImageUploadChange"
                             OnImageRemoving="@OnImageRemoving" ImageDelete="@ImageDeleted"
                             OnToolbarClick="@ToolbarClick"
-                            SelectionChanged="@SelectionChanged"/>
+                            SelectionChanged="@SelectionChanged" OnMediaDrop="@OnMediaDrop"/>
                     <RichTextEditorToolbarSettings Items="@Items" />
                 </SfRichTextEditor>
             </div>
@@ -134,9 +135,9 @@
 </div>
 
 @code{
-    private SfRichTextEditor RteObj;
+    private SfRichTextEditor? RteObj;
     private string Output = "";
-    
+
     /* ToolbarSettings */
     private List<ToolbarItemModel> Items = new List<ToolbarItemModel>()
     {
@@ -189,7 +190,10 @@
     /*  Events */
     private void Created(object args)
     {
-        RteObj.RefreshUIAsync();
+        if (RteObj != null)
+        {
+            RteObj.RefreshUIAsync();
+        }
         this.Output = this.Output + "<span><b>Created</b> event called<hr></span>";
     }
     private void Destroyed(DestroyedEventArgs args)
@@ -287,6 +291,10 @@
     private void SelectionChanged(Syncfusion.Blazor.RichTextEditor.SelectionChangedEventArgs args)
     {
         this.Output = this.Output + "<span><b>SelectionChanged</b> event called<hr></span>";
+    }
+    private void OnMediaDrop(Syncfusion.Blazor.RichTextEditor.MediaDropEventArgs args)
+    {
+        this.Output = this.Output + "<span><b>OnMediaDrop</b> event called<hr></span>";
     }
 }
 

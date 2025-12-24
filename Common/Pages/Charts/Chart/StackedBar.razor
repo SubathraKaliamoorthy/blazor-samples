@@ -1,7 +1,9 @@
-﻿@page "/chart/stacked-bar"
+@page "/chart/stacked-bar"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -112,10 +114,12 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
                 Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void OnLegendClick(LegendClickEventArgs args)

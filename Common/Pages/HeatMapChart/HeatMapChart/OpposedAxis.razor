@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/opposed-axis"
+@page "/heatmap-chart/opposed-axis"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -17,9 +17,9 @@
    <p>The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item on touch-enabled devices.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section">
+<div class="col-lg-8 control-section">
     <div class="row">
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref='Map' DataSource="@DataSource" Theme="@_theme">
             <HeatMapTitleSettings Text="Monthly Flight Traffic at JFK Airport">
                 <HeatMapTitleTextStyle Size="15px" FontWeight="500" FontFamily="inherit" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
             </HeatMapTitleSettings>
@@ -42,8 +42,7 @@
         </SfHeatMap>
     </div>
 </div>
-<div id="opposed-axis" class="col-lg-3 property-section">
-    <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
             <tr style="height: 50px">
@@ -62,9 +61,10 @@
             </tr>
         </tbody>
     </table>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<int[,]>? Map { get; set; }
     public bool YOpposedPosition = true;
     public bool XOpposedPosition = true;
     private Theme _theme { get; set; }
@@ -85,12 +85,21 @@
         _theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (_theme.ToString().IndexOf("Dark") > -1 || _theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
     }
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
+    }
 }
 
 <style>
-    .col-lg-3.property-section {
-        padding-top: 60px;
-    }
 
     .fluent2 #opposed-axis #property .e-checkbox-wrapper .e-icons, .fluent2-dark #opposed-axis #property .e-checkbox-wrapper .e-icons, .fluent2-highcontrast #opposed-axis #property .e-checkbox-wrapper .e-icons {
         margin-left: 0px

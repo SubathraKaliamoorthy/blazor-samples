@@ -1,9 +1,10 @@
-﻿@page "/chart-3d/bar"
+@page "/chart-3d/bar"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
+@*Hidden:Lines*@
 @using ThemeHelper
-
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -64,9 +65,15 @@
     protected override void OnInitialized()
     {
         ChartTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "70%";
-        YAxisInterval = SampleService != null && SampleService.IsDevice ? 2 : 1;
-        YAxisMaximum = SampleService != null && SampleService.IsDevice ? 8 : 7;
+        ChartWidth = "70%";
+        YAxisInterval = 1;
+        YAxisMaximum = 7;
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+            YAxisInterval = 2;
+            YAxisMaximum = 8;
+        }
     }
 
     public class BarChart3DData

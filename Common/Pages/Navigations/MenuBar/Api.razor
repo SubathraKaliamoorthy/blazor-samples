@@ -1,4 +1,4 @@
-﻿@page "/menu-bar/api"
+@page "/menu-bar/api"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.DropDowns
@@ -87,14 +87,14 @@
 </div>
 
 @code {
-    private SfMenu<MenuItem> menu;
+    private SfMenu<MenuItem>? menu;
     private List<string> items = new List<string>() { "Events", "Movies", "Directory", "Queries", "Services" };
     private string horizontal = "Horizontal";
     private Orientation mode = Orientation.Horizontal;
     private bool menuItemClick;
     private bool showButtonChange;
     private List<DataModel> menuItems = new List<DataModel>();
-    
+
 
     protected override Task OnInitializedAsync()
     {
@@ -134,8 +134,12 @@
         {
             for (int i = 0; i < args.Value.Length; i++)
             {
-                DataModel item = menuItems.Where(item => item.Text == args.Value[i]).FirstOrDefault();
-                item.IsDisabled = true;
+                DataModel? item = menuItems.Where(item => item.Text == args.Value[i]).FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsDisabled = true;
+
+                }
             }
         }
     }
@@ -169,8 +173,8 @@
 
     public class DataModel
     {
-        public string Text { get; set; }
-        public List<DataModel> SubItems { get; set; }
+        public string? Text { get; set; }
+        public List<DataModel>? SubItems { get; set; }
         public bool IsDisabled { get; set; }
     }
 }

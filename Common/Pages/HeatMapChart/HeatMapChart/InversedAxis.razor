@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/inversed-axis"
+@page "/heatmap-chart/inversed-axis"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -19,7 +19,7 @@
 
 <div class="col-lg-8 control-section">
     <div class="">
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref="Map" DataSource="@DataSource" Theme="@_theme">
             <HeatMapTitleSettings Text="Population Growth Rate of the most Populous Countries">
                 <HeatMapTitleTextStyle Size="15px" FontWeight="500" FontFamily="inherit" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
             </HeatMapTitleSettings>
@@ -53,8 +53,7 @@
         </div>
     </div>
 </div>
-<div id="inversed-axis" class="col-lg-4 property-section">
-    <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
             <tr style="height: 50px">
@@ -73,9 +72,10 @@
             </tr>
         </tbody>
     </table>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<double[,]>? Map { get; set; }
     private Theme _theme { get; set; }
     public string AxisLabelColor = "Black";
     public bool XInverse = true;
@@ -96,6 +96,18 @@
     {
         _theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (_theme.ToString().IndexOf("Dark") > -1 || _theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
+    }
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
     }
 }
 

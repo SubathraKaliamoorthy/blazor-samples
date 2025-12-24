@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 
 namespace BlazorDemos
 {
@@ -107,7 +103,6 @@ namespace BlazorDemos
                 HeaderText = "Blazor Query Builder Example - Natural Language Query Processing",
                 MetaDescription = "This demo shows how to convert plain English queries into structured filter conditions automatically for intuitive data filtering without complex syntax.",
                 NotificationDescription = new string[]{ @" This demo shows the natural language querying AI feature in Query Builder." },
-                Type = SampleType.AI
             },
 #endif
             new Sample

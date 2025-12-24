@@ -1,4 +1,4 @@
-﻿@page "/DropDown-List/Filtering"
+@page "/DropDown-List/Filtering"
 
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
@@ -25,7 +25,7 @@
     <div class="col-lg-8 control-section sb-property-border">
         <div class="control-wrapper">
             <label class="example-label">Select a country</label>
-            <SfDropDownList TValue="string" TItem="Countries" Placeholder="e.g. Australia" AllowFiltering="true" DebounceDelay="@NumericValue" DataSource="@Country">
+            <SfDropDownList TValue="string" TItem="Countries" PopupHeight="200px" Placeholder="e.g. Australia" AllowFiltering="true" DebounceDelay="@NumericValue" DataSource="@Country">
                 <DropDownListFieldSettings Text="Name" Value="Code" />
             </SfDropDownList>
         </div>

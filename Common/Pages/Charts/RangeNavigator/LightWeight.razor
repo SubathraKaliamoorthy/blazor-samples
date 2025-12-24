@@ -3,7 +3,9 @@
 @using Syncfusion.Blazor
 @using System.Net.Http.Json
 @inject NavigationManager NavigationManager
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject HttpClient Http
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -32,16 +34,16 @@ else
         <br />
         <div>
             <SfRangeNavigator 
-                Value="@DateRangeSelection" 
-                IntervalType="RangeIntervalType.Months" 
-                Theme="@SelectedTheme" 
-                AnimationDuration="500" 
-                LabelFormat="MMM" 
-                ValueType="Syncfusion.Blazor.Charts.RangeValueType.DateTime" 
-                DataSource="@LightWeightData" 
-                XName="x" 
-                YName="y" 
-                Interval="@TimeInterval">
+            Value="@DateRangeSelection" 
+            IntervalType="RangeIntervalType.Months" 
+            Theme="@SelectedTheme" 
+            AnimationDuration="500" 
+            LabelFormat="MMM" 
+            ValueType="Syncfusion.Blazor.Charts.RangeValueType.DateTime" 
+            DataSource="@LightWeightData" 
+            XName="x" 
+            YName="y" 
+            Interval="@TimeInterval">
                 <RangeNavigatorStyleSettings SelectedRegionColor="@SelectedRegionColor"></RangeNavigatorStyleSettings>
                 <RangeNavigatorMajorGridLines Width="0.000001"></RangeNavigatorMajorGridLines>
             </SfRangeNavigator>
@@ -54,12 +56,11 @@ else
     public ChartData[]? LightWeightData { get; set; }
     public object[] DateRangeSelection { get; set; } = new object[] { new DateTime(2017, 10, 1), new DateTime(2017, 11, 1) };
     public double TimeInterval { get; set; }
-    private string? CurrentUri { get; set; }
     private string? SelectedRegionColor { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-	    LightWeightData = await Http.GetFromJsonAsync<ChartData[]>(NavigationManager.BaseUri + SampleService?.WebAssetsPath + "data/range-navigator/default-data.json");
+        LightWeightData = await Http.GetFromJsonAsync<ChartData[]>(NavigationManager.BaseUri + SampleService?.WebAssetsPath + "data/range-navigator/default-data.json");
     }
 
     public class ChartData
@@ -70,10 +71,14 @@ else
 
     protected override void OnInitialized()
     {
-        CurrentUri = NavigationManager.Uri;
-        TimeInterval = SampleService != null && SampleService.IsDevice ? 2 : 1;
-
-        SelectedTheme = ThemeHelper.GetCurrentTheme(CurrentUri);
+        TimeInterval = 1;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            TimeInterval = 2;
+        }
+        @*End:Hidden*@
+        SelectedTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         SelectedRegionColor = SelectedTheme switch
         {
             Theme.Material3Dark => "#4EAAFF",

@@ -5,7 +5,9 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -19,7 +21,7 @@
     <p>More information about export functionality can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/print-and-export" aria-label="Blazor Maps Print and Export documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
+<div class="col-lg-9 control-section" align='center'>
     <SfMaps @ref="@MapRef" AllowPdfExport="true" AllowImageExport="true" Theme="@Theme">
         <MapsTitleSettings Text="Location of the Wonders in the World">
             <MapsTitleTextStyle Size="16px" FontFamily="Segoe UI" />
@@ -40,9 +42,7 @@
         </MapsLayers>
     </SfMaps>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-9" >
         <table title="Properties" style="width: 100%">
             <tbody>
                 <tr>
@@ -92,8 +92,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -164,16 +163,16 @@
     };
     private void NameChange(ChangedEventArgs args)
     {
-        FileName = args.Value;
+        FileName = args?.Value ?? FileName;
     }
     private void MapFileValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FileFormatType> args)
     {
-        if (args.Value != null)
+        if (args != null && args.Value != null)
             FileType = args.Value;
     }
     public void MapLayerTypeValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, MapType> args)
     {
-        MapValue = args.Value;
+        MapValue = args?.Value ?? MapValue;
         if (MapValue == "Geometry")
         {
             ShapeData = new { dataOptions = SampleService?.WebAssetsPath + "data/maps/world-map.json" };
@@ -223,4 +222,5 @@
         ShapeData = new { dataOptions = SampleService?.WebAssetsPath + "data/maps/world-map.json" };
         FileFormats = GeometryFileTypes;
     }
+
 }

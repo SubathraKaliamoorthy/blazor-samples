@@ -1,4 +1,4 @@
-﻿@page "/kanban/observable"
+@page "/kanban/observable"
 @using Syncfusion.Blazor.Kanban
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Notifications
@@ -41,8 +41,8 @@
 </div>
 
 @code{
-    private SfToast ToastObj;
-    
+    private SfToast? ToastObj;
+
     private List<ColumnModel> ColumnData = new List<ColumnModel>() 
     {
         new ColumnModel(){ HeaderText= "To Do", KeyField= new List<string>() { "Open" } },
@@ -51,8 +51,8 @@
         new ColumnModel(){ HeaderText= "Done", KeyField=new List<string>() { "Close" } }
     };
 
-    public ObservableCollection<KanbanTask> TasksCollection { get; set; }
-    private string ToastContent { get; set; }
+    public ObservableCollection<KanbanTask>? TasksCollection { get; set; }
+    private string? ToastContent { get; set; }
     private int AddUniqueId { get; set; }
     private int UpdateUniqueId { get; set; }
     private string ToastTarget { get; set; } = "#toast-kanban-observable";
@@ -74,13 +74,16 @@
         var TaskId = "Task 10000" + ++AddUniqueId;
         this.ToastContent = "<b>Open</b> Column, <b>" + TaskId + "</b> Card has been added";
         await Task.Delay(100);
-        TasksCollection.Add(new KanbanTask() { Id = TaskId, Status = "Open", Summary = "Improve application performance", Assignee = "Janet Leverling" });
-        await this.ToastObj.ShowAsync();
+        TasksCollection?.Add(new KanbanTask() { Id = TaskId, Status = "Open", Summary = "Improve application performance", Assignee = "Janet Leverling" });
+        if (this.ToastObj != null)
+        {
+            await this.ToastObj.ShowAsync();
+        }
     }
 
     public async Task DeleteRecord()
     {
-        if (TasksCollection.Any())
+        if (this.ToastObj != null && TasksCollection != null && TasksCollection.Any())
         {
             this.ToastContent = "<b>" + TasksCollection.First().Status + "</b> Column, <b>" + TasksCollection.First().Id + "</b> Card has been deleted";
             await Task.Delay(100);
@@ -91,7 +94,7 @@
 
     public async Task UpdateRecord()
     {
-        if (TasksCollection.Any())
+        if (this.ToastObj != null && TasksCollection != null && TasksCollection.Any())
         {
             var updateId = ++UpdateUniqueId;
             var data = TasksCollection[updateId];
@@ -105,9 +108,9 @@
 
     public class KanbanTask : INotifyPropertyChanged
     {
-        public string Id { get; set; }
-        private string _status { get; set; }
-        public string Status
+        public string? Id { get; set; }
+        private string? _status { get; set; }
+        public string? Status
         {
             get { return _status; }
             set
@@ -116,9 +119,9 @@
                 NotifyPropertyChanged("Status");
             }
         }
-        public string Summary { get; set; }
-        public string Assignee { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string? Summary { get; set; }
+        public string? Assignee { get; set; }
+        public event PropertyChangedEventHandler? PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;

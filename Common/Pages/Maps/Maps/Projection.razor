@@ -1,9 +1,11 @@
-﻿@page "/maps/projection"
+@page "/maps/projection"
 
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -17,9 +19,9 @@
     <p>More information about projection type can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/customization#projection-type" aria-label="Blazor Maps Projection Type documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
+<div class="col-lg-8 control-section" align='center'>
     <div class="control-section">
-        <SfMaps ProjectionType="@ProjectionTypeValue" Theme="@Theme" Background="transparent">
+        <SfMaps @ref="@MapRef" ProjectionType="@ProjectionTypeValue" Theme="@Theme" Background="transparent">
             <MapsAreaSettings Background="transparent" />
             <MapsTitleSettings Text="Members of the UN Security Council in 2017">
                 <MapsTitleTextStyle Size="16px" FontFamily="Segoe UI" />
@@ -48,10 +50,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8">
             <table id="property" style="width:100%" title="Properties">
                 <tbody>
                     <tr style="height: 50%">
@@ -67,11 +66,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
+    public SfMaps? MapRef;
     public string ProjectionValue = "Mercator";
     public string[] ShapePropertyPath = { "name" };
     public string[] ShapeColorOne = { "#045A8D" };
@@ -120,7 +118,7 @@
     };
     private void ProjectionTypeChange(ChangeEventArgs<string, ProjectionTypestring> args)
     {
-        ProjectionValue = (args.Value).ToString();
+        ProjectionValue = (args?.Value)?.ToString() ?? ProjectionValue;
         if (ProjectionValue == "Equirectangular")
         {
             ProjectionTypeValue = ProjectionType.Equirectangular;
@@ -159,4 +157,5 @@
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
+
 }

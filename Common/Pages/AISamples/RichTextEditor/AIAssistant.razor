@@ -1,4 +1,4 @@
-﻿@page "/ai-richtexteditor/ai-assistant"
+@page "/ai-richtexteditor/ai-assistant"
 @page "/rich-text-editor/ai-assistant"
 
 @using BlazorDemos.Service
@@ -56,7 +56,8 @@
             <RichTextEditorCustomToolbarItems>
                 <RichTextEditorCustomToolbarItem Name="AIAssistant">
                     <Template>
-                        <SfDropDownButton CssClass="menubutton e-tbar-btn e-tbar-btn-text" IconCss="e-icons e-ai-chat e-btn-icon e-icon-left" Content="AI Assistant" Disabled="@enabelAIAssitantButton">
+                        <SfDropDownButton CssClass="menubutton e-rte-dropdown-menu" IconCss="e-icons e-ai-chat e-btn-icon e-icon-left" Disabled="@enabelAIAssitantButton">
+                            <span class="e-rte-dropdown-btn-text">AI Assistant</span>
                             <DropDownButtonEvents ItemSelected="AIQuerySelectedMenu" />
                             <DropDownMenuItems>
                                 <DropDownMenuItem Text="Rephrase"></DropDownMenuItem>
@@ -71,7 +72,7 @@
                 <RichTextEditorCustomToolbarItem Name="Rephrase">
                     <Template>
                         <SfButton CssClass="@ButtonClass" @onclick="Rephrase" Disabled="@enabelAIAssitantButton">
-                            <div class="e-tbar-btn-text">Rephrase</div>
+                            <span class="e-tbar-btn-text">Rephrase</span>
                         </SfButton>
                     </Template>
                 </RichTextEditorCustomToolbarItem>

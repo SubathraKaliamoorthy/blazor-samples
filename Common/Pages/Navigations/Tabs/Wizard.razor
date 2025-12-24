@@ -1,4 +1,4 @@
-﻿@page "/tabs/wizard"
+@page "/tabs/wizard"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.DropDowns
@@ -236,9 +236,9 @@
 </div>
 
 @code{
-    public SfDropDownList<string, CitiesFields> StartPoint;
-    public SfDropDownList<string, CitiesFields> EndPoint;
-    public SfDropDownList<string, DropdownFields> Quota;
+    public SfDropDownList<string, CitiesFields>? StartPoint;
+    public SfDropDownList<string, CitiesFields>? EndPoint;
+    public SfDropDownList<string, DropdownFields>? Quota;
 
     public int SelectedPage { get; set; } = 0;
     public int SelectedTrain { get; set; }
@@ -248,20 +248,20 @@
     public Boolean PaymentPage { get; set; } = true;
     public Boolean PassengerPage { get; set; } = true;
     public Boolean ShowAlert { get; set; } = false;
-    public SfDatePicker<DateTime?> Date;
-    public SfTextBox FirstPassengerName;
-    public SfTextBox SecondPassengerName;
-    public SfTextBox ThirdPassengerName;
-    public SfDropDownList<string, DropdownFields> FirstPassengerGender;
-    public SfDropDownList<string, DropdownFields> SecondPassengerGender;
-    public SfDropDownList<string, DropdownFields> ThirdPassengerGender;
-    public SfDropDownList<string, DropdownFields> FirstPassengerBerth;
-    public SfDropDownList<string, DropdownFields> SecondPassengerBerth;
-    public SfDropDownList<string, DropdownFields> ThirdPassengerBerth;
+    public SfDatePicker<DateTime?>? Date;
+    public SfTextBox? FirstPassengerName;
+    public SfTextBox? SecondPassengerName;
+    public SfTextBox? ThirdPassengerName;
+    public SfDropDownList<string, DropdownFields>? FirstPassengerGender;
+    public SfDropDownList<string, DropdownFields>? SecondPassengerGender;
+    public SfDropDownList<string, DropdownFields>? ThirdPassengerGender;
+    public SfDropDownList<string, DropdownFields>? FirstPassengerBerth;
+    public SfDropDownList<string, DropdownFields>? SecondPassengerBerth;
+    public SfDropDownList<string, DropdownFields>? ThirdPassengerBerth;
     public bool EmptyField { get; set; } = false;
     public bool SameField { get; set; } = false;
-    public List<PassengerFields> PassengerData;
-    public List<GridFields> GridData;
+    public List<PassengerFields>? PassengerData;
+    public List<GridFields>? GridData;
 
 
     public List<CitiesFields> CitiesData = new List<CitiesFields>()
@@ -296,11 +296,11 @@
 
     public void SearchButtonClick()
     {
-        if ((StartPoint.Value == null) || (EndPoint.Value == null) || (Quota.Value == null))
+        if ((StartPoint?.Value == null) || (EndPoint?.Value == null) || (Quota?.Value == null))
         {
             EmptyField = true;
         }
-        else if (StartPoint.Value == EndPoint.Value)
+        else if (StartPoint?.Value == EndPoint?.Value)
         {
             SameField = true;
         }
@@ -313,16 +313,16 @@
                 {
                     TrainNo = 1000,
                     Name = "Train" + "1",
-                    Departure = StartPoint.Value,
-                    Arrival = EndPoint.Value,
+                    Departure = StartPoint?.Value,
+                    Arrival = EndPoint?.Value,
                     Availability = 30
                 },
                 new GridFields
                 {
                     TrainNo = 1002,
                     Name = "Train" + "2",
-                    Departure = StartPoint.Value,
-                    Arrival = EndPoint.Value,
+                    Departure = StartPoint?.Value,
+                    Arrival = EndPoint?.Value,
                     Availability = 28
                 }
             };
@@ -373,7 +373,7 @@
 
     public void PassengerListContinue()
     {
-        if (FirstPassengerName.Value == null || FirstPassengerGender.Value == null)
+        if (FirstPassengerName?.Value == null || FirstPassengerGender?.Value == null)
         {
             EmptyField = true;
         }
@@ -388,29 +388,29 @@
                 PassengerData.Add(new PassengerFields
                 {
                     TrainNo = SelectedTrain,
-                    Name = FirstPassengerName.Value,
-                    Gender = FirstPassengerGender.Value,
-                    Berth = FirstPassengerBerth.Value
+                    Name = FirstPassengerName?.Value,
+                    Gender = FirstPassengerGender?.Value,
+                    Berth = FirstPassengerBerth?.Value
                 });
             }
-            if (SecondPassengerName.Value != null)
+            if (SecondPassengerName?.Value != null)
             {
                 PassengerData.Add(new PassengerFields
                 {
                     TrainNo = SelectedTrain,
-                    Name = SecondPassengerName.Value,
-                    Gender = SecondPassengerGender.Value,
-                    Berth = SecondPassengerBerth.Value
+                    Name = SecondPassengerName?.Value,
+                    Gender = SecondPassengerGender?.Value,
+                    Berth = SecondPassengerBerth?.Value
                 });
             }
-            if (ThirdPassengerName.Value != null)
+            if (ThirdPassengerName?.Value != null)
             {
                 PassengerData.Add(new PassengerFields
                 {
                     TrainNo = SelectedTrain,
-                    Name = ThirdPassengerName.Value,
-                    Gender = ThirdPassengerGender.Value,
-                    Berth = ThirdPassengerBerth.Value
+                    Name = ThirdPassengerName?.Value,
+                    Gender = ThirdPassengerGender?.Value,
+                    Berth = ThirdPassengerBerth?.Value
                 });
             }
         }
@@ -438,31 +438,31 @@
     
     public class CitiesFields
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int Fare { get; set; }
     }
 
     public class DropdownFields
     {
-        public string ID { get; set; }
-        public string Text { get; set; }
+        public string? ID { get; set; }
+        public string? Text { get; set; }
     }
 
     public class GridFields
     {
         public int TrainNo { get; set; }
-        public string Name { get; set; }
-        public string Departure { get; set; }
-        public string Arrival { get; set; }
+        public string? Name { get; set; }
+        public string? Departure { get; set; }
+        public string? Arrival { get; set; }
         public int Availability { get; set; }
     }
 
     public class PassengerFields
     {
         public int TrainNo { get; set; }
-        public string Name { get; set; }
-        public string Gender { get; set; }
-        public string Berth { get; set; }
+        public string? Name { get; set; }
+        public string? Gender { get; set; }
+        public string? Berth { get; set; }
     }
 }
 

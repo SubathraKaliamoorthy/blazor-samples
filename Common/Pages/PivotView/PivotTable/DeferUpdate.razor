@@ -1,4 +1,4 @@
-﻿@page "/pivot-table/defer-layout-update"
+@page "/pivot-table/defer-layout-update"
 
 @using Syncfusion.Blazor.PivotView
 
@@ -121,10 +121,12 @@
     protected override void OnInitialized()
     {
         Data = PivotProductDetails.GetProductData();
+        @*Hidden:Lines*@
         if (SampleService.IsDevice)
         {
             _mobileFieldList = true;
         }
+        @*End:Hidden*@
     }
     private async Task PivotEnginePopulated(EnginePopulatedEventArgs args)
     {

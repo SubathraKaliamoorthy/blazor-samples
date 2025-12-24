@@ -1,4 +1,4 @@
-﻿@page "/diagram/swimlane"
+@page "/diagram/swimlane"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Diagram.SymbolPalette
@@ -162,7 +162,7 @@
                         <VerticalGridLines LineColor="#e0e0e0" LineIntervals="@GridLineIntervals">
                         </VerticalGridLines>
                     </SnapSettings>
-                    <ContextMenuSettings Show="true" Items="@ContextMenuItems" ShowCustomMenuOnly="true"
+                    <ContextMenuSettings Show="false" Items="@ContextMenuItems" ShowCustomMenuOnly="true"
                                          ContextMenuOpening="ContextMenuOpening" ContextMenuItemClicked="ContextMenuItemClicked"></ContextMenuSettings>
                 </SfDiagramComponent>
             </div>
@@ -180,7 +180,7 @@
     SnapConstraints snapConstraints = SnapConstraints.All & ~SnapConstraints.ShowLines;
     DiagramSelectionSettings selectionSettings = new DiagramSelectionSettings() { Constraints = SelectorConstraints.All & ~SelectorConstraints.Rotate };
     public DiagramSize? SymbolPreview;
-    public SymbolMargin? SymbolMargin = new SymbolMargin { Left = 15, Right = 15, Top = 15, Bottom = 15 };
+    public SymbolMargin? SymbolMargin = new SymbolMargin { Left = 10, Right = 10, Top = 10, Bottom = 10 };
     public SfDiagramComponent? Diagram;
     public SfSymbolPaletteComponent? PaletteInstance;
 

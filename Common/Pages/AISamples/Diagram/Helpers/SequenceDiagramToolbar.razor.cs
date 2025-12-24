@@ -11,7 +11,6 @@ using Microsoft.JSInterop;
 using Syncfusion.Blazor.Diagram;
 using System;
 using System.Threading.Tasks;
-using TextToSequenceDiagram;
 
 namespace TextToSequenceDiagram
 {

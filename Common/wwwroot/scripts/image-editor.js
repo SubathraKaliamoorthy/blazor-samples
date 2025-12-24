@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿window.canvasInterop = {
+﻿﻿window.canvasInterop = {
     imgSrc: "",
     onInitialized: function () {
         document.getElementById('img-upload').onchange = function (args) {

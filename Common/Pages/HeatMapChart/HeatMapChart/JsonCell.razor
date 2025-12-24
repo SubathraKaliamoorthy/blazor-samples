@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/json-cell"
+@page "/heatmap-chart/json-cell"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -149,10 +149,12 @@
     };
     public void TooltipRendering(TooltipEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             args.Content = new string[] { args.XLabel + " | " + args.YLabel + " : " + args.Value + " M " };
         }
+        @*End:Hidden*@
     }
     private void Resized(ResizeEventArgs args)
     {
@@ -169,13 +171,17 @@
     {
         _theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (_theme.ToString().IndexOf("Dark") > -1 || _theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             LabelFormat = string.Empty;
         } 
         else
         {
+            @*End:Hidden*@
             LabelFormat = "{value} M";
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
 }

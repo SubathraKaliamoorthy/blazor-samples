@@ -1,4 +1,4 @@
-﻿@page "/file-manager/custom-thumbnail"
+@page "/file-manager/custom-thumbnail"
 
 @using Syncfusion.Blazor.FileManager;
 
@@ -49,7 +49,6 @@
     </SfFileManager>
 </div>
 
-@*Hidden:Lines*@
 @code {
     public List<ToolBarItemModel> Items = new List<ToolBarItemModel>()
     {
@@ -69,7 +68,6 @@
     public string[] LayoutItems = new string[] { "SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll" };
     public string[] FileItems = new string[] { "Cut", "Copy", "|", "Delete", "Download", "Rename", "|", "Details" };
 }
-@*End:Hidden*@
 <style>
     /* File Manager custom thumbnail related styles */
     .e-filemanager .e-large-icons .e-fe-image {

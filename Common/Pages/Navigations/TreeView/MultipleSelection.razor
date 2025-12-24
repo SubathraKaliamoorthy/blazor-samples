@@ -1,4 +1,4 @@
-﻿@page "/treeview/multiple-selection"
+@page "/treeview/multiple-selection"
 
 @inject NavigationManager UriHelper
 @using Syncfusion.Blazor.Navigations
@@ -60,7 +60,7 @@
     // Specifies the DataSource value for TreeView component.
     private List<TreeItem> TreeDataSource = new List<TreeItem>();
     // Specify the reference of TreeView element.
-    private SfTreeView<TreeItem> TreeRef;
+    private SfTreeView<TreeItem>? TreeRef;
     // Specifies the SelectedNodes value for TreeView component.
     private string[] SelectedNodes = new string[] { "02", "03" };
     protected override void OnAfterRender(bool firstRender)
@@ -146,13 +146,13 @@
 
     public class TreeItem
     {
-        public string NodeId { get; set; }
-        public string NodeText { get; set; }
-        public string Icon { get; set; }
-        public string ImageUrl { get; set; }
+        public string? NodeId { get; set; }
+        public string? NodeText { get; set; }
+        public string? Icon { get; set; }
+        public string? ImageUrl { get; set; }
         public bool Expanded { get; set; }
         public bool Selected { get; set; }
-        public List<TreeItem> Child;
+        public List<TreeItem>? Child;
     }
 }
 <style>
@@ -178,7 +178,7 @@
     /* Loading sprite image for TreeView */
     .e-treeview .e-list-icon {
         background-repeat: no-repeat;
-        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/treeview/file-icons.png")');
+        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/treeview/file-icons.png")');
         height: 20px;
     }
     .e-treeview .e-list-img {

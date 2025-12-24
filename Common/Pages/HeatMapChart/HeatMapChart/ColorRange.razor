@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/color-range"
+@page "/heatmap-chart/color-range"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -18,7 +18,7 @@
 
 <div class="col-lg-9 control-section">
     <div class="row">
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref='Map' DataSource="@DataSource" Theme="@_theme">
             <HeatMapTitleSettings Text="U.S. Government Energy Consumption by Agency (Trillion Btu)">
                 <HeatMapTitleTextStyle Size="15px" FontWeight="500" FontFamily="inherit" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
             </HeatMapTitleSettings>
@@ -50,8 +50,7 @@
         </SfHeatMap>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
             <tr style="height: 50px">
@@ -70,9 +69,10 @@
             </tr>
         </tbody>
     </table>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<double[,]>? Map { get; set; }
     private Theme _theme { get; set; }
     public string AxisLabelColor = "Black";
     public PaletteType PalatteType = PaletteType.Gradient;
@@ -97,6 +97,18 @@
         {
             PalatteType = PaletteType.Gradient;
             Type = "Gradient";
+        }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
         }
     }
 }

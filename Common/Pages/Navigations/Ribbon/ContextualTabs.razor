@@ -21,9 +21,9 @@
     <p>The Blazor <code>Ribbon</code> component supports contextual tabs that appear dynamically to display commands or tools relevant to the current context of the application. This feature is ideal for scenarios like editing a table or an image, where specific tools are required. These tabs can be shown or hidden programmatically or based on user actions, providing a streamlined and responsive user experience.</p>
 </ActionDescription>
 
-<div class="col-lg-12 control-section default-ribbon-section">
+<div class="col-lg-12 control-section contextual-ribbon-section">
     <div id="ribbonContainer">
-        <SfRibbon @ref=@ribbonRef @bind-SelectedTab=@selectedTab Created="RibbonCreated" ID="ribbon" LauncherIconClick="LauncherIconClick">
+        <SfRibbon @ref=@ribbonRef @bind-SelectedTab=@selectedTab Created="RibbonCreated" ID="contextual-ribbon" LauncherIconClick="LauncherIconClick">
             <RibbonFileMenuSettings Visible=true MenuItems="@fileMenuItems" ItemSelecting="@HandleFilemenuSelection"></RibbonFileMenuSettings>
             <RibbonContextualTabs>
                 <RibbonContextualTab @bind-Visible="@isTableContextualVisible">
@@ -431,7 +431,7 @@
                             }
                         </tbody>
                     </table>
-                    <img id="ribbonImage" class="@GetImageClass()" src="@(SampleService!.WebAssetsPath + "images/ribbon/empire-state-building.png")" alt="building image" @onclick=HandleImageClick />
+                    <img id="ribbonImage" class="@GetImageClass()" src="@(SampleService?.WebAssetsPath + "images/ribbon/empire-state-building.png")" alt="building image" @onclick=HandleImageClick />
                 </div>
             </div>
             <div id="toast">
@@ -448,8 +448,8 @@
 </div>
 
 @code {
-    SfToast toast = new SfToast();
-    SfRibbon ribbonRef = new SfRibbon();
+    SfToast? toast = new SfToast();
+    SfRibbon? ribbonRef = new SfRibbon();
     bool isDisabled = true;
     bool isPasteDisabled = true;
     bool isTableContextualVisible = true;
@@ -588,8 +588,8 @@
 
     private class ComboBoxItem
     {
-        public string Text { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+        public string? Text { get; set; } = string.Empty;
+        public string? Value { get; set; } = string.Empty;
     }
 
     FieldSettingsModel fieldSetings = new FieldSettingsModel
@@ -900,7 +900,7 @@
         background-color: #dbdadacc;
     }
 
-    #ribbon {
+    #contextual-ribbon {
         box-sizing: border-box;
     }
 

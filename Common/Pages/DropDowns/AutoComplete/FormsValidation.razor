@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Forms-Validation"
+@page "/AutoComplete/Forms-Validation"
 
 @using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.Buttons;
@@ -40,7 +40,7 @@
                 <DataAnnotationsValidator/>
                 <div>
                     <label class="example-label">Select a game</label>
-                    <SfAutoComplete Placeholder="e.g. Basketball" @bind-Value="@_model.Text" DataSource="@Games" AllowCustom="false">
+                    <SfAutoComplete Placeholder="e.g. Basketball" PopupHeight="200px" @bind-Value="@_model.Text" DataSource="@Games" AllowCustom="false">
                         <AutoCompleteFieldSettings Value="Text"/>
                     </SfAutoComplete>
                     <ValidationMessage For="() => _model.Text"/>

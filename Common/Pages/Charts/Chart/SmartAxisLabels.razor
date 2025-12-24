@@ -1,4 +1,4 @@
-﻿@page "/chart/smart-axis-labels"
+@page "/chart/smart-axis-labels"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -38,8 +38,8 @@
     <p>More information on the smart axis labels can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/axis-labels/#smart-axis-labels' aria-label="Navigate to the documentation for Smart Axis Labels in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-md-7 control-section sb-property-border">
-    <SfChart Title="Internet Users in Millons" Theme="@Theme">
+<div class="col-md-7 control-section">
+    <SfChart @ref="ChartRef" Title="Internet Users in Millons" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartPrimaryXAxis EdgeLabelPlacement="@LabelPlacement" LabelPosition="@LabelPosition" MaximumLabelWidth="@LabelWidth" EnableTrim="@EnableTrim" ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Interval="1" LabelIntersectAction="@IntersectAction">
@@ -69,10 +69,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-5 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-md-7" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 40%">
@@ -130,9 +127,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     text[id*=_AxisLabel_] {
         @CSSStyle
@@ -140,8 +135,7 @@
 </style>
 
 @code {
-
-    
+    public SfChart? ChartRef { get; set; }
     private Boolean EnableTrim = false, IsTrim = false;
     private int LabelWidth = 34, Width = 34;
     private LabelIntersectAction IntersectAction = LabelIntersectAction.Hide;
@@ -191,12 +185,13 @@
 
     protected override void OnInitialized()
     {
-        
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Rotation = true;
             AngleRotate = -90;
         }
+        @*End:Hidden*@
         this.SetTheme(null!);
         if (NavigationManager.Uri.IndexOf("dark") > -1 || NavigationManager.Uri.IndexOf("highcontrast") > -1)
         {
@@ -396,17 +391,17 @@
 
     public void ChangeIntersectAction(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        IntersectAction = (LabelIntersectAction)Enum.Parse(typeof(LabelIntersectAction), args.Value.ToString(), true);
+        IntersectAction = (LabelIntersectAction)Enum.Parse(typeof(LabelIntersectAction), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public void ChangeLabelPlacement(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        LabelPlacement = (EdgeLabelPlacement)Enum.Parse(typeof(EdgeLabelPlacement), args.Value.ToString(), true);
+        LabelPlacement = (EdgeLabelPlacement)Enum.Parse(typeof(EdgeLabelPlacement), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public void ChangeLabelPosition(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        LabelPosition = (AxisPosition)Enum.Parse(typeof(AxisPosition), args.Value.ToString(), true);
+        LabelPosition = (AxisPosition)Enum.Parse(typeof(AxisPosition), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public class DropDownData
@@ -419,6 +414,18 @@
         public string? Country { get; set; }
         public double User { get; set; }
         public string? DataLabelMappingName{ get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

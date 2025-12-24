@@ -1,4 +1,4 @@
-﻿@page "/TimePicker/Time-Duration"
+@page "/TimePicker/Time-Duration"
 
 @using Syncfusion.Blazor.Calendars;
 
@@ -15,7 +15,7 @@
 <div class="control-section col-lg-12">
     <div class="control-wrapper">
         <label class="example-label">Select a Time</label>
-        <SfTimePicker TValue="DateTime?" ScrollTo="@ScrollValue" @ref="@TimePickerObj" ShowClearButton="true" FullScreen="true" Placeholder="Selecy a time">
+        <SfTimePicker TValue="DateTime?" ScrollTo="@ScrollValue" @ref="@TimePickerObj" ShowClearButton="true" FullScreen="true" Placeholder="Select a time">
             <TimePickerEvents TValue="DateTime?" OnItemRender="@ItemRenderHandler" OnOpen="@OpenHandler"></TimePickerEvents>
         </SfTimePicker>
     </div>

@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Keyboard-Navigation"
+@page "/AutoComplete/Keyboard-Navigation"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -104,7 +104,7 @@
 <div class="col-lg-12 control-section">
     <div class="control-wrapper">
         <label class="example-label">Select a color</label>
-        <SfAutoComplete TValue="string" TItem="Colors" Placeholder="e.g. Dark Orange" DataSource="@ColorsData">
+        <SfAutoComplete TValue="string" TItem="Colors" PopupHeight="200px" Placeholder="e.g. Dark Orange" DataSource="@ColorsData">
             <AutoCompleteFieldSettings Value="Color" />
         </SfAutoComplete>
     </div>

@@ -1,15 +1,11 @@
-﻿@page "/scheduler/drag-between-schedulers"
+@page "/scheduler/drag-between-schedulers"
 
 @using System.Linq
 @using Syncfusion.Blazor.Schedule
-@using Syncfusion.Blazor.Buttons
-@using Syncfusion.Blazor.Notifications
-@using Syncfusion.Blazor.Navigations
 
 
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-@inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
 
@@ -63,6 +59,13 @@
 <style>
     .content-wrapper.multiple-schedulers .schedule-container {
         display: flex;
+    }
+
+    .multiple-schedulers .e-drag-clone,
+    .multiple-schedulers .e-schedule-event-clone {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .steven-schedule {
