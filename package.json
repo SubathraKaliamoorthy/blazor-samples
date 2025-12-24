@@ -1,0 +1,23 @@
+{
+	"name": "blazor-samples",
+	"version": "1.0.0",
+	"description": "Syncfusion Blazor Samples",
+	"author": "Syncfusion Inc.",
+	"license": "SEE LICENSE IN license",
+	"keywords": [
+		"blazor",
+		"blazor-samples",
+		"blazor-home-page"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/essential-studio/ej2-blazor-samples.git"
+	},
+	"devDependencies": {
+		"@syncfusion/ej2-staging": "*",
+		"gulp": "^4.0.2"
+	},
+	"scripts": {
+		"maui": "gulp maui-apk --option"
+	}
+}
