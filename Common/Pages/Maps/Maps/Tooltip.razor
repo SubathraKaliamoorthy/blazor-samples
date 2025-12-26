@@ -1,8 +1,10 @@
-﻿@page "/maps/tooltip"
+@page "/maps/tooltip"
 
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -96,6 +98,7 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Position = LegendPosition.Bottom;
@@ -104,5 +107,6 @@
             Height = "10";
             Width = "80%";
         }
+        @*End:Hidden*@
     }
 }

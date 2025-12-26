@@ -1,7 +1,6 @@
-﻿@page "/ai-assistview/attachments"
+@page "/ai-assistview/attachments"
 
 @using Syncfusion.Blazor.InteractiveChat
-@using Syncfusion.Blazor.SplitButtons
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.InteractiveChatDemo
 
@@ -19,11 +18,11 @@
 </SampleDescription>
 <ActionDescription>
     <p>
-        In this example, the file attachments are configured using the <code>AttachmentSettings</code> property.
-        The <code>Enable</code> option within <code>AttachmentSettings</code> is set to <code>true</code> to allow file attachments.
-        The <code>SaveUrl</code> and <code>RemoveUrl</code> are specified to handle file uploads for the attached files.
-        Additionally, the <code>BannerTemplate</code> customizes the banner message, and <code>AssistViewToolbar</code> adds custom toolbar items, such as a right-aligned <code>Refresh</code> button.
-        The <code>PromptSuggestions</code> provides AI prompt suggestions, and <code>PromptRequested</code> handles prompt requests when triggered.
+        In this example, the file attachments are configured using the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_AttachmentSettings">AttachmentSettings</a> property.
+        The <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistViewAttachmentSettings.html#Syncfusion_Blazor_InteractiveChat_AssistViewAttachmentSettings_Enable">Enable</a> option within <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_AttachmentSettings">AttachmentSettings</a> is set to <code>true</code> to allow file attachments.
+        The <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistViewAttachmentSettings.html#Syncfusion_Blazor_InteractiveChat_AssistViewAttachmentSettings_SaveUrl">SaveUrl</a> and <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistViewAttachmentSettings.html#Syncfusion_Blazor_InteractiveChat_AssistViewAttachmentSettings_RemoveUrl">RemoveUrl</a> are specified to handle file uploads for the attached files.
+        Additionally, the <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistView.html#Syncfusion_Blazor_InteractiveChat_AssistView_BannerTemplate">BannerTemplate</a> customizes the banner message, and <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.AssistViewToolbar.html">AssistViewToolbar</a> adds custom toolbar items, such as a right-aligned <code>Refresh</code> button.
+        The <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_PromptSuggestions">PromptSuggestions</a> provides AI prompt suggestions, and <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfAIAssistView.html#Syncfusion_Blazor_InteractiveChat_SfAIAssistView_PromptRequested">PromptRequested</a> handles prompt requests when triggered.
     </p>
 </ActionDescription>
 
@@ -61,8 +60,8 @@
     private AssistViewAttachmentSettings attachmentSettings = new AssistViewAttachmentSettings()
     {
         Enable = true,
-        SaveUrl = "http://localhost:63028/api/FileUploader/Save",
-        RemoveUrl = "http://localhost:63028/api/FileUploader/Remove"
+        SaveUrl = "https://blazor.syncfusion.com/services/production/api/FileUploader/Save",
+        RemoveUrl = "https://blazor.syncfusion.com/services/production/api/FileUploader/Remove"
     };
     @*Hidden:Lines*@
     #pragma warning restore BL0005

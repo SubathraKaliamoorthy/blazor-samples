@@ -1,4 +1,4 @@
-﻿@page "/markdown-editor/custom-format"
+@page "/markdown-editor/custom-format"
 
 @using Syncfusion.Blazor.RichTextEditor
 @using Markdig;
@@ -53,8 +53,8 @@
 
 @code{
     private bool IsPreview { get; set; }
-    private string HtmlValue { get; set; }
-    private MarkdownPipeline Pipeline { get; set; }
+    private string? HtmlValue { get; set; }
+    private MarkdownPipeline? Pipeline { get; set; }
 
     private string MarkdownValue { get; set; } = @"The sample is configured with customized markdown syntax using the [RichTextEditorMarkdownOptions](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.RichTextEditor.RichTextEditorMarkdownOptions.html). Type the content and click the toolbar item to view customized markdown syntax. 
 + For unordered list, you need to add a plus sign before the word (e.g., + list1). 

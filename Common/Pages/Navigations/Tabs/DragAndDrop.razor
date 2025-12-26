@@ -1,4 +1,4 @@
-﻿@page "/tabs/drag-and-drop"
+@page "/tabs/drag-and-drop"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Grids
@@ -51,7 +51,7 @@
                 <ContentTemplate>
                     <SfSchedule TValue="AppointmentData" Height="500px" @bind-SelectedDate="@CurrentDate" Readonly="true">
                         <ScheduleEventSettings TValue="AppointmentData">
-                            <SfDataManager Url="http://localhost:63028/api/schedule" Adaptor="@Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
+                            <SfDataManager Url="https://blazor.syncfusion.com/services/production/api/schedule" Adaptor="@Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
                         </ScheduleEventSettings>
                     </SfSchedule>
                 </ContentTemplate>
@@ -116,8 +116,8 @@
 
 
 @code{
-    public List<Order> Orders { get; set; }
-    public List<Games> SportsData { get; set; }
+    public List<Order>? Orders { get; set; }
+    public List<Games>? SportsData { get; set; }
     public DateTime? DateValue { get; set; } = DateTime.Now;
     public DateTime CurrentDate = new DateTime(DateTime.Today.Year, 9, 20);
     
@@ -162,14 +162,14 @@
 
     public class Games
     {
-        public string ID { get; set; }
-        public string Text { get; set; }
+        public string? ID { get; set; }
+        public string? Text { get; set; }
     }
 
     public class Order
     {
         public int? OrderID { get; set; }
-        public string CustomerID { get; set; }
+        public string? CustomerID { get; set; }
         public DateTime? OrderDate { get; set; }
         public double? Freight { get; set; }
     }
@@ -177,19 +177,19 @@
     public class AppointmentData
     {
         public int Id { get; set; }
-        public string Subject { get; set; }
-        public string Location { get; set; }
-        public string Description { get; set; }
+        public string? Subject { get; set; }
+        public string? Location { get; set; }
+        public string? Description { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public Nullable<bool> IsAllDay { get; set; }
-        public string CategoryColor { get; set; }
-        public string RecurrenceRule { get; set; }
+        public string? CategoryColor { get; set; }
+        public string? RecurrenceRule { get; set; }
         public Nullable<int> RecurrenceID { get; set; }
         public Nullable<int> FollowingID { get; set; }
-        public string RecurrenceException { get; set; }
-        public string StartTimezone { get; set; }
-        public string EndTimezone { get; set; }
+        public string? RecurrenceException { get; set; }
+        public string? StartTimezone { get; set; }
+        public string? EndTimezone { get; set; }
     }
 }
 

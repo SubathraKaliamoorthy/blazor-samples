@@ -4,7 +4,9 @@
 @using Syncfusion.Blazor.Popups
 @inject IJSRuntime jsRuntime
 @inject NavigationManager UriHelper
-@inherits SampleBaseComponent;
+@*Hidden:Lines*@
+@inherits SampleBaseComponent
+@*End:Hidden*@
 
 <SampleDescription>
     <p>The Image Editor component provides built-in support to rotate an image using the rotate method and support to crop an image using the select and crop methods.</p>
@@ -24,14 +26,15 @@
         </a>.
     </p>
 </ActionDescription>
+
 <div class="control-section" id="target" style="height: 500px">
     <input type="file" id="img-upload" style="display:none" accept="image/*" />
     <div class="e-profile e-img-editor-sample e-hide">
         <div class="e-custom-wrapper">
             <canvas id="img-canvas" style="max-width: 200px; max-height: 200px;"></canvas>
-            <img alt="Profile Image" id="custom-img" crossorigin="anonymous" src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/image-editor/profile.png")" style="display: none;" @onload="OnImageLoad" />
+            <img alt="Profile Image" id="custom-img" crossorigin="anonymous" src="https://cdn.syncfusion.com/blazor/images/image-editor/profile.png" style="display: none;" @onload="OnImageLoad" />
             <span id="custom-edit" class="e-custom-edit" contenteditable="false" @onclick="OpenImageEditor">
-                <span class="e-custom-icon e-image-editor-icons" contenteditable="false"></span>
+                <span class="e-custom-icon e-icons e-edit" contenteditable="false"></span>
 		    </span>
         </div>
     </div>
@@ -61,18 +64,15 @@
 
 @code {
     private DotNetObjectReference<Profile>? DotNetRef { get; set; }
-
     protected override void OnInitialized()
     {
         DotNetRef = DotNetObjectReference.Create(this);
     }
-
     private SfImageEditor ImageEditorInstance { get; set; }
     private List<ImageEditorToolbarItemModel> ImageEditorToolbar { get; set; } = new List<ImageEditorToolbarItemModel>();
     private bool IsDialogVisible { get; set; } = false;
     private string ImageDataUrl { get; set; }
     private bool IsImageEditorOpened { get; set; }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -80,19 +80,16 @@
             await jsRuntime.InvokeAsync<bool>("canvasInterop.onInitialized");
         }
     }
-
     private async Task OnImageLoad()
     {
         await jsRuntime.InvokeAsync<bool>("canvasInterop.imageLoaded", DotNetRef);
     }
-
     private async void OpenImageEditor()
     {
         IsDialogVisible = true;
         ImageDataUrl = await jsRuntime.InvokeAsync<string>("canvasInterop.getImageSource");
     }
-
-    private async Task OnDialogOpened(Syncfusion.Blazor.Popups.OpenEventArgs args)
+    private void OnDialogOpened(Syncfusion.Blazor.Popups.OpenEventArgs args)
     {
         if (!IsImageEditorOpened)
         {
@@ -100,33 +97,27 @@
             StateHasChanged();
         }
     }
-
-    private async Task OnDialogClosed(Syncfusion.Blazor.Popups.CloseEventArgs args)
+    private void OnDialogClosed(Syncfusion.Blazor.Popups.CloseEventArgs args)
     {
         IsImageEditorOpened = false;
     }
-
     private async Task OnEditorCreated()
     {
         await ImageEditorInstance.OpenAsync(ImageDataUrl);
     }
-
     private async Task OnFileOpened()
     {
         await ImageEditorInstance.SelectAsync("circle");
     }
-
     private async void OnOpenButtonClick()
     {
         await jsRuntime.InvokeAsync<bool>("canvasInterop.fileSelect");
     }
-
     private async void OnResetButtonClick()
     {
         await ImageEditorInstance.ResetAsync();
         await ImageEditorInstance.SelectAsync("circle");
     }
-
     private async void OnApplyButtonClick()
     {
         await ImageEditorInstance.CropAsync();
@@ -135,12 +126,10 @@
         IsImageEditorOpened = false;
         StateHasChanged();
     }
-
     private async void OnRotateButtonClick()
     {
         await ImageEditorInstance.RotateAsync(90);
     }
-
     [JSInvokable]
     public async void FileSelected(string imageUrl)
     {
@@ -148,12 +137,11 @@
         await Task.Delay(100);
         await ImageEditorInstance.SelectAsync("circle");
     }
-
 }
-	 
-  @*
-  // Please refer to the below code snippet for canvasInterop.js
-  window.canvasInterop = {
+
+@*
+// Please refer to the below code snippet for canvasInterop.js
+window.canvasInterop = {
     imgSrc: "",
     onInitialized: function () {
         document.getElementById('img-upload').onchange = function (args) {
@@ -206,10 +194,10 @@
         }
         return true;
     }
-}; *@
+};
+*@
 
 <style>
-
     .e-toolbar .e-toolbar-items.e-tbar-pos .e-toolbar-center {
         margin: 0 auto !important;
     }
@@ -249,7 +237,6 @@
     }
 
     .e-custom-icon::before {
-        content: '\e701';
         font-size: 18px;
         color: white;
         left: 10px;
@@ -313,18 +300,17 @@
     }
 
     .dialogContent {
-	height: 100%;
+        height: 100%;
     }
-	
+
     .e-img-editor-sample.e-hide {
         display: none;
     }
-	
+
     .material3 .e-custom-img-btn,
     .material3-dark .e-custom-img-btn,
     .e-bigger.material3 .e-custom-img-btn,
-    .e-bigger.material3-dark .e-custom-img-btn
-    { 
-     	margin-left: 3px !important;
-     }
+    .e-bigger.material3-dark .e-custom-img-btn {
+        margin-left: 3px !important;
+    }
 </style>

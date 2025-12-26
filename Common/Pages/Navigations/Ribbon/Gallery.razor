@@ -3,7 +3,6 @@
 @*Hidden:Lines*@
 
 @using Syncfusion.Blazor.Ribbon;
-@using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.SplitButtons;
 @using Syncfusion.Blazor.Navigations;
 @using Syncfusion.Blazor.Notifications;
@@ -19,9 +18,9 @@
     <p>The <code>Ribbon</code> Gallery allows users to interact with a collection of related items, such as icons, text, or images, to perform specific actions. This sample demonstrates the usage of the <code>GalleryItem</code> class to define individual items with customizable content and styles. Items are grouped into categories using the <code>GalleryGroup</code> class, with each group distinguished by a <code>Header</code>. Additionally, properties like <code>ItemWidth</code>, <code>ItemHeight</code>, and <code>CssClass</code> are used to control the size and appearance of each item, ensuring a consistent and visually appealing layout.</p>
 </ActionDescription>
 
-<div class="col-lg-12 control-section default-ribbon-section">
+<div class="col-lg-12 control-section gallery-ribbon-section">
     <div id="ribbonContainer">
-        <SfRibbon @ref=@ribbonRef ID="ribbon" LauncherIconClick="LauncherIconClick">
+        <SfRibbon @ref=@ribbonRef ID="gallery-ribbon" LauncherIconClick="LauncherIconClick">
             <RibbonFileMenuSettings Visible=true MenuItems="@fileMenuItems" ItemSelecting="@HandleFilemenuSelection"></RibbonFileMenuSettings>
             <RibbonTabs>
                 <RibbonTab HeaderText="Home">
@@ -282,8 +281,8 @@
 </div>
 
 @code {
-    SfToast toast = new SfToast();
-    SfRibbon ribbonRef = new SfRibbon();
+    SfToast? toast = new SfToast();
+    SfRibbon? ribbonRef = new SfRibbon();
     bool isDisabled = true;
     private int gallerySelectedItemIndex = 2;
     bool isPasteDisabled = true;
@@ -499,7 +498,7 @@
         height: 550px;
     }
 
-    #ribbon {
+    #gallery-ribbon {
         box-sizing: border-box;
     }
 

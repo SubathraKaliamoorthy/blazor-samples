@@ -1,7 +1,9 @@
-﻿@page "/chart/relative-strength-index-indicator"
+@page "/chart/relative-strength-index-indicator"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 
@@ -85,10 +87,12 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-         if (SampleService != null && SampleService.IsDevice)
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public class RSIChartData

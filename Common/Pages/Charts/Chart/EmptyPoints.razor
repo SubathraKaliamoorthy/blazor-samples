@@ -1,7 +1,9 @@
-﻿@page "/chart/pie-empty-points"
+@page "/chart/pie-empty-points"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
 
@@ -21,8 +23,8 @@
     <p>More information about the empty points can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/accumulation-chart/empty-points' aria-label="Navigate to the documentation for empty points in accumulation chart component">documentation section</a>.</p>
 </ActionDescription>
  
-<div class="col-lg-8 control-section sb-property-border">
-    <SfAccumulationChart EnableSmartLabels="false" EnableBorderOnMouseMove="false" Title="Movie Genre Revenue Share" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfAccumulationChart @ref="ChartRef" EnableSmartLabels="false" EnableBorderOnMouseMove="false" Title="Movie Genre Revenue Share" Theme="@Theme">
             <AccumulationChartEvents OnDataLabelRender="DataLabelRenderEvent"></AccumulationChartEvents>
         <AccumulationChartTooltipSettings Header="" Enable="true" Format="<b>${point.x}</b><br> Profit: <b>$${point.y}K</b>" EnableHighlight="true"></AccumulationChartTooltipSettings>
         <AccumulationChartLegendSettings Visible="false"></AccumulationChartLegendSettings>
@@ -37,10 +39,7 @@
         </AccumulationChartSeriesCollection>
     </SfAccumulationChart>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height:50px">
                     <td style="width: 50%">
@@ -54,13 +53,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 @code{
-
-
-    private Theme Theme { get; set; }
+    public SfAccumulationChart? ChartRef { get; set; }
+    public Theme Theme { get; set; }
     private EmptyPointMode Mode { get; set; } = EmptyPointMode.Drop;
     public string Size { get; set; } = "12px";
     public string FontColor { get; set; } = null!;
@@ -86,15 +82,31 @@
     {
 
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Size = "8px";
+        }
+        @*End:Hidden*@
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            ChartRef.Refresh(false);
         }
     }
 
     private void ChangeEmptyPointMode(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, SelectionTypes> args)
     {
+        if (args == null || args.Value == null)
+            return;
+
         if (args.Value.ToString().Equals(EmptyPointModeData[1].Type))
         {
             Mode = EmptyPointMode.Average;

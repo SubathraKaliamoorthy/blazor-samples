@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -1158,8 +1154,10 @@ namespace BlazorDemos
                 Url = "scheduler/header-bar",
                 FileName = "HeaderBar.razor",
                 MetaTitle = "Blazor Scheduler Header Bar | Custom Navigation | Syncfusion",
+                Type = SampleType.Updated,
                 HeaderText = "Blazor Scheduler Example - Header Bar",
                 MetaDescription = "This Blazor Scheduler header bar example demonstrates custom navigation with personalized toolbar and navigation controls for enhanced calendar interaction.",
+                NotificationDescription = new string[]{ @" This sample now includes the new Scheduler Custom Toolbar feature. Learn how to customize the Scheduler toolbar by adding your own items to the built-in toolbar, making scheduling more flexible and user-friendly." },
                 SourceFiles = new List<SourceCollection>()
                 {
                     new SourceCollection { Id = "Default", FileName = "HeaderBar.razor" },

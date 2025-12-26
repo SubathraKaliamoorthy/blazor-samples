@@ -1,7 +1,9 @@
 @page "/chart/dataSorting"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Data
 @using Syncfusion.Blazor.DropDowns
@@ -10,8 +12,6 @@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -26,8 +26,8 @@
     </ul>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Motor Vehicle Production by Year" SubTitle="Source: wikipedia.org" IsTransposed="false" Width="@Width" Theme="@Theme" >
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="Motor Vehicle Production by Year" SubTitle="Source: wikipedia.org" IsTransposed="false" Width="@Width" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartMargin Bottom="12"></ChartMargin>
@@ -74,10 +74,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                     <tr style="height: 50px">
@@ -103,12 +100,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
-
+    public SfChart? ChartRef { get; set; }
     private ChartSeries? FirstSeries;
     private ChartSeries? SecondSeries;
     private ChartSeries? ThirdSeries;
@@ -119,7 +114,7 @@
     public string[] EnumValues = Enum.GetNames(typeof(ListSortDirection));
     public LabelIntersectAction AxislabelRotation { get; set; } = LabelIntersectAction.Rotate45;
     public double Rotation { get; set; } = 0;
-    public string Width { get; set; } = "90%";
+    public string Width { get; set; } = "100%";
     public bool enabled { get; set; }
     private string fillSeries1 { get; set; } = null!;
     private string fillSeries2 { get; set; } = null!;
@@ -166,11 +161,12 @@
 
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         SetSeriesFill(Theme);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
-
+        @*End:Hidden*@
     }
 
     public void LegendClickEvent(LegendClickEventArgs args)
@@ -321,7 +317,7 @@
 
     public void ChangeMode(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        switch (args.Value.ToUpper())
+        switch (args?.Value?.ToUpper())
         {
             case "SORT BY X":
                 {
@@ -362,6 +358,18 @@
     public class DropDownData
     {
         public string? Type { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

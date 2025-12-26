@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/palette-mode"
+@page "/heatmap-chart/palette-mode"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -17,9 +17,9 @@
    <p>The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item on touch-enabled devices.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section">
+<div class="col-lg-8 control-section">
     <div class="row">
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref="Map" DataSource="@DataSource" Theme="@_theme">
             <HeatMapEvents Resized="@Resized"></HeatMapEvents>
             <HeatMapTitleSettings Text="U.S. Government Energy Consumption by Agency (Trillion Btu)">
                 <HeatMapTitleTextStyle Size="15px" FontFamily="inherit" FontWeight="500" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
@@ -55,8 +55,7 @@
         </SfHeatMap>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-header">Properties</div>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
         <tr style="height: 50px">
@@ -85,9 +84,10 @@
         </tr>
         </tbody>
     </table>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<double[,]>? Map { get; set; }
     private Theme _theme { get; set; }
     public string AxisLabelColor = "Black";
     public string LegendWidth = "400px";
@@ -117,13 +117,17 @@
     {
         _theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (_theme.ToString().IndexOf("Dark") > -1 || _theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             LegendWidth = string.Empty;
         } else
         {
-            LegendWidth = "400px";            
+            @*End:Hidden*@
+            LegendWidth = "400px";    
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
     private void Resized(ResizeEventArgs args)
     {
@@ -140,10 +144,16 @@
     {
         SmartLegend = args.Checked;
     }
-}
 
-<style>
-    .col-lg-3.property-section {
-        padding-top: 60px;
-    }    
-</style>
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
+    }
+}

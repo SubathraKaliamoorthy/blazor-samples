@@ -1,4 +1,4 @@
-﻿@page "/ai-treegrid/adaptive-datastructuring"
+@page "/ai-treegrid/adaptive-datastructuring"
 @page "/tree-grid/ai-adaptive-datastructuring"
 
 @inject AzureAIService OpenAIService
@@ -27,7 +27,7 @@
 
 <ActionDescription>
     <p>
-        Utilizing a specialized AI prompt, the system scans a dataset to identify and restructure hierarchical relationships between records. The AI meticulously corrects any misassigned relationships by adjusting the ParentId fields, aligning them with their respective top-level CategoryId. The resulting dataset, now properly organized, is then bound to the Tree Grid for a coherent and accurate display.
+        A specialized AI prompt is used to scan the dataset and restructure hierarchical relationships between records. The AI intelligently corrects misassigned relationships by updating the <code>ParentId</code> fields to align with their appropriate top-level <code>CategoryId</code>. The corrected dataset is then bound to the Tree Grid for a coherent and accurate hierarchical display.
     </p>
 </ActionDescription>
 

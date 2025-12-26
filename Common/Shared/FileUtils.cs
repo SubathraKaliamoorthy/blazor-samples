@@ -5,10 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-﻿using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
 namespace BlazorDemos

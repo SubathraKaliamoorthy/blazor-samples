@@ -1,9 +1,11 @@
-﻿@page "/treemap/legend"
+@page "/treemap/legend"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.TreeMap
 @using Syncfusion.Blazor.DropDowns
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -17,8 +19,8 @@
     <p>More information about legend can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/legend" aria-label="Blazor TreeMap Legend documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap TValue="USAElectionResult" WeightValuePath="Population" EqualColorValuePath="Winner" RangeColorValuePath="WinPercentage" DataSource="@DataSource" Theme="@Theme">
+<div class="col-lg-9 control-section">
+    <SfTreeMap @ref='TreeMap' TValue="USAElectionResult" WeightValuePath="Population" EqualColorValuePath="Winner" RangeColorValuePath="WinPercentage" DataSource="@DataSource" Theme="@Theme">
         <TreeMapTitleSettings Text="US Presidential Election Result - 2016">
             <TreeMapTitleTextStyle FontFamily="Segoe UI" Size="15px"></TreeMapTitleTextStyle>
         </TreeMapTitleSettings>
@@ -42,10 +44,7 @@
         <a href=" https://en.wikipedia.org/wiki/2016_United_States_presidential_election" target="_blank">en.wikipedia.org</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -72,9 +71,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -85,6 +82,7 @@
     }
 </style>
 @code {
+    public SfTreeMap<USAElectionResult>? TreeMap;
     public Theme Theme { get; set; }
     public string[] LeafColorOne = new string[] { "#D84444" };
     public string[] LeafColorTwo = new string[] { "#316DB5" };
@@ -118,7 +116,10 @@
     }
     public void LegendTypeChange(ChangeEventArgs<string, DropdownList> args)
     {
-        LegendTypeValue = args.Value;
+        if (args == null)
+            return;
+
+        LegendTypeValue = args.Value ?? LegendTypeValue;
         if (args.Value == "Default")
         {
             LegendModes = LegendMode.Default;
@@ -130,7 +131,10 @@
     }
     public void LegendPositionChange(ChangeEventArgs<string, DropdownList> args)
     {
-        LegendPositionValue = args.Value;
+        if (args == null)
+            return;
+
+        LegendPositionValue = args.Value ?? LegendPositionValue;
         if (args.Value == "Top")
         {
             LegendPositions = LegendPosition.Top;
@@ -216,4 +220,17 @@
         new USAElectionResult { State = "West Virginia", Trump = 47.9, Clinton = 46.9, WinPercentage = 47.9, Winner = "Clinton", Population = 1853011 },
         new USAElectionResult { State = "Wyoming", Trump = 70.1, Clinton = 22.5, WinPercentage = 70.1, Winner = "Trump", Population = 583767 }
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
+    }
 }

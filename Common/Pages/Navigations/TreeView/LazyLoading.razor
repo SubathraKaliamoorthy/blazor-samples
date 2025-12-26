@@ -1,4 +1,4 @@
-﻿@page "/treeview/lazy-loading"
+@page "/treeview/lazy-loading"
 
 @using Syncfusion.Blazor.Navigations
 
@@ -17,7 +17,7 @@
     <div class="control_wrapper">
         @*Initialize the TreeView component*@
         <SfTreeView TValue="FileData" LoadOnDemand="false">
-            <TreeViewFieldsSettings TValue="FileData" Id="Id" Text="Name" HasChildren="HasChild" ParentID="Pid" DataSource="@TreeData" Expanded="Expanded"></TreeViewFieldsSettings>
+            <TreeViewFieldsSettings TValue="FileData" Id="Id" Text="Name" HasChildren="HasChild" ParentID="Pid" DataSource="@TreeData"></TreeViewFieldsSettings>
             <TreeViewEvents TValue="FileData" NodeExpanding="OnNodeExpanding"></TreeViewEvents>
         </SfTreeView>
     </div>
@@ -26,11 +26,10 @@
 @code{
     public class FileData
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public bool Expanded { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
         public bool HasChild { get; set; }
-        public string Pid { get; set; }
+        public string? Pid { get; set; }
     }
     // Specifies the DataSource value for TreeView component.
     public List<FileData> TreeData = new List<FileData>();

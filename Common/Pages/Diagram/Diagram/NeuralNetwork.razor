@@ -200,7 +200,7 @@
     }
 
 
-    public async Task CreateLayerLabels()
+    public void CreateLayerLabels()
     {
         double startX = 100;
         double labelY = 50;
@@ -216,7 +216,7 @@
                 Width = 150,
                 Height = 30,
                 Annotations = new DiagramObjectCollection<ShapeAnnotation>()
-        {
+                {
                     new ShapeAnnotation
                     {
                         Content = LayerNames[i],
@@ -237,11 +237,11 @@
                 },
                 Constraints = NodeConstraints.Default & ~NodeConstraints.Select
             };
-            Nodes.Add(labelNode);
+            Nodes!.Add(labelNode);
         }
     }
 
-    public async Task CreateNeurons()
+    public void CreateNeurons()
     {
         double startX = 100;
         double startY = 120;
@@ -273,7 +273,7 @@
                         StrokeWidth = 2
                     },
                     Annotations = new DiagramObjectCollection<ShapeAnnotation>()
-            {
+                    {
                         new ShapeAnnotation
                         {
                             Content = labels[neuronIndex],
@@ -286,7 +286,7 @@
                         }
                     },
                     AdditionalInfo = new Dictionary<string, object>()
-            {
+                    {
                         {"Layer", LayerNames[layerIndex]},
                         {"Neuron", labels[neuronIndex]}
                     },
@@ -295,12 +295,12 @@
                         Position = Position.TopCenter,
                     }
                 };
-                Nodes.Add(neuron);
+                Nodes!.Add(neuron);
             }
         }
     }
 
-    public async Task CreateConnections()
+    public void CreateConnections()
     {
         Random random = new Random(42); // Fixed seed for consistent results
         var connections = new DiagramObjectCollection<NodeBase>();
@@ -341,7 +341,7 @@
                             }
                         },
                         Annotations = ShowWeights ? new DiagramObjectCollection<PathAnnotation>()
-                {
+                        {
                             new PathAnnotation
                             {
                                 Content = weight.ToString(),
@@ -354,7 +354,7 @@
                             }
                         } : new DiagramObjectCollection<PathAnnotation>(),
                         AdditionalInfo = new Dictionary<string, object>()
-                {
+                        {
                             {"Weight", weight},
                             {"sourceId", sourceId},
                             {"targetId", targetId},
@@ -365,7 +365,7 @@
                         }
                     };
 
-                    Connectors.Add(connector);
+                    Connectors!.Add(connector);
                 }
             }
         }
@@ -403,7 +403,7 @@
         return layerMap.TryGetValue(layerName, out var color) ? color : "#000000";
     }
 
-    public async void Created()
+    public void Created()
     {
         DiagramRef!.FitToPage(new FitOptions() { Mode = FitMode.Both, Region = DiagramRegion.Content });
     }

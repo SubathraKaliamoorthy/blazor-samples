@@ -371,8 +371,8 @@
     <div style="display: none;visibility: hidden;">
     <SfUploader @ref="@UploadFiles" ID="UploadFiles" ShowFileList="false" AllowedExtensions="@ExtensionType">
             <UploaderEvents OnUploadStart="@OnUploadFileSelected"></UploaderEvents>
-            <UploaderAsyncSettings SaveUrl="http://localhost:63028/api/FileUploader/Save"
-             RemoveUrl="http://localhost:63028/api/FileUploader/Remove"></UploaderAsyncSettings>
+            <UploaderAsyncSettings SaveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Save"
+             RemoveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Remove"></UploaderAsyncSettings>
         </SfUploader>
     </div>
 </div>
@@ -381,7 +381,7 @@
     private int ConnectorCount { get; set; } = 0;
     public DiagramSelectionSettings SelectionSettings { get; set; } = new DiagramSelectionSettings();
     public DiagramSize? SymbolPreview { get; set; }
-    public SymbolMargin? SymbolMargin { get; set; } = new SymbolMargin { Left = 15, Right = 15, Top = 15, Bottom = 15 };
+    public SymbolMargin? SymbolMargin { get; set; } = new SymbolMargin { Left = 10, Right = 10, Top = 10, Bottom = 10 };
     public SfDiagramComponent? DiagramInstance { get; set; }
     public SfSymbolPaletteComponent? PaletteInstance { get; set; }
     public string ZoomItemDropdownContent { get; set; } = "100 %";
@@ -494,7 +494,7 @@
             IsLockDisable = false;
             IsDeleteDisable = false;
 
-            if (nodeCount >= 2)
+            if (nodeCount >= 2 || DiagramInstance?.SelectionSettings.Nodes[0] is NodeGroup)
             {
                 IsMultipleNode = false;
             }
@@ -607,7 +607,6 @@
 
     protected override void OnInitialized()
     {
-
         GridLineIntervals = new double[] {
             1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
     };

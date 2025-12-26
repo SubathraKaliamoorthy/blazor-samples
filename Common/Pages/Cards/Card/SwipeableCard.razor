@@ -1,10 +1,9 @@
-﻿@page "/card/swipeable"
+@page "/card/swipeable"
 
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Cards
 @*Hidden:Lines*@
 @inherits SampleBaseComponent;
-@inject NavigationManager NavigationManager
 
 
 
@@ -319,17 +318,17 @@
 </style>
 
 @code{
-    private SfCard CardRef;
+    private SfCard? CardRef;
     private double initPosition;
-    private CardModel dragCard;
-    
+    private CardModel? dragCard;
+
 
     private class CardModel
     {
         public int Id { get; set; }
-        public string CssClass { get; set; }
-        public string Content { get; set; }
-        public string ImagePath { get; set; }
+        public string? CssClass { get; set; }
+        public string? Content { get; set; }
+        public string? ImagePath { get; set; }
     }
     private List<CardModel> cardData = new List<CardModel>() {
         new CardModel { Id = 1, CssClass = string.Empty, ImagePath = "./images/cards/newyork.png", Content = "New York City has been described as the cultural, financial, and media capital of the world, and exerts a significant impact upon commerce and etc..." },
@@ -362,7 +361,10 @@
     {
         initPosition = position;
         cardData.ForEach(e => e.CssClass = string.Empty);
-        dragCard = cardData.Where(e => e.Id == Convert.ToInt32(CardRef.ID)).FirstOrDefault();
+        if (CardRef != null && !string.IsNullOrEmpty(CardRef.ID))
+        {
+            dragCard = cardData.Where(e => e.Id == Convert.ToInt32(CardRef.ID)).FirstOrDefault();
+        }
     }
 
     private void AddAnimation(double position)

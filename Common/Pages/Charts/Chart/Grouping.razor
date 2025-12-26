@@ -1,7 +1,9 @@
-﻿@page "/chart/grouping"
+@page "/chart/grouping"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
@@ -26,8 +28,8 @@
     <p>More information on the grouping can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/accumulation-chart/grouping' aria-label="Navigate to the documentation for grouping in accumulation chart">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfAccumulationChart EnableBorderOnMouseMove="false" Title="Summer Olympic 2024 - Gold Medals" SubTitle="Source: wikipedia.org" EnableSmartLabels="true" Theme="@Theme">
+<div class="col-lg-8 control-section" align='center'>
+    <SfAccumulationChart @ref="ChartRef" EnableBorderOnMouseMove="false" Title="Summer Olympic 2024 - Gold Medals" SubTitle="Source: wikipedia.org" EnableSmartLabels="true" Theme="@Theme">
         <AccumulationChartLegendSettings Visible="false"></AccumulationChartLegendSettings>
         <AccumulationChartTooltipSettings Header="" Enable="true" Format="<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>" EnableHighlight="true"></AccumulationChartTooltipSettings>
         <AccumulationChartSeriesCollection>
@@ -43,10 +45,7 @@
     </SfAccumulationChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height:50px">
                     <td>
@@ -79,13 +78,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    public SfAccumulationChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private string GroupChange { get; set; } = "9";
     private string Radius { get; set; } = "55%";
@@ -121,6 +118,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Size = "11px";
@@ -136,10 +134,14 @@
             Size = "8px";
 
         }
+        @*End:Hidden*@
     }
  
     private void ChangeGroupMode(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, SelectionTypes> args)
     {
+        if (args == null || args.Value == null)
+            return;
+
         if (args.Value.ToString().Equals(GroupModeData[1].Type))
         {
             Mode = GroupMode.Value;
@@ -166,5 +168,17 @@
     public class SelectionTypes
     {
         public string? Type { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            ChartRef.Refresh(false);
+        }
     }
 }

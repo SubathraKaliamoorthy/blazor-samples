@@ -1,8 +1,10 @@
-﻿@page "/chart-3d/back-to-back-column"
+@page "/chart-3d/back-to-back-column"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -81,9 +83,17 @@
     protected override void OnInitialized()
     {
         ChartTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "75%";
-        YAxisInterval = SampleService != null && SampleService.IsDevice ? 4 : 2;
-        RotationAngle = SampleService != null && SampleService.IsDevice ? 5 : 25;
+        ChartWidth = "75%";
+        YAxisInterval = 2;
+        RotationAngle = 25;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+            YAxisInterval = 4;
+            RotationAngle = 5;
+        }
+        @*End:Hidden*@
     }
 
     public class ChartData

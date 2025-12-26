@@ -1,7 +1,9 @@
-﻿@page "/chart/semi-pie"
+@page "/chart/semi-pie"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -56,11 +58,13 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             FontSize = "7px";
             TextSize = "10px";
         }
+        @*End:Hidden*@
     }
 
     public class PieData

@@ -1,7 +1,9 @@
 @page "/chart/horizontal-waterfall"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 @inject NavigationManager NavigationManager
@@ -84,8 +86,8 @@
         </ChartPrimaryYAxis>
         <ChartSeriesCollection>
             <ChartSeries ColumnWidth="0.5" NegativeFillColor="#e56590" DataSource="@ChartData" XName="X" Width="2"
-                YName="Y" SumIndexes="@index" Type="ChartSeriesType.Waterfall"
-                CornerRadius="@(new ChartCornerRadius { TopLeft= 3, BottomLeft= 3, BottomRight= 3, TopRight= 3})">
+                YName="Y" SumIndexes="@index" Type="ChartSeriesType.Waterfall">
+                <ChartCornerRadius TopLeft="3" BottomLeft="3" BottomRight="3" TopRight="3" />
                 <ChartSeriesAnimation Enable="true"></ChartSeriesAnimation>
                 <ChartSeriesConnector Color="#5F6A6A" Width="0.8" DashArray="1,2"></ChartSeriesConnector>
                 <ChartSeriesBorder Width="0.2" Color="black"></ChartSeriesBorder>
@@ -136,10 +138,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void PointRender(PointRenderEventArgs args)

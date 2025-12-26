@@ -406,7 +406,7 @@
         if (args.Data != null && args.Data.Id == 0)
         {
             args.Data.CalendarId = 1;
-            args.Data.OwnerId = 1;
+            args.Data.OwnerId = args.Data.OwnerId == 0 ? 1 : args.Data.OwnerId;
         }
         if (args.Type == PopupType.Editor)
         {
@@ -577,6 +577,13 @@
             {
                 Datas.RemoveAll(d => d.Id == record.Id);
                 Datas.Add(record);
+            }
+        }
+        else if (args.ActionType == ActionType.EventRemove)
+        {
+            foreach (var record in args.DeletedRecords)
+            {
+                Datas.RemoveAll(d => d.Id == record.Id);
             }
         }
         UpdateData();
@@ -835,6 +842,15 @@
 <style>
     #wrapper .main-content {
         height: 550px;
+    }
+    .component-wrapper {
+        align-items: flex-start;
+    }
+    .component-wrapper .e-drag-clone,
+    .component-wrapper .e-schedule-drag-clone {
+        align-self: flex-start;
+        height: auto !important;
+        min-height: 24px;
     }
     .selected-date-calendar.e-calendar .e-btn.e-today.e-flat.e-primary,
     .selected-date-calendar.e-calendar .e-css.e-btn.e-today.e-flat.e-primary {

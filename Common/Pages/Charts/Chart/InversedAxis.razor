@@ -1,4 +1,4 @@
-﻿@page "/chart/inversed-axis"
+@page "/chart/inversed-axis"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -71,10 +71,12 @@
     {
         
         this.SetTheme(null!);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void PointRender(PointRenderEventArgs args)

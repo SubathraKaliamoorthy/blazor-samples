@@ -1,7 +1,9 @@
-﻿@page "/chart/polar-stacked-area"
+@page "/chart/polar-stacked-area"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
 
@@ -21,11 +23,11 @@
     <p>More information about the polar and radar series with a stacking area type chart can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/chart-types/polar/#stacked-area' aria-label="Navigate to the documentation for stacked-area in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="GDP in current prices (USD Billion)" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="GDP in current prices (USD Billion)" Theme="@Theme">
         <ChartTooltipSettings Enable="true" Header="" Format="<b>${point.x}</b><br>GDP: <b>${point.y}USD</b>" EnableHighlight="true">
         </ChartTooltipSettings>
-        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelPlacement="LabelPlacement.OnTicks" Interval="1" Coefficient="@(SampleService != null && SampleService.IsDevice ? 75 : 100 )"></ChartPrimaryXAxis>
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelPlacement="LabelPlacement.OnTicks" Interval="1" Coefficient="@Coefficient"></ChartPrimaryXAxis>
         <ChartSeriesCollection>
             <ChartSeries DataSource="@ChartPoints" Name="2013" XName="Country" Width="2" YName="GDP_2013" Type="@SeriesType" DrawType="ChartDrawType.StackingArea"></ChartSeries>
             <ChartSeries DataSource="@ChartPoints" Name="2014" XName="Country" Width="2" YName="GDP_2014" Type="@SeriesType" DrawType="ChartDrawType.StackingArea"></ChartSeries>
@@ -36,10 +38,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 50%">
@@ -55,19 +54,18 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     text[id*=_AxisLabel_] {
-        text-shadow: 0 0 1px white !important;
+    text-shadow: 0 0 1px white !important;
     }
 </style>
 @code {
 
-    
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private ChartSeriesType SeriesType { get; set; } = ChartSeriesType.Polar;
+    private double Coefficient { get; set; } = 100;
     public List<DropDownData> SeriesTypes { get; set; } = new List<DropDownData>
     {
         new DropDownData() { Type = "Polar" },
@@ -88,13 +86,17 @@
 
     protected override void OnInitialized()
     {
-        
+
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            Coefficient = 75;
+        }
     }
 
     public void ChangeSeriesType(ChangeEventArgs<string, DropDownData> args)
     {
-        SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args.Value.ToString(), true);
+        SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public class DropDownData
@@ -109,5 +111,17 @@
         public double GDP_2014 { get; set; }
         public double GDP_2015 { get; set; }
         public double GDP_2016 { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -7,6 +7,9 @@
     <EnableMSDeployAppOffline>true</EnableMSDeployAppOffline>
     <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <Nullable>enable</Nullable>
+    <CompressionExcludePatterns>
+      $(CompressionExcludePatterns);styles/component-samples/**
+    </CompressionExcludePatterns>
   </PropertyGroup>
 
   <Target Name="RemoveStaticFiles" AfterTargets="AfterPublish">
@@ -15,7 +18,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-		    <Directories Include="$(Files)\**" Exclude="$(Files)\**\syncfusion-blazor.min.js;$(Files)\**\syncfusion-blazor.min.js.gz;$(Files)\**\syncfusion-blazor.min.js.br;      $(Files)\**\syncfusion-blazor-documenteditor.min.js;$(Files)\**\syncfusion-blazor-documenteditor.min.js.gz;$(Files)\**\syncfusion-blazor-documenteditor.min.js.br;$(Files)\**\syncfusion-blazor-spreadsheet.min.js;$(Files)\**\syncfusion-blazor-spreadsheet.min.js.gz;$(Files)\**\syncfusion-blazor-spreadsheet.min.js.br;$(Files)\Syncfusion.Blazor.Themes\**;$(Files)\Blazor_Server_Common_NET9\**;&#xD;&#xA;        $(Files)\**\syncfusion-blazor-base.min.js;$(Files)\**\syncfusion-blazor-base.min.js.gz;$(Files)\**\syncfusion-blazor-base.min.js.br;$(Files)\**\syncfusion-blazor-extended.min.js;$(Files)\**\syncfusion-blazor-extended.min.js.gz;$(Files)\**\syncfusion-blazor-extended.min.js.br;$(Files)\**\data.min.js;$(Files)\**\data.min.js.gz;$(Files)\**\data.min.js.br;$(Files)\**\diagrams.min.js;$(Files)\**\diagrams.min.js.gz;$(Files)\**\diagrams.min.js.br;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.lib.module.js;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.lib.module.js.gz;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.lib.module.js.br;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.bundle.scp.css;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.bundle.scp.css.gz;$(Files)\**\Syncfusion.Blazor.SmartComponents.*.bundle.scp.css.br;" />
+		    <Directories Include="$(Files)\**" Exclude=" $(Files)\Syncfusion.Blazor.*\**;$(Files)\Blazor_Server_Common_NET9\**;" />
     </ItemGroup>
 
     <Delete Files="@(Directories)" ContinueOnError="true" />
@@ -91,8 +94,16 @@
 	    <WriteLinesToFile File="wwwroot/version.js" Lines='export const data={"version":"net9.0","configuration":"$(AppEnvironment)"}' />
     </Target>
 
+    <ItemGroup>
+      <Compile Remove="Components\Layout\**" />
+      <Content Remove="Components\Layout\**" />
+      <EmbeddedResource Remove="Components\Layout\**" />
+      <None Remove="Components\Layout\**" />
+    </ItemGroup>
+
   <ItemGroup>
     <Content Remove="App.razor" />
+    <Content Remove="wwwroot\Blazor_Server_Demos_NET10.lib.module.js" />
     <Content Remove="wwwroot\Blazor_Server_Demos_NET8.lib.module.js" />
   </ItemGroup>
   

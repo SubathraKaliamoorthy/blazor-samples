@@ -1,4 +1,4 @@
-﻿@page "/diagram/drawingtool"
+@page "/diagram/drawingtool"
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Buttons
 @using NodeShape = Syncfusion.Blazor.Diagram.NodeShapes
@@ -160,7 +160,7 @@
              height: 65px;
              float: left;
              background-size: cover;
-             background-image: url(@(SampleService!.WebAssetsPath + "images/diagram/overview/himage1.png"));
+            background-image: url( @("https://cdn.syncfusion.com/blazor/images/diagram/overview/himage1.png") );
              border: 1px solid #E0E0E0;
              box-sizing: border-box;
              border-radius: 80px;
@@ -251,44 +251,44 @@
 
                 <div class="row" style="padding-top: 8px">
                     <div style="stroke-width:20px">
-                        <div title="Rectangle" class="@dictionary["rectangle"]" id="bottomr" @onclick="@(() => UpdateTools("rectangle"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/rectangle.png")); margin-left: 4px">
+                            <div title="Rectangle" class="@dictionary["rectangle"]" id="bottomr" @onclick="@(() => UpdateTools("rectangle"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/rectangle.png")); margin-left: 4px">
                         </div>                                             
                     </div>
                     <div>
-                        <div title="Ellipse" class="@dictionary["ellipse"]" id="bottome" @onclick="@(() => UpdateTools("ellipse"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/ellipse.png")); margin-left: 4px">
+                            <div title="Ellipse" class="@dictionary["ellipse"]" id="bottome" @onclick="@(() => UpdateTools("ellipse"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/ellipse.png")); margin-left: 4px">
                         </div>                        
                     </div>
                     <div>
-                        <div title="Hexagon" class="@dictionary["hexagon"]" id="right" @onclick="@(() => UpdateTools("hexagon"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/hexagon.png")); margin: 0px 4px">
+                            <div title="Hexagon" class="@dictionary["hexagon"]" id="right" @onclick="@(() => UpdateTools("hexagon"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/hexagon.png")); margin: 0px 4px">
                         </div>                                               
                     </div>
                 </div>
                 <div class="row" style="padding-top: 8px">
                     <div>
-                        <div title="Pentagon" class="@dictionary["pentagon"]" id="bottoml" @onclick="@(() => UpdateTools("pentagon"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/pentagon.png"));margin-left: 4px">
+                            <div title="Pentagon" class="@dictionary["pentagon"]" id="bottoml" @onclick="@(() => UpdateTools("pentagon"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/pentagon.png"));margin-left: 4px">
                         </div>                                              
                     </div>
                     <div>
-                        <div title="Triangle" class="@dictionary["triangle"]" id="bottomcenter_top" @onclick="@(() => UpdateTools("triangle"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/polygon.png"));margin-left: 4px">
+                            <div title="Triangle" class="@dictionary["triangle"]" id="bottomcenter_top" @onclick="@(() => UpdateTools("triangle"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/polygon.png"));margin-left: 4px">
                         </div>                                              
                     </div>
                     <div>
-                        <div title="Star" class="@dictionary["star"]" id="center" @onclick="@(() => UpdateTools("star"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/path.png")); margin: 0px 4px">
+                            <div title="Star" class="@dictionary["star"]" id="center" @onclick="@(() => UpdateTools("star"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/path.png")); margin: 0px 4px">
                         </div>                                             
                     </div>
                 </div>
                 <div class="row" style="padding-top: 8px">
                     <div>
-                        <div title="User" class="@dictionary["user"]" id="bottom_User" @onclick="@(() => UpdateTools("user"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/user.png"));margin-left: 4px">
+                            <div title="User" class="@dictionary["user"]" id="bottom_User" @onclick="@(() => UpdateTools("user"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/user.png"));margin-left: 4px">
                         </div>
                     </div>
                     <div >
-                        <div title="Custom Node" class="@dictionary["customnode"]" id="Custom_Node" @onclick="@(() => UpdateTools("customnode"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/customnode.png"));margin-left: 4px">
+                            <div title="Custom Node" class="@dictionary["customnode"]" id="Custom_Node" @onclick="@(() => UpdateTools("customnode"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/customnode.png"));margin-left: 4px">
                         </div>
 
                     </div>
                     <div>
-                        <div title="Text Node" class="@dictionary["textnode"]" id="Custom_Node" @onclick="@(() => UpdateTools("textnode"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/text1.png"));margin-left: 4px">
+                            <div title="Text Node" class="@dictionary["textnode"]" id="Custom_Node" @onclick="@(() => UpdateTools("textnode"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/text1.png"));margin-left: 4px">
                         </div>
 
                     </div>
@@ -298,11 +298,11 @@
                 </div>
                 <div class="row" style="padding-top: 8px">
                     <div>
-                        <div title="Straight" class="@dictionary["straight"]" id="center_Straight" @onclick="@(() => UpdateTools("straight"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/connectors-1.png")); margin: 0px 4px">
+                            <div title="Straight" class="@dictionary["straight"]" id="center_Straight" @onclick="@(() => UpdateTools("straight"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/connectors-1.png")); margin: 0px 4px">
                         </div>                       
                     </div>
                     <div>
-                        <div title="Orthogonal" class="@dictionary["orthogonal"]" id="bottom_Orthogonal" @onclick="@(() => UpdateTools("orthogonal"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/basic-shape/connectors-2.png")); margin-left: 4px">
+                            <div title="Orthogonal" class="@dictionary["orthogonal"]" id="bottom_Orthogonal" @onclick="@(() => UpdateTools("orthogonal"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/basic-shape/connectors-2.png")); margin-left: 4px">
                         </div>                                              
                     </div>
                     <div>
@@ -312,11 +312,11 @@
                 </div>
                 <div class="row" style="padding-top: 8px">
                     <div>
-                        <div title="Polyline" class="@dictionary["polyline"]" id="bottompoly" @onclick="@(() => UpdateTools("polyline"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/polyline1.png")); margin:0px 4px">
+                            <div title="Polyline" class="@dictionary["polyline"]" id="bottompoly" @onclick="@(() => UpdateTools("polyline"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/polyline1.png")); margin:0px 4px">
                         </div>                                               
                     </div>
                     <div>
-                        <div title="Freehand" class="@dictionary["freehand"]" id="bottomfreehand" @onclick="@(() => UpdateTools("freehand"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/drawing-tool/freehand.png")); margin:0px 4px">
+                            <div title="Freehand" class="@dictionary["freehand"]" id="bottomfreehand" @onclick="@(() => UpdateTools("freehand"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/freehand.png")); margin:0px 4px">
                         </div>
                     </div>
                 </div>
@@ -422,7 +422,7 @@
             case "user":
                 Node imageNode = new Node()
                 {
-                    Shape = new ImageShape() { Type = NodeShape.Image, Source = SampleService!.WebAssetsPath + "/images/diagram/drawing-tool/image.png" }
+                        Shape = new ImageShape() { Type = NodeShape.Image, Source = "https://cdn.syncfusion.com/blazor/images/diagram/drawing-tool/image.png" }
                 };
                 CurrentDrawingObject = imageNode;
                 break;

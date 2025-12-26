@@ -1,4 +1,4 @@
-﻿@page "/kanban/dynamic-object"
+@page "/kanban/dynamic-object"
 
 @using Syncfusion.Blazor.Kanban
 @using System.Dynamic
@@ -52,13 +52,13 @@
 
     public class DynamicDictionary : System.Dynamic.DynamicObject
     {
-        Dictionary<string, object> dictionary = new Dictionary<string, object>();
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        Dictionary<string, object?> dictionary = new Dictionary<string, object?>();
+        public override bool TryGetMember(GetMemberBinder binder, out object? result)
         {
             string name = binder.Name;
             return dictionary.TryGetValue(name, out result);
         }
-        public override bool TrySetMember(SetMemberBinder binder, object value)
+        public override bool TrySetMember(SetMemberBinder binder, object? value)
         {
             dictionary[binder.Name] = value;
             return true;
@@ -66,7 +66,7 @@
         //The GetDynamicMemberNames method of DynamicObject class must be overridden and return the property names to perform data operation and editing while using DynamicObject.
         public override System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames()
         {
-            return this.dictionary?.Keys;
+            return this.dictionary?.Keys ?? Enumerable.Empty<string>();
         }
     }
 }

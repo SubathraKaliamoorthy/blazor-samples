@@ -1,4 +1,4 @@
-﻿@page "/diagram/flow-execution"
+@page "/diagram/flow-execution"
 
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Diagram
@@ -16,7 +16,7 @@
 @*End:Hidden*@
 <div class="col-lg-9 control-section" style="border-right: 1px solid #D7D7D7">
     <div id="diagram-space" class="content-wrapper">
-        <SfDiagramComponent Height="590px" @ref="@DiagramInstance" Nodes="@DiagramNodes" SelectionChanged="OnSelectionChanged" Connectors="@DiagramConnectors" Created="OnCreated">
+        <SfDiagramComponent Height="590px" @ref="@DiagramInstance" Nodes="@DiagramNodes" SelectionChanged="OnSelectionChanged" Connectors="@DiagramConnectors" Created="OnCreated" Constraints="@DiagramConstraints">
             <SnapSettings @bind-Constraints="@Constraints"></SnapSettings>
         </SfDiagramComponent>
     </div>
@@ -118,6 +118,7 @@
     public DiagramObjectCollection<Node>? DiagramNodes { get; set; }
     // Defines diagram's connector collection
     public DiagramObjectCollection<Connector>? DiagramConnectors { get; set; }
+    public DiagramConstraints DiagramConstraints { get; set; } = DiagramConstraints.Default & ~DiagramConstraints.UndoRedo;
 
     private void OnCreated()
     {

@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlazorDemos.Pages.Layouts.ListView
 {
@@ -365,37 +361,37 @@ namespace BlazorDemos.Pages.Layouts.ListView
 
     public class CallHistoryModel
     {
-        public string Text
+        public string? Text
         {
             get;
             set;
         }
-        public string Id
+        public string? Id
         {
             get;
             set;
         }
-        public string Icon
+        public string? Icon
         {
             get;
             set;
         }
-        public string Type
+        public string? Type
         {
             get;
             set;
         }
-        public string Group
+        public string? Group
         {
             get;
             set;
         }
-        public string Time
+        public string? Time
         {
             get;
             set;
         }
-        public string Category
+        public string? Category
         {
             get;
             set;
@@ -404,52 +400,52 @@ namespace BlazorDemos.Pages.Layouts.ListView
 
     public class NewsDataModel
     {
-        public string Id
+        public string? Id
         {
             get;
             set;
         }
-        public string Title
+        public string? Title
         {
             get;
             set;
         }
-        public string Description
+        public string? Description
         {
             get;
             set;
         }
-        public string Text
+        public string? Text
         {
             get;
             set;
         }
-        public string ImgSrc
+        public string? ImgSrc
         {
             get;
             set;
         }
-        public string TimeStamp
+        public string? TimeStamp
         {
             get;
             set;
         }
-        public string Category
+        public string? Category
         {
             get;
             set;
         }
-        public string Heading
+        public string? Heading
         {
             get;
             set;
         }
-        public string Content
+        public string? Content
         {
             get;
             set;
         }
-        public List<NewsDataModel> Child
+        public List<NewsDataModel>? Child
         {
             get;
             set;

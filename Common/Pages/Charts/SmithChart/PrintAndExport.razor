@@ -1,10 +1,12 @@
-﻿@page "/smith-chart/print-and-export"
+@page "/smith-chart/print-and-export"
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 
 @*Hidden:Lines*@
@@ -12,14 +14,14 @@
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This sample demonstrates the print and export options in the smith chart.</p>
+    <p>This sample demonstrates the print and export functionalities available in the Smith Chart. Users can easily generate a printable version of the chart or export it in various formats such as image or PDF. These features are especially useful for sharing chart data, including transmission characteristics, in reports, presentations, or documentation, ensuring that visual insights can be preserved and communicated effectively.</p>
 </SampleDescription>
 <ActionDescription>
     <p>In this example, you can see how to export and print the rendered smith chart. The smith chart can be saved as <b>JPEG, PNG, SVG</b> or <b>PDF</b>.</p>
     <p>More information about the smith chart can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/smith-chart/getting-started-webapp" aria-label="Documentation section">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
+<div class="col-lg-9 control-section ">
     <SfSmithChart @ref="Chart" Theme="Theme">
         <SmithChartHorizontalAxis>
             <SmithChartHorizontalMinorGridLines Visible="true"></SmithChartHorizontalMinorGridLines>
@@ -37,11 +39,7 @@
             <SmithChartLegendSettings Visible="true" Shape="Shape.Circle"></SmithChartLegendSettings>
         </SmithChartSeriesCollection>
     </SfSmithChart>
-</div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+</div><PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                 <tr style="height: 50px">
@@ -76,9 +74,7 @@
             <div align="center" style="height: 45px; text-transform:none !important; width:100%">
                 <SfButton IsPrimary="true" IsToggle="true" CssClass="e-custom" OnClick="OnPrintClick">Print</SfButton>
             </div>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
     public SfSmithChart? Chart { get; set; }
@@ -137,12 +133,12 @@
 
     public void OnFileTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, Typelist> args)
     {
-        FileType = args.Value;
+        FileType = args?.Value ?? FileType;
     }
 
     public void OnFileNameChange(Syncfusion.Blazor.Inputs.ChangedEventArgs args)
     {
-        FileName = args.Value;
+        FileName = args?.Value ?? FileName;
     }
 
     public async Task OnExportClick()
@@ -172,6 +168,18 @@
     {
         if (Chart != null)
         await Chart.PrintAsync();
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Chart != null)
+        {
+            await Chart.RefreshAsync(false);
+        }
     }
 
 }

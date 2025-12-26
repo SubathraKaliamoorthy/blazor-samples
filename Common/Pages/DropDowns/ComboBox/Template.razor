@@ -1,4 +1,4 @@
-﻿@page "/ComboBox/Template"
+@page "/ComboBox/Template"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -28,7 +28,7 @@
     <div class="control-wrapper">
         <div class="content">
             <label class="example-label">Select an employee</label>
-            <SfComboBox TValue="string" TItem="EmployeeData" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
+            <SfComboBox TValue="string" TItem="EmployeeData" PopupHeight="200px" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
                 <ComboBoxTemplates TItem="EmployeeData">
                     <ItemTemplate>
                         <div>
@@ -277,10 +277,6 @@
 
     .e-bigger.bootstrap4 .template.e-popup .job {
         margin-top: -15px;
-    }
-
-    .template .e-dropdownbase.e-content {
-        max-height: 200px !important;
     }
 </style>
 

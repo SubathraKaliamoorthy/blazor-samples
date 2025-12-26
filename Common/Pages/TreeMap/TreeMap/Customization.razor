@@ -1,9 +1,11 @@
-﻿@page "/treemap/customization"
+@page "/treemap/customization"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.TreeMap
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager UriHelper
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @*End:Hidden*@
@@ -74,10 +76,12 @@
     };
     protected override void OnInitialized()
     {
-        Theme = ThemeHelper.GetCurrentTheme(UriHelper.Uri);
+        Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             ShowLabels = false;
         }
+        @*End:Hidden*@
     }
 }

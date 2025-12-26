@@ -1,4 +1,4 @@
-﻿@page "/range-selector/date-time-axis"
+@page "/range-selector/date-time-axis"
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 @using Syncfusion.Blazor
@@ -36,7 +36,7 @@ else
                 </RangeNavigatorSeries>
             </RangeNavigatorSeriesCollection>
         </SfRangeNavigator>
-        
+
         <SfChart Theme="@ChartTheme">
             <ChartArea><ChartAreaBorder Width="0" Color="transparent"></ChartAreaBorder></ChartArea>
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.DateTime" EdgeLabelPlacement="EdgeLabelPlacement.Shift" ZoomFactor="@ZoomFactor" ZoomPosition="@ZoomPosition">
@@ -92,7 +92,13 @@ else
     protected override void OnInitialized()
     {
         string currentUri = NavigationManager.Uri;
-        YearlyInterval = SampleService != null && SampleService.IsDevice ? 2 : 1;
+        YearlyInterval = 1;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            YearlyInterval = 2;
+        }
+        @*End:Hidden*@
 
         SetTheme(currentUri);
     }

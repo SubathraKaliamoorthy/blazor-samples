@@ -1,14 +1,14 @@
-﻿@page "/chart/date-time-axis"
+@page "/chart/date-time-axis"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -36,14 +36,14 @@
             <ChartSeries DataSource="@ChartPoints" XName="Period" YName="MaxTemp" Opacity="1" Name="Warmest" Width="2" Type="ChartSeriesType.Line">
                 <ChartMarker Visible="true" Height="8" Width="8" IsFilled="true" Shape="ChartShape.Pentagon">
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
-                        <ChartDataLabelFont Size="@(SampleService != null && SampleService.IsDevice ? "9px" : "12px")"></ChartDataLabelFont>
+                        <ChartDataLabelFont Size="@FontSize"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
             <ChartSeries DataSource="@ChartPoints" XName="Period" YName="MinTemp" Opacity="1" Name="Coldest" Width="2" Type="ChartSeriesType.Line">
                 <ChartMarker Visible="true" Height="8" Width="8" IsFilled="true" Shape="ChartShape.Diamond">
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
-                        <ChartDataLabelFont Size="@(SampleService != null && SampleService.IsDevice ? "9px" : "12px")"></ChartDataLabelFont>
+                        <ChartDataLabelFont Size="@FontSize"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
@@ -57,6 +57,7 @@
 
     private Theme Theme { get; set; }
     public string Width { get; set; } = "90%";
+    public string FontSize { get; set; } = "12px";
     public List<DateTimeData> ChartPoints { get; set; } = new List<DateTimeData>
     {
         new DateTimeData { Period = new DateTime(2024, 01, 01), MaxTemp = 31.5, MinTemp = 18.9},
@@ -77,10 +78,13 @@
     {
 
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
+            FontSize = "9px";
         }
+        @*End:Hidden*@
     }
 
     public class DateTimeData

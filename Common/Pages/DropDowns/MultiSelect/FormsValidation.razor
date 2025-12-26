@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Forms-Validation"
+@page "/MultiSelect-Dropdown/Forms-Validation"
 
 @using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.Buttons;
@@ -33,7 +33,7 @@
             <EditForm Model="@_annoationfields" OnValidSubmit="@OnValidSubmit" OnInvalidSubmit="@OnInvalidSubmit">
                 <DataAnnotationsValidator/>
                 <label class="example-label">Select games</label>
-                <SfMultiSelect TValue="string[]" TItem="GameFields" Mode="@VisualMode.Default" @bind-Value="@_annoationfields.ValueObj" Placeholder="e.g. Badminton" DataSource="@Games">
+                <SfMultiSelect TValue="string[]" TItem="GameFields" PopupHeight="200px" Mode="@VisualMode.Default" @bind-Value="@_annoationfields.ValueObj" Placeholder="e.g. Badminton" DataSource="@Games">
                     <MultiSelectFieldSettings Text="Text" Value="Id"></MultiSelectFieldSettings>
                 </SfMultiSelect>
                 <ValidationMessage For="() => _annoationfields.ValueObj"/>

@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/Template"
+@page "/MultiColumn-ComboBox/Template"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 
@@ -27,7 +27,7 @@
     <div class="control-wrapper">
         <label class="example-label">Select an employee</label>
 
-        <SfMultiColumnComboBox TItem="Employee" TValue="string" AllowFiltering="true" PopupWidth="600px"
+        <SfMultiColumnComboBox TItem="Employee" TValue="string" PopupHeight="200px" AllowFiltering="true" PopupWidth="600px"
                                @bind-Value="@Value" DataSource="@Employees" ValueField="Name"
                                TextField="Name" Placeholder="Select an employee" Width="300px">
             <MultiColumnComboboxColumns>

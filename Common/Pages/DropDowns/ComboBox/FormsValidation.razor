@@ -1,4 +1,4 @@
-﻿@page "/ComboBox/Forms-Validation"
+@page "/ComboBox/Forms-Validation"
 
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons;
@@ -40,7 +40,7 @@
                 <DataAnnotationsValidator />
                 <div>
                     <label class="example-label">Select a country</label>
-                    <SfComboBox Placeholder="e.g. Australia" @bind-Value="@_model.Name" DataSource="@Country" AllowCustom="false">
+                    <SfComboBox PopupHeight="200px" Placeholder="e.g. Australia" @bind-Value="@_model.Name" DataSource="@Country" AllowCustom="false">
                         <ComboBoxFieldSettings Value="Code" Text="Name" />
                     </SfComboBox>
                     <ValidationMessage For="()=>_model.Name" />

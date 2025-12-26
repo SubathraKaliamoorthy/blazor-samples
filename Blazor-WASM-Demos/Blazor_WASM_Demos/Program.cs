@@ -7,17 +7,19 @@
 #endregion
 using BlazorDemos.Pages;
 using BlazorDemos.Components;
-using Syncfusion.Blazor;
+using BlazorDemos.Shared;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorDemos.Shared;
+using Syncfusion.Blazor;
 using Syncfusion.Blazor.Popups;
 using Syncfusion.Licensing;
 using System;
 using System.Net.Http;
-using Microsoft.AspNetCore.Components;
+using AIAssistview.Service;
+using AIAssistView_AzureAI.Components.Services;
 
 var licenseKey = "";
 
@@ -25,9 +27,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 SyncfusionLicenseProvider.RegisterLicense(licenseKey);
 builder.Services.AddControllers();
-builder.Services.AddHttpClient();
 builder.Services.AddSyncfusionBlazor(); 
+builder.Services.AddScoped<AIService>();
 builder.Services.AddScoped<SfDialogService>();
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<SampleService>();
 builder.Services.AddSingleton<DeviceMode>();
 builder.Services.AddSignalR(e => e.MaximumReceiveMessageSize = 102400000);
@@ -91,7 +95,7 @@ app.UseCookiePolicy(
         Secure = CookieSecurePolicy.Always
     });
 
-#if NET9_0
+#if NET9_0_OR_GREATER
 app.MapStaticAssets();
 #else
 app.UseStaticFiles();

@@ -1,4 +1,4 @@
-﻿function isFooterContainsValue(elementref) {
+function isFooterContainsValue(elementref) {
     // Remove <br>
     if (!elementref.innerText.trim() !== '') {
         if ((elementref.innerHTML === '<br>' || elementref.innerHTML.trim() === '')) {

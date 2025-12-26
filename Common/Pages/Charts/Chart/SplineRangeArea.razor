@@ -1,7 +1,9 @@
 @page "/chart/spline-range-area"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
@@ -74,12 +76,14 @@
     {
         base.OnAfterRender(firstRender);
         if(firstRender) {
+            @*Hidden:Lines*@
             if (SampleService != null && SampleService.IsDevice)
             {
                 Width = "100%";
                 EdgeLabelPlacement = EdgeLabelPlacement.Shift;
                 StateHasChanged();
             }
+            @*End:Hidden*@
         }
     }
 

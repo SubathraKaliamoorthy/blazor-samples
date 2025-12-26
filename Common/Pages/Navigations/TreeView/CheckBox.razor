@@ -1,4 +1,4 @@
-﻿@page "/treeview/checkBox"
+@page "/treeview/checkBox"
 
 @using Syncfusion.Blazor.Navigations
 @inject NavigationManager UriHelper
@@ -59,7 +59,7 @@
     // Specifies the DataSource value for TreeView component.
     private List<TreeItem> TreeDataSource = new List<TreeItem>();
     // Specify the reference of TreeView element.
-    private SfTreeView<TreeItem> TreeRef;
+    private SfTreeView<TreeItem>? TreeRef;
     // Specifies the CheckedNodes value for TreeView component.
     private string[] CheckedNodes = new string[] { "04-01" };
     
@@ -149,12 +149,12 @@
 
     private class TreeItem
     {
-        public string NodeId { get; set; }
-        public string NodeText { get; set; }
-        public string Icon { get; set; }
-        public string ImageUrl { get; set; }
+        public string? NodeId { get; set; }
+        public string? NodeText { get; set; }
+        public string? Icon { get; set; }
+        public string? ImageUrl { get; set; }
         public bool Expanded { get; set; }
-        public List<TreeItem> Child;
+        public List<TreeItem>? Child;
     }
 }
 
@@ -181,7 +181,7 @@
     /* Loading sprite image for TreeView */
     .e-treeview .e-list-icon {
         background-repeat: no-repeat;
-        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/treeview/file-icons.png")');
+        background-image: url('@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/treeview/file-icons.png")');
         height: 20px;
         width: 20px;
     }

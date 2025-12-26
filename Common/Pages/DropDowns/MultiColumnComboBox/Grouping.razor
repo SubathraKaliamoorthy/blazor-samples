@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/Grouping-Sorting"
+@page "/MultiColumn-ComboBox/Grouping-Sorting"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 
@@ -21,14 +21,14 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Grouping</label>
-            <SfMultiColumnComboBox TValue="string" TItem="Product" DataSource="@Products" PopupWidth="600px" ValueField="Name" TextField="Name" Placeholder="e.g. Laptop" GroupByField="Category">
+            <SfMultiColumnComboBox TValue="string" PopupHeight="200px" TItem="Product" DataSource="@Products" PopupWidth="600px" ValueField="Name" TextField="Name" Placeholder="e.g. Laptop" GroupByField="Category">
             </SfMultiColumnComboBox>
         </div>
     </div>
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Sorting</label>
-            <SfMultiColumnComboBox TValue="string" TItem="Product" DataSource="@Products" PopupWidth="600px" ValueField="Name" TextField="Name" AllowMultiSorting="true" Placeholder="e.g. Laptop">
+            <SfMultiColumnComboBox TValue="string" TItem="Product" PopupHeight="200px" DataSource="@Products" PopupWidth="600px" ValueField="Name" TextField="Name" AllowMultiSorting="true" Placeholder="e.g. Laptop">
             </SfMultiColumnComboBox>
         </div>
     </div>

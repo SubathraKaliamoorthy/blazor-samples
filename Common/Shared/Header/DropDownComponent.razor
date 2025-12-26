@@ -1,9 +1,9 @@
-﻿@namespace BlazorDemos.Shared
+@namespace BlazorDemos.Shared
 
 @inject IJSRuntime JsRuntime;
 
 <div class="sf-dropdown-container">
-    <div class="sf-dropdown-input-container" tabindex="0" @onclick="@OnInputClick">
+    <div class="sf-dropdown-input-container" @onclick="@OnInputClick" @onkeydown="OnInputKeyDown">
         <input @ref="inputElement" @bind="Value" class="sf-dropdown-input" aria-label="Culture Switcher" readonly="readonly" tabindex="0"/>
         <span class="sb-icons sf-dropdown-icon" role="presentation"></span>
     </div>
@@ -16,7 +16,7 @@
                 {
                     liClass = SampleUtils.AddClass(liClass, SampleUtils.ACTIVE_CLASS);
                 }
-                <li class="@liClass" @onclick="@(async () => { await OnItemSelect(item); })">
+                <li class="@liClass" @onclick="@(async () => { await OnItemSelect(item); })" @onkeydown="@((e) => OnItemKeySelect(item, e))" tabindex="0">
                     @if (ItemTemplate != null)
                     {
                         @ItemTemplate(item);
@@ -77,6 +77,12 @@
     [Parameter]
     public EventCallback<DropDownData> OnSelect { get; set; }
 
+    /// <summary>
+    /// Triggers the event on item selection.
+    /// </summary>
+    [Parameter]
+    public EventCallback<(DropDownData, KeyboardEventArgs)> OnKeyItem { get; set; }
+
     // Input container click event handler.
     private void OnInputClick()
     {
@@ -93,6 +99,14 @@
         }
 
     }
+
+    private void OnInputKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            OnInputClick();
+        }
+     }
 
     // Icon click event handler.
     private async Task OnIconClick()
@@ -114,6 +128,15 @@
         if (OnSelect.HasDelegate)
         {
             await OnSelect.InvokeAsync(args);
+        }
+    }
+
+    // Item selection using keyboard event handler.
+    private async Task OnItemKeySelect(DropDownData args, KeyboardEventArgs e)
+    {
+        if (OnKeyItem.HasDelegate)
+        {
+            await OnKeyItem.InvokeAsync((args, e));
         }
     }
 

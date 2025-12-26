@@ -154,7 +154,7 @@
     public class ProductCategory
     {
         public int? Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int? ParentId { get; set; }
         public bool HasChild { get; set; }
         public bool Expanded { get; set; }
@@ -162,10 +162,10 @@
 
     public class TreeData
     {
-        public string Code { get; set; }
-        public string Name { get; set; }
+        public string? Code { get; set; }
+        public string? Name { get; set; }
         public bool Expanded { get; set; }
-        public List<TreeData> Child;
+        public List<TreeData>? Child;
     }
 }
 

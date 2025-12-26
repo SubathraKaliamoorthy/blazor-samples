@@ -1,11 +1,10 @@
-﻿@page "/speech-to-text/integration"
+@page "/speech-to-text/integration"
 
 @using Syncfusion.Blazor.InteractiveChat
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Notifications
-@using Microsoft.AspNetCore.Components
 
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -173,8 +172,21 @@
         height: 40px;
         font-size: 20px;
         border: none;
-        background: none;
         cursor: pointer;
+        box-shadow: none;
+    }
+
+    .integration-speechToText-section .e-footer-wrapper #assistview-sendButton:not(.e-assist-stop) {
+        background: none;
+    }
+
+    .e-bigger .integration-speechToText-section .e-footer-wrapper #assistview-sendButton {
+        width: 52px;
+        height: 52px;
+    }
+
+    .integration-speechToText-section .e-footer-wrapper #assistview-sendButton .e-assist-stop {
+        justify-self: center;
     }
 
     .integration-speechToText-section .e-footer-wrapper #speechToText.visible,

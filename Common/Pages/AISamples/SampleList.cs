@@ -44,11 +44,9 @@ namespace BlazorDemos
                 Directory = "AISamples/Charts",
                 Url = "ai-charts/stock-forecasting",
                 FileName = "StockForecasting.razor",
-                Type = SampleType.New,
                 MetaTitle = "Blazor Charts Stock Forecasting - Syncfusion AI Demos",
                 HeaderText = "Blazor Charts Example - Stock Forecasting with AI",
-                MetaDescription = "This demo showcases the AI feature in Charts, which analyzes historical stock data to intelligently forecast future trends and support informed decision-making.",
-                NotificationDescription = new string[]{ @" This demo highlights the AI-powered forecasting feature in Charts." }
+                MetaDescription = "This demo showcases the AI feature in Charts, which analyzes historical stock data to intelligently forecast future trends and support informed decision-making."
             },
             new Sample
             {
@@ -57,11 +55,9 @@ namespace BlazorDemos
                 Directory = "AISamples/Charts",
                 Url = "ai-charts/data-preprocessing",
                 FileName = "DataPreprocessing.razor",
-                Type = SampleType.New,
                 MetaTitle = "Blazor Charts Data Preprocessing - Syncfusion AI Demos",
                 HeaderText = "Blazor Charts Example - Data Preprocessing with AI",
-                MetaDescription = "This demo showcases the AI feature in Charts that intelligently fills missing values in datasets to ensure accurate, complete, and reliable visualizations.",
-                NotificationDescription = new string[]{ @" This demo showcases how Charts uses AI to process data with missing values." }
+                MetaDescription = "This demo showcases the AI feature in Charts that intelligently fills missing values in datasets to ensure accurate, complete, and reliable visualizations."
             },
             new Sample
             {
@@ -70,11 +66,9 @@ namespace BlazorDemos
                 Directory = "AISamples/Charts",
                 Url = "ai-charts/smart-chart",
                 FileName = "SmartChart.razor",
-                Type = SampleType.New,
                 MetaTitle = "Syncfusion blazor Charts Smart Charts - Syncfusion AI Demos",
                 HeaderText = "Blazor Charts Example - Smart Charts with AI",
-                MetaDescription = "This Blazor Smart Charts demo uses AI to dynamically render the relevant chart type from user prompts, enabling seamless, adaptive, intuitive data exploration.",
-                NotificationDescription = new string[]{ @" This demo showcases Smart Charts, which dynamically render visualizations based on user prompts." }
+                MetaDescription = "This Blazor Smart Charts demo uses AI to dynamically render the relevant chart type from user prompts, enabling seamless, adaptive, intuitive data exploration."
             },
             new Sample
             {
@@ -99,6 +93,17 @@ namespace BlazorDemos
                 HeaderText = "Blazor Rich Text Editor Example - AI Writing Assistant",
                 MetaDescription = "This Blazor Rich Text Editor AI Assistant example demonstrates intelligent content creation and contextual writing suggestions for improved content quality.",
                 NotificationDescription = new string[]{ @" This demo showcases the Rich Text Editor AI feature." }
+            },
+            new Sample
+            {
+                Name = "Multiple AI Models",
+                Category = "AIAssistView",
+                Directory = "AISamples/AIAssistView",
+                Url = "ai-assist-view/ai-models",
+                FileName = "MultiModelAI.razor",
+                MetaTitle = "Blazor AI AssistView Multiple AI Models | Modal Chat | Syncfusion",
+                HeaderText = "Blazor AI AssistView Example - Multiple AI Models",
+                MetaDescription = "This Blazor AI AssistView example shows how to use a custom view that supports multiple AI models, including Gemini and Azure OpenAI, for seamless integration."
             },
             new Sample
             {

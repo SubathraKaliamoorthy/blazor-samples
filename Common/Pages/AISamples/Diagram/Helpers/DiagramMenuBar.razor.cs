@@ -5,19 +5,19 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
+using BlazorDemos.Model;
+using Microsoft.JSInterop;
+using Syncfusion.Blazor.Diagram;
 using Syncfusion.Blazor.Inputs;
 using Syncfusion.Blazor.Navigations;
-using Syncfusion.Blazor.Diagram;
-using Syncfusion.PdfExport;
-using System.Collections.ObjectModel;
 using Syncfusion.Blazor.SplitButtons;
-using Microsoft.JSInterop;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.IO;
+using Syncfusion.PdfExport;
 using System;
-using BlazorDemos.Model;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TextToMindMapDiagram
 {

@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -68,7 +64,20 @@ namespace BlazorDemos
                 FileName = "ListTemplates.razor",
                 MetaTitle = "Blazor ListView Templates | Custom Item Rendering | Syncfusion",
                 HeaderText = "Blazor ListView Example - Custom Templates",
-                MetaDescription = "This Blazor ListView template example shows custom item rendering with templates. Create visually appealing lists with personalized layouts for each item."
+                MetaDescription = "This Blazor ListView template example shows custom item rendering with templates. Create visually appealing lists with personalized layouts for each item.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id = "ListTemplates",
+                        FileName = "ListTemplates.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ListViewDataSource",
+                        FileName = "ListViewDataSource.cs"
+                    },
+                },
             },
             new Sample
             {
@@ -101,7 +110,20 @@ namespace BlazorDemos
                 FileName = "CallHistory.razor",
                 MetaTitle = "Blazor ListView Call History | Real-World Application | Syncfusion",
                 HeaderText = "Blazor ListView Example - Call History Application",
-                MetaDescription = "This Blazor ListView example shows a practical call history application. Display call logs with date, time, and contact details in a mobile-like interface."
+                MetaDescription = "This Blazor ListView example shows a practical call history application. Display call logs with date, time, and contact details in a mobile-like interface.",
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id = "CallHistory",
+                        FileName = "CallHistory.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id = "ListViewDataSource",
+                        FileName = "ListViewDataSource.cs"
+                    },
+                },
             },
             new Sample
             {

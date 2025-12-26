@@ -5,14 +5,12 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System.Threading.Tasks;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Extensions.AI;
 using Syncfusion.Blazor.AI;
-using OpenAI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace BlazorDemos.Service
@@ -100,7 +98,9 @@ namespace BlazorDemos.Service
             try
             {
                 ChatResponse completion = await _chatClient.GetResponseAsync(options.Messages, completionRequest);
+#if !STAGING
                 await _userTokenService.UpdateTokensAsync(userCode, (int)(remainingTokens - completion.Usage.TotalTokenCount));
+#endif
                 return completion.Text.ToString();
             }
             catch (Exception ex)

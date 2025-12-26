@@ -53,7 +53,7 @@
     private bool linearMode { get; set; } = true;
     private bool IsNext { get; set; } = true;
     private bool IsPrevious { get; set; } = false;
-    private SfStepper LinearStepperComponent { get; set; }
+    private SfStepper? LinearStepperComponent { get; set; }
 
     private MarkupString StepContent { get; set; } = new MarkupString(
         "<b>Description:</b> <br/><br/>" +
@@ -63,20 +63,29 @@
     private async void SetStepperMode(bool isLinear)
     {
         linearMode = isLinear;
-        await LinearStepperComponent.ResetAsync();
-        UpdateStepContent(LinearStepperComponent.ActiveStep);
+        if(LinearStepperComponent != null)
+        {
+            await LinearStepperComponent.ResetAsync();
+            UpdateStepContent(LinearStepperComponent.ActiveStep);
+        }
     }
 
     private async void GoToPreviousStep()
     {
-        await LinearStepperComponent.PreviousStepAsync();
-        UpdateStepContent(LinearStepperComponent.ActiveStep);
+        if (LinearStepperComponent != null)
+        {
+            await LinearStepperComponent.PreviousStepAsync();
+            UpdateStepContent(LinearStepperComponent.ActiveStep);
+        }
     }
 
     private async void GoToNextStep()
     {
-        await LinearStepperComponent.NextStepAsync();
-        UpdateStepContent(LinearStepperComponent.ActiveStep);
+        if (LinearStepperComponent != null)
+        {
+            await LinearStepperComponent.NextStepAsync();
+            UpdateStepContent(LinearStepperComponent.ActiveStep);
+        }
     }
 
     private void UpdateStepContent(int activeStep)

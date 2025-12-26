@@ -59,7 +59,7 @@ namespace BlazorDemos
                 Name = "Pivot Table",
                 Category = "Data Management",
                 Directory = "PivotView/PivotTable",
-                Type = SampleType.Updated,
+                Type = SampleType.None,
                 Samples = PivotTable,
                 ControllerName = "PivotTable",
                 DemoPath = "pivot-table/overview"
@@ -82,9 +82,6 @@ namespace BlazorDemos
                 Directory = "Forms/QueryBuilder",
                 Samples = QueryBuilder,
                 ControllerName = "QueryBuilder",
-#if SERVER
-                Type = SampleType.Updated,
-#endif
                 DemoPath = "query-builder/default-functionalities"
             });
             SampleBrowser.SampleList.Add(new SampleList
@@ -132,7 +129,7 @@ namespace BlazorDemos
                 Name = "Stock Chart",
                 Category = "Data Visualization",
                 Directory = "Charts",
-                Type = SampleType.Updated,
+                Type = SampleType.None,
                 Samples = StockChart,
                 ControllerName = "StockChart",
                 DemoPath = "stock-chart/stock-chart"
@@ -254,11 +251,6 @@ namespace BlazorDemos
                 Samples = Maps,
                 ControllerName = "Maps",
                 DemoPath = "maps/default-functionalities",
-#if SERVER
-                Type = SampleType.Updated
-#else
-                Type = SampleType.None
-#endif
             });
             SampleBrowser.SampleList.Add(new SampleList
             {
@@ -301,14 +293,23 @@ namespace BlazorDemos
             });
             SampleBrowser.SampleList.Add(new SampleList
             {
+                Name = "Block Editor",
+                Category = "File Viewers & Editors",
+                Directory = "BlockEditor/BlockEditor",
+                Samples = BlockEditor,
+                ControllerName = "BlockEditor",
+                DemoPath = "block-editor/overview",
+                Type = SampleType.Preview,
+                IsPreview = true
+            });
+            SampleBrowser.SampleList.Add(new SampleList
+            {
                 Name = "Scheduler",
                 Category = "Scheduling & Calendars",
                 Directory = "Schedule/Scheduler",
                 Samples = Scheduler,
                 ControllerName = "Scheduler",
-#if SERVER
                 Type = SampleType.Updated,
-#endif
                 DemoPath = "scheduler/overview"
             });
             SampleBrowser.SampleList.Add(new SampleList
@@ -378,9 +379,7 @@ namespace BlazorDemos
                 Directory = "Navigations/FileManager",
                 Samples = FileManager,
                 ControllerName = "FileManager",
-#if SERVER
                 Type = SampleType.Updated,
-#endif
                 DemoPath = "file-manager/overview"
             });
             SampleBrowser.SampleList.Add(new SampleList
@@ -902,6 +901,7 @@ namespace BlazorDemos
                 Name = "AI AssistView",
                 Category = "Interactive Chat",
                 Directory = "InteractiveChat/AIAssistView",
+                Type = SampleType.Updated,
                 Samples = AIAssistView,
                 ControllerName = "AIAssistView",
                 DemoPath = "ai-assistview/default-functionalities"
@@ -911,11 +911,10 @@ namespace BlazorDemos
                 Name = "Chat UI",
                 Category = "Interactive Chat",
                 Directory = "InteractiveChat/ChatUI",
+                Type = SampleType.Updated,
                 Samples = ChatUI,
                 ControllerName = "ChatUI",
-                DemoPath = "chat-ui/default-functionalities",
-                Type = SampleType.Preview,
-                IsPreview = true
+                DemoPath = "chat-ui/default-functionalities"
             });
             SampleBrowser.SampleList.Add(new SampleList
             {
@@ -995,7 +994,7 @@ namespace BlazorDemos
                 Samples = Kanban,
                 ControllerName = "Kanban",
 #if SERVER
-                Type = SampleType.Updated,
+                Type = SampleType.None,
 #endif
                 DemoPath = "kanban/overview"
             });

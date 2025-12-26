@@ -1,4 +1,4 @@
-﻿
+
 @page "/rich-text-editor/image"
 
 @using Syncfusion.Blazor.RichTextEditor
@@ -170,7 +170,7 @@
     private class SaveFormatOptions
     {
         public SaveFormat Value { get; set; }
-        public string Text { get; set; }
+        public string? Text { get; set; }
     }
     private void ValueChange(@Syncfusion.Blazor.DropDowns.ChangeEventArgs<SaveFormat, SaveFormatOptions> args) => this.SaveType = args.ItemData.Value;
     private void ReadOnlyChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)

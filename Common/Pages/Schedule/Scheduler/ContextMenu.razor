@@ -68,15 +68,12 @@
     {
         if (args.ParentItem == null && args.Left != null && args.Top != null)
         {
+            EventData = await ScheduleRef.GetTargetEventAsync((int)args.Left, (int)args.Top);
             CellData = await ScheduleRef.GetTargetCellAsync((int)args.Left, (int)args.Top);
             await ScheduleRef.CloseQuickInfoPopupAsync();
-            if (CellData == null)
+
+            if (EventData != null && EventData.Id != 0) 
             {
-                EventData = await ScheduleRef.GetTargetEventAsync((int)args.Left, (int)args.Top);
-                if (EventData.Id == 0)
-                {
-                    args.Cancel = true;
-                }
                 if (EventData.RecurrenceRule != null)
                 {
                     _isCell = _isEvent = true;
@@ -88,10 +85,14 @@
                     _isEvent = false;
                 }
             }
-            else
+            else if (CellData != null)
             {
                 _isCell = false;
                 _isEvent = _isRecurrence = true;
+            }
+            else
+            {
+                args.Cancel = true;
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿@page "/file-manager/pagination"
+@page "/file-manager/pagination"
 
 @using Syncfusion.Blazor.FileManager;
 @using System.Text.RegularExpressions;
@@ -47,14 +47,17 @@
 @code {
     public class NaturalSortComparer : IComparer<Object>
     {
-        public int Compare(Object XRowDataToCompare, Object YRowDataToCompare)
+        public int Compare(Object? XRowDataToCompare, Object? YRowDataToCompare)
         {
+            if (XRowDataToCompare == null || YRowDataToCompare == null) return -1;
             FileManagerDirectoryContent XRowDataToCompare1 = (FileManagerDirectoryContent)XRowDataToCompare;
             FileManagerDirectoryContent YRowDataToCompare1 = (FileManagerDirectoryContent)YRowDataToCompare;
             // Assuming Value property holds the value of the column
-            dynamic reference = XRowDataToCompare1.GetType().GetProperty("Name").GetValue(XRowDataToCompare1, null);
+            if (XRowDataToCompare1 == null || YRowDataToCompare1 == null) return -1;
+
+            var reference = XRowDataToCompare1.GetType().GetProperty("Name")?.GetValue(XRowDataToCompare1, null) as string;
             // Assuming Value property holds the value of the column
-            dynamic comparer = YRowDataToCompare1.GetType().GetProperty("Name").GetValue(YRowDataToCompare1, null);
+            var comparer = YRowDataToCompare1.GetType().GetProperty("Name")?.GetValue(YRowDataToCompare1, null) as string;
             bool referenceIsFile = XRowDataToCompare1.IsFile;
             bool comparerIsFile = YRowDataToCompare1.IsFile;
 
@@ -63,7 +66,10 @@
 
             var referenceParts = new List<(double, string)>();
             var comparerParts = new List<(double, string)>();
-
+            if (string.IsNullOrEmpty(reference) || string.IsNullOrEmpty(comparer))
+            {
+                return -1;
+            }
             Regex.Replace(reference, @"(\d+)|(\D+)", (MatchEvaluator)(m => { referenceParts.Add((m.Groups[1].Success ? double.Parse(m.Groups[1].Value) : double.PositiveInfinity, m.Groups[2].Value)); return ""; }));
             Regex.Replace(comparer, @"(\d+)|(\D+)", (MatchEvaluator)(m => { comparerParts.Add((m.Groups[1].Success ? double.Parse(m.Groups[1].Value) : double.PositiveInfinity, m.Groups[2].Value)); return ""; }));
             for (int i = 0; i < referenceParts.Count && i < comparerParts.Count; i++)

@@ -1,10 +1,9 @@
-﻿@page "/dashboard-layout/editable-dashboard-layout"
+@page "/dashboard-layout/editable-dashboard-layout"
 
 @using Syncfusion.Blazor.Layouts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Popups
-@inject IJSRuntime JSRuntime
 
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -154,8 +153,8 @@
 </div>
 
 @code {
-    public SfDashboardLayout dashboardObject;
-    public SfDialog dialogObj;
+    public SfDashboardLayout? dashboardObject;
+    public SfDialog? dialogObj;
     public int Count = 1;
     public bool IsResizing = false;
     private bool AllowResizing = false;
@@ -175,11 +174,18 @@
     private bool Visibility { get; set; } = false;
     public async Task AddWidget()
     {
-        await dialogObj.ShowAsync();
+        if (dialogObj != null)
+        {
+            await dialogObj.ShowAsync();
+        }
     }
     public async Task barTemplateClick()
     {
-        await dialogObj.HideAsync();
+        if (dialogObj != null)
+        {
+            await dialogObj.HideAsync();
+
+        }
         PanelModel panel = new PanelModel
                 {
                     Id = this.Count.ToString() + "_layout",
@@ -227,13 +233,19 @@
         </SfChart>
     }
     </div>
-            };
-        await this.dashboardObject.AddPanelAsync(panel);
+    };
+        if (this.dashboardObject != null)
+        {
+            await this.dashboardObject.AddPanelAsync(panel);
+        }
         this.Count = this.Count + 1;
     }
     public async Task pieTemplateClick()
     {
-        await dialogObj.HideAsync();
+        if (dialogObj != null)
+        {
+            await dialogObj.HideAsync();
+        }
         PanelModel panel = new PanelModel
                 {
                     Id = this.Count.ToString() + "_layout",
@@ -256,13 +268,19 @@
         </SfAccumulationChart>
     }
     </div>
-            };
-        await this.dashboardObject.AddPanelAsync(panel);
+    };
+        if (this.dashboardObject != null)
+        {
+            await this.dashboardObject.AddPanelAsync(panel);
+        }
         this.Count = this.Count + 1;
     }
     public async Task splineTemplateClick()
     {
-        await dialogObj.HideAsync();
+        if (dialogObj != null)
+        {
+            await dialogObj.HideAsync();
+        }
         PanelModel panel = new PanelModel
                 {
                     Id = this.Count.ToString() + "_layout",
@@ -298,8 +316,11 @@
         </SfChart>
     }
     </div>
-        };
-        await this.dashboardObject.AddPanelAsync(panel);
+    };
+        if (this.dashboardObject != null)
+        {
+            await this.dashboardObject.AddPanelAsync(panel);
+        }
         this.Count = this.Count + 1;
     }
     public List<ColumnChartData> ChartPoints { get; set; } = new List<ColumnChartData>

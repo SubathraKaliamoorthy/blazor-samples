@@ -1,4 +1,4 @@
-﻿@page "/menu-bar/templates"
+@page "/menu-bar/templates"
 
 @using Syncfusion.Blazor.Navigations
 
@@ -32,7 +32,7 @@
                             @{
                                 if (MenuItems.ImageUrl != null)
                                 {
-                                    <img class="e-avatar e-avatar-small" src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/menu-bar/{MenuItems.ImageUrl}.png")" />
+                                    <img class="e-avatar e-avatar-small" src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/menu-bar/{MenuItems.ImageUrl}.png")" />
                                 }
                                 <span style="width:100%;">@MenuItems.Value</span>
                                 if (MenuItems.Count != null)
@@ -102,12 +102,12 @@
     };
     private class CategoryModel
     {
-        public List<CategoryModel> SubCategories { get; set; }
-        public string Value { get; set; }
-        public string ImageUrl { get; set; }
-        public string Count { get; set; }
-        public string About { get; set; }
-        public string Id { get; set; }
+        public List<CategoryModel>? SubCategories { get; set; }
+        public string? Value { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? Count { get; set; }
+        public string? About { get; set; }
+        public string? Id { get; set; }
     }
 }
 <style>
@@ -200,6 +200,7 @@
     {
         border-radius: 0;
     }
+
     .fluent2.mobile .e-menu-container ul.e-ul .e-menu-item,
     .fluent2-dark.mobile .e-menu-container ul.e-ul .e-menu-item {
         display: flex;

@@ -1,9 +1,11 @@
-﻿@page "/maps/marker"
+@page "/maps/marker"
 
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -17,8 +19,8 @@
     <p>More information about marker can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/markers" aria-label="Blazor Maps Marker documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfMaps Format="N0" EnableGroupingSeparator="true" Theme="@Theme" Background="transparent">
+<div class="col-lg-9 control-section" align='center'>
+    <SfMaps @ref="@MapRef" Format="N0" EnableGroupingSeparator="true" Theme="@Theme" Background="transparent">
         <MapsAreaSettings Background="transparent" />
         <MapsTitleSettings Text="Top 25 Populated Cities in the World">
             <MapsTitleTextStyle Size="16px" FontFamily="Segoe UI" />
@@ -43,10 +45,7 @@
         <a href="http://www.citymayors.com/statistics/largest-cities-population-125.html" target="_blank">www.citymayors.com</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" >
             <table style="width:100%" title="Properties">
                 <colgroup>
                     <col span="1" style="width: 80%;">
@@ -79,9 +78,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -93,6 +90,7 @@
 </style>
 
 @code {
+    public SfMaps? MapRef;
     public string MarkerShapeValuePath = null!;
     public string MarkerColorValuePath = null!;
     public bool MarkerShape = false;
@@ -152,4 +150,5 @@
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
+
 }

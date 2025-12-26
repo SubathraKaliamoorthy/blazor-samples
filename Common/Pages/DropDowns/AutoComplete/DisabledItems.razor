@@ -17,7 +17,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Status</label>
-                <SfAutoComplete TItem="StatusData" TValue="string" Placeholder="Select Status" DataSource="@Data">
+                <SfAutoComplete TItem="StatusData" TValue="string" PopupHeight="200px" Placeholder="Select Status" DataSource="@Data">
                     <AutoCompleteFieldSettings Value="Status" Disabled="State" />
                 </SfAutoComplete>
             </div>
@@ -25,7 +25,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Vegetable</label>
-                <SfAutoComplete TValue="string" TItem="Vegetables" Placeholder="Select Vegetable" DataSource="@GroupData">
+                <SfAutoComplete TValue="string" TItem="Vegetables" PopupHeight="200px" Placeholder="Select Vegetable" DataSource="@GroupData">
                     <AutoCompleteFieldSettings GroupBy="Category" Value="Vegetable" Disabled="State" />
                 </SfAutoComplete>
             </div>

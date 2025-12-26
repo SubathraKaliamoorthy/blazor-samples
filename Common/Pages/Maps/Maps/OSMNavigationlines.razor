@@ -2,7 +2,9 @@
 
 @using Syncfusion.Blazor.Maps
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -148,10 +150,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Latitude = 28.0902;
             Longitude = -106.40;
         }
+        @*End:Hidden*@
     }
 }

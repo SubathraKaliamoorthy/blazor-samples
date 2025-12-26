@@ -1,4 +1,4 @@
-﻿@page "/kanban/api"
+@page "/kanban/api"
 
 @using Syncfusion.Blazor.KanbanDemo
 @using Syncfusion.Blazor.Buttons
@@ -105,12 +105,12 @@
 </style>
 
 @code{
-    private SfTextBox AddTextRef;
-    private SfKanban<KanbanDataModel> KanbanRef;
-    private SfDropDownList<string, string> AddKeyRef;
-    private SfNumericTextBox<int?> AddIndexRef;
-    private SfNumericTextBox<int?> DeleteIndexRef;
-    private string DropDownValue = null;
+    private SfTextBox? AddTextRef;
+    private SfKanban<KanbanDataModel>? KanbanRef;
+    private SfDropDownList<string, string>? AddKeyRef;
+    private SfNumericTextBox<int?>? AddIndexRef;
+    private SfNumericTextBox<int?>? DeleteIndexRef;
+    private string? DropDownValue = null;
     private string TextValue = "";
 	public bool ColumnDynamicChange = false;
     private int? AddIndexValue = 0;
@@ -131,7 +131,7 @@
     
     private void OnAddColumn()
     {
-        if (!string.IsNullOrEmpty(AddTextRef.Value) && !string.IsNullOrEmpty(AddKeyRef.Value) && AddIndexRef.Value != null)
+        if (!string.IsNullOrEmpty(AddTextRef?.Value) && !string.IsNullOrEmpty(AddKeyRef?.Value) && AddIndexRef?.Value != null)
         {
             DynamicData.Add(new ColumnModel { HeaderText = AddTextRef.Value, KeyField = new List<string>() { AddKeyRef.Value }, Index = (int)AddIndexRef.Value });
             AddIndexValue = null;
@@ -141,15 +141,15 @@
         }
         else
         {
-            if (string.IsNullOrEmpty(AddTextRef.Value))
+            if (string.IsNullOrEmpty(AddTextRef?.Value))
             {
                 AlertContent = "Enter Column Header Text";
             }
-            else if (string.IsNullOrEmpty(AddKeyRef.Value))
+            else if (string.IsNullOrEmpty(AddKeyRef?.Value))
             {
                 AlertContent = "Enter Column Key Field";
             }
-            else if (AddIndexRef.Value == null)
+            else if (AddIndexRef?.Value == null)
             {
                 AlertContent = "Enter Column Index";
             }
@@ -159,7 +159,7 @@
 
     private async Task OnDeleteColumn()
     {
-        if (DeleteIndexRef.Value != null)
+        if (DeleteIndexRef?.Value != null && KanbanRef != null)
         {
             await KanbanRef.DeleteColumnAsync((int)DeleteIndexRef.Value);
             DeleteIndexValue = null;

@@ -1,7 +1,9 @@
-﻿@page "/chart/donut"
+@page "/chart/donut"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
@@ -62,6 +64,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             StartAngle = 70;
@@ -71,6 +74,7 @@
             CenterLabelText = "Mobile Browser<br>Statistics";
             CenterLabelTextSize = "11px";
         }
+        @*End:Hidden*@
     }
 
     public class DoughnutData

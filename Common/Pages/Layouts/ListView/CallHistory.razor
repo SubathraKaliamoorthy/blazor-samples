@@ -1,4 +1,4 @@
-﻿@page "/listview/call-history"
+@page "/listview/call-history"
 
 @using Syncfusion.Blazor.Lists;
 @using Syncfusion.Blazor.Navigations;
@@ -36,7 +36,7 @@
                                             <Template>
                                                 @{
                                                     <div class="e-list-wrapper e-list-avatar e-list-multi-line">
-                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text.ToLower()"></span>
+                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text?.ToLower()"></span>
                                                         <span class="e-list-item-header">@context.Text</span>
                                                         <span class="@context.Type e-list-content">
                                                             @context.Group, @context.Time
@@ -60,7 +60,7 @@
                                             <Template>
                                                 @{
                                                     <div class="e-list-wrapper e-list-avatar e-list-multi-line">
-                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text.ToLower()"></span>
+                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text?.ToLower()"></span>
                                                         <span class="e-list-item-header">@context.Text</span>
                                                         <span class="@context.Type e-list-content">
                                                             @context.Group, @context.Time
@@ -84,7 +84,7 @@
                                             <Template>
                                                 @{
                                                     <div class="e-list-wrapper e-list-avatar e-list-multi-line">
-                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text.ToLower()"></span>
+                                                        <span class="e-avatar e-avatar-circle e-icon @context.Text?.ToLower()"></span>
                                                         <span class="e-list-item-header">@context.Text</span>
                                                         <span class="@context.Type e-list-content">
                                                             @context.Group, @context.Time
@@ -327,28 +327,28 @@
 
     /*Images stylings for contacts*/
     .e-listview .e-list-item .e-avatar.smith {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/smith.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/smith.png") );
     }
     .e-listview .e-list-item .e-avatar.williams {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/williams.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/williams.png") );
     }
     .e-listview .e-list-item .e-avatar.anderson {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/anderson.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/anderson.png") );
     }
     .e-listview .e-list-item .e-avatar.emily {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/emily.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/emily.png") );
     }
     .e-listview .e-list-item .e-avatar.jones {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/jones.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/jones.png") );
     }
     .e-listview .e-list-item .e-avatar.johnson {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/johnson.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/johnson.png") );
     }
     .e-listview .e-list-item .e-avatar.katherine {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/katherine.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/katherine.png") );
     }
     .e-listview .e-list-item .e-avatar.arianna {
-        background-image: url( @(SampleService.WebAssetsPath + "images/list-view/arianna.png") );
+        background-image: url( @(SampleService?.WebAssetsPath + "images/list-view/arianna.png") );
     }
 
     @*Hidden:Lines*@ .bootstrap5-dark .layoutWrapper .layout, .bootstrap5-dark .layoutWrapper .camera, .bootstrap5-dark .layoutWrapper .outerButton, .bootstrap5-dark .layoutWrapper .speaker, .bootstrap5-dark .layoutWrapper,

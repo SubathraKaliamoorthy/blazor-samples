@@ -6,12 +6,12 @@
 // applicable laws. 
 #endregion
 using Syncfusion.Blazor.FileManager;
-using System.Collections.Generic;
-using System.Linq;
 using System;
-using System.Threading.Tasks;
-using System.Text;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlazorDemos.Pages.FileManager
 {
@@ -558,7 +558,21 @@ namespace BlazorDemos.Pages.FileManager
             {
                 var id = fileDetails.Count > 0 && fileDetails[0] != null ? fileDetails[0].Id : Data
                     .Where(x => x.FilterId == path)
-                    .Select(x => x.ParentId).First();
+                    .Select(x => x.ParentId).FirstOrDefault();
+
+                if (string.IsNullOrEmpty(id))
+                {
+                    string rootParentId = Data
+                    .Where(x => x.FilterId == string.Empty)
+                    .Select(x => x.Id).First();
+                    response.CWD = Data
+                    .Where(x => x.FilterId == string.Empty).First();
+                    response.Files = Data
+                    .Where(x => x.ParentId == rootParentId).ToList();
+
+                    return await Task.FromResult(response);
+                }
+                
                 response.CWD = Data
                     .Where(x => x.Id == (fileDetails.Count > 0 && fileDetails[0] != null ? fileDetails[0].Id : id)).First();
                 response.Files = Data
@@ -888,6 +902,32 @@ namespace BlazorDemos.Pages.FileManager
                         this.CopyFolderItems(child, Data.Where(x => x.Id == (idValue).ToString()).Select(x => x).ToArray()[0], renameFiles, false);
                     }
                 }
+            }
+        }
+
+        public string GetReadablePath(string filterId)
+        {
+            if (string.IsNullOrEmpty(filterId) || filterId == "0/")
+                return "Files";
+
+            try
+            {
+                string[] ids = filterId.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
+                StringBuilder readablePath = new StringBuilder("Files");
+
+                foreach (var id in ids)
+                {
+                    if (id == "0") continue;
+                    var folder = Data.FirstOrDefault(x => x.Id == id);
+                    if (folder != null)
+                        readablePath.Append($"/{folder.Name}");
+                }
+
+                return readablePath.ToString();
+            }
+            catch
+            {
+                return filterId;
             }
         }
     }

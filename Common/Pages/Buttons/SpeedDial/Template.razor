@@ -1,8 +1,9 @@
-﻿@page "/speeddial/template"
+@page "/speeddial/template"
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Inputs
-@using BlazorDemos.Shared
+
 @*Hidden:Lines*@
+@using BlazorDemos.Shared
 @inherits SampleBaseComponent
 @*End:Hidden*@
 <SampleDescription>
@@ -64,17 +65,21 @@
     public bool isVisible = true;
     public void OpenedEvent(SpeedDialBeforeOpenCloseEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService.IsDevice)
         {
             isVisible = false;
         }
+        @*End:Hidden*@
     }
     public void ClosedEvent(SpeedDialOpenCloseEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService.IsDevice)
         {
             isVisible = true;
         }
+        @*End:Hidden*@
     }
 }
 <style>

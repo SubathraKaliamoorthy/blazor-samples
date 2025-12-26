@@ -1,7 +1,9 @@
-﻿@page "/chart/selection"
+@page "/chart/selection"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
@@ -32,8 +34,8 @@
     <p>More information about the selection can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/selection' aria-label="Navigate to the documentation for selection in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart HighlightColor="@highLightColor" Title="Age Distribution by Country" SelectionMode="@Mode" AllowMultiSelection="@EnableMultiSelect" SelectionPattern="@Pattern"
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" HighlightColor="@highLightColor" Title="Age Distribution by Country" SelectionMode="@Mode" AllowMultiSelection="@EnableMultiSelect" SelectionPattern="@Pattern"
              HighlightMode="@HighMode" HighlightPattern="@HighLightPattern" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea>
@@ -67,10 +69,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                     <tr style="height: 50px">
@@ -133,13 +132,11 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private Syncfusion.Blazor.Charts.SelectionMode Mode { get; set; } = Syncfusion.Blazor.Charts.SelectionMode.Point;
     private HighlightMode HighMode { get; set; } = HighlightMode.None;
@@ -188,18 +185,18 @@
 
     public void ChangeMode(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        Mode = (Syncfusion.Blazor.Charts.SelectionMode)Enum.Parse(typeof(Syncfusion.Blazor.Charts.SelectionMode), args.Value.ToString(), true);
+        Mode = (Syncfusion.Blazor.Charts.SelectionMode)Enum.Parse(typeof(Syncfusion.Blazor.Charts.SelectionMode), args?.Value?.ToString() ?? string.Empty, true);
         ChangeHighlightMode();
     }
 
     public void ChangePattern(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        Pattern = (SelectionPattern)Enum.Parse(typeof(SelectionPattern), args.Value.ToString(), true);
+        Pattern = (SelectionPattern)Enum.Parse(typeof(SelectionPattern), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     public void ChangeHighPattern(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
-        HighLightPattern = (SelectionPattern)Enum.Parse(typeof(SelectionPattern), args.Value.ToString(), true);
+        HighLightPattern = (SelectionPattern)Enum.Parse(typeof(SelectionPattern), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     private void ChangeSelection(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
@@ -220,7 +217,7 @@
 
     public void ColorPickerChanged(ColorPickerEventArgs args)
     {
-        highLightColor = args.CurrentValue.Hex;
+        highLightColor = args?.CurrentValue?.Hex ?? string.Empty;
     }
 
     public class DropDownData
@@ -234,6 +231,19 @@
         public double Children { get; set; }
         public double Adult { get; set; }
         public double SeniorAdult { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

@@ -237,13 +237,14 @@ namespace BlazorDemos.Shared
             new DropDownData { ID = "material", Text = "Material" },
 #endif
             new DropDownData { ID = "material3", Text = "Material 3" },
+#if RELEASE && STAGING
             new DropDownData { ID = "fluent", Text = "Fluent" },
             new DropDownData { ID = "fluent2", Text = "Fluent 2" },
-#if RELEASE && STAGING
             new DropDownData { ID = "bootstrap4", Text = "Bootstrap v4" },
             new DropDownData { ID = "bootstrap5", Text = "Bootstrap v5" },
             new DropDownData { ID = "bootstrap5.3", Text = "Bootstrap v5.3" },
 #else
+            new DropDownData { ID = "fluent2", Text = "Fluent 2" },
             new DropDownData { ID = "bootstrap5.3", Text = "Bootstrap 5" },
 #endif
 #if RELEASE && STAGING
@@ -254,8 +255,8 @@ namespace BlazorDemos.Shared
 #endif
 #if RELEASE && STAGING
            new DropDownData { ID = "fabric", Text = "Fabric" },
+           new DropDownData { ID = "highcontrast", Text = "High Contrast" },
 #endif
-            new DropDownData { ID = "highcontrast", Text = "High Contrast" },
             new DropDownData { ID = "fluent2-highcontrast", Text = "Fluent 2 High Contrast" },
         };
 
@@ -275,96 +276,6 @@ namespace BlazorDemos.Shared
         new DropDownData { ID = "dark", Text = "Dark Mode" },
         new DropDownData { ID = "light", Text = "Light Mode" }
     };
-//        /// <summary>
-//        /// Returns list of JS resources need to be loaded.
-//        /// </summary>
-//        /// <returns></returns>
-//        public static List<string> GetDynamicJSResources(NavigationManager uriHelper, SampleService sampleService)
-//        {
-//            var resourceList = new List<string>();
-//            if (sampleService.SampleJSLoaded)
-//            {
-//                sampleService.SampleJSLoaded = false;
-//                resourceList = new List<string>
-//                {
-//                   $"{sampleService.CommonScriptPath}/syncfusion-blazor.min.js",
-//                   $"{sampleService.SBScriptPath}"
-//                };
-//                if (sampleService.ComponentName != null)
-//                {
-//                    if (sampleService.ComponentName.Equals("PDF Viewer") && !sampleService.IsPdfScript2Loaded)
-//                    {
-//                        sampleService.IsPdfScript2Loaded = true;
-//                        resourceList.Add(sampleService.ViewerScriptPath);
-//                        resourceList.Add(sampleService.PdfScriptPath2 + "/syncfusion-blazor-sfpdfviewer.min.js");
-//                    }
-//                    if (sampleService.ComponentName.Equals("Word Processor") && !sampleService.IsDocScriptLoaded)
-//                    {
-//                        sampleService.IsDocScriptLoaded = true;
-//                        resourceList.Add(sampleService.DocScriptPath + "/syncfusion-blazor-documenteditor.min.js");
-//                    }
-//                    if (sampleService.ComponentName.Equals("Diagram") && !sampleService.IsDiagramScriptLoaded)
-//                    {
-//                        sampleService.IsDiagramScriptLoaded = true;
-//                        resourceList.Add($"{sampleService.DiagramScriptPath}");
-//                    }
-//                    if (sampleService.ComponentName.Equals("Spreadsheet") && !sampleService.IsSpreadsheetScriptLoaded)
-//                    {
-//                        sampleService.IsSpreadsheetScriptLoaded = true;
-//                        resourceList.Add($"{sampleService.SpreadsheetScriptPath}");
-//                    }
-//                }
-//            }
-//            return resourceList;
-//        }
-
-//        /// <summary>
-//        /// Returns list of resources need to be loaded.
-//        /// </summary>
-//        /// <returns></returns>
-//        public static List<string> GetDynamicResources(NavigationManager uriHelper, SampleService sampleService)
-//        {
-//            var resourceList = new List<string>();
-//            if (!sampleService.IsHomeLoaded && SampleUtils.IsHomePage(uriHelper))
-//            {
-//                sampleService.IsHomeLoaded = true;
-//#if DEBUG || STAGING
-//                resourceList = new List<string> { $"{sampleService.WebAssetsPath}styles/common/home.css" };
-//#else
-//                resourceList = new List<string> { $"{sampleService.WebAssetsPath}styles/common/home.min.css" };
-//#endif
-//            }
-//            else if (!sampleService.IsDemoLoaded)
-//            {
-//                sampleService.IsDemoLoaded = true;
-//#if DEBUG || STAGING
-//                resourceList = new List<string>
-//                {
-//                    $"{sampleService.WebAssetsPath}styles/common/roboto.css",
-//                    $"{sampleService.WebAssetsPath}styles/common/highlight.css",
-//                    $"{sampleService.WebAssetsPath}styles/common/demos.css",
-//                };
-//                if (uriHelper.Uri.Contains("theme=highcontrast"))
-//                {
-//                    resourceList.Add($"{sampleService.WebAssetsPath}styles/common/highcontrast.css");
-//                }
-//                if (new Regex(@"theme=.*-dark").IsMatch(uriHelper.Uri))
-//                {
-//                    resourceList.Add($"{sampleService.WebAssetsPath}styles/common/dark-theme.css");
-//                }
-//#else
-//                resourceList = new List<string>
-//                {
-//                    $"{sampleService.WebAssetsPath}styles/common/demos.min.css",
-//                };
-//                if (uriHelper.Uri.Contains("theme=highcontrast") || new Regex(@"theme=.*-dark").IsMatch(uriHelper.Uri))
-//                {
-//                    resourceList.Add($"{sampleService.WebAssetsPath}styles/common/dark-theme.min.css");
-//                }
-//#endif
-//            }
-//            return resourceList;
-//        }
     }
 
     /// <summary>
@@ -396,18 +307,13 @@ namespace BlazorDemos.Shared
         public string Category { get; set; }
         public List<SearchResult> SampleList { get; set; }
         public bool IsMultiSearch { get; set; }
-#if SERVER
+
         public async Task<List<SearchList>> GetSearchListAsync()
-#else
-        public List<SearchList> GetSearchList()
-#endif
         {
             bool isButtonsAdded = false;
             var searchlist = new List<SearchList>();
             var sampleList = SampleBrowser.SampleList;
-#if SERVER
             await Task.Run(() => { 
-#endif
             for (int i = 0; i < sampleList.Count; i++)
                 {
                     if ((sampleList[i].Category == "Buttons" || sampleList[i].Category == "Inputs") && sampleList[i].ControllerName == "Buttons")
@@ -430,9 +336,7 @@ namespace BlazorDemos.Shared
                     }
                     searchlist.Add(new SearchList { Category = sampleList[i].ControllerName, SampleList = searchResult });
                 }
-#if SERVER
             });
-#endif
             return searchlist;
         }
     }
@@ -451,17 +355,11 @@ namespace BlazorDemos.Shared
         public string DefaultSamplePath { get; set; }
         public List<NotificationData> SampleList { get; set; }
         public string[] NotificationContent { get; set; }
-#if SERVER
         public async Task<List<NotificationList>> GetNotificationDataAsync()
-#else
-        public List<NotificationList> GetNotificationData()
-#endif
         {
             var notificationlist = new List<NotificationList>();
             var sampleList = SampleBrowser.SampleList;
-#if SERVER
             await Task.Run(() => { 
-#endif
             for (int i = 0; i < sampleList.Count; i++)
                 {
                     var samples = sampleList[i].Samples;
@@ -482,24 +380,16 @@ namespace BlazorDemos.Shared
                         notificationlist.Add(new NotificationList { Name = sampleList[i].Name, DefaultSamplePath = sampleList[i].DemoPath, SampleList = notificationResultData });
                     }
                 }
-#if SERVER
             });
-#endif
             return notificationlist;
         }
 
-#if SERVER
         public async Task<List<NotificationList>> GetComponentNotificationDataAsync()
-#else
-        public List<NotificationList> GetComponentNotificationData()
-#endif
         {
             var listcomponentnotification = new List<NotificationList>();
             var notificationResultData = new List<NotificationData>();
             var sampleList = SampleBrowser.SampleList;
-#if SERVER
             await Task.Run(() => { 
-#endif
             for (int i = 0; i < sampleList.Count; i++)
                 {
                     if (sampleList[i].NotificationDescription != null)
@@ -507,9 +397,7 @@ namespace BlazorDemos.Shared
                         listcomponentnotification.Add(new NotificationList { Name = sampleList[i].Name, DefaultSamplePath = sampleList[i].DemoPath, NotificationContent = sampleList[i].NotificationDescription });
                     }
                 }
-#if SERVER
             });
-#endif
             return listcomponentnotification;
         }
 

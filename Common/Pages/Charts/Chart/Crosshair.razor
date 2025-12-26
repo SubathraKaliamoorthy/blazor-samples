@@ -1,14 +1,14 @@
-﻿@page "/chart/crosshair"
+@page "/chart/crosshair"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -376,10 +376,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
         CurrentUri = NavigationManager.Uri;
         if (CurrentUri.IndexOf("material3") > -1)
         {

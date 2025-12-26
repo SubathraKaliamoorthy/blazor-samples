@@ -22,9 +22,9 @@
     <p> The <code>Ribbon</code> component supports three item sizes in classic mode: <code>Large</code>, <code>Medium</code>, and <code>Small</code>, while simplified mode includes <code>Medium</code> and <code>Small</code>. These sizes dynamically adjust based on the screen dimensions to ensure optimal layout and usability. Additionally, the ribbon incorporates overflow dropdowns and horizontal scrolling, ensuring all items remain accessible across various screen sizes and resolutions. </p>
 </ActionDescription>
 
-<div class="col-lg-12 control-section default-ribbon-section" id="ribbon_wrapper">
+<div class="col-lg-12 control-section resize-ribbon-section" id="ribbon_wrapper">
     <div id="ribbonContainer" style="width: @(containerWidth);">
-        <SfRibbon ID="ribbon" @ref="ribbonRef" Created="@GetContainerWidth" LauncherIconClick="LauncherIconClick">
+        <SfRibbon ID="resize-ribbon" @ref="ribbonRef" Created="@GetContainerWidth" LauncherIconClick="LauncherIconClick">
             <RibbonFileMenuSettings Visible=true MenuItems="@fileMenuItems" ItemSelecting="@HandleFilemenuSelection"></RibbonFileMenuSettings>
             <RibbonTabs>
                 <RibbonTab HeaderText="Home">
@@ -315,8 +315,8 @@
 </div>
 
 @code {
-    private SfToast toast = new SfToast();
-    SfRibbon ribbonRef = new SfRibbon();
+    private SfToast? toast = new SfToast();
+    SfRibbon? ribbonRef = new SfRibbon();
     bool isDisabled = true;
     private bool isRibbonCreated;
     private double initialContainerWidth;
@@ -409,8 +409,8 @@
 
     private class ComboBoxItem
     {
-        public string Text { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+        public string? Text { get; set; } = string.Empty;
+        public string? Value { get; set; } = string.Empty;
     }
 
     FieldSettingsModel fieldSetings = new FieldSettingsModel
@@ -670,7 +670,7 @@
         height: 550px;
     }
 
-    #ribbon {
+    #resize-ribbon {
         box-sizing: border-box;
     }
 

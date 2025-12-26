@@ -1,4 +1,4 @@
-﻿@page "/rich-text-editor/enterKeyConfiguration"
+@page "/rich-text-editor/enterKeyConfiguration"
 
 @using Syncfusion.Blazor.RichTextEditor
 @using Syncfusion.Blazor.DropDowns
@@ -99,21 +99,21 @@
 </style>
 
 @code {
-    private SfRichTextEditor _richTextEditor;
+    private SfRichTextEditor? _richTextEditor;
 
-    public String RteValue { get; set; } = "<p>In Rich text Editor, the Enter key and Shift + Enter key actions can be customized using the EnterKey and ShiftEnterKey properties. The possible values are as follows:</p><ul><li> P - When 'P' is configured, pressing enter or shift + enter will create a 'p' tag</li><li>DIV - When 'DIV' is configured, pressing enter or shift + enter will create a 'div' tag</li><li>BR - When 'BR' is configured, pressing enter or shift + enter will create a 'br' tag</li></ul>";
+    public String? RteValue { get; set; } = "<p>In Rich text Editor, the Enter key and Shift + Enter key actions can be customized using the EnterKey and ShiftEnterKey properties. The possible values are as follows:</p><ul><li> P - When 'P' is configured, pressing enter or shift + enter will create a 'p' tag</li><li>DIV - When 'DIV' is configured, pressing enter or shift + enter will create a 'div' tag</li><li>BR - When 'BR' is configured, pressing enter or shift + enter will create a 'br' tag</li></ul>";
     public EnterKeyTag EnterKeyAction { get; set; } = EnterKeyTag.P;
     public ShiftEnterKeyTag ShiftEnterKeyAction { get; set; } = ShiftEnterKeyTag.BR;
     
     public void OnValueChange()
     {
-        this.RteValue = this._richTextEditor.Value;
+        this.RteValue = this._richTextEditor?.Value;
     }
 
     public class RTEKeyConfig
     {
-        public string Value { get; set; }
-        public string Text { get; set; }
+        public string? Value { get; set; }
+        public string? Text { get; set; }
     }
 
     private List<RTEKeyConfig> EnterKeyData = new List<RTEKeyConfig> 

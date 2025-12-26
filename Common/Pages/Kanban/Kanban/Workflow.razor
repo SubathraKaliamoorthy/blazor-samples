@@ -1,4 +1,4 @@
-﻿@page "/kanban/workflow"
+@page "/kanban/workflow"
 @inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
 
 @using Syncfusion.Blazor.KanbanDemo
@@ -50,14 +50,17 @@
                                 <div class='e-card-content e-tooltip-text'>
                                     <div class='e-text'>@card.Description</div>
                                     <div class='e-card-kanban-image'>
-                                        <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/kanban/" + card.ImageURL + ".png")" alt="logo" />
+                                        <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/kanban/{card.ImageURL}.png")" alt="logo" />
                                     </div>
                                 </div>
                                 <div class='e-card-custom-footer'>
                                     @{
-                                        @foreach (string tag in card.CardTags)
+                                        if (card != null && card.CardTags != null)
                                         {
-                                            <div class="e-card-tag-field">@tag</div>
+                                            @foreach (string tag in card.CardTags)
+                                            {
+                                                <div class="e-card-tag-field">@tag</div>
+                                            }
                                         }
                                     }
                                 </div>

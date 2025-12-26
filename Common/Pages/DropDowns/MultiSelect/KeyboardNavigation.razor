@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Keyboard-Navigation"
+@page "/MultiSelect-Dropdown/Keyboard-Navigation"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -100,7 +100,7 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Default Mode</label>
-            <SfMultiSelect TValue="int[]" TItem="Colors" Placeholder="Select colors" DataSource="@ColorsData"
+            <SfMultiSelect TValue="int[]" TItem="Colors" PopupHeight="200px" Placeholder="Select colors" DataSource="@ColorsData"
                 Mode="@VisualMode.Default" @bind-Value="@ColorValue">
                 <MultiSelectFieldSettings Text="Color" Value="Code"></MultiSelectFieldSettings>
             </SfMultiSelect>
@@ -111,7 +111,7 @@
             <label class="example-label">Checkbox Mode</label>
             <SfMultiSelect TValue="string[]" TItem="Countries" AllowFiltering="true" Placeholder="Select countries"
                 Mode="@VisualMode.CheckBox" DataSource="@Country" FilterBarPlaceholder="Search countries"
-                PopupHeight="350px" @bind-Value="@CountryValue">
+                PopupHeight="200px" @bind-Value="@CountryValue">
                 <MultiSelectFieldSettings Text="Name" Value="Code"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>

@@ -1,8 +1,10 @@
-﻿@page "/circular-gauge/image-pointer"
+@page "/circular-gauge/image-pointer"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -120,6 +122,7 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             MarginLeft = "12px";
@@ -140,6 +143,7 @@
         }
         else
         {
+            @*End:Hidden*@
             MarginLeft = "0px";
             MarginTop = "-30px";
             AngleOne = 98;
@@ -155,6 +159,8 @@
             ImageRadiusSix = "78%";
             ImageRadiusSeven = "48%";
             MarkerSize = 90;
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
 }

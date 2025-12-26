@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -588,6 +584,45 @@ namespace BlazorDemos
                 HeaderText = "Blazor DataGrid Example - Fixed Columns",
                 MetaDescription = "Blazor DataGrid fixed columns demo shows freezing columns during horizontal scrolling. Keep important columns visible while navigating through wide datasets.",
                 Type = SampleType.None,
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="FixedColumn.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="OrdersDetails.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Column Spanning",
+                Category = "Columns",
+                Directory = "Grid/DataGrid",
+                Url = "datagrid/row-and-column-spanning",
+                FileName = "RowAndColumnSpanning.razor",
+                MetaTitle = "Blazor DataGrid Row and Column Spanning | Merge Cells | Syncfusion",
+                HeaderText = "Blazor DataGrid Example - Row and Column Spanning",
+                MetaDescription = "Blazor DataGrid example shows automatic row and column spanning based on identical adjacent cell values, enabling flexible merging for improved readability.",
+                NotificationDescription = new string[]{@"This demo illustrates the row and column spanning feature of the Blazor DataGrid. It merges adjacent cells with identical values vertically, horizontally, or both, improving readability and reducing redundancy. NOTE: Row and column spanning are showcased in the same sample for clarity."},
+                Type = SampleType.New,
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="RowAndColumnSpanning.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="EmployeeDetails.cs"
+                    }
+                }
             },
             new Sample
             {
@@ -742,6 +777,32 @@ namespace BlazorDemos
                     {
                         Id="Data",
                         FileName="OrdersDetails.cs"
+                    }
+                }
+            },
+            new Sample
+            {
+                Name = "Row Spanning",
+                Category = "Rows",
+                Directory = "Grid/DataGrid",
+                Url = "datagrid/row-and-column-spanning",
+                FileName = "RowAndColumnSpanning.razor",
+                MetaTitle = "Blazor DataGrid Row and Column Spanning | Merge Cells | Syncfusion",
+                HeaderText = "Blazor DataGrid Example - Row and Column Spanning",
+                MetaDescription = "Blazor DataGrid example shows automatic row and column spanning based on identical adjacent cell values, enabling flexible merging for improved readability.",
+                NotificationDescription = new string[]{ @"This demo illustrates the row and column spanning feature of the Blazor DataGrid. It merges adjacent cells with identical values vertically, horizontally, or both, improving readability and reducing redundancy. NOTE: Row and column spanning are showcased in the same sample for clarity."},
+                Type = SampleType.New,
+                SourceFiles = new List<SourceCollection>()
+                {
+                    new SourceCollection
+                    {
+                        Id="Default",
+                        FileName="RowAndColumnSpanning.razor"
+                    },
+                    new SourceCollection
+                    {
+                        Id="Data",
+                        FileName="EmployeeDetails.cs"
                     }
                 }
             },
@@ -1150,9 +1211,8 @@ namespace BlazorDemos
                 FileName = "Grouping.razor",
                 MetaTitle = "Blazor DataGrid Grouping | Data Categorization | Syncfusion",
                 HeaderText = "Blazor DataGrid Example - Row Grouping",
-                NotificationDescription = new string[]{ "This sample has been updated to demonstrate the persistence of group expand or collapse states across paging, sorting, filtering, and editing operations." },
                 MetaDescription = "This Blazor DataGrid grouping example demonstrates how to group rows by one or more columns with expand or collapse capabilities and customizable group headers.",
-                    Type = SampleType.Updated,
+                    Type = SampleType.None,
                     SourceFiles = new List<SourceCollection>()
                     {
                         new SourceCollection
@@ -1174,8 +1234,7 @@ namespace BlazorDemos
                 Directory = "Grid/DataGrid",
                 Url = "datagrid/lazyload-paging",
                 FileName = "LazyLoadPaging.razor",
-                Type = SampleType.New,
-                NotificationDescription = new string[] {"This sample demonstrates lazy loading with paging in the Blazor DataGrid, enabling efficient display of grouped data by loading only page-sized records on demand."},
+                Type = SampleType.None,
                 MetaTitle = "Blazor DataGrid Lazy Loading | Paging | Syncfusion",
                 HeaderText = "Blazor DataGrid Example - Lazy Load with Paging",
                 MetaDescription = "This Blazor DataGrid example showcases lazy loading with paging, rendering rows on-demand to enhance performance and provide a seamless user experience."
@@ -1673,10 +1732,9 @@ namespace BlazorDemos
                 Directory = "Grid/DataGrid",
                 Url = "datagrid/tooltip",
                 FileName = "Tooltip.razor",
-                Type = SampleType.New,
+                Type = SampleType.None,
                 MetaTitle = "Blazor DataGrid Tooltip | Custom Tooltip | Syncfusion",
                 HeaderText = "Blazor DataGrid Example - Tooltip",
-                NotificationDescription = new string[] {"This sample demonstrates tooltip support in the Blazor DataGrid, displaying both header and cell content with rich visuals like images and icons on hover."},
                 MetaDescription = "This Blazor DataGrid example showcases tooltip support, displaying header and cell content with rich elements like images and icons for better interactivity.",
             },
             new Sample

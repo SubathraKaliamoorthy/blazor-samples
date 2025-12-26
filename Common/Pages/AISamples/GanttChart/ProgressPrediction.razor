@@ -1,20 +1,19 @@
-﻿@page "/ai-ganttchart/progress-predictor"
+@page "/ai-ganttchart/progress-predictor"
 @page "/gantt-chart/ai-progress-predictor"
 
-
-@inject AzureAIService OpenAIService
-@using BlazorDemos.Model
 @using Syncfusion.Blazor.Gantt
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
+
+@using BlazorDemos.Model
 @using BlazorDemos.Service
 @using System.IO
 
+@inject AzureAIService OpenAIService
 @inject IJSRuntime JsInterop
+
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-@inject NavigationManager NavigationManager
-@inject IJSRuntime JSRuntime
 @*End:Hidden*@
 
 @*Hidden:Lines*@
@@ -90,6 +89,7 @@
 
                     }
                 }
+
             </GanttEventMarkers>
         </SfGantt>
     </div>
@@ -98,7 +98,7 @@
 
 @code {
     public SfGantt<GanttDataModel.TaskInfoModel> Gantt = new();
-    private List<GanttDataModel.TaskInfoModel> TaskCollection { get; set; } = new();
+    public List<GanttDataModel.TaskInfoModel> TaskCollection { get; set; } = new();
     private bool showMessage;
     private Dictionary<string, string> riskAnalyzeContent = new();
     private Dictionary<string, string> riskAnalyzePriority = new();

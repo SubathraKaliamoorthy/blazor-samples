@@ -1,10 +1,12 @@
-﻿@page "/circular-gauge/ticks-and-labels"
+@page "/circular-gauge/ticks-and-labels"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -45,8 +47,8 @@
     }
 </style>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfCircularGauge Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section">
+    <SfCircularGauge @ref="SfCircularGauge" Theme="@Theme" Background="transparent">
         <CircularGaugeAxes>
             <CircularGaugeAxis StartAngle="210" EndAngle="150" Minimum="0" Maximum="170" Radius="80%" ShowLastLabel="@ShowLastLabel">
                 <CircularGaugeAxisLabelStyle Position="@GaugeLabelPosition" AutoAngle="true" Offset="@GaugeLabelOffset">
@@ -71,10 +73,7 @@
         </CircularGaugeAxes>
     </SfCircularGauge>
 </div>
-<div id="ticks-labels" class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <colgroup>
                     <col span="1" style="width: 50%;">
@@ -176,11 +175,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code {
+    public SfCircularGauge? SfCircularGauge { get; set; }
     public Theme Theme { get; set; }
     public bool ShowLastLabel;
     public Position GaugeLabelPosition = Position.Outside;
@@ -229,7 +227,7 @@
 
     private void TickChange(ChangeEventArgs<string, LabelList> args)
     {
-        TickValue = args.Value.ToString();
+        TickValue = args?.Value?.ToString() ?? TickValue;
         if (TickValue == "major")
         {
             isMajorTick = true;
@@ -254,7 +252,7 @@
 
     private void TickPositionChange(ChangeEventArgs<string, TickPositionList> args)
     {
-        TickPositionValue = args.Value.ToString();
+        TickPositionValue = args?.Value?.ToString() ?? TickPositionValue;
         if (isMajorTick)
         {
             if (TickPositionValue == "Inside")
@@ -281,7 +279,7 @@
 
     private void LabelPositionChange(ChangeEventArgs<string, LabelPositionList> args)
     {
-        LabelPositionValue = args.Value.ToString();
+        LabelPositionValue = args?.Value?.ToString() ?? LabelPositionValue;
         if (isMajorTick)
         {
             if (LabelPositionValue == "Inside")
@@ -354,5 +352,16 @@
     {
         public string? LabelPositionValues { get; set; }
         public string? Name { get; set; }
+    }
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (SfCircularGauge != null)
+        {
+            await SfCircularGauge?.RefreshAsync();
+        }
     }
 }

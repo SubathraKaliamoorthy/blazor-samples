@@ -1,12 +1,11 @@
-﻿@page "/range-selector/multilevel"
+@page "/range-selector/multilevel"
 @using  Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @using System.Net.Http.Json
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
-@using ThemeHelper
-
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent
 
 
@@ -58,7 +57,15 @@ else
 
     protected override void OnInitialized()
     {
-        GroupInterval = SampleService != null && SampleService.IsDevice ? 4 : 1;
+        GroupInterval = 1;
+        @*Hidden:Lines*@
+
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            GroupInterval = 4;
+        }
+        @*End:Hidden*@
+
         SetThemeAndColor();
     }
 

@@ -1,4 +1,4 @@
-﻿@page "/MultiSelect-Dropdown/Grouping"
+@page "/MultiSelect-Dropdown/Grouping"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -22,7 +22,7 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Grouping</label>
-            <SfMultiSelect TValue="string[]" TItem="Vegetables" Placeholder="Select vegetables" DataSource="@VegetablesList">
+            <SfMultiSelect TValue="string[]" TItem="Vegetables" PopupHeight="200px" Placeholder="Select vegetables" DataSource="@VegetablesList">
                 <MultiSelectFieldSettings GroupBy="Category" Value="Vegetable"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>
@@ -31,7 +31,7 @@
         <div class="control-wrapper">
             <label class="example-label">Grouping with CheckBox</label>
             <SfMultiSelect TValue="string[]" AllowFiltering="true" TItem="Vegetables" Mode="@VisualMode.CheckBox" Placeholder="Select vegetables" DataSource="@VegetablesList" ShowSelectAll="@ShowSelectAllCheckBox"
-                        EnableSelectionOrder="@EnableSelectionOrders" FilterBarPlaceholder="Search Vegetables" EnableGroupCheckBox="@EnableCheckBox" PopupHeight="350px">
+                        EnableSelectionOrder="@EnableSelectionOrders" FilterBarPlaceholder="Search Vegetables" EnableGroupCheckBox="@EnableCheckBox" PopupHeight="200px">
                 <MultiSelectFieldSettings GroupBy="Category" Value="Vegetable"></MultiSelectFieldSettings>
             </SfMultiSelect>
         </div>

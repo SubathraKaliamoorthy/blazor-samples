@@ -1,4 +1,4 @@
-﻿@page "/splitter/outlook"
+@page "/splitter/outlook"
 
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Inputs
@@ -33,14 +33,14 @@
                                         <NodeTemplate>
                                             <div>
                                                 <div class="treeviewdiv">
-                                                    <div style="float:left">
+                                                    <div>
                                                         <span class="treeName">@((context as TreeData).Name)</span>
                                                     </div>
                                                     @{
 
                                                         @if (((context as TreeData).Count) != 0)
                                                         {
-                                                            <div style="margin-right: 5px; float:right">
+                                                            <div>
                                                                 <span class="treeCount e-badge e-badge-primary">@((context as TreeData).Count)</span>
                                                             </div>
                                                         }
@@ -118,8 +118,8 @@
 </div>
 
 @code {
-    private SfRichTextEditor RichTextEditorObj;
-    
+    private SfRichTextEditor? RichTextEditorObj;
+
     private List<TreeData> LocalData = new List<TreeData>()
     {
         new TreeData { Id = 1, Name = "Favorites",  HasChild = true, },
@@ -150,10 +150,10 @@
 
     public class DataModel
     {
-        public string Name { get; set; }
-        public string Content1 { get; set; }
-        public string Content2 { get; set; }
-        public string Id { get; set; }
+        public string? Name { get; set; }
+        public string? Content1 { get; set; }
+        public string? Content2 { get; set; }
+        public string? Id { get; set; }
         public int Order { get; set; }
     }
 
@@ -161,7 +161,7 @@
     {
         public int Id { get; set; }
         public int? Pid { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public bool HasChild { get; set; }
         public bool Expanded { get; set; }
         public int Count { get; set; }
@@ -170,16 +170,52 @@
 
     private async Task resizeStop()
     {
-        await this.RichTextEditorObj.RefreshUIAsync();
+        if (this.RichTextEditorObj != null)
+        {
+            await this.RichTextEditorObj.RefreshUIAsync();
+        }
     }
 
     private async Task Created()
     {
-        await this.RichTextEditorObj.RefreshUIAsync();
+        if (this.RichTextEditorObj != null)
+        {
+            await this.RichTextEditorObj.RefreshUIAsync();
+        }
     }
 }
 
 <style>
+
+    .treeviewdiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .treeName {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .treeCount {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    @@media (max-width: 600px) {
+        .treeviewdiv
+        {
+            display: flex;
+        }
+    }
+
     #discard {
         margin-left: 7px;
     }

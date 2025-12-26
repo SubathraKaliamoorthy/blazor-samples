@@ -5,12 +5,12 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using Syncfusion.Blazor.Popups;
-using Syncfusion.Blazor.Diagram;
 using Microsoft.AspNetCore.Components;
+using Syncfusion.Blazor.Diagram;
+using Syncfusion.Blazor.Popups;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 
 namespace TextToMindMapDiagram
 {

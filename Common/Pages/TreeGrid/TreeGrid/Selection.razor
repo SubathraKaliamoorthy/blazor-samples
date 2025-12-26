@@ -4,38 +4,44 @@
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.DropDowns
 @*Hidden:Lines*@
-@using Selfdata
+@using System.Threading.Tasks
+@using TicketData
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This sample demonstrates Tree Grid's selection feature, which allows you to select a row or cell with a simple mouse down or keyboard interaction.</p>
+    <p>This sample illustrates interactive selection in the Tree Grid, enabling row and cell selection via mouse, keyboard, and touch gestures.</p>
 </SampleDescription>
+
 <ActionDescription>
-    <p>The selection feature allows you to highlight the row or cell that you select interactively. A simple mouse down or keyboard interaction can be used to make a selection. Set <a aria-label="Navigate to the AllowSelection property reference for tree grid rows" target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_AllowSelection">AllowSelection</a> property to true to enable selection.</p>
-    <p>Tree Grid supports two types of selection which can be set using the <a aria-label="Navigate to the type property reference for tree grid selection settings" target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.TreeGridSelectionSettings.html#Syncfusion_Blazor_TreeGrid_TreeGridSelectionSettings_Type">TreeGridSelectionSettings->Type</a> property. They are,</p>
+    <p>Selection is enabled by setting <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.SfTreeGrid-1.html#Syncfusion_Blazor_TreeGrid_SfTreeGrid_1_AllowSelection">AllowSelection</a> to <b>true</b> and configured through <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.TreeGrid.TreeGridSelectionSettings.html">TreeGridSelectionSettings</a> to control selection type, selection mode, and cell selection behavior.</p>
+
+    <p>Use the following options to control selection:</p>
     <ul>
-        <li><code>SelectionType.Single</code> - By default, it is enabled. Allows the user to select only one row or cell at a time.</li>
-        <li><code>SelectionType.Multiple</code> - Allows the user to select multiple rows/cells at once.</li>
+        <li><code>TreeGridSelectionSettings.Type</code>: Choose <b>SelectionType.Single</b> to allow one row or cell at a time or <b>SelectionType.Multiple</b> to allow multiple rows or cells.</li>
+        <li><code>TreeGridSelectionSettings.Mode</code>: Set to <b>Row</b>, <b>Cell</b>, or <b>Both</b> to define how selection is applied.</li>
+        <li><code>TreeGridSelectionSettings.CellSelectionMode</code>: Use <b>Flow</b> for a continuous range or <b>Box</b> for a rectangular range between start and end columns across rows.</li>
+        <li>Keyboard and touch: Hold <b>CTRL</b> to select multiple items, hold <b>SHIFT</b> to select a range, and on touch devices use the multi-selection popup to enable multiple selection.</li>
     </ul>
-    <p>Hold down the <strong>CTRL</strong> key and click the desired rows/cells to perform a multi-selection. Hold the <strong>SHIFT</strong> key and click the rows/cells to select a range of rows/cells.</p>
-    <p>When using the Tree Grid in a touch device environment, tap on the row to bring up a popup with the multi-selection icon. Then tap the icon for multiple selection with a single click.</p>
-    <p>More information on selection can be found in this <a aria-label="Navigate to the documentation for selection in tree grid component" target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/selection">documentation section</a>.</p>
+
+    <p>This demo wires dropdowns to update <code>TreeGridSelectionSettings</code> at runtime, allowing you to switch the selection type, selection mode, and cell selection mode programmatically and observe how each configuration affects interaction.</p>
+    <p>More information about selection can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treegrid/selection">documentation</a> section.</p>
 </ActionDescription>
 
 <div class="col-lg-9 control-section">
     <div class="content-wrapper">
         <div class="row">
-              <SfTreeGrid DataSource="@TreeGridData" IdMapping="TaskID" ParentIdMapping="ParentID" TreeColumnIndex="1" Height="312" AllowPaging="true" AllowSelection="true">
+            <SfTreeGrid DataSource="@TreeGridData" @ref="Tree" IdMapping="TicketID" ParentIdMapping="ParentTicketID" TreeColumnIndex="1" Height="312" AllowSelection="true">
                 <TreeGridSelectionSettings Type="@GridSelectType" Mode="@GridSelectMode" CellSelectionMode="@GridCellMode"></TreeGridSelectionSettings>
-                <TreeGridPageSettings PageSize="2"></TreeGridPageSettings>
                 <TreeGridColumns>
-                    <TreeGridColumn Field="TaskID" HeaderText="Task ID" Width="80" TextAlign="TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="TaskName" HeaderText="Task Name" Width="170"></TreeGridColumn>
-                    <TreeGridColumn Field="StartDate" HeaderText=" Start Date" Format="d" Type=ColumnType.Date Width="100" TextAlign="TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="EndDate" HeaderText="End Date" Format="d" Type=ColumnType.Date Width="100" TextAlign="TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="Duration" HeaderText="Duration" Width="100" TextAlign="TextAlign.Right"></TreeGridColumn>
-                    <TreeGridColumn Field="Progress" HeaderText="Progress" Width="110"></TreeGridColumn>
+                    <TreeGridColumn Field="TicketID" HeaderText="Ticket ID" Width="160" TextAlign="TextAlign.Right"></TreeGridColumn>
+                    <TreeGridColumn Field="Title" ClipMode="ClipMode.EllipsisWithTooltip" HeaderText="Title" Width="240"></TreeGridColumn>
+                   
+                    <TreeGridColumn Field="AssignedAgent" HeaderText="Assigned To" ClipMode="ClipMode.EllipsisWithTooltip" Width="100"></TreeGridColumn>
+                    <TreeGridColumn Field="Category" HeaderText="Category" Width="100"></TreeGridColumn>
+                    <TreeGridColumn Field="Status" HeaderText="Status" Width="100"></TreeGridColumn>
+                    <TreeGridColumn Field="CreatedDate" HeaderText="Created Date" Format="d" Type="ColumnType.Date" TextAlign="TextAlign.Right" Width="130" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
+                    <TreeGridColumn Field="DueDate" HeaderText="Due Date" Format="d" Type="ColumnType.Date" TextAlign="TextAlign.Right" Width="130" ClipMode="ClipMode.EllipsisWithTooltip"></TreeGridColumn>
                 </TreeGridColumns>
             </SfTreeGrid>
         </div>
@@ -43,7 +49,7 @@
 </div>
 
 
-<div class="col-lg-3 property-section">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="RefreshTreeGrid">
     <table id="property" title="Properties" style="margin-top: 35px;border-collapse:separate;border-spacing: 5px 25px">
         <tr>
             <td style="width: 35%">
@@ -93,7 +99,7 @@
             </td>
         </tr>
     </table>
-</div>
+</PropertyPanel>
 
 <style>
 
@@ -115,7 +121,7 @@
 
     private SfDropDownList<string, DropDownData> DropdownCellMode { get; set; } = new SfDropDownList<string, DropDownData>();
 
-    private List<SelfReferenceData> TreeGridData { get; set; } = new List<SelfReferenceData>();
+    private List<SupportTicketData> TreeGridData { get; set; } = new List<SupportTicketData>();
 
     private List<DropDownData> SelectionTypes { get; set; } = new List<DropDownData>();
 
@@ -136,6 +142,12 @@
     private Syncfusion.Blazor.Grids.SelectionMode GridSelectMode { get; set; } = Syncfusion.Blazor.Grids.SelectionMode.Row;
 
     private CellSelectionMode GridCellMode { get; set; } = CellSelectionMode.Box;
+    SfTreeGrid<SupportTicketData> Tree { get; set; }
+
+    async void RefreshTreeGrid()
+    {
+        await Tree.RefreshAsync();
+    }
 
     public class DropDownData
     {
@@ -146,7 +158,7 @@
     protected override void OnInitialized()
     {
 
-        TreeGridData = SelfReferenceData.GetTree().ToList();
+        TreeGridData = SupportTicketData.GetSupportTickets().ToList();
 
         SelectionTypes.Add(new DropDownData() { ID = "Single", Mode = "Single" });
         SelectionTypes.Add(new DropDownData() { ID = "Multiple", Mode = "Multiple" });
@@ -180,15 +192,17 @@
         }
     }
 
-    public void ModeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
+    public async Task ModeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
         if(args.Value == "Cell")
         {
             GridSelectMode = Syncfusion.Blazor.Grids.SelectionMode.Cell;
+            await Tree.RefreshAsync();
         }
         if (args.Value == "Row")
         {
             GridSelectMode = Syncfusion.Blazor.Grids.SelectionMode.Row;
+            await Tree.RefreshAsync();
         }
         if (args.Value == "Cell" && DropdownType.Value == "Multiple")
         {
@@ -200,15 +214,17 @@
         }
     }
 
-    public void CellModeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
+    public async Task CellModeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropDownData> args)
     {
         if (args.Value == "Flow")
         {
             GridCellMode = CellSelectionMode.Flow;
+            await Tree.RefreshAsync();
         }
         if (args.Value == "Box")
         {
             GridCellMode = CellSelectionMode.Box;
+            await Tree.RefreshAsync();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "/tabs/responsive-modes"
+@page "/tabs/responsive-modes"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.DropDowns
@@ -137,8 +137,8 @@
     public string HeaderValue { get; set; } = "Top";
     public class DropdownFields
     {
-        public string ID { get; set; }
-        public string Text { get; set; }
+        public string? ID { get; set; }
+        public string? Text { get; set; }
     }
 
     private List<DropdownFields> OrientationData = new List<DropdownFields>
@@ -156,7 +156,7 @@
     };
     public class OverflowData
     {
-        public string Overflow { get; set; }
+        public string? Overflow { get; set; }
         public OverflowMode TabOverflow { get; set; }
     }
     public void OnChangeHeaderPosition(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropdownFields> args)

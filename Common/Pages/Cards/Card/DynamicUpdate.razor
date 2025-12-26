@@ -1,4 +1,4 @@
-﻿@page "/card/dynamic-update"
+@page "/card/dynamic-update"
 
 @using Syncfusion.Blazor.Cards
 @using Syncfusion.Blazor.Buttons
@@ -18,7 +18,7 @@
             <CardHeader Title="Robert Jhonson" SubTitle="Chief Executive" />
             @if (IsMedia)
             {
-                <CardImage Image="@(SampleService.WebAssetsPath + "images/cards/robert-jhonson.png")" />
+                <CardImage Image="@(SampleService?.WebAssetsPath + "images/cards/robert-jhonson.png")" />
             }
             @if (IsText)
             {

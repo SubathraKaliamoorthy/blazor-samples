@@ -1,9 +1,10 @@
-﻿@page "/chart-3d/stacked-bar-100"
+@page "/chart-3d/stacked-bar-100"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
+@*Hidden:Lines*@
 @using ThemeHelper
-
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -55,8 +56,15 @@
     protected override void OnInitialized()
     {
         CurrentTheme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "70%";
-        YAxisInterval = SampleService != null && SampleService.IsDevice ? 20 : 10;
+        ChartWidth = "70%";
+        YAxisInterval = 10;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+            YAxisInterval = 20;
+        }
+        @*End:Hidden*@
     }
 
     public class VehiclesProductionData

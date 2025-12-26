@@ -1,14 +1,14 @@
-﻿@page "/chart/area-zone"
+@page "/chart/area-zone"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -203,12 +203,14 @@
 
         ChartPoints = this.GetData();
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Label = LabelIntersectAction.None;
             Width = "100%";
             Rotation = -45;
         }
+        @*End:Hidden*@
     }
 
     private List<AreaChartData> GetData()

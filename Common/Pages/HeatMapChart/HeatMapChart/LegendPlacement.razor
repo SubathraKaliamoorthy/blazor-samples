@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/legend-placement"
+@page "/heatmap-chart/legend-placement"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -17,9 +17,9 @@
   <p>The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item on touch-enabled devices.</p> 
 </ActionDescription>
 
-<div class="col-lg-9 control-section">
+<div class="col-lg-8 control-section">
     <div class="row">
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref='Map' DataSource="@DataSource" Theme="@_theme">
             <HeatMapEvents TooltipRendering="@TooltipRendering"></HeatMapEvents>
             <HeatMapTitleSettings Text="Hourly Weather Forecast (in Celsius)">
                 <HeatMapTitleTextStyle Size="15px" FontFamily="inherit" FontWeight="500" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
@@ -53,8 +53,7 @@
         </SfHeatMap>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-header">Properties</div><br/>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
     <tr>
         <td>
             <div style="width:100px"> Legend Position </div>
@@ -62,15 +61,16 @@
         <td>
             <div style="margin-left: 50px">
             <SfDropDownList TValue="string" TItem="DataModel" PopupHeight="230px" Width="120px" @bind-Index="@_index" Placeholder="Select the Legend Placement" DataSource="@LegendPlacements">
-                <DropDownListEvents TValue="string" TItem="DataModel" ValueChange="@(e => { Enum.TryParse<LegendPosition>(e.ItemData.Text, out CurrentLegentPosition); })"></DropDownListEvents>
+                <DropDownListEvents TValue="string" TItem="DataModel" ValueChange="@(e => { Enum.TryParse<LegendPosition>(e?.ItemData?.Text, out CurrentLegentPosition); })"></DropDownListEvents>
                 <DropDownListFieldSettings Text="Text" Value="Id"></DropDownListFieldSettings>
             </SfDropDownList>
             </div>
         </td>
     </tr>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<int[,]>? Map { get; set; }
     private Theme _theme { get; set; }
     public string AxisLabelColor = "Black";
     private int? _index { get; set; } = 0;
@@ -100,10 +100,16 @@
     {
         args.Content = new string[] { args.XLabel + " | " + args.YLabel + " : " + args.Value + "\xB0 C" };
     }
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
+    }
 
 }
-<style>
-    .col-lg-3.property-section {
-        padding-top: 20px;
-    }
-</style>

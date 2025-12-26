@@ -5,10 +5,9 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using BlazorDemos;
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace BlazorDemos.Model
 {

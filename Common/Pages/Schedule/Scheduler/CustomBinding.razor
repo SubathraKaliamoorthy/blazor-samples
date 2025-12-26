@@ -1,4 +1,4 @@
-﻿@page "/scheduler/custom-binding"
+@page "/scheduler/custom-binding"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Schedule
@@ -60,7 +60,7 @@
             new AppointmentData { Id = 3, Subject = "Workflow Analysis", StartTime = new DateTime(CurrentYear, 1, 5, 12, 0, 0) , EndTime = new DateTime(CurrentYear, 1, 5, 13, 0, 0), ProjectId = 2, RecurrenceRule = "FREQ=DAILY;INTERVAL=1;COUNT=3;"},
             new AppointmentData { Id = 4, Subject = "Report", StartTime = new DateTime(CurrentYear, 1, 8, 11, 30, 0) , EndTime = new DateTime(CurrentYear, 1, 8, 13, 0, 0), ProjectId = 2}
         };
-        public async override Task<object> ReadAsync(DataManagerRequest dataManagerRequest, string key = null)
+        public async override Task<object> ReadAsync(DataManagerRequest dataManagerRequest, string key = "")
         {
             await Task.Delay(100); //To mimic asynchronous operation, we delayed this operation using Task.Delay
             return dataManagerRequest.RequiresCounts ? new DataResult() { Result = EventData, Count = EventData.Count() } : (object)EventData;
@@ -68,27 +68,34 @@
         public async override Task<object> InsertAsync(DataManager dataManager, object data, string key)
         {
             await Task.Delay(100); //To mimic asynchronous operation, we delayed this operation using Task.Delay
-            EventData.Insert(0, data as AppointmentData);
+            var item = data as AppointmentData;
+            if (item != null)
+            {
+                EventData.Insert(0, item);
+            }
             return data;
         }
         public async override Task<object> UpdateAsync(DataManager dataManager, object data, string keyField, string key)
         {
             await Task.Delay(100); //To mimic asynchronous operation, we delayed this operation using Task.Delay
-            var val = (data as AppointmentData);
-            var appointment = EventData.Where((AppointmentData) => AppointmentData.Id == val.Id).FirstOrDefault();
-            if (appointment != null)
+            var val = data as AppointmentData;
+            if (val != null)
             {
-                appointment.Id = val.Id;
-                appointment.Subject = val.Subject;
-                appointment.StartTime = val.StartTime;
-                appointment.EndTime = val.EndTime;
-                appointment.Location = val.Location;
-                appointment.Description = val.Description;
-                appointment.IsAllDay = val.IsAllDay;
-                appointment.ProjectId = val.ProjectId;
-                appointment.RecurrenceException = val.RecurrenceException;
-                appointment.RecurrenceID = val.RecurrenceID;
-                appointment.RecurrenceRule = val.RecurrenceRule;
+                var appointment = EventData.Where((AppointmentData) => AppointmentData.Id == val.Id).FirstOrDefault();
+                if (appointment != null)
+                {
+                    appointment.Id = val.Id;
+                    appointment.Subject = val.Subject;
+                    appointment.StartTime = val.StartTime;
+                    appointment.EndTime = val.EndTime;
+                    appointment.Location = val.Location;
+                    appointment.Description = val.Description;
+                    appointment.IsAllDay = val.IsAllDay;
+                    appointment.ProjectId = val.ProjectId;
+                    appointment.RecurrenceException = val.RecurrenceException;
+                    appointment.RecurrenceID = val.RecurrenceID;
+                    appointment.RecurrenceRule = val.RecurrenceRule;
+                }
             }
             return data;
         }

@@ -57,7 +57,7 @@
                                         <div>
                                             <span><img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/data-grid/country/{imageFileName}")" width="23" height="15" title="@hostInfo" alt="organizer country" /></span>
                                             <span @onmouseover="() => OnHover(nameof(FifaData.Host),hostInfo,false)">
-                                                <a class="infotooltip" href="https://ej2.syncfusion.com/home/">@hostInfo</a>
+                                                <a class="infotooltip" href="https://blazor.syncfusion.com/demos/">@hostInfo</a>
                                             </span>
                                         </div>
                                     }
@@ -75,7 +75,7 @@
                                             <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/data-grid/country/{imageFileName.ToLower().Replace(" ", "-")}")" width="23" height="15" title="@championInfo" />
                                         </span>
                                         <span @onmouseover="() => OnHover(nameof(FifaData.Champions),championInfo!, false)">
-                                            <a class="infotooltip" href="https://ej2.syncfusion.com/home/">@championInfo</a>
+                                            <a class="infotooltip" href="https://blazor.syncfusion.com/demos/">@championInfo</a>
                                         </span>
                                     </div>
                                 }
@@ -93,7 +93,7 @@
                                             <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/data-grid/country/{imageFileName.ToLower().Replace(" ", "-")}")" width="23" height="15" />
                                         </span>
                                         <span @onmouseover="() => OnHover(nameof(FifaData.Coach), coachInfo!, false)">
-                                            <a class="infotooltip" href="">@coachInfo</a>
+                                            <a class="infotooltip" href="https://blazor.syncfusion.com/demos/">@coachInfo</a>
                                         </span>
                                     </div>
                                 }
@@ -122,7 +122,7 @@
                                             @if (TooltipData.topScorerInfo.ContainsKey(convertedValue!))
                                             {
                                                 <span @onmouseover="() => OnHover(nameof(FifaData.TopScorer), topScorer!, false)">
-                                                    <a class="infotooltip" href="https://ej2.syncfusion.com/home/">@topScorer</a>
+                                                    <a class="infotooltip" href="https://blazor.syncfusion.com/demos/">@topScorer</a>
                                                 </span>
                                             }
                                             else
@@ -162,7 +162,7 @@
                                         @if (convertedValue != null && TooltipData.bestPlayerInfo.ContainsKey(convertedValue))
                                         {
                                             <span @onmouseover="() => OnHover(nameof(FifaData.BestPlayerAward), bestPlayerAward!, false)">
-                                                <a class="infotooltip" href="https://ej2.syncfusion.com/home/">@bestPlayerAward</a>
+                                                <a class="infotooltip" href="https://blazor.syncfusion.com/demos/">@bestPlayerAward</a>
                                             </span>
                                         }
                                         else

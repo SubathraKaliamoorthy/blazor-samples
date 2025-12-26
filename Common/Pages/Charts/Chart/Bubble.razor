@@ -1,4 +1,4 @@
-﻿@page "/chart/bubble"
+@page "/chart/bubble"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -32,10 +32,10 @@
         <ChartTooltipSettings Header="<b>${point.tooltip}</b>" EnableMarker="false" Enable="true" Format="Literacy Rate : <b>${point.x}%</b> <br/>GDP Annual Growth Rate : <b>${point.y}</b><br/>Population : <b>${point.size} Billion</b>"></ChartTooltipSettings>
         <ChartSeriesCollection>
             <ChartSeries TooltipMappingName="Text" DataSource="@ChartPoints" Name="Pound" XName="Literacy" MinRadius="3" MaxRadius="8"
-                         Size="BubbleSize" YName="GDPGrowth" Type="ChartSeriesType.Bubble">
+            Size="BubbleSize" YName="GDPGrowth" Type="ChartSeriesType.Bubble">
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Name="TooltipMappingName" Position=LabelPosition.Middle>
-                        <ChartDataLabelFont Size="@(SampleService != null && SampleService.IsDevice ? "7px" : "12px")" FontWeight="500"></ChartDataLabelFont>
+                        <ChartDataLabelFont Size="@FontSize" FontWeight="500"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
                 <ChartSeriesBorder Width="2"></ChartSeriesBorder>
@@ -49,6 +49,7 @@
 
     private Theme Theme { get; set; }
     public string Width { get; set; } = "90%";
+    public string FontSize { get; set; } = "12px";
     public List<BubbleChartData> ChartPoints { get; set; } = new List<BubbleChartData>
     {
         new BubbleChartData { Literacy = 92.2, GDPGrowth = 7.8, BubbleSize = 1.347, TooltipMappingName = "China", Text = "China" },
@@ -74,14 +75,19 @@
     protected override void OnInitialized()
     {
         this.SetTheme(null!);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
+            FontSize = "7px";
         }
+        @*End:Hidden*@
     }
 
+    
     public void DatalabelRender(TextRenderEventArgs args)
     {
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             args.Text = args.Text.Replace("Indonesia", "ID");
@@ -93,8 +99,10 @@
             args.Text = args.Text.Replace("Australia", "AUS");
             args.Text = args.Text.Replace("Taiwan", "TW");
         }
-
+        @*End:Hidden*@
     }
+
+
     public void PointRender(PointRenderEventArgs args)
     {
         this.SetTheme(args);

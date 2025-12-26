@@ -5,13 +5,9 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorDemos.Controllers
 {

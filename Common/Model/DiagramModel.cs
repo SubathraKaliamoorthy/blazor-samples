@@ -6,8 +6,8 @@
 // applicable laws. 
 #endregion
 using Microsoft.JSInterop;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
 
 namespace BlazorDemos.Model
 {

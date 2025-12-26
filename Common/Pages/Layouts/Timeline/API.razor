@@ -1,9 +1,10 @@
-﻿@page "/timeline/api"
+@page "/timeline/api"
 
-@*Hidden:Lines*@
 @using Syncfusion.Blazor.Layouts
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
+
 @inherits SampleBaseComponent
 @*End:Hidden*@
 
@@ -101,8 +102,8 @@
     private List<ItemModel> timelineItems = new List<ItemModel>();
     public class DropDownModel
     {
-        public string Text { get; set; }
-        public string Value { get; set; }
+        public string? Text { get; set; }
+        public string? Value { get; set; }
     }
     private List<DropDownModel> OrientationData = new List<DropDownModel>()
     {
@@ -118,9 +119,9 @@
 
     public class ItemModel
     {
-        public string Content { get; set; }
-        public string OppositeContent { get; set; }
-        public string DotCssData { get; set; }
+        public string? Content { get; set; }
+        public string? OppositeContent { get; set; }
+        public string? DotCssData { get; set; }
     }
 
     private List<ItemModel> GetItems()
@@ -170,17 +171,17 @@
 
     private void Change(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool?> args)
     {
-        TimelineReverse = (bool)args.Checked;
+        TimelineReverse = args.Checked ?? false;
     }
 
     private void OppositeChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool?> args)
     {
-        TimelineOpposite = (bool)args.Checked;
+        TimelineOpposite = args.Checked ?? false;
     }
 
     private void DotCssChange(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool?> args)
     {
-        TimelineDotcss = (bool)args.Checked;
+        TimelineDotcss = args.Checked ?? false;
     }
 }
 

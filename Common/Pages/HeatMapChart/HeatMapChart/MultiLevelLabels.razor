@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/multi-level-labels"
+@page "/heatmap-chart/multi-level-labels"
 @inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -111,13 +111,17 @@
     {
         Theme = HeatmapThemeHelper.GetCurrentHeatmapTheme(NavigationManager.Uri);
         AxisLabelColor = (Theme.ToString().IndexOf("Dark") > -1 || Theme.ToString().IndexOf("HighContrast") > -1) ? "#FFFFFF" : "#000000";
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             IsShowLabel = false;
         }
         else
         {
+            @*End:Hidden*@
             IsShowLabel = true;
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
 }

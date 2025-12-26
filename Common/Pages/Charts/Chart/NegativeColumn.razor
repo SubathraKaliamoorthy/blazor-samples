@@ -1,7 +1,9 @@
 @page "/chart/negative-column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Globalization
 @inject NavigationManager NavigationManager
@@ -103,12 +105,14 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Rotation = -45;
             Width = "100%";
             Label = LabelIntersectAction.None;
         }
+        @*End:Hidden*@
     }
 
 }

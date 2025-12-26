@@ -1,9 +1,11 @@
-﻿@page "/circular-gauge/arc-gauge"
+@page "/circular-gauge/arc-gauge"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.Inputs
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -134,6 +136,7 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             SliderAngle = 157;
@@ -141,8 +144,11 @@
         }
         else
         {
+            @*End:Hidden*@
             SliderAngle = 162;
             SliderRadius = "126%";
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
 }

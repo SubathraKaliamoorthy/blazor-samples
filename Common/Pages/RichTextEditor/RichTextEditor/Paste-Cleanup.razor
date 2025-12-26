@@ -1,4 +1,4 @@
-﻿
+
 @page "/rich-text-editor/paste-cleanup"
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.RichTextEditor
@@ -128,18 +128,18 @@
 </style>
 
 @code {
-    private SfDropDownList<string, PasteOptions> DropObj;
+    private SfDropDownList<string, PasteOptions>? DropObj;
     private string PasteDefaultValue { get; set; } = "prompt";
     private bool Prompt = true;
     private bool Plaintext = false;
     private bool Keepformat = false;
 
-    private string DeniedTagsText { get; set; }
-    private string DeniedAttributesText { get; set; }
-    private string AllowedStylePropertiesText { get; set; }
+    private string? DeniedTagsText { get; set; }
+    private string? DeniedAttributesText { get; set; }
+    private string? AllowedStylePropertiesText { get; set; }
 
-    private string[] Deniedtags { get; set; }
-    private string[] Deniedattr { get; set; }
+    private string[]? Deniedtags { get; set; }
+    private string[]? Deniedattr { get; set; }
     
     private string[] Allowedstyle { get; set; } = new string[]
     {
@@ -170,8 +170,8 @@
 
     private class PasteOptions
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
+        public string? Id { get; set; }
+        public string? Text { get; set; }
     }
 
     private List<PasteOptions> Options = new List<PasteOptions>()

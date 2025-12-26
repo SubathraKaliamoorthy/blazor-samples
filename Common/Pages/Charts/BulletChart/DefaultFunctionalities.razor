@@ -1,9 +1,9 @@
-﻿@page "/bullet-chart/default-functionalities"
+@page "/bullet-chart/default-functionalities"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
-@using ThemeHelper
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 
@@ -19,9 +19,9 @@
 
 <div class="control-section" style="text-align: center">
     <SfBulletChart DataSource="@RevenueData" Theme="@CurrentTheme" ValueField="ActualValue" TargetField="TargetValue" Minimum="0" Maximum="300" Interval="50"
-                   Title="Revenue" Subtitle="U.S. $" LabelFormat="${value}k" TitlePosition=@TitlePosition Width=@ChartWidth>
+    Title="Revenue" Subtitle="U.S. $" LabelFormat="${value}k" TitlePosition=@TitlePosition Width=@ChartWidth>
         <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
-        <BulletChartMargin Left="@(IsDevice ? 10 : 62)" Right="15"></BulletChartMargin>
+        <BulletChartMargin Left="@ChartLeftMargin1" Right="15"></BulletChartMargin>
         <BulletChartRangeCollection>
             <BulletChartRange End="150"> </BulletChartRange>
             <BulletChartRange End="250"></BulletChartRange>
@@ -30,9 +30,9 @@
     </SfBulletChart>
 
     <SfBulletChart DataSource="@ProfitData" ValueField="ActualValue" Theme="@CurrentTheme" TargetField="TargetValue" Minimum="0" Maximum="30" Interval="5"
-                   Title="Profit" Subtitle="%" LabelFormat="{value}%" TitlePosition=@TitlePosition Width=@ChartWidth>
+    Title="Profit" Subtitle="%" LabelFormat="{value}%" TitlePosition=@TitlePosition Width=@ChartWidth>
         <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
-        <BulletChartMargin Left="@(IsDevice ? 10 : 80)" Right="15"></BulletChartMargin>
+        <BulletChartMargin Left="@ChartLeftMargin2" Right="15"></BulletChartMargin>
         <BulletChartRangeCollection>
             <BulletChartRange End="20"> </BulletChartRange>
             <BulletChartRange End="25"></BulletChartRange>
@@ -41,9 +41,9 @@
     </SfBulletChart>
 
     <SfBulletChart DataSource="@AvgOrderSizeData" ValueField="ActualValue" Theme="@CurrentTheme" TargetField="TargetValue" Minimum="0" Maximum="600" Interval="100"
-                   Title="Avg Order Size" Subtitle="U.S. $" LabelFormat="${value}" TitlePosition=@TitlePosition  Width=@ChartWidth>
+    Title="Avg Order Size" Subtitle="U.S. $" LabelFormat="${value}" TitlePosition=@TitlePosition  Width=@ChartWidth>
         <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
-        <BulletChartMargin Left="@(IsDevice ? 10 : 21.5)" Right="15"></BulletChartMargin>
+        <BulletChartMargin Left="@ChartLeftMargin3" Right="15"></BulletChartMargin>
         <BulletChartRangeCollection>
             <BulletChartRange End="350"> </BulletChartRange>
             <BulletChartRange End="500"></BulletChartRange>
@@ -52,9 +52,9 @@
     </SfBulletChart>
 
     <SfBulletChart DataSource="@NewCustomersData" EnableGroupSeparator="false" Theme="@CurrentTheme" ValueField="ActualValue" TargetField="TargetValue" Width=@ChartWidth
-                   Minimum="0" Maximum="2500" Interval="500" Title="New Customers" Subtitle="Count" TitlePosition=@TitlePosition>
+    Minimum="0" Maximum="2500" Interval="500" Title="New Customers" Subtitle="Count" TitlePosition=@TitlePosition>
         <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
-        <BulletChartMargin Left="@(IsDevice ? 10 : 18)" Right="15"></BulletChartMargin>
+        <BulletChartMargin Left="@ChartLeftMargin4" Right="15"></BulletChartMargin>
         <BulletChartRangeCollection>
             <BulletChartRange End="1700"> </BulletChartRange>
             <BulletChartRange End="2000"></BulletChartRange>
@@ -63,9 +63,9 @@
     </SfBulletChart>
 
     <SfBulletChart DataSource="@CustomerSatisfactionData" ValueField="ActualValue" Theme="@CurrentTheme" TargetField="TargetValue" Minimum="0" Maximum="5" Interval="1"
-                   Title="Cust Satisfaction" Subtitle="Top rating of 5" TitlePosition=@TitlePosition Width=@ChartWidth>
+    Title="Cust Satisfaction" Subtitle="Top rating of 5" TitlePosition=@TitlePosition Width=@ChartWidth>
         <BulletChartTooltip TValue="ChartData" Enable="true"></BulletChartTooltip>
-        <BulletChartMargin Left="@(IsDevice ? 10 : 12)" Right="15"></BulletChartMargin>
+        <BulletChartMargin Left="@ChartLeftMargin5" Right="15"></BulletChartMargin>
         <BulletChartRangeCollection>
             <BulletChartRange End="3.7"> </BulletChartRange>
             <BulletChartRange End="4.2"></BulletChartRange>
@@ -77,7 +77,14 @@
 @code{
     public string ChartWidth { get; set; } = "80%";
     public TextPosition TitlePosition { get; set; } = TextPosition.Left;
+    public double ChartLeftMargin1 { get; set; } = 62;
+    public double ChartLeftMargin2 { get; set; } = 80;
+    public double ChartLeftMargin3 { get; set; } = 21.5;
+    public double ChartLeftMargin4 { get; set; } = 18;
+    public double ChartLeftMargin5 { get; set; } = 12;
+    @*Hidden:Lines*@
     public bool IsDevice => SampleService != null && SampleService.IsDevice;
+    @*End:Hidden*@
 
     public class ChartData
     {
@@ -109,17 +116,19 @@
     {
         new ChartData { ActualValue = 4.9, TargetValue = 4 }
     };
-    
+
     public Theme CurrentTheme { get; set; }
 
     protected override void OnInitialized()
     {
+        @*Hidden:Lines*@
         if (IsDevice)
         {
             ChartWidth = "100%";
             TitlePosition = TextPosition.Top;
+            ChartLeftMargin1 = ChartLeftMargin2 = ChartLeftMargin3 = ChartLeftMargin4 = ChartLeftMargin5 = 10;
         }
-
+        @*End:Hidden*@
         CurrentTheme= ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
 

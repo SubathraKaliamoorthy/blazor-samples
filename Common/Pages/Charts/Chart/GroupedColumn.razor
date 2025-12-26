@@ -1,7 +1,9 @@
-﻿@page "/chart/grouped-column"
+@page "/chart/grouped-column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -41,42 +43,48 @@
             <ChartAxisLineStyle Width="0"></ChartAxisLineStyle>
         </ChartPrimaryYAxis>
         <ChartSeriesCollection>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="USA_Total" Name="USA Total Medals" GroupName="USA" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="USA_Total" Name="USA Total Medals" GroupName="USA" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="USA_Gold" Name="USA Gold Medals" GroupName="USA" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="USA_Gold" Name="USA Gold Medals" GroupName="USA" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="UK_Total" Name="UK Total Medals" GroupName="UK" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="UK_Total" Name="UK Total Medals" GroupName="UK" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="UK_Gold" Name="UK Gold Medals" GroupName="UK" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="UK_Gold" Name="UK Gold Medals" GroupName="UK" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="China_Total" Name="China Total Medals" GroupName="China" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="China_Total" Name="China Total Medals" GroupName="China" ColumnWidth="0.7" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
-            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="China_Gold" Name="China Gold Medals" GroupName="China" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" CornerRadius="@(new ChartCornerRadius { TopLeft = 4, TopRight = 4})" LegendShape="LegendShape.Rectangle">
+            <ChartSeries DataSource="@ChartPoints" XName="Year" YName="China_Gold" Name="China Gold Medals" GroupName="China" ColumnWidth="0.5" ColumnSpacing="0.1" Type="ChartSeriesType.Column" LegendShape="LegendShape.Rectangle">
+                <ChartCornerRadius TopLeft="4" TopRight="4" />
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Top">
                         <ChartDataLabelFont Color="#ffffff" FontWeight="600"></ChartDataLabelFont>
@@ -115,10 +123,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
              Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void TooltipRender(TooltipRenderEventArgs args)

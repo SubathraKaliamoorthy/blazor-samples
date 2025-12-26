@@ -1,4 +1,4 @@
-﻿@page "/chart/Category-axis"
+@page "/chart/Category-axis"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -76,11 +76,13 @@
     {
         
         this.SetTheme(null!);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
             Size = "7px";
         }
+        @*End:Hidden*@
     }
 
     public void PointRender(PointRenderEventArgs args)

@@ -1,4 +1,4 @@
-﻿@page "/card/tile-view"
+@page "/card/tile-view"
 
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Cards
@@ -18,30 +18,34 @@
 <div class="row">
     <div class="control-section col-lg-9 card-control-section tile_layout">
         <div class="e-card-layout">
-            @if (this.CardDatas.Count == 0)
+            @if (this.CardDatas?.Count == 0)
             {
                 <div class="e-error">
                     <div class="e-error-content">No results found. Please try a different search.</div>
                 </div>
             }
-            else
+            else if (this.CardDatas != null)
             {
                 @foreach (CardDataModel card in CardDatas)
                 {
-                    <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;">
-                        <div id="card_sample_1" class="card_sample">
-                            <SfCard>
-                                <CardImage Image="@card.ImageUrl" />
-                                <CardHeader Title="@card.Title" SubTitle="@card.SubTitle" />
-                                <CardContent Content="@card.Content" />
-                                <CardFooter>
-                                    <CardFooterContent>
-                                        <SfButton CssClass="e-btn e-outline e-primary" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl))">Read More</SfButton>
-                                    </CardFooterContent>
-                                </CardFooter>
-                            </SfCard>
+                    @if (@card != null)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6" style="padding: 15px;">
+                            <div id="card_sample_1" class="card_sample">
+                            
+                                <SfCard>
+                                    <CardImage Image="@card.ImageUrl" />
+                                    <CardHeader Title="@card.Title" SubTitle="@card.SubTitle" />
+                                    <CardContent Content="@card.Content" />
+                                    <CardFooter>
+                                        <CardFooterContent>
+                                            <SfButton CssClass="e-btn e-outline e-primary" @onclick="@(e => NavigateToUrlAsync(@card.NavUrl ?? string.Empty))">Read More</SfButton>
+                                        </CardFooterContent>
+                                    </CardFooter>
+                                </SfCard>
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
             }
         </div>
@@ -129,11 +133,11 @@
 </style>
 
 @code{
-    [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public IJSRuntime JsRuntime { get; set; }
-    public string SearchValue { get; set; }
-    public string SortingValue { get; set; }
-    public string[] FilteringValue { get; set; }
+    [Inject] public NavigationManager? NavigationManager { get; set; }
+    [Inject] public IJSRuntime? JsRuntime { get; set; }
+    public string? SearchValue { get; set; }
+    public string? SortingValue { get; set; }
+    public string[]? FilteringValue { get; set; }
 
     protected override void OnInitialized()
     {
@@ -143,12 +147,12 @@
 
     public class CardDataModel
     {
-        public string ImageUrl { get; set; }
-        public string Title { get; set; }
-        public string SubTitle { get; set; }
-        public string Content { get; set; }
-        public string NavUrl { get; set; }
-        public string Tag { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? Title { get; set; }
+        public string? SubTitle { get; set; }
+        public string? Content { get; set; }
+        public string? NavUrl { get; set; }
+        public string? Tag { get; set; }
     }
 
     public List<CardDataModel> GetCardDatas()
@@ -170,8 +174,8 @@
         return CardData;
     }
 
-    private List<CardDataModel> _cardDatas;
-    public List<CardDataModel> CardDatas
+    private List<CardDataModel>? _cardDatas;
+    public List<CardDataModel>? CardDatas
     {
         get {  return _cardDatas; }
         set { _cardDatas = value; }
@@ -185,14 +189,17 @@
     {
         try
         {
-            if (!string.IsNullOrEmpty(url))
+            if (!string.IsNullOrEmpty(url) && JsRuntime != null)
             {
                 await JsRuntime.InvokeVoidAsync("window.open", url, "_blank");
             }
         }
         catch (Exception ex)
         {
-            NavigationManager.NavigateTo(url, true);
+            if (NavigationManager != null)
+            {
+                NavigationManager.NavigateTo(url, true);
+            }
         }
     }
 

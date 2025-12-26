@@ -1,4 +1,4 @@
-﻿@page "/breadcrumb/address-bar"
+@page "/breadcrumb/address-bar"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
@@ -87,7 +87,7 @@
 </div>
 
 @code {
-    
+
     public List<BreadcrumbItemModel> BreadcrumbItemList  = new List<BreadcrumbItemModel>() {
         new BreadcrumbItemModel { IconCss = "e-bicons e-picture" },
         new BreadcrumbItemModel { Text = "This PC" },
@@ -103,8 +103,12 @@
         {
             if (BreadcrumbItemList [i].Text == args.Item.Text)
             {
-                BreadcrumbItemList  = BreadcrumbItemList .GetRange(0, i + 1);
-                BreadcrumbItemList [0].IconCss = "e-bicons e-" + GetAddressBarItems (args.Item.Text, true)[0].Type;
+                var addressBarItems = GetAddressBarItems(args.Item.Text, true);
+                if (addressBarItems != null && addressBarItems.Count > 0)
+                {
+                    BreadcrumbItemList = BreadcrumbItemList.GetRange(0, i + 1);
+                    BreadcrumbItemList[0].IconCss = "e-bicons e-" + addressBarItems[0].Type;
+                }
                 break;
             }
         }
@@ -115,9 +119,9 @@
     {
         if (!string.IsNullOrEmpty(args.Item.Text))
         {
-            List<AddressBarItemModel> subItems   = GetAddressBarItems (text, false);
+            List<AddressBarItemModel>? subItems   = GetAddressBarItems(text, false);
             List<BreadcrumbItemModel> selectedItems    = BreadcrumbItemList ;
-            for (var i = 0; i < subItems  .Count; i++)
+            for (var i = 0; i < subItems?.Count; i++)
             {
                 for (var j = 0; j < BreadcrumbItemList .Count; j++)
                 {
@@ -134,39 +138,39 @@
         }
     }
 
-    private List<AddressBarItemModel> GetAddressBarItems (string text, bool needParent)
+    private List<AddressBarItemModel>? GetAddressBarItems (string text, bool needParent)
     {
-        List<AddressBarItemModel> subItems   = AddressBarItems;
+        List<AddressBarItemModel>? subItems = AddressBarItems;
         bool isBreaked = false;
         if (text == null)
         {
-            subItems   = GetSubMenuItems  (subItems  );
+            subItems   = GetSubMenuItems(subItems);
         }
         else
         {
-            for (var i = 1; i < BreadcrumbItemList .Count; i++)
+            for (var i = 1; i < BreadcrumbItemList.Count; i++)
             {
-                for (var j = 0; j < subItems  .Count; j++)
+                for (var j = 0; j < subItems?.Count; j++)
                 {
-                    if (subItems  [j].Text == BreadcrumbItemList [i].Text)
+                    if (subItems[j].Text == BreadcrumbItemList[i].Text)
                     {
-                        if (subItems  [j].Text == text)
+                        if (subItems[j].Text == text)
                         {
                             if (needParent)
                             {
-                                subItems   = new List<AddressBarItemModel>() { subItems  [j] };
+                                subItems = new List<AddressBarItemModel>() { subItems[j] };
                             }
                             else
                             {
-                                subItems   = GetSubMenuItems  (subItems  [j].Items);
+                                subItems = GetSubMenuItems(subItems[j].Items);
                             }
                             isBreaked = true;
                         }
                         else
                         {
-                            subItems   = subItems  [j].Items;
+                            subItems = subItems[j].Items;
                             j = 0;
-                            if (subItems   == null)
+                            if (subItems == null)
                             {
                                 isBreaked = true;
                             }
@@ -180,17 +184,17 @@
                 }
             }
         }
-        return (subItems   == AddressBarItems ? null : subItems  );
+        return subItems == AddressBarItems ? null : subItems;
     }
 
-    private List<AddressBarItemModel> GetSubMenuItems  (List<AddressBarItemModel> parentSubItems  )
+    private List<AddressBarItemModel> GetSubMenuItems  (List<AddressBarItemModel>? parentSubItems  )
     {
         List<AddressBarItemModel> subItems = new List<AddressBarItemModel>();
-        if (parentSubItems   != null)
+        if (parentSubItems != null)
         {
-            for (var i = 0; i < parentSubItems  .Count; i++)
+            for (var i = 0; i < parentSubItems.Count; i++)
             {
-                subItems.Add(new AddressBarItemModel { Text = parentSubItems  [i].Text, Type = parentSubItems  [i].Type });
+                subItems.Add(new AddressBarItemModel { Text = parentSubItems  [i].Text, Type = parentSubItems[i].Type });
             }
         }
         return subItems;
@@ -303,15 +307,15 @@
 
     public class AddressBarItemModel
     {
-        public string Text { get; set; }
-        public string Type { get; set; }
-        public List<AddressBarItemModel> Items { get; set; }
+        public string? Text { get; set; }
+        public string? Type { get; set; }
+        public List<AddressBarItemModel>? Items { get; set; }
     }
 
     public class BreadcrumbItemModel
     {
-        public string Text { get; set; }
-        public string IconCss { get; set; }
+        public string? Text { get; set; }
+        public string? IconCss { get; set; }
     }
 }
 <style>

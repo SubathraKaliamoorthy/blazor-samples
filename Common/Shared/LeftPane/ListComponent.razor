@@ -1,10 +1,10 @@
-﻿@namespace BlazorDemos.Shared
+@namespace BlazorDemos.Shared
 @implements IDisposable;
 
 @inject NavigationManager UriHelper;
 @inject SampleService SampleService;
 
-<div class="@classNames" role="list" tabindex="0">
+<div class="@classNames" role="list">
     <div class="@SampleUtils.CONTENT">
         <ul class="@SampleUtils.LIST_UL_CLASS" role="presentation">
             @if (groupData != null)
@@ -28,7 +28,7 @@
                             {
                                 liClass = SampleUtils.AddClass(liClass, SampleUtils.LIST_ACTIVE);
                             }
-                            <li class="@liClass" role="listitem" @onclick="@(async () => { await OnSelection(item); })">
+                            <li class="@liClass" role="listitem" tabindex="0" @onclick="@(async () => { await OnSelection(item); })" @onkeydown="@(async (e) => { await OnKeyDown(item,e); })">
                                 @if (Template != null)
                                 {
                                     @Template(item)
@@ -99,6 +99,14 @@
         }
     }
 
+    private async Task OnKeyDown(Sample item, KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await OnSelection(item);
+        }
+    }
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -110,8 +118,8 @@
             if (selectedItem == null)
             {
                 SampleService.Update(UriHelper);
+                selectedItem = SampleService.SampleInfo;
             }
-            selectedItem = SampleService.SampleInfo;
         }
     }
 

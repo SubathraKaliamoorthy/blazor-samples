@@ -1,6 +1,8 @@
-﻿@page "/chart/pie"
+@page "/chart/pie"
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Inputs
 
@@ -63,6 +65,7 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             StartAngle = 70;
@@ -70,6 +73,7 @@
             ConnectorLength = "10px";
             Size = "8px";
         }
+        @*End:Hidden*@
     }
 
     public class PieData

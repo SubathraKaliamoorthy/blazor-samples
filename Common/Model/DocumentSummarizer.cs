@@ -5,17 +5,14 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using Syncfusion.Pdf.Parsing;
-using System.Text;
+using BlazorDemos.Service;
+using Microsoft.Extensions.AI;
+using SmartComponents.LocalEmbeddings;
+using Syncfusion.Blazor.AI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using BlazorDemos.Service;
-using SmartComponents.LocalEmbeddings;
 using System.Linq;
-using Microsoft.Extensions.AI;
-using Syncfusion.Blazor.AI;
+using System.Threading.Tasks;
 
 namespace BlazorDemos.Model
 {

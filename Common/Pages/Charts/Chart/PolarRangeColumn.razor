@@ -1,7 +1,9 @@
-﻿@page "/chart/polar-range-column"
+@page "/chart/polar-range-column"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.DropDowns
 
@@ -21,8 +23,8 @@
     <p>More information about the polar and radar chart with a range column series can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/chart-types/polar/#range-column' aria-label="Navigate to the documentation for range-column in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="Temperatures of Germany" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="@ChartRef" Title="Temperatures of Germany" Theme="@Theme">
         <ChartPrimaryXAxis Interval="1" Coefficient="100" LabelPlacement="LabelPlacement.OnTicks" ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
         <ChartPrimaryYAxis Minimum="0" Maximum="15" Interval="5" LabelFormat="{value}"></ChartPrimaryYAxis>
         <ChartTooltipSettings Enable="true" Header="" Format="<b>${point.x}</b> <br> Low : <b>${point.low}°C</b> <br> High : <b>${point.high}°C">
@@ -42,10 +44,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 50%">
@@ -61,13 +60,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
-
+</PropertyPanel>
 @code{
 
-    
+    public SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     private ChartSeriesType SeriesType { get; set; } = ChartSeriesType.Polar;
     private List<DropDownData> Country { get; set; } = new List<DropDownData>
@@ -87,7 +83,7 @@
 
     public void ChangeSeriesType(ChangeEventArgs<string, DropDownData> args)
     {
-        this.SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args.Value.ToString(), true);
+        this.SeriesType = (ChartSeriesType)Enum.Parse(typeof(ChartSeriesType), args?.Value?.ToString() ?? string.Empty, true);
     }
 
     protected override void OnInitialized()
@@ -106,6 +102,18 @@
         public string? Month { get; set; }
         public double MinTemp { get; set; }
         public double MaxTemp { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

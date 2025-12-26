@@ -32,7 +32,7 @@
     <div class="control-wrapper">
         <div class="">
             <SfRichTextEditor>
-                <p>Rich Text Editor allows inserting video and audio from online sources and the local computers where you want to insert a video and audio into your content.</p>
+                <p>Rich Text Editor allows inserting video and audio from online sources and the local computers where you want to insert a video and audio into your content. It also supports drag-and-drop for audio and video files, providing a simple way to add media directly into your editor.</p>
                     <p><b>Get started with Quick Toolbar to click on a video</b></p>
                     <p>Using the quick toolbar, users can replace, align, display, dimension, and delete the selected video.</p>
                     <p>
@@ -48,12 +48,16 @@
                         </audio>
                     </p>
                 <RichTextEditorToolbarSettings Items="@Items" />
+                <RichTextEditorVideoSettings SaveUrl="@SaveURL" Path="@Path"></RichTextEditorVideoSettings>
+                <RichTextEditorAudioSettings SaveUrl="@SaveURL" Path="@Path"></RichTextEditorAudioSettings>
             </SfRichTextEditor>
         </div>
     </div>
 </div>
 
 @code {
+    private string SaveURL = "https://blazor.syncfusion.com/services/production/api/RichTextEditor/SaveFile";
+    private string Path = "https://blazor.syncfusion.com/services/production/RichTextEditor/";
     private List<ToolbarItemModel> Items = new List<ToolbarItemModel>()
     {
         new ToolbarItemModel() { Command = ToolbarCommand.Bold },

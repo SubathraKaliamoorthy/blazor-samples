@@ -4,7 +4,9 @@
 @using Syncfusion.Blazor.TreeMap
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Popups;
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -32,8 +34,8 @@
         text-overflow: ellipsis;
     }
 </style>
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap WeightValuePath="GDP" DataSource="@Economics" RangeColorValuePath="GDP" TValue="LeafData" LayoutType="@LayoutModes" RenderDirection="@RenderMode" Theme="@Theme">
+<div class="col-lg-8 control-section ">
+    <SfTreeMap @ref="TreeMap" WeightValuePath="GDP" DataSource="@Economics" RangeColorValuePath="GDP" TValue="LeafData" LayoutType="@LayoutModes" RenderDirection="@RenderMode" Theme="@Theme">
         <TreeMapTitleSettings Text="Top 10 Countries by GDP Nominal - 2015">
             <TreeMapTitleTextStyle Size="15px" FontFamily="Segoe UI" />
         </TreeMapTitleSettings>
@@ -53,10 +55,7 @@
         <a href="https://www.reinisfischer.com/top-20-largest-economies-world-gdp-nominal" target="_blank">www.reinisfischer.com</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -94,11 +93,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 @code {
     public SfTooltip? DropdownTooltip;
+    public SfTreeMap<LeafData>? TreeMap;
     public bool IsOpen { get; set; }
     public Theme Theme { get; set; }
     public LayoutMode LayoutModes = LayoutMode.Squarified;
@@ -137,7 +135,10 @@
     }
     private void LayoutTypechange(ChangeEventArgs<string, DropdownList> args)
     {
-        LayoutValue = args.Value;
+        if (args == null)
+            return;
+
+        LayoutValue = args.Value ?? LayoutValue;
         if (args.Value == "Squarified")
         {
             LayoutModes = LayoutMode.Squarified;
@@ -157,7 +158,10 @@
     }
     private void RenderDirectionchange(ChangeEventArgs<string, DropdownList> args)
     {
-        RenderValue = args.Value;
+        if (args == null)
+            return;
+
+        RenderValue = args.Value ?? RenderValue;
         if (args.Value == "TopLeftBottomRight")
         {
             RenderMode = RenderingMode.TopLeftBottomRight;
@@ -205,4 +209,18 @@
         new LeafData { State = "Brazil", GDP = 1774, Percentage = -27.88, Rank = 9 },
         new LeafData { State = "Canada", GDP = 1550, Percentage = -15.02, Rank = 10 }
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
+    }
+
 }

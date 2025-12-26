@@ -1,7 +1,9 @@
-﻿@page "/chart/datalabel-template"
+@page "/chart/datalabel-template"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -128,11 +130,13 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
             Padding = "1px";
         }
+        @*End:Hidden*@
         FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
     }
 

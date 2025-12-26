@@ -1,4 +1,4 @@
-﻿@page "/barcodes/upc-a"
+@page "/barcodes/upc-a"
 
 @using Syncfusion.Blazor.BarcodeGenerator
 @using Syncfusion.Blazor.Inputs
@@ -22,7 +22,7 @@
     <div class="center">
         <div class="centercontrol">
             <SfBarcodeGenerator @ref="barcodeGenerator" Width="@barcodeWidth" Height="@barcodeHeight" Type="@BarcodeType.UpcA" Value="@barcodeValue" BackgroundColor="@backgroundColor" ForeColor="@foreColor">
-                <BarcodeGeneratorDisplayText Text="@displayTextValue" Alignment="@textAlignment" Position="@textPosition" Visibility="@textVisibility">
+                <BarcodeGeneratorDisplayText Alignment="@textAlignment" Position="@textPosition" Visibility="@textVisibility">
                     <BarcodeTextMargin Top="@topTextMargin" Bottom="@bottomTextMargin"></BarcodeTextMargin>
                 </BarcodeGeneratorDisplayText>
                 <BarcodeMargin Left="@leftMargin" Top="@topMargin" Right="@rightMargin" Bottom="@bottomMargin"></BarcodeMargin>
@@ -33,7 +33,7 @@
         <span style="font-weight: 600;"> Allowed input characters:</span> The UPC-A barcode supports all numeric digits(0-9) and requires 11 characters text length.
     </div>
 </div>
-<div class="col-lg-3 property-section" style="padding-right: 0px; min-width:36%;border-left:1px solid #D7D7D7; height:750px">
+<PropertyPanel ControlSecClass="col-lg-9">
     <div class="property-panel-header">
         Appearance
     </div>
@@ -53,7 +53,7 @@
                         Width
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=150 Max="250" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeWidthChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -63,7 +63,7 @@
                         Height
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=100 Max="200" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeHeightChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -191,14 +191,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row sb-child-row">
-                <div class="col-xs-2 top barcode-panel-left">
-                    Display Text
-                </div>
-                <div class="col-xs-10">
-                    <SfTextBox Value="@displayTextValue" OnInput="@DsiplayTextValueChange" Width="103%"></SfTextBox>
-                </div>
-            </div>
             <div class="row sb-child-row" style="padding-top:20px">
                 <div class="col-xs-4 barcode-panel-left">
                     <SfButton @onclick="ExportBarcode" Content="Download" iconCss="e-icons e-download"></SfButton>
@@ -206,7 +198,7 @@
             </div>
         </div>
     </div>
-</div>
+</PropertyPanel>
 <style>
     .centercontrol {
         margin: auto;
@@ -289,7 +281,6 @@
 @code
 {
     string barcodeValue = "72527273070";
-    string displayTextValue = "72527273070";
     double width = 200;
     double height = 150;
     string barcodeWidth = "250px";
@@ -369,10 +360,6 @@
     public void BottomMarginChanged(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
     {
         bottomMargin = args.Value;
-    }
-    private void DsiplayTextValueChange(ChangeEventArgs args)
-    {
-        displayTextValue = args.Value!.ToString()!;
     }
     public void LeftMarginChanged(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
     {

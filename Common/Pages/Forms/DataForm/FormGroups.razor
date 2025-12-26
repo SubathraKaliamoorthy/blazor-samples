@@ -1,4 +1,4 @@
-﻿@page "/data-form/form-group"
+@page "/data-form/form-group"
 
 @*Hidden:Lines*@
 @using BlazorDemos.Models.Form
@@ -44,7 +44,7 @@
                         <FormItem Field="@nameof(_employeeDetails.DateOfBirth)" EditorType="FormEditorType.DatePicker" LabelText="Date of birth" />
                         <FormItem Field="@nameof(_employeeDetails.PersonalMailId)" LabelText="Personal Mail" Placeholder="someone@example.com" />
                         <FormItem Field="@nameof(_employeeDetails.BloodGroup)" LabelText="Blood group" Placeholder="Enter blood group" />
-                        <FormItem Field="@nameof(_employeeDetails.Country)" LabelText="Country" EditorType="FormEditorType.AutoComplete" />
+                        <FormItem Field="@nameof(_employeeDetails.Country)" LabelText="Country" EditorType="FormEditorType.DropDownList" />
                         <FormItem Field="@nameof(_employeeDetails.AddressLine)" EditorType="FormEditorType.TextArea" LabelText="Address Line" />
                     </FormGroup>
                 </FormItems>

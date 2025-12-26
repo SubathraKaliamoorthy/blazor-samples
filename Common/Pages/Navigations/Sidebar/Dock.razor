@@ -1,4 +1,4 @@
-﻿@page "/sidebar/dock"
+@page "/sidebar/dock"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Lists
@@ -52,8 +52,8 @@
     public string ContentText = "The Blazor DataGrid is a feature-rich component useful for displaying data in a tabular format. Its wide range of functionalities includes data binding, editing, Excel-like filtering, custom sorting, aggregating rows, selection, and support for Excel, CSV, and PDF formats. It loads millions of records in just a second. It has flexible editing and intuitive record selection modes. Also, it has seamless data exporting options like PDF, CSV, and Excel.";
     // Specify the value of Sidebar component state. It indicates whether the sidebar component is in an open/close state.
     public bool SidebarToggle = false;
-   
-    
+
+
     // Specifies the event handler for Clicked event in Toolbar component. It's used to open/close the Sidebar component. 
     public void Toggle(ClickEventArgs args)
     {
@@ -74,15 +74,18 @@
 
     public class ListData
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public string IconCss { get; set; }
-        public string Description { get; set; }
+        public string? Id { get; set; }
+        public string? Text { get; set; }
+        public string? IconCss { get; set; }
+        public string? Description { get; set; }
     }
     // Specifies the event handler for Clicked event in ListView component.
     public void OnSelect(Syncfusion.Blazor.Lists.ClickEventArgs<ListData> args)
     {
-        this.ContentText = args.ItemData.Description;
+        if (args.ItemData.Description != null)
+        {
+            this.ContentText = args.ItemData.Description;
+        }
     }
 }
 
@@ -343,7 +346,7 @@
     /* Specifies the Sidebar component icons related styles*/
     @@font-face {
         font-family: 'sb-icons';
-        src: url('@(SampleService.WebAssetsPath + "images/sidebar/fonts/controls.ttf?gcjn6a")') format('truetype'), url('@(SampleService.WebAssetsPath + "images/sidebar/fonts/controls.woff?gcjn6a")') format('woff'), url('@(SampleService.WebAssetsPath + "images/sidebar/fonts/controls.svg?gcjn6a#sbicons")') format('svg');
+        src: url('@(SampleService?.WebAssetsPath + "images/sidebar/fonts/controls.ttf?gcjn6a")') format('truetype'), url('@(SampleService?.WebAssetsPath + "images/sidebar/fonts/controls.woff?gcjn6a")') format('woff'), url('@(SampleService?.WebAssetsPath + "images/sidebar/fonts/controls.svg?gcjn6a#sbicons")') format('svg');
         font-weight: normal;
         font-style: normal;
     }

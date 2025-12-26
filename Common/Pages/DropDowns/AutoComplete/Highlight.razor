@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Highlight"
+@page "/AutoComplete/Highlight"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -18,7 +18,7 @@
     <div class="col-lg-8 control-section sb-property-border">
         <div class="control-wrapper">
             <label class="example-label">Select a country</label>
-            <SfAutoComplete TValue="string" TItem="Countries" FilterType="@FilterType" Placeholder="e.g. Australia" DataSource="@Country" Highlight="true" PopupHeight="350px">
+            <SfAutoComplete TValue="string" TItem="Countries" FilterType="@FilterType" Placeholder="e.g. Australia" DataSource="@Country" Highlight="true" PopupHeight="200px">
                 <AutoCompleteFieldSettings Value="Name"/>
             </SfAutoComplete>
         </div>

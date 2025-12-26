@@ -1,4 +1,4 @@
-﻿@page "/ai-maps/weather-prediction"
+@page "/ai-maps/weather-prediction"
 @page "/maps/ai-weather-prediction"
 
 
@@ -29,7 +29,7 @@
 
 <style>
     .spacing {
-        margin: 5px;
+    margin: 5px;
     }
 </style>
 <SampleDescription>
@@ -46,7 +46,7 @@
 
 <ActionDescription>
     <p>In this sample, users can view weather predictions for the next five days provided by AI. The data is then converted into a source for the<code><a target='_blank' class='code' href='https://help.syncfusion.com/cr/blazor Syncfusion.Blazor.Maps.MapsMarker-1.html' aria-label="Class reference of MapsMarker">MapsMarker</a></code>, which renders the weather forecasts as marker templates in the Syncfusion Blazor Maps component.	
-.   </p>
+        .   </p>
 </ActionDescription>
 
 <SfMaps Height="630px">
@@ -69,36 +69,39 @@
                             @{
                                 var Data = context as Markers;
                                 string currentImage = string.Empty;
-                                if (Data.WeatherCondition == "sunny day")
+                                if (Data != null)
                                 {
-                                    currentImage = "weather-clear";
-                                }
-                                else if (Data.WeatherCondition == "snowy day")
-                                {
-                                    currentImage = "weather-snow";
-                                }
-                                else if (Data.WeatherCondition == "foggy day")
-                                {
-                                    currentImage = "weather-foggy";
-                                }
-                                else if (Data.WeatherCondition == "cloudy day")
-                                {
-                                    currentImage = "weather-clouds";
-                                }
-                                else if (Data.WeatherCondition == "rainy day")
-                                {
-                                    currentImage = "weather-rain";
-                                }
+                                    if (Data.WeatherCondition == "sunny day")
+                                    {
+                                        currentImage = "weather-clear";
+                                    }
+                                    else if (Data.WeatherCondition == "snowy day")
+                                    {
+                                        currentImage = "weather-snow";
+                                    }
+                                    else if (Data.WeatherCondition == "foggy day")
+                                    {
+                                        currentImage = "weather-foggy";
+                                    }
+                                    else if (Data.WeatherCondition == "cloudy day")
+                                    {
+                                        currentImage = "weather-clouds";
+                                    }
+                                    else if (Data.WeatherCondition == "rainy day")
+                                    {
+                                        currentImage = "weather-rain";
+                                    }
 
-                                <div style="display:flex;transform:translate(-50%, -50%)">
-                                    <div style="background-color:black; opacity:0.8; align-content:center; padding-left:5px;padding-right:5px">
-                                        <img class="markerTemplate" src="@NavigationManager.ToAbsoluteUri($" {SampleService.WebAssetsPath}images/smartcomponents/maps/{currentImage}.svg")" alt="Weather" height="35px" width="35px" />
+                                    <div style="display:flex;transform:translate(-50%, -50%)">
+                                        <div style="background-color:black; opacity:0.8; align-content:center; padding-left:5px;padding-right:5px">
+                                            <img class="markerTemplate" src="@NavigationManager.ToAbsoluteUri($" {SampleService?.WebAssetsPath}images/smartcomponents/maps/{currentImage}.svg")" alt="Weather" height="35px" width="35px" />
+                                        </div>
+                                        <div style="background-color:#fff; opacity:0.8; padding-left:5px;padding-right:5px">
+                                            <span style="font-size:12px;font-weight:bold">@Data.Name</span><br />
+                                            <span style="font-size:16px;font-weight:bold">@Data.Temperature °C</span>
+                                        </div>
                                     </div>
-                                    <div style="background-color:#fff; opacity:0.8; padding-left:5px;padding-right:5px">
-                                        <span style="font-size:12px;font-weight:bold">@Data.Name</span><br />
-                                        <span style="font-size:16px;font-weight:bold">@Data.Temperature °C</span>
-                                    </div>
-                                </div>
+                                }
                             }
                         </MarkerTemplate>
                     </MapsMarker>
@@ -129,14 +132,14 @@
 
 @code {
     public bool SpinnerVisibility { get; set; } = true;
-    public string SecondButtonContent { get; set; }
-    public string ThirdButtonContent { get; set; }
-    public string FourthButtonContent { get; set; }
-    public string FifthButtonContent { get; set; }
-    public string Day { get; set; }
+    public string SecondButtonContent { get; set; } = string.Empty;
+    public string ThirdButtonContent { get; set; } = string.Empty;
+    public string FourthButtonContent { get; set; } = string.Empty;
+    public string FifthButtonContent { get; set; } = string.Empty;
+    public string Day { get; set; } = string.Empty;
     ObservableCollection<Markers> MarkerCollection = new ObservableCollection<Markers>();
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         DateTime dateTime = DateTime.Now;
         SecondButtonContent = dateTime.AddDays(2).DayOfWeek.ToString();
@@ -153,7 +156,7 @@
             string result = await ChatGptService.GetCompletionAsync("Generate today's temperature in Celsius for 15 important cities in USA as a JSON object, with fields such as 'cityName', 'temperature', 'latitude', 'longitude' and 'weatherCondition'. The weather conditions must be sunny day, rainy day, cloudy day, snowy day and foggy day based on the temperature of the state. Strictly provide flat JSON list without nested objects.");
             if (!string.IsNullOrEmpty(result))
             {
-                MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+                MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
             }
             SpinnerVisibility = false;
         }
@@ -168,7 +171,7 @@
         if (!string.IsNullOrEmpty(result))
         {
             Day = "Tomorrow";
-            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
         }
         SpinnerVisibility = false;
     }
@@ -182,7 +185,7 @@
         if (!string.IsNullOrEmpty(result))
         {
             Day = dateTime.DayOfWeek.ToString();
-            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
         }
         SpinnerVisibility = false;
     }
@@ -196,7 +199,7 @@
         if (!string.IsNullOrEmpty(result))
         {
             Day = dateTime.DayOfWeek.ToString();
-            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
         }
         SpinnerVisibility = false;
     }
@@ -210,7 +213,7 @@
         if (!string.IsNullOrEmpty(result))
         {
             Day = dateTime.DayOfWeek.ToString();
-            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
         }
         SpinnerVisibility = false;
     }
@@ -224,7 +227,7 @@
         if (!string.IsNullOrEmpty(result))
         {
             Day = dateTime.DayOfWeek.ToString();
-            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result);
+            MarkerCollection = JsonConvert.DeserializeObject<ObservableCollection<Markers>>(result) ?? new ObservableCollection<Markers>();
         }
         SpinnerVisibility = false;
     }
@@ -234,10 +237,10 @@
         public double Longitude { get; set; }
 
         [JsonProperty("cityName")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public double Temperature { get; set; }
 
         [JsonProperty("weatherCondition")]
-        public string WeatherCondition { get; set; }
+        public string WeatherCondition { get; set; } = string.Empty;
     }
 }

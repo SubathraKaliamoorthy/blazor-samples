@@ -1,7 +1,5 @@
-﻿@page "/MultiColumn-ComboBox/TextWrap"
+@page "/MultiColumn-ComboBox/TextWrap"
 
-@using Syncfusion.Blazor.Calendars
-@using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.MultiColumnComboBox
 
 @*Hidden:Lines*@
@@ -33,7 +31,7 @@
 <div class="col-lg-12 control-section">
     <div class="control-wrapper">
         <label class="example-label">Select an employee</label>
-        <SfMultiColumnComboBox @bind-Value="@Value" DataSource="@Employees" Width="300px" PopupWidth="600px" ValueField="Name" TextField="Name" Placeholder="Select an employee" EnableTextWrap="true" TextWrapElement="TextWrapElement.Header" TextOverflowMode="TextOverflowMode.EllipsisWithTooltip">
+        <SfMultiColumnComboBox @bind-Value="@Value" PopupHeight="200px" DataSource="@Employees" Width="300px" PopupWidth="600px" ValueField="Name" TextField="Name" Placeholder="Select an employee" EnableTextWrap="true" TextWrapElement="TextWrapElement.Header" TextOverflowMode="TextOverflowMode.EllipsisWithTooltip">
             <MultiColumnComboboxColumns>
             <MultiColumnComboboxColumn Field="Name" Header="Name of the employee" Width="150"></MultiColumnComboboxColumn>
                 <MultiColumnComboboxColumn Field="Position" Header="Position" Width="100" Format="C2"></MultiColumnComboboxColumn>

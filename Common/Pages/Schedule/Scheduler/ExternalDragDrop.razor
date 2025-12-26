@@ -20,7 +20,7 @@
 <div class="control-section">
     <div class="schedule-container e-droppable">
         <div class="title-container">
-            <h1 class="title-text">Doctor's Appointments</h1>
+            <div class="title-text">Doctor's Appointments</div>
         </div>
         <SfSchedule TValue="ScheduleData.HospitalData" @ref="ScheduleRef" Width="100%" Height="650px" CssClass="schedule-drag-drop" @bind-SelectedDate="@CurrentDate" StartHour="09:00" EndHour="18:00">
             <ScheduleEvents TValue="ScheduleData.HospitalData" OnActionBegin="OnActionBegin"></ScheduleEvents>
@@ -46,7 +46,7 @@
     </div>
     <div class="treeview-container">
         <div class="title-container">
-            <h2 class="title-text">Waiting List</h2>
+            <div class="title-text">Waiting List</div>
         </div>
         <SfTreeView TValue="ScheduleData.HospitalData" AllowDragAndDrop="true" CssClass="treeview-external-drag" DropArea=".control-section">
             <TreeViewEvents TValue="ScheduleData.HospitalData" OnNodeDragStop="OnTreeViewDragStop"></TreeViewEvents>
@@ -156,6 +156,7 @@
         margin: 0px;
         font-weight: bold;
         text-align: center;
+        line-height: 1.1;
     }
     /* custom code end*/
     .treeview-external-drag #waiting {

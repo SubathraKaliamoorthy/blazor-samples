@@ -1,7 +1,9 @@
-﻿@page "/chart/drilldown"
+@page "/chart/drilldown"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 
 @inject NavigationManager NavigationManager
@@ -15,7 +17,7 @@
     <p>This sample demonstrates a drill down chart with a pie for automobiles sales by region. By clicking one category, you can navigate to other sub-categories where countries are differentiated.</p>
 </SampleDescription>
 <ActionDescription>
-   <p>In this example, you can see how to achieve the drilldown concept using a pie chart. Automobile sales are shown in different categories. By clicking each category, you can navigate to the next level, which shows the sales by categories made by each company. <code>Datalabel</code> are used in this sample to show information about the data points.</p>
+    <p>In this example, you can see how to achieve the drilldown concept using a pie chart. Automobile sales are shown in different categories. By clicking each category, you can navigate to the next level, which shows the sales by categories made by each company. <code>Datalabel</code> are used in this sample to show information about the data points.</p>
 </ActionDescription>
 
 <div class="control-section">
@@ -31,7 +33,7 @@
         <AccumulationChartLegendSettings Visible="false"></AccumulationChartLegendSettings>
         <AccumulationChartSeriesCollection>
             <AccumulationChartSeries DataSource="@PieChartPoints" XName="XValue" YName="YValue" Name="Automobile Sales" Radius="@Radius" StartAngle="-30"
-                                     EndAngle="330" InnerRadius="@InnerRadius" BorderRadius="3">
+            EndAngle="330" InnerRadius="@InnerRadius" BorderRadius="3">
                 <AccumulationChartSeriesBorder Color="#FFFFFF" Width="1"></AccumulationChartSeriesBorder>
                 <AccumulationDataLabelSettings Visible="true" EnableRotation="@Rotation" Position="@LabelPosition">
                     <AccumulationChartDataLabelFont FontWeight="600" Size=@Size></AccumulationChartDataLabelFont>
@@ -52,15 +54,15 @@
 </div>
 <style>
     #category:hover {
-        cursor: pointer;
+    cursor: pointer;
     }
     path[id^=drilldown_Series_0_Point_] {
-      @CSS_Cursor
+    @CSS_Cursor
     }
 </style>
 
 @code {
-    
+
     public string CSS_Cursor { get; set; } = "cursor: pointer !important";
     public Theme Theme { get; set; }
     public string ImgURL { get; set; } = "images/chart/back.png"; 
@@ -91,15 +93,18 @@
 
     protected override void OnInitialized()
     {
-        
+
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         ImgURL = Theme == Theme.HighContrast || Theme.ToString().IndexOf("Dark") > -1 ? "images/chart/white.png" : "images/chart/back.png";
+        @*Hidden:Lines*@
         if(SampleService != null && SampleService.IsDevice)
         {
             Size = "6px";
             Rotation = false;
             ConnectorLength = "5%";
         }
+        @*End:Hidden*@
+
     }
     private void backClick(MouseEventArgs args)
     {
@@ -131,8 +136,15 @@
         Visible = "visible";
         InnerRadius = "40%";
         Radius = "80%";
-        LabelPosition = SampleService != null && SampleService.IsDevice ? AccumulationLabelPosition.Inside : AccumulationLabelPosition.Outside;
-        Rotation = SampleService != null && SampleService.IsDevice ? true : false;
+        LabelPosition = AccumulationLabelPosition.Outside;
+        Rotation = false;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            LabelPosition = AccumulationLabelPosition.Inside;
+            Rotation = true;
+        }
+        @*End:Hidden*@
         switch (args.PointIndex)
         {
             case 0:
@@ -197,10 +209,12 @@
     }
     private void DataLabelRender(AccumulationTextRenderEventArgs args)
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice && args.Point.X.ToString() == "Volkswagen")
         {
             args.Point.X = "VW";
         }
+        @*End:Hidden*@
         args.Text = args.Point.X + " " + args.Point.Y + "%";
     }
 }

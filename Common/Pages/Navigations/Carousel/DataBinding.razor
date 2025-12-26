@@ -1,4 +1,4 @@
-﻿@page "/carousel/data-binding"
+@page "/carousel/data-binding"
 
 @using Syncfusion.Blazor.Navigations
 @inject NavigationManager UriHelper
@@ -25,7 +25,7 @@
                 {
                     <CarouselItem>
                         <div class="card">
-                            <img src=@(UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/carousel/" + @framework.ImageName)) class="card-img-top" alt=@framework.Title style="height:210px;width:100%;" />
+                            <img src=@(UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/carousel/" + @framework.ImageName)) class="card-img-top" alt=@framework.Title style="height:210px;width:100%;" />
                             <div class="card-body" style="padding:1rem;">
                                 <h5 class="card-title">@framework.Title</h5>
                                 <p class="card-text">@framework.Content</p>
@@ -74,10 +74,10 @@
     public class FrameworkDetails
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public string ImageName { get; set; }
-        public string Url { get; set; }
+        public string? Title { get; set; }
+        public string? Content { get; set; }
+        public string? ImageName { get; set; }
+        public string? Url { get; set; }
     }
 }
 <style>

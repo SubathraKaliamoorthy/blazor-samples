@@ -10,7 +10,7 @@
     <input @ref="inputElement" @bind="inputValue" class="@SampleUtils.SEARCH_INPUT" placeholder="Search a component or features" aria-label="Search a component or feature examples" @onfocus="OnInputFocus" @onblur="OnInputBlur" @oninput="OnInputChange" />
     <span class="@iconClass" @onclick="OnIconClick" aria-label="close" role="button"></span>
 </div>
-<div @ref="popupElement" class="@popupClass" @onmouseover="@OnPopupHover" tabindex="0">
+<div @ref="popupElement" class="@popupClass" @onmouseover="@OnPopupHover">
     @if (searchResult?.Count > 0)
     {
         <ul class="@SampleUtils.LIST_UL_CLASS">
@@ -47,7 +47,10 @@
     private string? iconClass { get; set; }
     private string? popupClass { get; set; }
     private string inputValue = string.Empty;
-    private List<SearchList>? searchData { get; set; }
+#if NET10_0
+    [PersistentState]
+#endif
+    public List<SearchList>? searchData { get; set; }
     private List<SearchList>? searchResult { get; set; }
     private ElementReference inputElement { get; set; }
     private ElementReference popupElement { get; set; }
@@ -207,7 +210,7 @@
     }
 
     // Search result selection event handler method.
-    private void OnSampleSelect(string samplePath)
+    private async void OnSampleSelect(string samplePath)
     {
         //SampleService.Spinner.Show();
         var themeName = SampleUtils.GetThemeName(UriHelper.Uri);
@@ -215,8 +218,31 @@
         var newUri = UriHelper.GetUriWithQueryParameters(samplePath.ToLower(), new Dictionary<string, object?>{
             ["theme"] = themeName
         });
-    UriHelper.NavigateTo(newUri,true);       
-    }
+        if (!SampleUtils.IsHomePage(UriHelper))
+        {
+            var PreviousSampleName = SampleService.SampleName ?? "";
+            SampleService.SampleName = samplePath;
+            if (!((PreviousSampleName.Split("/")[0] == samplePath.Split("/")[0]) && !samplePath.Split("/")[0].Contains("buttons")) && (PreviousSampleName != samplePath))
+            {
+                SampleService.IsBrowserNav = true;
+                SampleService.IsResourcesLoadedOnInternalNav = true;
+                Layout.RightPaneRef.Refresh();
+                SampleService?.DynamicResourceLoader?.Refresh();
+                SampleService?.Spinner?.Show();
+                await Task.Delay(10);
+            }
+            UriHelper.NavigateTo(newUri);
+            if (Layout.LeftPaneRef.NavMenuRef.samplesClass.Contains("sb-components-hide")){
+                Layout?.LeftPaneRef?.NavMenuRef?.TreeRef.ShowTree(false);
+                Layout.LeftPaneRef.NavMenuRef.samplesClass = SampleUtils.RemoveClass(Layout?.LeftPaneRef?.NavMenuRef?.samplesClass, SampleUtils.COMPONENTS_HIDE);
+            }
+            Layout?.LeftPaneRef?.NavMenuRef?.HighlightSelectedSampleItem(samplePath);
+        }
+        else
+        {
+            UriHelper.NavigateTo(newUri, true);
+        }
+            }
 
     // Icon click event handler method.
     private async Task OnIconClick()
@@ -284,27 +310,16 @@
     {
         return isFocusOut;
     }
-#if SERVER
+    
     protected override async Task OnInitializedAsync()
     {
+        popupClass = SampleUtils.SEARCH_POPUP + SampleUtils.SPACE + SampleUtils.DISPLAY_NONE;
         await base.OnInitializedAsync();
         searchResult = new List<SearchList>();
-        searchData = await new SearchList().GetSearchListAsync();
+        searchData ??= await new SearchList().GetSearchListAsync();
         iconClass = SampleUtils.SEARCH_ICON;
         liClass = SampleUtils.LIST_LI_CLASS;
-        popupClass = SampleUtils.SEARCH_POPUP + SampleUtils.SPACE + SampleUtils.DISPLAY_NONE;
     }
-#else
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        searchResult = new List<SearchList>();
-        searchData = new SearchList().GetSearchList();
-        iconClass = SampleUtils.SEARCH_ICON;
-        liClass = SampleUtils.LIST_LI_CLASS;
-        popupClass = SampleUtils.SEARCH_POPUP + SampleUtils.SPACE + SampleUtils.DISPLAY_NONE;
-    }
-#endif
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

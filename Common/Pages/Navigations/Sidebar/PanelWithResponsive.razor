@@ -1,4 +1,4 @@
-﻿@page "/sidebar/panel-with-responsive"
+@page "/sidebar/panel-with-responsive"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Inputs
@@ -85,11 +85,11 @@
 
     public class TreeData
     {
-        public string NodeId { get; set; }
-        public string NodeText { get; set; }
-        public string IconCss { get; set; }
+        public string? NodeId { get; set; }
+        public string? NodeText { get; set; }
+        public string? IconCss { get; set; }
         public bool HasChild { get; set; }
-        public string Pid { get; set; }
+        public string? Pid { get; set; }
     }
 
     private List<TreeData> _treeData = new List<TreeData> ();

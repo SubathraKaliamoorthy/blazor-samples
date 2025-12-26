@@ -1,4 +1,4 @@
-﻿@page "/barcodes/default-functionalities"
+@page "/barcodes/default-functionalities"
 
 @using Syncfusion.Blazor.BarcodeGenerator
 @using Syncfusion.Blazor.Inputs
@@ -18,7 +18,7 @@
     <p>The <code><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.BarcodeGenerator.SfBarcodeGenerator.html#Syncfusion_Blazor_BarcodeGenerator_SfBarcodeGenerator_Export_System_String_Syncfusion_Blazor_BarcodeGenerator_BarcodeExportType_" aria-label="Download">Download</a></code> button allows users to save the barcode as an image.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section" style="width: 64%;height:600px">
+<div class="col-lg-9 control-section" style="height:600px">
     <div class="center">
         <div class="centercontrol">
             <SfBarcodeGenerator @ref="@sfBarcodeGenerator" Width="@barcodeWidth" Height="@barcodeHeight" Type="@BarcodeType.Ean8" Value="@barcodeValue" BackgroundColor="@backgroundColor" ForeColor="@foreColor">
@@ -33,173 +33,170 @@
         <span style="font-weight: 600;"> Allowed input characters:</span> The EAN-8 barcode supports all numeric digits (0-9) and requires an 8 characters text length.
     </div>
 </div>
-<div class="col-lg-3 property-section" style="padding-right: 0px; min-width: 36%;border-left:1px solid #D7D7D7; height:700px">
-    <div class="property-panel-header">
-        Appearance
-    </div>
-    <div id="propertypanel">
-        <div class="property-section-content">
-            <div class="row sb-child-row">
-                <div class="col-xs-2 top barcode-panel-left">
-                    Value
-                </div>
-                <div class="col-xs-10">
-                    <SfTextBox Value="@barcodeValue" OnInput="@BarcodeValueChange" Width="103%"></SfTextBox>
-                </div>
+<PropertyPanel ControlSecClass="col-lg-9">
+            <div class="property-panel-header-text">
+                Appearance
             </div>
-            <div class="row sb-child-row">
-                <div>
+            <div class="property-section-content">
+                <div class="row sb-child-row">
                     <div class="col-xs-2 top barcode-panel-left">
-                        Width
+                        Value
                     </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="BarcodeWidthChanged" />
-                        </SfNumericTextBox>
+                    <div class="col-xs-10">
+                        <SfTextBox Value="@barcodeValue" OnInput="@BarcodeValueChange" Width="100%"></SfTextBox>
                     </div>
                 </div>
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Height
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Width
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=150 Max="250" Step=2 Width="110%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="BarcodeWidthChanged" />
+                            </SfNumericTextBox>
+                        </div>
                     </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="BarcodeHeightChanged" />
-                        </SfNumericTextBox>
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Height
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=100 Max="200" Step=2 Width="110%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="BarcodeHeightChanged" />
+                            </SfNumericTextBox>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row sb-child-row">
-                <div>
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-3 top barcode-panel-left">
+                            Background Color
+                        </div>
+                        <div class="col-xs-3 top barcode-panel-left">
+                            <SfColorPicker @bind-Value="@backgroundColor" ValueChange="BackgroundColorChange"></SfColorPicker>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-3 top barcode-panel-left">
+                            Fore Color
+                        </div>
+                        <div class="col-xs-3 top barcode-panel-left">
+                            <SfColorPicker @bind-Value="@foreColor" ValueChange="ForeColorChange"></SfColorPicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sb-child-row">
                     <div class="col-xs-3 top barcode-panel-left">
-                        Background Color
+                        Text Visibility
                     </div>
-                    <div class="col-xs-3 top barcode-panel-left">
-                        <SfColorPicker @bind-Value="@backgroundColor" ValueChange="BackgroundColorChange"></SfColorPicker>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-xs-3 top barcode-panel-left">
-                        Fore Color
-                    </div>
-                    <div class="col-xs-3 top barcode-panel-left">
-                        <SfColorPicker @bind-Value="@foreColor" ValueChange="ForeColorChange"></SfColorPicker>
+                    <div class="col-xs-3" style="margin-top:6px">
+                        <SfCheckBox Checked="@textVisibility" ValueChange="TextVisibilityChange" TChecked="bool"></SfCheckBox>
                     </div>
                 </div>
-            </div>
-            <div class="row sb-child-row">
-                <div class="col-xs-3 top barcode-panel-left">
-                    Text Visibility
+                <div class="property-panel-header-text">
+                    Margin
                 </div>
-                <div class="col-xs-3" style="margin-top:6px">
-                    <SfCheckBox Checked="@textVisibility" ValueChange="TextVisibilityChange" TChecked="bool"></SfCheckBox>
-                </div>
-            </div>
-            <div class="property-panel-header">
-                Margin
-            </div>
-            <div class="row sb-child-row">
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Left
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Left
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@leftMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="LeftMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
                     </div>
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Right
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@rightMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="RightMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Top
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@topMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="TopMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Bottom
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@bottomMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="BottomMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="property-panel-header-text property-panel-table">
+                    Text Properties
+                </div>
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Top
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@topTextMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="TopTextMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Bottom
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfNumericTextBox TValue="double" Value="@bottomTextMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="100%">
+                                <NumericTextBoxEvents TValue="double" ValueChange="BottomTextMarginChanged" />
+                            </SfNumericTextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sb-child-row">
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Position
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfDropDownList TValue="@string" TItem="@PositionOfText" @bind-Enabled="bind" @bind-Value="@positionText" DataSource="@positionOfText" Width="100%">
+                                <DropDownListFieldSettings Value="Position" Text="Position"></DropDownListFieldSettings>
+                                <DropDownListEvents TValue="string" TItem="PositionOfText" ValueChange="TextPositionChanged"></DropDownListEvents>
+                            </SfDropDownList>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-2 top barcode-panel-left">
+                            Alignment
+                        </div>
+                        <div class="col-xs-4 barcode-panel-left">
+                            <SfDropDownList TValue="@string" @bind-Enabled="bind" TItem="@TextAlignment" @bind-Value="@aligntext" DataSource="@TextAlign" Width="100%">
+                                <DropDownListEvents TItem="TextAlignment" TValue="string" ValueChange="@TextAlignChanged"></DropDownListEvents>
+                                <DropDownListFieldSettings Text="Align" Value="Align"></DropDownListFieldSettings>
+                            </SfDropDownList>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sb-child-row" style="padding-top:20px">
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@leftMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="LeftMarginChanged" />
-                        </SfNumericTextBox>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Right
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@rightMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="RightMarginChanged" />
-                        </SfNumericTextBox>
+                        <SfButton @onclick="Export" Content="Download" iconCss="e-icons e-download"></SfButton>
                     </div>
                 </div>
             </div>
-            <div class="row sb-child-row">
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Top
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@topMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="TopMarginChanged" />
-                        </SfNumericTextBox>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Bottom
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@bottomMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="BottomMarginChanged" />
-                        </SfNumericTextBox>
-                    </div>
-                </div>
-            </div>
-            <div class="property-panel-header property-panel-table">
-                Text Properties
-            </div>
-            <div class="row sb-child-row">
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Top
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@topTextMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="TopTextMarginChanged" />
-                        </SfNumericTextBox>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Bottom
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@bottomTextMargin" Format="n0" Decimals=0 Min=-10 Max=30 Step=1 Width="110%">
-                            <NumericTextBoxEvents TValue="double" ValueChange="BottomTextMarginChanged" />
-                        </SfNumericTextBox>
-                    </div>
-                </div>
-            </div>
-            <div class="row sb-child-row">
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Position
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfDropDownList TValue="@string" TItem="@PositionOfText" @bind-Enabled="bind" @bind-Value="@positionText" DataSource="@positionOfText" Width="110%">
-                            <DropDownListFieldSettings Value="Position" Text="Position"></DropDownListFieldSettings>
-                            <DropDownListEvents TValue="string" TItem="PositionOfText" ValueChange="TextPositionChanged"></DropDownListEvents>
-                        </SfDropDownList>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-xs-2 top barcode-panel-left">
-                        Alignment
-                    </div>
-                    <div class="col-xs-4 barcode-panel-left">
-                        <SfDropDownList TValue="@string" @bind-Enabled="bind" TItem="@TextAlignment" @bind-Value="@aligntext" DataSource="@TextAlign" Width="110%">
-                            <DropDownListEvents TItem="TextAlignment" TValue="string" ValueChange="@TextAlignChanged"></DropDownListEvents>
-                            <DropDownListFieldSettings Text="Align" Value="Align"></DropDownListFieldSettings>
-                        </SfDropDownList>
-                    </div>
-                </div>
-            </div>
-            <div class="row sb-child-row" style="padding-top:20px">
-                <div class="col-xs-4 barcode-panel-left">
-                    <SfButton @onclick="Export" Content="Download" iconCss="e-icons e-download"></SfButton>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+</PropertyPanel>
 <style>
     .centercontrol {
     margin: auto;
@@ -209,6 +206,14 @@
     height: 50%;
     }
 
+    .property-panel-header-text {
+        font-weight: 500;
+        padding-top: 11px;
+    }
+
+    .e-input-group.e-control-wrapper .e-input{
+        height: 29px !important;
+    }
     .top {
     margin-top: 10px;
     }
@@ -229,18 +234,11 @@
     height: auto;
     }
 
-    .row {
+    /* .row {
     margin-left: 0px;
     margin-right: 0px;
     display: block;
-    }
-
-    .property-section {
-    padding-bottom: 20px;
-    height: 740px;
-    padding-right: 0px;
-    display: inline-block;
-    }
+    } */
 
     .center {
     margin-left: 14px;

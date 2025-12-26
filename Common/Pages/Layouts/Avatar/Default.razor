@@ -1,4 +1,4 @@
-﻿@page "/avatar/defaultfunctionalities"
+@page "/avatar/defaultfunctionalities"
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @*End:Hidden*@
@@ -111,7 +111,7 @@
     }
     /* Assinging image for avatar in 'background-image' property */
     .e-avatar.image {
-        background-image: url(@(SampleService.WebAssetsPath + "images/avatar/pic01.png"));
+        background-image: url(@(SampleService?.WebAssetsPath + "images/avatar/pic01.png"));
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

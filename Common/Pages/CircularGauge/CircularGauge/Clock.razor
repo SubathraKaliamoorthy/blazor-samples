@@ -3,7 +3,9 @@
 @using System.Timers
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -131,6 +133,7 @@
         _syncTimer.AutoReset = true;
         _syncTimer.Enabled = true;
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             SubGaugeOneRadius = "64%";
@@ -140,11 +143,14 @@
         }
         else
         {
+            @*End:Hidden*@
             SubGaugeOneRadius = "56%";
             SubGaugeTwoRadius = "44%";
             SubGaugeOneAngle = 133;
             SubGaugeTwoAngle = 118;
+            @*Hidden:Lines*@
         }
+        @*End:Hidden*@
     }
     public void Dispose()
     {

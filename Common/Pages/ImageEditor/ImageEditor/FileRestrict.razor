@@ -1,10 +1,9 @@
-﻿@page "/image-editor/file-restrict"
+@page "/image-editor/file-restrict"
 
 @using Syncfusion.Blazor.ImageEditor
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.SplitButtons
-
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @*End:Hidden*@
@@ -30,6 +29,7 @@
     </ul>
     <p>For more information about the Image Editor and its configuration options, refer to the <a target='_blank' href='https://blazor.syncfusion.com/documentation/image-editor/getting-started-with-web-app'>documentation section</a>.</p>
 </ActionDescription>
+
 <div class="control-section">
     <div style="text-align: center;">
         <div class="e-img-editor-dropdown-container">
@@ -72,8 +72,8 @@
 </div>
 
 @code {
-    SfImageEditor ImageEditor { get; set; }
-    ImageEditorUploadSettings UploadSettings;
+    SfImageEditor? ImageEditor { get; set; }
+    ImageEditorUploadSettings? UploadSettings;
     private string AllowedExtensions { get; set; } = ".jpeg, .jpg, .png, .svg, .webp, .bmp";
     private string[] SelectedExtensions { get; set; } = { "jpeg", "jpg", "png", "svg", "webp", "bmp" };
     private double MinSize { get; set; } = 1;
@@ -81,12 +81,12 @@
     private double MinFileSize { get; set; } = 1; // 1KB default
     private double MaxFileSize { get; set; } = 100; // 100KB default
     private string FileType { get; set; } = "KB";
-    private Dictionary<string, object> MbAttributes;
+    private Dictionary<string, object>? MbAttributes;
     private Dictionary<string, object> KbAttributes = new Dictionary<string, object> { { "class", "e-selected" } };
     public class FileExtension
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        public string? Name { get; set; }
+        public string? Value { get; set; }
     }
     private List<FileExtension> FileExtensionsList = new List<FileExtension>
     {
@@ -97,9 +97,8 @@
         new FileExtension { Name = "WebP", Value = "webp" },
         new FileExtension { Name = "BMP", Value = "bmp" }
     };
-
-    private void UpdateAllowedFileExtensions(MultiSelectChangeEventArgs<string[]> args)
-    {   
+    private async Task UpdateAllowedFileExtensions(MultiSelectChangeEventArgs<string[]> args)
+    {
         if (args.Value is null || args.Value.Length == 0)
         {
             AllowedExtensions = ".jpeg, .jpg, .png, .svg, .webp, .bmp";
@@ -108,22 +107,21 @@
         {
             AllowedExtensions = string.Join(", ", args.Value);
         }
-        
+        await RefreshAsync();
     }
-
-    private void MinFileValueChange(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
+    private async Task MinFileValueChange(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
     {
         MinSize = args.Value;
         MinFileSize = ConvertToBytes(args.Value);
+        await RefreshAsync();
     }
-
-    private void MaxFileValueChange(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
+    private async Task MaxFileValueChange(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
     {
         MaxSize = args.Value;
         MaxFileSize = ConvertToBytes(args.Value);
+        await RefreshAsync();
     }
-
-    private void ItemSelected(MenuEventArgs args)
+    private async Task ItemSelected(MenuEventArgs args)
     {
         FileType = args.Item.Text;
         if (args.Item.Text == "MB")
@@ -137,19 +135,27 @@
             KbAttributes = new Dictionary<string, object> { { "class", "e-selected" } };
         }
         UpdateFileSize();
+        await RefreshAsync();
     }
-
     private void UpdateFileSize()
     {
         MinFileSize = ConvertToBytes(MinSize);
         MaxFileSize = ConvertToBytes(MaxSize);
     }
-
     private double ConvertToBytes(double value)
     {
         return value * (FileType == "MB" ? 1024 * 1024 : 1024);
     }
+    private async Task RefreshAsync()
+    {
+        await Task.Delay(100);
+        if (ImageEditor != null)
+        {
+            await ImageEditor.RefreshAsync();
+        }
+    }
 }
+
 <style>
     .e-image-editor {
         margin-top: 20px;
@@ -161,7 +167,8 @@
         margin-top: 18px;
     }
 
-    .e-img-editor-numeric-textbox-container, .e-img-editor-dropdown-container {
+    .e-img-editor-numeric-textbox-container,
+    .e-img-editor-dropdown-container {
         display: inline-block;
         margin-right: 30px;
         text-align: left;
@@ -177,7 +184,8 @@
     }
 
     @@media only screen and (max-width: 700px) {
-        .e-img-editor-dropdown-container, .e-img-editor-numeric-textbox-container {
+        .e-img-editor-dropdown-container,
+        .e-img-editor-numeric-textbox-container {
             display: block;
             margin-right: 0;
             margin-bottom: 20px;

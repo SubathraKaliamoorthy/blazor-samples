@@ -1,7 +1,9 @@
-﻿@page "/chart/range-area"
+@page "/chart/range-area"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
@@ -63,11 +65,13 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
 		if (SampleService != null && SampleService.IsDevice)
 		{
 			Width = "100%";
 			EdgeLabelPlacement = EdgeLabelPlacement.Shift;
 		}
+        @*End:Hidden*@
     }
     
     public class ChartData

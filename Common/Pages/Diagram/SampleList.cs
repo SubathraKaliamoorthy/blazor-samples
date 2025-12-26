@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -212,7 +208,7 @@ namespace BlazorDemos
                 FileName = "TextToFlowchart.razor",
                 MetaTitle = "Blazor Diagram Text to Flowchart - Syncfusion AI Demos",
                 HeaderText = "Blazor Diagram Example - Text to Flowchart Conversion",
-                MetaDescription = "This Blazor Diagram AI demo converts plain text descriptions into professional flowcharts. Transform your textual process definitions into visual diagrams with intelligent node arrangement and connection paths.",
+                MetaDescription = "This Blazor Diagram AI converts text descriptions into professional flowcharts, creating visual diagrams with smart node arrangement and connection paths.",
                 Type = SampleType.AI
             },
             new Sample
@@ -224,7 +220,7 @@ namespace BlazorDemos
                 FileName = "TextToMindMap.razor",
                 MetaTitle = "Blazor Diagram Text to MindMap Example - Syncfusion AI Demos",
                 HeaderText = "Blazor Diagram Example - Text to MindMap Generation",
-                MetaDescription = "This Blazor Diagram AI feature transforms text into interactive mind maps. Convert hierarchical information into visual knowledge structures with automatic layout and relationship mapping for improved information organization.",
+                MetaDescription = "Blazor Diagram AI transforms text into interactive mind maps, visualizing hierarchical data with auto-layout and relationship mapping for better organization",
                 Type = SampleType.AI
             },
             new Sample
@@ -417,6 +413,22 @@ namespace BlazorDemos
                 MetaTitle = "Blazor Radial Tree Example | Circular Layout | Syncfusion",
                 MetaDescription = "This Blazor Radial Tree demonstrates circular tree layout with central root node for network visualization and relationship mapping. Explore to more details.",
             },
+            new Sample
+            {
+                Name = "Force Directed Tree",
+                Category = "Automatic Layouts",
+                Directory = "Diagram/Diagram",
+                Url = "diagram/force-directed-layout",
+                FileName = "ForceDirectedLayout.razor",
+                HeaderText = "Force Directed Layout Example using Blazor Diagram Component",
+                MetaTitle = "Blazor Force Directed Layout for Automatic Diagram Visualization",
+                MetaDescription = "Explore Blazor Force Directed Layout to visualize networks and relationships. Automatically arrange nodes for clear, interactive, and organized diagrams.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]
+                {
+                    @"Explore a force-directed network that auto-arranges nodes, minimizes crossings, reveals clusters, and supports drag, zoom, and hover to analyze relationships."
+                },
+            },
              new Sample
             {
                 Name = "PERT Chart",
@@ -548,11 +560,6 @@ namespace BlazorDemos
                 HeaderText = "Example of Shortest Path Visualization Diagram in Blazor Diagram Component",
                 MetaTitle = "Blazor Shortest Path | Pathfinding Visualization | Syncfusion",
                 MetaDescription = "Visualize shortest paths using Dijkstra’s algorithm in Syncfusion Blazor Diagram. Interactive graph with animated connectors and dynamic node styling.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"Explore interactive shortest path visualization, demonstrating Dijkstra's algorithm with animated connectors and dynamic styling."
-                },
             },
             new Sample
             {
@@ -564,11 +571,6 @@ namespace BlazorDemos
                 HeaderText = "Example of UEFA Tournament Bracket Diagram in Blazor Diagram Component",
                 MetaTitle = "UEFA Bracket Diagram | Interactive Bracket Visualization | Syncfusion",
                 MetaDescription = "Follow the UEFA Champions League journey with Syncfusion Blazor Diagram. Interactive bracket with match details, animated progression, and champion highlights.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"See the UEFA Champions League bracket in action! This sample showcases match results, animated team progression, and a champion highlight."
-                },
             },
             new Sample
             {
@@ -580,11 +582,6 @@ namespace BlazorDemos
                 HeaderText = "Interactive Cinema Seat Booking System with Real-time Selection and Multi-tier Pricing",
                 MetaTitle = "Cinema Seat Booking | Theater Reservation | Syncfusion Blazor Diagram",
                 MetaDescription = "Book movie seats with our interactive cinema booking system. This Syncfusion Blazor Diagram demo lets you select seats by tier and see real-time price updates.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"Experience seamless cinema seat booking with this interactive sample: select seats, view real-time prices, and confirm your tickets effortlessly."
-                },
             },
             new Sample
             {
@@ -595,11 +592,6 @@ namespace BlazorDemos
                 FileName = "SpiralDiagram.razor",
                 MetaTitle = "Blazor Diagram Spiral Layout Example | Syncfusion Blazor demos",
                 MetaDescription = "Visualize a software development lifecycle with an interactive spiral diagram in Blazor. See how nodes, icons, and tooltips represent each project stage.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"Explore the software development lifecycle! This sample visualizes project stages in an interactive spiral diagram with colorful nodes and icons."
-                }
             },
             new Sample
             {
@@ -611,11 +603,6 @@ namespace BlazorDemos
                 HeaderText = "Interactive Image Puzzle in Blazor",
                 MetaTitle = "Blazor Diagram Interactive Puzzle Example | Syncfusion Blazor demos",
                 MetaDescription = "Play an interactive sliding image puzzle built with the Syncfusion Blazor Diagram. Drag tiles to solve the puzzle, track your moves, and use clues to win.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                     @"Challenge your mind with this interactive sliding image puzzle! Reconstruct the picture, track your moves, and beat the clock."
-                },
             },
             new Sample
             {
@@ -627,10 +614,53 @@ namespace BlazorDemos
                 HeaderText = "Example of Interactive Internet History Timeline in Blazor Diagram Component",
                 MetaTitle = "Blazor Internet History Timeline | Interactive Chronology | Syncfusion",
                 MetaDescription = "Explore Internet history with an interactive timeline built using Syncfusion Blazor Diagram. Add, edit, and visualize key milestones with color-coded segments.",
+            },
+            new Sample
+            {
+                Name = "Funnel Diagram",
+                Category = "Use Case Diagram",
+                Directory = "Diagram/Diagram",
+                Url = "diagram/funnel-diagram",
+                FileName = "FunnelDiagram.razor",
+                HeaderText = "Example of a Marketing Funnel in Blazor Diagram Component",
+                MetaTitle = "Blazor Funnel Diagram Example | Marketing Funnel | Syncfusion",
+                MetaDescription = "Infographic funnel diagram with customizable node shapes and colors, showing stage-wise conversion and cumulative rates to assess marketing performance.",
                 Type = SampleType.New,
                 NotificationDescription = new string[]
                 {
-                    @"Dive into Internet history! Explore key milestones, add new events, and edit existing ones in this interactive timeline."
+                    @"Explore an interactive marketing funnel that visualizes key campaign metrics. Hover over each stage to see detailed conversion rates and track the customer journey from initial exposure to final retention."
+                },
+            },            
+            new Sample
+            {
+                Name = "Serpentine Diagram",
+                Category = "Use Case Diagram",
+                Directory = "Diagram/Diagram",
+                Url = "diagram/serpentine-diagram",
+                FileName = "SerpentineDiagram.razor",
+                HeaderText = "Example of a Serpentine diagram in Blazor Diagram Component",
+                MetaTitle = "Blazor Serpentine Diagram | Medical Timeline | Syncfusion",
+                MetaDescription = "Explore a serpentine layout visualizing 20 key medical research breakthroughs that revolutionized healthcare from 1796 to 1996 using Syncfusion® Blazor Diagram.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]
+                {
+                    @"Discover a serpentine timeline that highlights 20 major medical research breakthroughs from 1796 to 1996, visualized using the Blazor Diagram component."
+                },
+            },
+            new Sample
+            {
+                Name = "Solar Panel Angle",
+                Category = "Real-time Diagrams",
+                Directory = "Diagram/Diagram",
+                Url = "diagram/angle",
+                FileName = "AngleSample.razor",
+                HeaderText = "Example of Smart Solar Panel Tilt System in Blazor Diagram Component",
+                MetaTitle = "Smart Solar Panel | Interactive Solar Panel Optimization | Syncfusion",
+                MetaDescription = "Demonstrate a smart solar panel tilt system with Syncfusion® Blazor Diagram, allowing users to interactively adjust angles, track efficiency, and optimize.",
+                Type = SampleType.New,
+                NotificationDescription = new string[]
+                {
+                    @"Experience smart solar optimization! Adjust panel tilt angles, monitor real-time efficiency, and explore location-based solar performance in this interactive system."
                 },
             },
             new Sample
@@ -643,11 +673,6 @@ namespace BlazorDemos
                 HeaderText = "Example of Real-time Pipeline & Instrumentation Diagram (P&ID) in Blazor Diagram Component",
                 MetaTitle = "Pipeline Instrumentation Diagram | Process Flow - Syncfusion demos",
                 MetaDescription = "Simulate a real-time chemical reactor P&ID with Syncfusion Blazor Diagram. Control fluid flows, tank levels, and temps via interactive elements and animations.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"Explore a live chemical reactor P&ID! Control flows, monitor conditions, and simulate industrial processes in real-time."
-                },
             },
             new Sample
             {
@@ -659,11 +684,6 @@ namespace BlazorDemos
                 HeaderText = "Example of Interactive Neural Network Architecture Visualizer in Blazor Diagram Component",
                 MetaTitle = "Blazor Neural Network Diagram | AI Visualization | Syncfusion",
                 MetaDescription = "Explore neural network architecture with Syncfusion Blazor Diagram. Visualize layers, weights, and data flow with interactive nodes and animated connections.",
-                Type = SampleType.New,
-                NotificationDescription = new string[]
-                {
-                    @"Explore neural network architectures! Visualize neurons, connections, and data flow in this interactive diagram."
-                },
             },
             new Sample
             {

@@ -1,10 +1,12 @@
-﻿@page "/smith-chart/customization"
+@page "/smith-chart/customization"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 
 @*Hidden:Lines*@
@@ -12,7 +14,7 @@
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This sample visualizes distinct transmissions using the smith chart. Data points are enhanced with marker and tooltip.</p>
+    <p>This sample demonstrates the customization example of distinct transmission characteristics using the Smith Chart. Each data point on the chart is enhanced with visual markers and interactive tooltips, allowing users to easily identify and interpret specific values.</p>
 </SampleDescription>
 <ActionDescription>
     <p>In this example, you can see how to render a smith chart with multiple series. The legend provides information about the series in the smith chart.</p>
@@ -20,8 +22,8 @@
 </ActionDescription>
 
 <div class="row">
-    <div class="col-lg-9 control-section sb-property-border">
-        <SfSmithChart Radius="@SmithChartRadius" Theme="@CurrentTheme">
+    <div class="col-lg-8 control-section">
+        <SfSmithChart @ref="ChartRef" Radius="@SmithChartRadius" Theme="@CurrentTheme">
             <SmithChartHorizontalAxis>
                 <SmithChartHorizontalMinorGridLines Visible="true"></SmithChartHorizontalMinorGridLines>
             </SmithChartHorizontalAxis>
@@ -55,9 +57,7 @@
             </SmithChartSeriesCollection>
         </SfSmithChart>
     </div>
-    <div class="col-md-3 property-section">
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
-        <div class="property-panel-header">Properties</div>
+    <PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
         <table style="width :100%" title="Properties">
             <tbody>
             <tr style="height: 35px">
@@ -111,10 +111,11 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </PropertyPanel>
 </div>
 
 @code {
+    public SfSmithChart? ChartRef { get; set; }
     public Theme CurrentTheme { get; set; }
     public double SmithChartRadius { get; set; } = 1;
     public bool IsMarkerVisible { get; set; } = true;
@@ -224,8 +225,8 @@
 
     public void OnLegendPositionChanged(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, PositionList> args)
     {
-        LegendPositionValue = args.Value;
-        LegendPosition = args.Value switch
+        LegendPositionValue = args?.Value ?? LegendPositionValue;
+        LegendPosition = args?.Value switch
         {
             "Top" => LegendPosition.Top,
             "Bottom" => LegendPosition.Bottom,
@@ -233,6 +234,18 @@
             "Left" => LegendPosition.Left,
             _ => LegendPosition
         };
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 
 }

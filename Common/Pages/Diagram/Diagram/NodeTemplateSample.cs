@@ -7,8 +7,6 @@
 #endregion
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlazorDemos.Pages
 {
@@ -31,23 +29,25 @@ namespace BlazorDemos.Pages
         public string? FullName { get; set; }
         public string? Email { get; set; }
     }
+
+    public class CategoryData
+    {
+        public string? Class { get; set; }
+        public string? Category { get; set; }
+        public string? Id { get; set; }
+    }
+
     public class ExpenseDataService
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public UserInfo UserInfo { get; set; }
-        public List<CategoryData> CategoryIncomeData { get; set; }
-        public List<CategoryData> CategoryExpenseData { get; set; }
-        public List<ExpenseData> ExpenseData { get; set; }
+        public List<CategoryData> CategoryIncomeData { get; }
+        public List<CategoryData> CategoryExpenseData { get; }
+        public List<ExpenseData> ExpenseData { get; }
         public string CurrentBalance { get; set; }
         public IEnumerable<ExpenseData> CurrentExpenseData { get; set; }
         public event Action OnChange;
-        public class CategoryData
-        {
-            public string? Class { get; set; }
-            public string? Category { get; set; }
-            public string? Id { get; set; }
-        }
 
         public void SetDate(DateTime StartDate, DateTime EndDate)
         {

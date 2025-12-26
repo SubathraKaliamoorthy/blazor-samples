@@ -1,4 +1,4 @@
-﻿@page "/chart-3d/column"
+@page "/chart-3d/column"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
@@ -85,7 +85,13 @@
     protected override void OnInitialized()
     {
         ApplyThemeSettings(null!);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "75%";
+        ChartWidth = "75%";
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+        }
+        @*End:Hidden*@
     }
 
     public void OnAxisLabelRender(Chart3DAxisLabelRenderEventArgs args)

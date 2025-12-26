@@ -1,4 +1,4 @@
-﻿@page "/heatmap-chart/bubble-types"
+@page "/heatmap-chart/bubble-types"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.HeatMap
@@ -20,7 +20,7 @@
 
 <div class="col-lg-8 control-section">
     <div>
-        <SfHeatMap DataSource="@DataSource" Theme="@_theme">
+        <SfHeatMap @ref='Map' DataSource="@DataSource" Theme="@_theme">
             <HeatMapEvents TooltipRendering="@TooltipRendering"></HeatMapEvents>
             <HeatMapTitleSettings Text="Female Participation Rate in Labor Force for the Countries">
                 <HeatMapTitleTextStyle Size="15px" FontWeight="500" FontFamily="inherit" FontStyle="Normal" TextOverflow="TextOverflow.Trim"></HeatMapTitleTextStyle>
@@ -61,9 +61,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-header">Properties</div>
-    <br/>
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
      <tr>
          <td>
              <div style="width:100px"> Bubble Type </div>
@@ -77,9 +75,10 @@
          </div>
     </td>
 </tr>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfHeatMap<double[,]>? Map { get; set; }
     private Theme _theme { get; set; }
     public string AxisLabelColor = "Black";
     private int? index { get; set; } = 0;
@@ -106,6 +105,18 @@
     public void TooltipRendering(TooltipEventArgs args)
     {    
         args.Content = new string[] {args.YLabel + " | " + args.XLabel + " : " + args.Value + " % "};
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Map != null)
+        {
+            await Map.RefreshBoundAsync();
+        }
     }
 }
 <style>

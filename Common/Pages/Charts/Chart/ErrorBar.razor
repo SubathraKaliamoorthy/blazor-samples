@@ -1,4 +1,4 @@
-﻿@page "/chart/error-bar"
+@page "/chart/error-bar"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Charts
@@ -78,12 +78,14 @@
     {
         
         this.SetTheme(null!);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             LabelIntersect = LabelIntersectAction.None;
             Width = "100%";
             Rotation = -45;
         }
+        @*End:Hidden*@
     }
 
     private void SetTheme(PointRenderEventArgs args)

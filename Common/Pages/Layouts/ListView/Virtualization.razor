@@ -1,4 +1,4 @@
-﻿@page "/listview/virtualization"
+@page "/listview/virtualization"
 
 @inject NavigationManager UriHelper
 
@@ -25,7 +25,7 @@
                 <div class='e-list-wrapper e-list-avatar'>
                     @if (context.ImgSrc != string.Empty)
                     {
-                        <img id='showUI' class='e-avatar e-avatar-circle' src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/list-view/{context.ImgSrc}.png")" alt="Employee details" />
+                        <img id='showUI' class='e-avatar e-avatar-circle' src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/list-view/{context.ImgSrc}.png")" alt="Employee details" />
                     }
                     <span class='e-list-content'>@context.Name</span>
                 </div>
@@ -87,9 +87,9 @@
     // Specifies the model class for ListView datasource.
     public class DataModel
     {
-        public string Name { get; set; }
-        public string ImgSrc { get; set; }
-        public string Id { get; set; }
+        public string? Name { get; set; }
+        public string? ImgSrc { get; set; }
+        public string? Id { get; set; }
     }
 }
 

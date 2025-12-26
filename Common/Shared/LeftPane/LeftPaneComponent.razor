@@ -3,6 +3,7 @@
 @inject IJSRuntime JsRuntime;
 @inject SampleService SampleService;
 @inject NavigationManager UriHelper;
+@inherits SampleBaseComponent;
 
 <SideBarComponent Position="SidebarPlacement.Left" IsExpanded="@isOpen">
     <div class='sb-left-pane e-view'>
@@ -10,7 +11,7 @@
             <div class="sb-header-top">
                 <div class="sb-sf">
                     <div class="sb-mobile-logo"></div>
-                    @{#if(RELEASE) }
+                    @if(isRELEASE) {
                         @if(!(SampleUtils.IsLocalSample(UriHelper.Uri))){
                             <div class="sb-name">
                                 <DropDownComponent  @ref="dropdownRef" DataSource="@SampleUtils.Blazor_Platform" DefaultValue="@SampleService.DemoType" OnSelect="OnDemoSwitch">
@@ -24,13 +25,14 @@
                         else{
                             <div class="sb-name" @onclick="HomeButtonClick">@SampleService.DemoType</div>
                         }
-                    @{#else }
+                     }
+                    else{
                             <div class="sb-name" @onclick="HomeButtonClick">@SampleService.DemoType</div>
-                    @{#endif}
+                    }
                 </div>
             </div>
         </div>
-        <div class="sb-home" @onclick="HomeButtonClick">
+        <div class="sb-home" tabindex="0" @onclick="HomeButtonClick" @onkeydown="OnHomeButtonKeyDown">
             <div class="sb-home-link sb-icons sb-icon-Home">
                 <span class="icon-home"></span>
             </div>
@@ -108,17 +110,32 @@
         SampleService.ComponentName = null;
         SampleService.CurrentSampleUrl = null;
         SampleService.SampleInfo = null;
-        SampleService.Spinner?.Show();
         UriHelper.NavigateTo(UriHelper.BaseUri, true);
         var themeName = SampleUtils.GetThemeName(UriHelper.Uri);
         await JsRuntime.InvokeVoidAsync("sfBlazorSB.updateBodyClass", themeName);
+    }
+
+    private void OnHomeButtonKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            HomeButtonClick();
+        }
     }
 
     private void OnDemoSwitch(DropDownData args)
     {
         if (args != null && args.ID != null && UriHelper != null && UriHelper.BaseUri != null && !UriHelper.BaseUri.Contains("localhost"))
         {
-            SampleService.SwicthToDemo(args.ID, UriHelper, JsRuntime);
+            if (SampleService.SampleInfo.Directory.Contains("AISamples"))
+            {
+                SampleService.SwicthToDemo(args?.ID ?? "", UriHelper, true, JsRuntime);
+            }
+            else
+            {
+                SampleService.SwicthToDemo(args.ID, UriHelper, false, JsRuntime);
+
+            }
         }
     }
 

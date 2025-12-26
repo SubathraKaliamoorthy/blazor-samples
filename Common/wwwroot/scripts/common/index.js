@@ -442,45 +442,15 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+function addCurrentThemeToBody(selectedTheme, previousTheme) {
+    document.body.classList.replace(previousTheme, selectedTheme);
+}
+
 window.addEventListener('load', function () {
-    //To replace theme in Link Tag for WASM
-    let ThemeEle = document.getElementById('theme');
-    if (ThemeEle) {
-        let url = window.location.href.split("?theme=");
-        let theme = new URL(window.location.href).searchParams.get("theme");
-        if (window.location.href.indexOf('blazor.syncfusion.com') != -1 || window.location.href.indexOf('localhost') != -1) {
-            theme = theme === "bootstrap5" ? "bootstrap5.3" : theme === "bootstrap5-dark" ? "bootstrap5.3-dark" :theme;
-        }
-        if (url.length > 1) {
-            if (ThemeEle.href.indexOf("cdn.syncfusion.com") !== -1) {
-                ThemeEle.href = 'https://cdn.syncfusion.com/blazor/29.2.4/styles/' + theme + '.css';
-            }
-            else {
-                ThemeEle.href = '_content/Syncfusion.Blazor.Themes/' + theme + '.css';
-            }
-        }
-    }
-
   // Add mobile class to the body element for device rendering.
-  if (sfBlazorSB.isDeviceMode()) {
-    document.body.classList.add("mobile");
+    if (sfBlazorSB.isDeviceMode()) {
+        document.body.classList.add("mobile");
     }
-
-  // Add current theme name to the body element.
-  var themeName = DEFAULT_THEME;
-  if (/theme=/g.test(location.search)) {
-    themeName = location.search.replace("?theme=", "");
-    }
-    if (window.location.href.indexOf('blazor.syncfusion.com') != -1 || window.location.href.indexOf('localhost') != -1) {
-        themeName = themeName === "bootstrap5" ? "bootstrap5.3" : themeName === "bootstrap5-dark" ? "bootstrap5.3-dark" : themeName;
-    }
-    var sfPreferenceMode = localStorage.getItem("sfPreferenceMode");
-    document.body.classList.add(themeName);
-    if (sfPreferenceMode === "touch") {
-        document.body.classList.add("e-bigger");
-    }
-    // Call the function to update button text on page load
-   
 });
 
 window.onresize = function () {
@@ -550,51 +520,6 @@ const brTag = document.createElement('br');
 
 function onInsertEmotSlashRemove() {
     beforeApplyFormat(null, false);
-}
-
-
-
-function loadPdf2Script() {
-    return new Promise(function (resolve, reject) {
-        let script = document.createElement('script');
-        script.src = "_content/Syncfusion.Blazor.SfPdfViewer/scripts/syncfusion-blazor-sfpdfviewer.min.js";
-        script.onload = function () {
-            resolve(); // Resolve the promise when the script has loaded successfully
-        };
-        script.onerror = function (error) {
-            reject(error); // Reject the promise if there's an error loading the script
-        };
-        document.getElementsByClassName('dynamic-resources')[0].appendChild(script);
-    });
-}
-
-
-function loadWordScript() {
-    return new Promise(function (resolve, reject) {
-        let script = document.createElement('script');
-        script.src = "_content/Syncfusion.Blazor.WordProcessor/scripts/syncfusion-blazor-documenteditor.min.js";
-        script.onload = function () {
-            resolve(); // Resolve the promise when the script has loaded successfully
-        };
-        script.onerror = function (error) {
-            reject(error); // Reject the promise if there's an error loading the script
-        };
-        document.getElementsByClassName('dynamic-resources')[0].appendChild(script);
-    });
-}
-
-function loadSpreadsheetScript() {
-    return new Promise(function (resolve, reject) {
-        let script = document.createElement('script');
-        script.src = "_content/Syncfusion.Blazor.Spreadsheet/scripts/syncfusion-blazor-spreadsheet.min.js";
-        script.onload = function () {
-            resolve(); // Resolve the promise when the script has loaded successfully
-        };
-        script.onerror = function (error) {
-            reject(error); // Reject the promise if there's an error loading the script
-        };
-        document.getElementsByClassName('dynamic-resources')[0].appendChild(script);
-    });
 }
 
 function created() {
@@ -856,15 +781,6 @@ function updateThemeURL() {
     return updatedURL;
 }
 
-function navigateToPage() {
-    var updatedURL = updateThemeURL();
-    if (updatedURL) {
-      // Replace the current URL without reloading the page
-        window.location.href = updatedURL;
-    }
-
-}
-
 function updateButtonTheme() {
     var currentURL = window.location.href;
     if (currentURL.includes("-dark")) {
@@ -884,12 +800,15 @@ function updateButtonTheme() {
 }
 // window.addEventListener('DOMContentLoaded', updateButtonTheme);
 function highContrast() {
+    // Get the div element by its id
+    var themeSwitchDiv = document.getElementById("themeSwitchDiv");
     // Check if the URL ends with "highcontrast"
-    if (window.location.href.endsWith("highcontrast")) {
-        // Get the div element by its id
-        var themeSwitchDiv = document.getElementById("themeSwitchDiv");
+    if (window.location.href.endsWith("highcontrast")) {        
         // Hide the div by setting its display property to "none"
         themeSwitchDiv.style.display = "none";
+    }
+    else {
+        themeSwitchDiv.style.display = "";
     }
 }
 
@@ -1245,6 +1164,38 @@ function getViewportBounds() {
     return { width: bounds.width, height: bounds.height };
 
 }
+// A utility function to delay execution of a function until after a specified time has passed without it being called.
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        // Clear the previous timeout to reset the timer
+        clearTimeout(timeout);
+        // Set a new timeout
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+// Store a reference to the debounced callback to manage the event listener
+let resizeCallback;
+// This function is called from the Blazor component to register the resize listener.
+// It accepts a .NET object reference to call back into the C# code.
+window.registerResizeCallback = (dotNetHelper) => {
+    // Create a debounced version of the callback that invokes the .NET method.
+    // The diagram will only re-render 200ms after the user stops resizing.
+    resizeCallback = debounce(() => {
+        dotNetHelper.invokeMethodAsync('OnWindowResized');
+    }, 200);
+    // Add the debounced function as the event listener for the window's resize event.
+    window.addEventListener('resize', resizeCallback);
+};
+// This function is called when the Blazor component is disposed.
+// It cleans up by removing the event listener to prevent memory leaks.
+window.unregisterResizeCallback = () => {
+    if (resizeCallback) {
+        window.removeEventListener('resize', resizeCallback);
+        resizeCallback = null; // Clear the reference
+    }
+};
 window.preventTabDefault = function (textareaId, dotnetRef) {
     const textarea = document.getElementById(textareaId);
     if (textarea)
@@ -1694,6 +1645,16 @@ async function fingerPrint() {
         ctx.fillStyle = blue;
         ctx.textBaseline = "middle";
         ctx.fillText("Syncfusion", startX + 3 * (size + gap) + 20, startY + size + gap);
+        // --- Add device-variant text for extra fingerprint uniqueness ---
+        const text = "❁ 🧬 Fingerprint Data 🍌: Render & Hash Now!";
+        ctx.font = "14px 'Arial'";
+        ctx.textBaseline = "alphabetic"
+        ctx.fillStyle = "#f60";
+        ctx.fillRect(125, 110, 62, 20);
+        ctx.fillStyle = "#069";
+        ctx.fillText(text, 2, 130);
+        ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+        ctx.fillText(text, 4, 132);
         ctx.globalCompositeOperation = "multiply";
         ctx.fillStyle = "rgb(255,0,255)";
         ctx.beginPath(); ctx.arc(50, 200, 50, 0, Math.PI * 2); ctx.fill();
@@ -1955,6 +1916,23 @@ function updateButtons() {
     steps[currentIndex].classList.add('sf-showcase-progress-selected');
 }
 
+// adjust control section width based on property panel 
+function adjustLeftPanelWidth(controlClass, isCollapsed, initialLoad=false) {
+    const leftPanel = document.querySelector("." + controlClass);
+    const propertyPanel = document.querySelector(".sf-property-section");
+    const propertyPanelContent = document.querySelector(".property-panel-content");
+    
+    if (propertyPanelContent) {
+        // Ensure the content can animate opacity
+        propertyPanelContent.style.opacity = isCollapsed ? '0' : '1';
+    }
+
+    if (leftPanel && propertyPanel) {
+        leftPanel.style.width = isCollapsed ? '95.5%' : '65.66666667%';
+        propertyPanel.style.width = isCollapsed ? '5%' : '34.33333333%';
+    }
+}
+
 // Scroll to specific card
 function scrollToCard(index) {
     isScroll = true;
@@ -2015,4 +1993,142 @@ function getPromptsLocalStorage() {
 // Store the provided value in localStorage under the 'aiassist-view' key.
 function setPromptsLocalStorage(value) {
     localStorage.setItem('aiassist-view', value);
+}
+
+// Width helper used by C#
+window.getWindowWidth = function () {
+    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 1024;
+};
+
+// Resize handler used by C#
+window.registerResizeHandler = function (dotnetRef) {
+    function notify() {
+        const isMobile = (window.innerWidth || 1024) <= 680;
+        dotnetRef.invokeMethodAsync('OnResize', isMobile);
+    }
+    window.addEventListener('resize', () => {
+        clearTimeout(window.__resizeTimer);
+        window.__resizeTimer = setTimeout(notify, 100);
+    }, { passive: true });
+    // Initial notify
+    notify();
+};
+
+function copyCode() {
+    var copyElem = document.querySelector('#sb-source-tab .e-item.e-active');
+    var textToCopy = copyElem.textContent.trim();
+    navigator.clipboard.writeText(textToCopy);
+}
+
+function getPagePath() {
+    const segments = window.location.pathname.split('/').filter(Boolean); // removes empty strings
+    if (segments.length >= 2) {
+        return `${segments[segments.length - 2]}/${segments[segments.length - 1]}`;
+    }
+    return '';
+}
+
+window.addEventListener('popstate', function () {
+    if (window.sfBlazorSB.dotnetRef) {
+        var isThemeChanged = false;
+        var url;
+        var sampleName = getPagePath();
+        var themeName = location.search.replace("?theme=", "");
+        themeName = themeName ? themeName : "fluent2";
+        if (!document.body.classList.contains(themeName)) {
+            isThemeChanged = true;
+            url = window.location.href;
+            updateButtonTheme();
+        }
+        window.sfBlazorSB.dotnetRef.invokeMethodAsync('LoadDynamicResourcesDuringBrowserNav', sampleName, isThemeChanged, url);
+    }
+});
+
+function arrowKey(e) {
+    const current = document.activeElement;
+
+    // Only act if the currently focused element has a tabindex (or is focusable)
+    if (current && (current.tabIndex >= 0 || current.isContentEditable)) {
+        const focusable = Array.from(document.querySelectorAll(
+            'input, button, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+        )).filter(el =>
+            !el.disabled &&
+            !el.hasAttribute('tabindex') || el.tabIndex >= 0
+        );
+
+        const index = focusable.indexOf(current);
+
+        if (e.key === 'ArrowDown') {
+            focusable[index + 1]?.focus();
+        }
+
+        if (e.key === 'ArrowUp') {
+            focusable[index - 1]?.focus();
+        }
+    }
+}
+
+function focusChange() {
+    const current = document.querySelector('.sf-tree');
+
+    // Only act if the currently focused element has a tabindex (or is focusable)
+    if (current && (current.tabIndex >= 0 || current.isContentEditable)) {
+        const focusable = Array.from(document.querySelectorAll(
+            'input, button, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+        )).filter(el =>
+            !el.disabled &&
+            !el.hasAttribute('tabindex') || el.tabIndex >= 0
+        );
+
+        const index = focusable.indexOf(current);
+        focusable[index]?.focus();
+        componentHide();
+    }
+}
+
+function treeHide() {
+    const samplesEl = document.querySelector('.sb-component-samples');
+    const treeEl = document.querySelector('.sf-tree');
+
+    if (samplesEl && samplesEl.classList.contains('sb-components-hide')) {
+        samplesEl.classList.remove('sb-components-hide');
+    }
+    if (treeEl && !treeEl.classList.contains('sf-tree-hide')) {
+        treeEl.classList.add('sf-tree-hide');
+    }
+
+}
+
+function componentHide() {
+    const samplesEl = document.querySelector('.sb-component-samples');
+    const treeEl = document.querySelector('.sf-tree');
+
+    if (samplesEl && !samplesEl.classList.contains('sb-components-hide')) {
+        samplesEl.classList.add('sb-components-hide');
+    }
+    if (treeEl && treeEl.classList.contains('sf-tree-hide')) {
+        treeEl.classList.remove('sf-tree-hide');
+    }
+}
+
+window.moveBadgeLayerToDiagramLayer = function (badgeLayerId, diagramLayerId) {
+    const badgeLayer = document.getElementById(badgeLayerId);
+    const diagramLayer = document.getElementById(diagramLayerId);
+    if (badgeLayer && diagramLayer) {
+        diagramLayer.appendChild(badgeLayer);
+    }
+};
+
+function disableOverallThemeStylesheet() {
+    const themeLink = document.getElementById('theme');
+    if (themeLink) {
+        themeLink.disabled = true;
+    }
+}
+
+function enableTheCommonLayoutStylesheet() {
+    const themeLink = document.getElementById('common-layout-style');
+    if (themeLink && themeLink.disabled) {
+        themeLink.disabled = false;
+    }
 }

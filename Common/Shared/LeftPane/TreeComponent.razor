@@ -1,5 +1,6 @@
-﻿@namespace BlazorDemos.Shared
+@namespace BlazorDemos.Shared
 @implements IDisposable;
+@inject IJSRuntime JsRuntime;
 
 <div class="@classNames" role="tree" tabindex="0">
     <ul class="@SampleUtils.TREE_PARENT" role="presentation">
@@ -29,7 +30,7 @@
                     {
                         if (!(component.IsHide ?? false))
                         {
-                            <li class="@SampleUtils.TREE_PARENT_LI" role="treeitem">
+                            <li class="@SampleUtils.TREE_PARENT_LI" role="treeitem" tabindex="0" @onkeydown=" (e) => TabOrArrow(component, e)">
                                 @{
                                     var nodeFullRow = SampleUtils.TREE_FULL_ROW;
                                     if (EqualityComparer<SampleListType>.Default.Equals(component, childSelected))
@@ -132,6 +133,22 @@
         if (OnNodeSelect.HasDelegate)
         {
             await OnNodeSelect.InvokeAsync(child);
+        }
+    }
+
+    private async Task TabOrArrow(SampleListType component, KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            OnChildClick(component);
+        }
+        if (e.Key == "ArrowDown" || e.Key == "Tab")
+        {
+            await JsRuntime.InvokeVoidAsync("arrowKey", e);
+        }
+        if (e.Key == "ArrowUp")
+        {
+            await JsRuntime.InvokeVoidAsync("arrowKey", e);
         }
     }
 

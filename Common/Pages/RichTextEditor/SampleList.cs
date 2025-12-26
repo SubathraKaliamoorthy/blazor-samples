@@ -5,11 +5,7 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorDemos;
 namespace BlazorDemos
 {
     internal partial class SampleConfig
@@ -57,7 +53,7 @@ namespace BlazorDemos
                 Directory = "RichTextEditor/RichTextEditor",
                 Url = "rich-text-editor/overview",
                 FileName = "Overview.razor",
-                NotificationDescription = new string[] { @"The Rich Text Editor Overview sample has been updated with several enhancements, including an improved Word import feature with a dialog-based interface for setting maximum file size, managing uploads and controlling content insertion, intuitive table editing with a “+” icon on hover for quickly adding rows and columns, and a refined source code view with proper formatting and indentation for both block and inline HTML elements to ensure a cleaner and more readable editing experience." },
+                NotificationDescription = new string[]{@"The Rich Text Editor Overview sample has been updated to include a line-height feature, allowing users to adjust spacing between lines of text for better readability and formatting."},
                 Type = SampleType.Updated,
                 MetaTitle = "Blazor Rich Text Editor Overview | WYSIWYG Editor | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - Overview",
@@ -84,7 +80,7 @@ namespace BlazorDemos
                 Type = SampleType.Updated,
                 MetaTitle = "Blazor Rich Text Editor IFrame | Isolated Editing | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - IFrame Mode",
-                NotificationDescription= new string[] { @"The Rich Text Editor IFrame Mode sample has been updated with several enhancements, including an improved Word import feature with a dialog-based interface for setting maximum file size, managing uploads and controlling content insertion, intuitive table editing with a “+” icon on hover for quickly adding rows and columns, and a refined source code view with proper formatting and indentation for both block and inline HTML elements to ensure a cleaner and more readable editing experience." },
+                NotificationDescription = new string[]{@"The Rich Text Editor Iframe sample has been updated to include a line-height feature, allowing users to adjust spacing between lines of text for better readability and formatting."},
                 MetaDescription = "This Blazor Rich Text Editor IFrame Mode demonstrates isolated editing environment with the iframe rendering for enhanced security and style isolation."
             },
             new Sample
@@ -116,6 +112,8 @@ namespace BlazorDemos
                 Directory = "RichTextEditor/RichTextEditor",
                 Url ="rich-text-editor/insert-media",
                 FileName = "Insert-Media.razor",
+                Type = SampleType.Updated,
+                NotificationDescription = new string[]{@"The Rich Text Editor Insert Media sample now supports drag-and-drop for video and audio files, making it easier to add media directly into the editor."},
                 MetaTitle = "Blazor Rich Text Editor Media | Multimedia Content | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - Insert Media",
                 MetaDescription = "This Blazor Rich Text Editor Insert Media demonstrates multimedia content insertion including images, videos, and audio for comprehensive content creation."
@@ -244,8 +242,6 @@ namespace BlazorDemos
                 Directory = "RichTextEditor/RichTextEditor",
                 Url = "rich-text-editor/import-word",
                 FileName = "Import.razor",
-                Type = SampleType.Updated,
-                NotificationDescription = new string[] { @"The Rich Text Editor import from Word sample has been updated to showcase the enhanced Word import functionality. This update introduces a dialog-based interface that enables users to set a maximum file size, manage uploaded documents, and control the insertion process—offering greater flexibility and a better user experience." },
                 MetaTitle = "Blazor Rich Text Editor Import Word | Document Import | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - Import from Word",
                 MetaDescription = "This Blazor Rich Text Editor Import example demonstrates importing Word documents with formatting preservation for seamless content migration and editing."
@@ -258,7 +254,8 @@ namespace BlazorDemos
                 Url = "rich-text-editor/export-word",
                 MetaTitle = "Rich Text Editor Export to Word / PDF - Syncfusion Demos",
                 FileName = "Export-Word.razor",
-                NotificationDescription = new string[] { @"The Rich Text Editor export to pdf/word sample has been updated to configure the export feature directly within the Rich Text Editor. Previously, this was achieved at the application level, but now this support is provided at the source level." },
+                Type = SampleType.Updated,
+                NotificationDescription = new string[]{@"The Rich Text Editor export to Word/PDF sample has been updated to show a spinner on the export button while the file is being generated, giving users clear progress feedback until the download is complete."},
                 HeaderText = "Blazor Rich Text Editor Example - Export to Word / PDF",
                 MetaDescription = "This Blazor Rich Text Editor Export demonstrates exporting content to Word and PDF formats with formatting preservation for document sharing and distribution."
             },
@@ -324,6 +321,8 @@ namespace BlazorDemos
                 Directory = "RichTextEditor/RichTextEditor",
                 Url = "rich-text-editor/api",
                 FileName = "Api.razor",
+                Type = SampleType.Updated,
+                NotificationDescription = new string[]{@"The Rich Text Editor API sample has been updated to include the new EnableMarkdownAutoFormat API, which automatically converts Markdown syntax to HTML for a smoother editing experience."},
                 MetaTitle = "Blazor Rich Text Editor API | Programmatic Control | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - API",
                 MetaDescription = "This Blazor Rich Text Editor API example demonstrates programmatic control and method usage for dynamic content manipulation and editor configuration."
@@ -335,11 +334,11 @@ namespace BlazorDemos
                 Directory = "RichTextEditor/RichTextEditor",
                 Url = "rich-text-editor/events",
                 FileName = "Events.razor",
+                Type = SampleType.Updated,
+                NotificationDescription = new string[]{@"The Rich Text Editor Events sample has been updated with the OnMediaDrop event, which is triggered whenever a media file—such as a video, audio, or image—is dragged and dropped into the editor."},
                 MetaTitle = "Blazor Rich Text Editor Events | Event Handling | Syncfusion",
                 HeaderText = "Blazor Rich Text Editor Example - Events",
-                MetaDescription = "This Blazor Rich Text Editor Events example demonstrates an event handling for the user interactions, content changes, and editor lifecycle management.",
-                Type = SampleType.Updated,
-                NotificationDescription = new string[] { @"The Rich Text Editor Events sample now includes the SelectionChanged event, which is triggered whenever the selection within the editor changes, allowing developers to track and respond to user interactions in real time." }
+                MetaDescription = "This Blazor Rich Text Editor Events example demonstrates an event handling for the user interactions, content changes, and editor lifecycle management."
             },
             new Sample
             {

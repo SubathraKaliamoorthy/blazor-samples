@@ -1,4 +1,4 @@
-﻿@page "/DropDown-List/Template"
+@page "/DropDown-List/Template"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -28,7 +28,7 @@
     <div class="control-wrapper">
         <div class="content">
             <label class="example-label">Select an employee</label>
-            <SfDropDownList TValue="string" TItem="EmployeeData" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
+            <SfDropDownList TValue="string" TItem="EmployeeData" PopupHeight="200px" CssClass="template" Placeholder="e.g. Andrew Fuller" DataSource="@Data">
                 <DropDownListTemplates TItem="EmployeeData">
                     <ItemTemplate>
                         <div>
@@ -280,10 +280,6 @@
     .e-bigger.tailwind3 .template.e-popup .job,
     .e-bigger.tailwind3-dark .template.e-popup .job {
         margin-top: -15px;
-    }
-
-    .template .e-dropdownbase.e-content {
-        max-height: 200px !important;
     }
 
     .dropdown-width {

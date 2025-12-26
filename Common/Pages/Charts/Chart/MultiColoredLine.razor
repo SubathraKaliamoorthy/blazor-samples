@@ -1,7 +1,9 @@
-﻿@page "/chart/multi-colored-line"
+@page "/chart/multi-colored-line"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Net.Http.Json
 
@@ -54,12 +56,14 @@
     public List<LineChartData> ChartPoints { get; set; } = new List<LineChartData>();
     
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
         MultiColoredData = MultiColoredData.Select((value, index) => new LineChartData 
         {

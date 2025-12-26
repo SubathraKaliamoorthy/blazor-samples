@@ -3,8 +3,6 @@
 @using Syncfusion.Blazor.Grids
 @inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
 @*Hidden:Lines*@
-@using BlazorDemos
-@using blazor_griddata
 @inherits SampleBaseComponent;
 @inject NavigationManager NavigationManager
 
@@ -153,5 +151,29 @@
             x++;
         }
         return data;
+    }
+
+    public class VirtualData
+    {
+        public string Field1 { get; set; } = string.Empty;
+        public int? Field2 { get; set; }
+        public int? Field3 { get; set; }
+        public int? Field4 { get; set; }
+        public int? Field5 { get; set; }
+        public int? Field6 { get; set; }
+        public int? Field7 { get; set; }
+        public int? Field8 { get; set; }
+        public int? Field9 { get; set; }
+        public int? Field10 { get; set; }
+        public int? Field11 { get; set; }
+        public int? Field12 { get; set; }
+        public int? Field13 { get; set; }
+        public int? Field14 { get; set; }
+        public int? Field15 { get; set; }
+        public int? Field16 { get; set; }
+        public int? Field17 { get; set; }
+        public int? Field18 { get; set; }
+        public int? Field19 { get; set; }
+        public int? Field20 { get; set; }
     }
 }

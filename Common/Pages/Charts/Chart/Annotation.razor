@@ -1,7 +1,9 @@
-﻿@page "/chart/annotation"
+@page "/chart/annotation"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.IO
 @using System.Net.Http.Json
@@ -10,8 +12,6 @@
 @inject HttpClient Http
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
-
-
 @*End:Hidden*@
 
 <SampleDescription>
@@ -106,6 +106,7 @@
                             <div class='box-top' style="font-family: @FontFamily">Mergulho</div>
                     </ContentTemplate>
                 </ChartAnnotation>
+                    @*Hidden:Lines*@
                 @if(SampleService != null && !SampleService.IsDevice)
                     {
                         <ChartAnnotation CoordinateUnits="Units.Point" X=3.270 Y=98>
@@ -129,6 +130,7 @@
                             </ContentTemplate>
                         </ChartAnnotation>
                     }
+                    @*End:Hidden*@
 		    }
             </ChartAnnotations>
             <ChartTooltipSettings Enable=true Shared=true Header="" EnableMarker=false Format="Distance: ${point.x} KM <br> ${point.y} KM/H" Fill="white" Opacity="1">

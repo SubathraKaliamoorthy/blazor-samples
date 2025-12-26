@@ -1,4 +1,4 @@
-﻿.scrollable-container {
+.scrollable-container {
   max-height: 25%;
   overflow-y: auto;
   border: 1px solid #ccc;

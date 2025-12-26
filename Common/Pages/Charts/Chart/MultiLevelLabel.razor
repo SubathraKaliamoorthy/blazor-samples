@@ -1,7 +1,9 @@
-﻿@page "/chart/multiple-level"
+@page "/chart/multiple-level"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using PointRender
 @inject NavigationManager NavigationManager
@@ -26,16 +28,17 @@
 </ActionDescription>
 
 <div class="control-section" align="center">
-   <SfChart Title="Fruits and Vegetables - Season" Width="@(SampleService != null && SampleService.IsDevice ? "100%" : "90%")" Theme="@Theme">
+    <SfChart Title="Fruits and Vegetables - Season" Width="@Width" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartEvents OnPointRender="PointRender"></ChartEvents>
         <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
         <ChartPrimaryXAxis IsIndexed="true" Interval="1" ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelRotation="90">
-            <ChartAxisLabelStyle Size="@(SampleService != null && SampleService.IsDevice ? "8px" : "12px")"></ChartAxisLabelStyle>
+            <ChartAxisLabelStyle Size="@Size"></ChartAxisLabelStyle>
             <ChartAxisLabelBorder Width="1" Type="BorderType.Rectangle"></ChartAxisLabelBorder>
             <ChartAxisMinorGridLines Width="0"></ChartAxisMinorGridLines>
             <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
             <ChartMultiLevelLabels>
+                @*Hidden:Lines*@
                 @if (SampleService != null && !SampleService.IsDevice)
                 {
                     <ChartMultiLevelLabel>
@@ -52,9 +55,10 @@
                         </ChartCategories>
                     </ChartMultiLevelLabel>
                 }
+                @*End:Hidden*@
                 <ChartMultiLevelLabel>
                     <ChartAxisMultiLevelLabelBorder Type="BorderType.Rectangle"></ChartAxisMultiLevelLabelBorder>
-                    <ChartAxisMultiLevelLabelTextStyle Size="@(SampleService != null && SampleService.IsDevice ? "7px" : "12px")"></ChartAxisMultiLevelLabelTextStyle>
+                    <ChartAxisMultiLevelLabelTextStyle Size="@FontSize"></ChartAxisMultiLevelLabelTextStyle>
                     <ChartCategories>
                         <ChartCategory Start="-0.5" End="2.5" Text="In Season"></ChartCategory>
                         <ChartCategory Start="2.5" End="5.5" Text="Out of Season"></ChartCategory>
@@ -64,7 +68,7 @@
                 </ChartMultiLevelLabel>
                 <ChartMultiLevelLabel>
                     <ChartAxisMultiLevelLabelBorder Type="BorderType.Rectangle"></ChartAxisMultiLevelLabelBorder>
-                    <ChartAxisMultiLevelLabelTextStyle Size="@(SampleService != null && SampleService.IsDevice ? "8px" : "12px")" FontWeight="Bold"></ChartAxisMultiLevelLabelTextStyle>
+                    <ChartAxisMultiLevelLabelTextStyle Size="@Size" FontWeight="Bold"></ChartAxisMultiLevelLabelTextStyle>
                     <ChartCategories>
                         <ChartCategory Start="-0.5" End="5.5" Text="Fruits"></ChartCategory>
                         <ChartCategory Start="5.5" End="9.5" Text="Vegetables"></ChartCategory>
@@ -82,7 +86,7 @@
                 <ChartCornerRadius TopLeft="4" TopRight="4"></ChartCornerRadius>
                 <ChartMarker>
                     <ChartDataLabel Visible="true" Position="LabelPosition.Outer">
-                        <ChartDataLabelFont Size="@(SampleService != null && SampleService.IsDevice ? "8px" : "12px")"></ChartDataLabelFont>
+                        <ChartDataLabelFont Size="@Size"></ChartDataLabelFont>
                     </ChartDataLabel>
                 </ChartMarker>
             </ChartSeries>
@@ -96,6 +100,7 @@
     private Theme Theme { get; set; }
     public string Width { get; set; } = "90%";
     public string Size { get; set; } = "12px";
+    public string FontSize { get; set; } = "12px";
 
     public List<CategoryData> ChartPoints { get; set; } = new List<CategoryData>
     {
@@ -110,11 +115,19 @@
         new CategoryData { Fruits = "Cucumber", Sales = 41 },
         new CategoryData { Fruits = "Onion", Sales = 59 }
     };
-    
+
 
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            Size = "8px";
+            FontSize = "7px";
+            Width = "100%";
+        }
+        @*End:Hidden*@
     }
 
     public void PointRender(PointRenderEventArgs args)

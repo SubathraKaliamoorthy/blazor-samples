@@ -1,13 +1,13 @@
-﻿@page "/query-builder/default-functionalities"
+@page "/query-builder/default-functionalities"
 
 @using Syncfusion.Blazor.QueryBuilder
 @using Syncfusion.Blazor.Popups
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Inputs
 @using System.Text.Json.Serialization
-@using blazor_griddata
 
 @*Hidden:Lines*@
+@using blazor_griddata
 @inherits SampleBaseComponent
 @*End:Hidden*@
 
@@ -138,20 +138,32 @@
         try
         {
             RuleModel ruleModel = JsonSerializer.Deserialize<RuleModel>(JsonContent);
-            for (var i = 0; i < ruleModel.Rules.Count; i++)
-            {
-                ruleModel.Rules[i].Operator = GetValue(ruleModel.Rules[i].Operator);
-                ruleModel.Rules[i].Value = GetValue(ruleModel.Rules[i].Value);
-            }
+            ruleModel = RuleModelCreation(ruleModel);
             QueryBuilderObj.SetRules(ruleModel.Rules, "and");
             UpdateRule();
             this.IsVisible = false;
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             ErrorValue = "error-msg";
         }
+    }
 
+    private RuleModel RuleModelCreation(RuleModel ObjectRules)
+    {
+        for (var i = 0; i < ObjectRules.Rules.Count; i++)
+        {
+            if (ObjectRules.Rules[i].Condition != null)
+            {
+                ObjectRules.Rules[i] = RuleModelCreation(ObjectRules.Rules[i]);
+            }
+            else
+            {
+                ObjectRules.Rules[i].Operator = GetValue(ObjectRules.Rules[i].Operator);
+                ObjectRules.Rules[i].Value = GetValue(ObjectRules.Rules[i].Value);
+            }
+        }
+        return ObjectRules;
     }
 
     private void ImportButtonClick()

@@ -1,4 +1,4 @@
-﻿@page "/chart-3d/cylinder"
+@page "/chart-3d/cylinder"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.Chart3D
@@ -52,7 +52,13 @@
     protected override void OnInitialized()
     {
         ApplyTheme(null!);
-        ChartWidth = SampleService != null && SampleService.IsDevice ? "100%" : "75%";
+        ChartWidth = "75%";
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            ChartWidth = "100%";
+        }
+        @*End:Hidden*@
     }
 
     private void RenderAxisLabel(Chart3DAxisLabelRenderEventArgs args)

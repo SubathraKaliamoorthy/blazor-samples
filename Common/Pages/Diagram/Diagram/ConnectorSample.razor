@@ -1,4 +1,4 @@
-﻿@page "/diagram/connectors"
+@page "/diagram/connectors"
 
 @using Syncfusion.Blazor.Diagram
 @using System.Collections.ObjectModel
@@ -118,35 +118,35 @@
     </div>
     <div class="row row-header" style="padding-top: 10px;">Appearance</div>
     <div class="row" style="padding-top: 8px">
-        <div class="@CssClass!["Straight"]" @onclick="@(() => ChangeConnectorAppearance("Straight"))" style="background-image: url(@(SampleService!.WebAssetsPath + "images/diagram/connector/straight.png")); margin-right: 3px">
+        <div class="@CssClass!["Straight"]" @onclick="@(() => ChangeConnectorAppearance("Straight"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/straight.png")); margin-right: 3px">
         </div>
-        <div class="@CssClass["Orthogonal"]" @onclick="@(() => ChangeConnectorAppearance("Orthogonal"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/orthogonal.png")); margin: 0px 3px">
+        <div class="@CssClass["Orthogonal"]" @onclick="@(() => ChangeConnectorAppearance("Orthogonal"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/orthogonal.png")); margin: 0px 3px">
         </div>
-        <div class="@CssClass["Bezier"]" @onclick="@(() => ChangeConnectorAppearance("Bezier"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/bezier.png")); margin-left: 3px">
-        </div>
-    </div>
-    <div class="row" style="padding-top: 8px">
-        <div class="@CssClass["StraightWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("StraightWithStroke"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/straight-with-stroke.png")); margin-right: 3px">
-        </div>
-        <div class="@CssClass["OrthogonalWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("OrthogonalWithStroke"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/orthogonal-with-stroke.png")); margin: 0px 3px">
-        </div>
-        <div class="@CssClass["BezierWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("BezierWithStroke"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/bezier-with-stroke.png")); margin-left: 3px">
+        <div class="@CssClass["Bezier"]" @onclick="@(() => ChangeConnectorAppearance("Bezier"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/bezier.png")); margin-left: 3px">
         </div>
     </div>
     <div class="row" style="padding-top: 8px">
-        <div class="@CssClass["StraightWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("StraightWithDashArray"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/straight-with-dash-array.png")); margin-right: 3px">
+        <div class="@CssClass["StraightWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("StraightWithStroke"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/straight-with-stroke.png")); margin-right: 3px">
         </div>
-        <div class="@CssClass["OrthogonalWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("OrthogonalWithDashArray"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/orthogonal-with-dash-array.png")); margin: 0px 3px">
+        <div class="@CssClass["OrthogonalWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("OrthogonalWithStroke"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/orthogonal-with-stroke.png")); margin: 0px 3px">
         </div>
-        <div class="@CssClass["BezierWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("BezierWithDashArray"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/bezier-with-dash-array.png")); margin-left: 3px">
+        <div class="@CssClass["BezierWithStroke"]" @onclick="@(() => ChangeConnectorAppearance("BezierWithStroke"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/bezier-with-stroke.png")); margin-left: 3px">
         </div>
     </div>
     <div class="row" style="padding-top: 8px">
-        <div class="@CssClass["CornerRadious"]" @onclick="@(() => ChangeConnectorAppearance("CornerRadious"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/corner-radius.png")); margin-right: 3px">
+        <div class="@CssClass["StraightWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("StraightWithDashArray"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/straight-with-dash-array.png")); margin-right: 3px">
         </div>
-        <div class="@CssClass["SourceDecorator"]" @onclick="@(() => ChangeConnectorAppearance("SourceDecorator"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/source-decorator.png")); margin: 0px 3px">
+        <div class="@CssClass["OrthogonalWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("OrthogonalWithDashArray"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/orthogonal-with-dash-array.png")); margin: 0px 3px">
         </div>
-        <div class="@CssClass["SourceDecoratorWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("SourceDecoratorWithDashArray"))" style="background-image: url(@(SampleService.WebAssetsPath + "images/diagram/connector/source-decorator-with-dash-array.png")); margin-left: 3px">
+        <div class="@CssClass["BezierWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("BezierWithDashArray"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/bezier-with-dash-array.png")); margin-left: 3px">
+        </div>
+    </div>
+    <div class="row" style="padding-top: 8px">
+        <div class="@CssClass["CornerRadious"]" @onclick="@(() => ChangeConnectorAppearance("CornerRadious"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/corner-radius.png")); margin-right: 3px">
+        </div>
+        <div class="@CssClass["SourceDecorator"]" @onclick="@(() => ChangeConnectorAppearance("SourceDecorator"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/source-decorator.png")); margin: 0px 3px">
+        </div>
+        <div class="@CssClass["SourceDecoratorWithDashArray"]" @onclick="@(() => ChangeConnectorAppearance("SourceDecoratorWithDashArray"))" style="background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/connector/source-decorator-with-dash-array.png")); margin-left: 3px">
         </div>
     </div>
     <div class="row property-panel-content" style="padding-top: 10px">

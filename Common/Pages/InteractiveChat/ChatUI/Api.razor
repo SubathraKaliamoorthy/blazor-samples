@@ -1,6 +1,5 @@
-﻿@page "/chat-ui/api"
+@page "/chat-ui/api"
 @using Syncfusion.Blazor.InteractiveChat
-@using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.InteractiveChatDemo
@@ -19,23 +18,23 @@
 <ActionDescription>
     <p>In this sample, the following APIs and properties are demonstrated for customization:</p>
     <ul>
-        <li><code>TimestampFormat</code>: Allows users to change the timestamp format by selecting an option from the property pane.</li>
-        <li><code>ShowTimestamp</code>: Controls whether the timestamp is displayed in the chat, toggled via the property pane <code>ShowTimestamp</code> property.</li>
-        <li><code>ShowTimeBreak</code>: Enables or disables the display of time breaks in the chat interface.</li>
-        <li><code>ShowHeader</code>: Lets users toggle the visibility of the chat header.</li>
-        <li><code>ShowFooter</code>: Toggles the visibility of the chat footer.</li>
-        <li><code>EnableCompactMode</code>: Reduces spacing and left-aligns all messages to display more content within the visible chat area. </li>
-        <li><code>TypingUsers</code>: Allows users to manage the list of users who are typing, updated through the multi-select options in the property pane.</li>
-        <li><code>MentionUsers</code>: Configurable list of users that can be tagged using '@@' in Chat Messages.</li>
-        <li><code>StatusIconCss</code>: Defines a CSS class for the status bar icon, with built-in styles for Online, Offline, Away, and Busy statuses, while allowing further customization.</li>
-        <li><code>MessageOptionsToolbar</code>: Configures the toolbar that appears on individual messages, allowing customization such as copy, forward, reply, pin and delete. Supports adding, removing, or reordering toolbar items based on application needs.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_TimestampFormat">TimestampFormat</a>: Allows users to change the timestamp format by selecting an option from the property pane.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_ShowTimestamp">ShowTimestamp</a>: Controls whether the timestamp is displayed in the chat, toggled via the property pane <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_ShowTimestamp">ShowTimestamp</a> property.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_ShowTimeBreak">ShowTimeBreak</a>: Enables or disables the display of time breaks in the chat interface.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_ShowHeader">ShowHeader</a>: Lets users toggle the visibility of the chat header.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_ShowFooter">ShowFooter</a>: Toggles the visibility of the chat footer.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_EnableCompactMode">EnableCompactMode</a>: Reduces spacing and left-aligns all messages to display more content within the visible chat area. </li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_TypingUsers">TypingUsers</a>: Allows users to manage the list of users who are typing, updated through the multi-select options in the property pane.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.SfChatUI.html#Syncfusion_Blazor_InteractiveChat_SfChatUI_MentionUsers">MentionUsers</a>: Configurable list of users that can be tagged using '@@' in Chat Messages.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.UserModel.html#Syncfusion_Blazor_InteractiveChat_UserModel_StatusIconCss">StatusIconCss</a>: Defines a CSS class for the status bar icon, with built-in styles for Online, Offline, Away, and Busy statuses, while allowing further customization.</li>
+        <li><a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.InteractiveChat.MessageToolbar.html">MessageToolbar</a>: Configures the toolbar that appears on individual messages, allowing customization such as copy, forward, reply, pin and delete. Supports adding, removing, or reordering toolbar items based on application needs.</li>
     </ul>
     <p>
         These properties can be adjusted via the property pane for a highly flexible and customizable chat experience.
     </p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
+<div class="col-lg-8 control-section">
     <div class="api-chatui">
         <SfChatUI ID="chatui" @ref="ApiChatUI"
             User="CurrentUser"
@@ -62,11 +61,8 @@
     </div>
 </div>
 
-<div class="col-lg-4 property-section chat-property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
-            <table id="property" title="Properties">
+<PropertyPanel ControlSecClass="col-lg-8">
+            <table id="property" title="Properties" class="chat-ui-property">
                 <tbody>
                     <tr>
                         <td>
@@ -159,9 +155,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 <style>
     .api-chatui {
@@ -175,12 +169,11 @@
         background-color: unset;
     }
 
-    .chat-property-section .property-panel-content td {
-        padding: 10px 0px;
+    .chat-ui-property td {
+        padding: 5px 0px;
     }
 
-    .chat-property-section .e-multiselect,
-    .chat-property-section .e-multi-select-wrapper {
+     .chat-ui-property .e-multiselect, .chat-ui-property .e-multi-select-wrapper {
         padding-left: 0;
         padding-top: 0;
     }

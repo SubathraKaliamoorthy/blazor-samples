@@ -1,4 +1,4 @@
-﻿@page "/kanban/card-template"
+@page "/kanban/card-template"
 @inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
 
 @using Syncfusion.Blazor.KanbanDemo
@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="e-image">
-                                            <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/kanban/" + card.ImageURL + ".png")" alt="logo" />
+                                            <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/kanban/{card.ImageURL}.png")" alt="logo" />
                                         </td>
                                         <td class="e-title">
                                             <div class="e-card-stacked">
@@ -318,8 +318,8 @@
 </style>
 
 @code{
-    private SfDropDownList<string, DropDownModel> CategoryRef;
-    private SfTextBox DescriptionRef;
+    private SfDropDownList<string, DropDownModel>? CategoryRef;
+    private SfTextBox? DescriptionRef;
 
     private List<DropDownModel> CategoryData = new List<DropDownModel>()
     {
@@ -332,7 +332,7 @@
     private class DropDownModel
     {
         public int Id { get; set; }
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
     private List<KanbanDataModel> Pizza = new KanbanDataModel().GetPizzaData();
 

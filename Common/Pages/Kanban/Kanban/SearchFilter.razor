@@ -1,4 +1,4 @@
-﻿@page "/kanban/search-filter"
+@page "/kanban/search-filter"
 
 @using Syncfusion.Blazor.KanbanDemo
 @using Syncfusion.Blazor.Data
@@ -107,12 +107,12 @@
 </style>
 
 @code{
-    private SfTextBox TextBoxRef;
-    
+    private SfTextBox? TextBoxRef;
+
     private class CardStatus
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        public string? Name { get; set; }
+        public string? Value { get; set; }
     }
 
     private List<CardStatus> StatusData = new List<CardStatus>()
@@ -166,12 +166,15 @@
 
     private void OnCardSearch(Microsoft.AspNetCore.Components.ChangeEventArgs args)
     {
-        OnSearch((string)args.Value);
+        OnSearch((string?)args.Value ?? string.Empty);
     }
 
     private void OnSearchClick()
     {
-        OnSearch(TextBoxRef.Value);
+        if (TextBoxRef != null)
+        {
+            OnSearch(TextBoxRef.Value);
+        }
     }
 
     private void OnSearch(string searchString)

@@ -2,6 +2,7 @@
 
 @inject IJSRuntime JsRuntime;
 @inject NavigationManager UriHelper;
+@inject SampleService SampleService;
 @if (IsMobile)
 {
  <div @onclick="OnDevicePreferenceClick" style="height:100%">
@@ -100,8 +101,8 @@ else
                     <div class='sf-preference-text'>Mode Selection</div>
                 </div>
                 <div class='sf-preference-btn-group'>
-                    <div role="button" tabindex="0" class="@touchClass" @onclick="@OnTouchClick" title="Increased padding for actionable items to accommodate user touches">Touch</div>
-                    <div role="button" tabindex="0" class="@mouseClass" @onclick="@OnMouseClick" title="Default control sizes, optimized for use with mouse">Mouse</div>
+                    <div role="button" tabindex="0" class="@touchClass" @onclick="@OnTouchClick" @onkeydown="OnTouchKeyDown" title="Increased padding for actionable items to accommodate user touches">Touch</div>
+                    <div role="button" tabindex="0" class="@mouseClass" @onclick="@OnMouseClick" @onkeydown="OnMouseKeyDown" title="Default control sizes, optimized for use with mouse">Mouse</div>
                 </div>
             </div>
              <div class='sf-preferences-item sf-preference-culture'>
@@ -129,6 +130,8 @@ else
     private CultureSwitcher? cultureRef { get; set; }
     private DropDownComponent? ThemeDropDownRefForMobile { get; set; }
     private DropDownComponent? ThemeModeRefForMobile { get; set; }
+    [CascadingParameter]
+    protected MainLayout? Layout { get; set; }
 
     /// <summary>
     /// Specifies the rendering mode of preferences.
@@ -147,7 +150,17 @@ else
     {
         touchClass = SampleUtils.AddClass(touchClass ?? "", SampleUtils.ACTIVE_CLASS);
         mouseClass = SampleUtils.RemoveClass(mouseClass ?? "", SampleUtils.ACTIVE_CLASS);
-        await SetBiggerSizeAsync(true, true);
+        await SetBiggerSizeAsync(true);
+        ShowPopup(false);
+        Layout?.headerRef?.RemovePreferenceActiveState();
+    }
+
+    private void OnTouchKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            OnTouchClick();
+        }
     }
 
     // Mouse mode click handler.
@@ -156,33 +169,41 @@ else
         mouseClass = SampleUtils.AddClass(mouseClass ?? "", SampleUtils.ACTIVE_CLASS);
         touchClass = SampleUtils.RemoveClass(touchClass ?? "", SampleUtils.ACTIVE_CLASS);
         await SetBiggerSizeAsync(false);
+        ShowPopup(false);
+        Layout?.headerRef?.RemovePreferenceActiveState();
+    }
+
+    private void OnMouseKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            OnMouseClick();
+        }
     }
 
     // set e-bigger class to the body based on mouse/touch selection
-    public async Task SetBiggerSizeAsync(bool isTouch, bool isTouchReload = false)
+    public async Task SetBiggerSizeAsync(bool isTouch)
     {
-        var isMouseMode = await this.JsRuntime.InvokeAsync<bool>("sfBlazorSB.containsTouchModeClass");
+        var isTouchMode = await this.JsRuntime.InvokeAsync<bool>("sfBlazorSB.containsTouchModeClass");
         if (isTouch)
         {
-            if (!isMouseMode)
+            if (!isTouchMode)
             {
                 await this.JsRuntime.InvokeVoidAsync("sfBlazorSB.addTouchModeClass");
                 await this.JsRuntime.InvokeVoidAsync("localStorage.setItem", "sfPreferenceMode", "touch");
-                if (isTouchReload)
-                {
-                    UriHelper.Refresh(true);
-                }
             }
         }
         else
         {
-            if (isMouseMode)
+            if (isTouchMode)
             {
                 await this.JsRuntime.InvokeVoidAsync("sfBlazorSB.removeTouchModeClass");
                 await this.JsRuntime.InvokeVoidAsync("localStorage.setItem", "sfPreferenceMode", "mouse");
-                UriHelper.Refresh(true);
             }
         }
+        // Notify all subscribers that the touch/mouse preference has changed.
+        // If there are no subscribers, this call is a no-op.
+        SampleService.NotifyTouchMousePreferenceChanged();
     }
 
     // returns the preferences mode.
@@ -195,7 +216,7 @@ else
         if (isTouchMode || isDeviceMode || (!String.IsNullOrEmpty(mode) && mode != "mouse"))
         {
             mode = "touch";
-            await SetBiggerSizeAsync(true, false);
+            await SetBiggerSizeAsync(true);
         }
         mode = String.IsNullOrEmpty(mode) ? "mouse" : mode;
         return mode;
@@ -214,7 +235,7 @@ else
     }
 
     // Theme switcher handler for devices
-    private void OnThemeChange(DropDownData args)
+    private async void OnThemeChange(DropDownData args)
     {
         var currentTheme = SampleUtils.GetThemeName(UriHelper.Uri);
         var themeModeCheck = currentTheme;
@@ -231,11 +252,30 @@ else
                 // Append "-dark" to the URL
                 url += "-dark";
             }
-            UriHelper.NavigateTo(url, true);
+            if (SampleService.IsOldTheme(args.ID))
+            {
+                UriHelper.NavigateTo(url, true);
+            }
+            else
+            {
+                UriHelper.NavigateTo(url);
+                await this.JsRuntime.InvokeVoidAsync("addCurrentThemeToBody", SampleUtils.GetThemeName(url), SampleUtils.GetThemeName(UriHelper.Uri));
+                SampleService.IsResourcesLoadedOnInternalNav = true;
+                Layout.RightPaneRef.Refresh();
+                SampleService.SampleName = SampleService?.SampleInfo?.Url;
+                SampleService?.DynamicResourceLoader?.Refresh();
+                SampleService?.Spinner?.Show();
+                await Task.Delay(10);
+#if RELEASE && STAGING
+                await this.JsRuntime.InvokeVoidAsync("enableTheCommonLayoutStylesheet");
+                await this.JsRuntime.InvokeVoidAsync("disableOverallThemeStylesheet");
+#endif
+            }
+            Layout.CollapseRightSidebarOnThemeSwitch();
         }
     }
     // Mode switcher handler for devices
-    private void OnModeChange(DropDownData args)
+    private async void OnModeChange(DropDownData args)
     {
         var currentURL = UriHelper.Uri;
         var themeName = SampleUtils.GetThemeName(UriHelper.Uri);
@@ -248,21 +288,36 @@ else
             currentURL += $"?theme={themeParameter}";
         }
         string updatedURL = ""; 
-            if (!currentURL.Contains("-dark"))
-            {
-                // Append "-dark" to the current URL
-                updatedURL = currentURL;
-            }
-            else if (currentURL.Contains("-dark"))
-            {
-                // Remove "-dark" from the current URL
-                updatedURL = currentURL.Replace("-dark", "");
-            }
-            if (args.ID == "dark")
-            {
-                updatedURL += "-dark";
-            }
-            UriHelper.NavigateTo(updatedURL, true);    
+        if (!currentURL.Contains("-dark"))
+        {
+            // Append "-dark" to the current URL
+            updatedURL = currentURL;
+        }
+        else if (currentURL.Contains("-dark"))
+        {
+            // Remove "-dark" from the current URL
+            updatedURL = currentURL.Replace("-dark", "");
+        }
+        if (args.ID == "dark")
+        {
+            updatedURL += "-dark";
+        }
+        if (SampleService.IsOldTheme(SampleUtils.GetThemeName(updatedURL)))
+        {
+            UriHelper.NavigateTo(updatedURL, true);
+        }
+        else
+        {
+            UriHelper.NavigateTo(updatedURL);
+            await this.JsRuntime.InvokeVoidAsync("addCurrentThemeToBody", SampleUtils.GetThemeName(updatedURL), SampleUtils.GetThemeName(UriHelper.Uri));
+            SampleService.IsResourcesLoadedOnInternalNav = true;
+            Layout.RightPaneRef.Refresh();
+            SampleService.SampleName = SampleService?.SampleInfo?.Url;
+            SampleService?.DynamicResourceLoader?.Refresh();
+            SampleService?.Spinner?.Show();
+            await Task.Delay(10);
+        }
+        Layout.CollapseRightSidebarOnThemeSwitch();
     }
     
     /// <summary>

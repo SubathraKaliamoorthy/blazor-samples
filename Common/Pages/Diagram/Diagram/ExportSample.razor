@@ -1,4 +1,4 @@
-﻿@page "/diagram/export"
+@page "/diagram/export"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.DropDowns;
@@ -138,8 +138,7 @@
                     X
                 </div>
                 <div class="col-xs-6">
-
-                    <SfTextBox Enabled="@IsClipBoundsEnabled" ValueChanged="@xvalueChanged" Value="@ClipX" CssClass="e-corner"></SfTextBox>
+                    <SfNumericTextBox TValue="double" @bind-Value="ClipX" Min="0" Width="100%" Enabled="@IsClipBoundsEnabled" CssClass="e-corner" />
                 </div>
             </div>
             <div class="row" style="padding-top: 8px">
@@ -147,8 +146,7 @@
                     Y
                 </div>
                 <div class="col-xs-6">
-
-                    <SfTextBox Enabled="@IsClipBoundsEnabled" ValueChanged="@yvalueChanged" Value="@ClipY" CssClass="e-corner"></SfTextBox>
+                    <SfNumericTextBox TValue="double" @bind-Value="ClipY" Min="0" Width="100%" Enabled="@IsClipBoundsEnabled" CssClass="e-corner" />
                 </div>
             </div>
             <div class="row" style="padding-top: 8px">
@@ -156,8 +154,7 @@
                     Width
                 </div>
                 <div class="col-xs-6">
-
-                    <SfTextBox Enabled="@IsClipBoundsEnabled" Value="@ClipWidth" ValueChanged="@widthvalueChanged" CssClass="e-corner"></SfTextBox>
+                    <SfNumericTextBox TValue="double" @bind-Value="ClipWidth" Min="0" Width="100%" Enabled="@IsClipBoundsEnabled" CssClass="e-corner" />
                 </div>
             </div>
             <div class="row" style="padding-top: 8px">
@@ -165,8 +162,7 @@
                     Height
                 </div>
                 <div class="col-xs-6">
-
-                    <SfTextBox Enabled="@IsClipBoundsEnabled" Value="@ClipHeight" ValueChanged="@heightvalueChanged" CssClass="e-corner"></SfTextBox>
+                    <SfNumericTextBox TValue="double" @bind-Value="ClipHeight" Min="0" Width="100%" Enabled="@IsClipBoundsEnabled" CssClass="e-corner" />
                 </div>
             </div>
         </div>
@@ -185,10 +181,10 @@
     private string SelectedExportMode { get; set; } = "PageSettings";
     private bool IsFileEnabled { get; set; } = true;
     private string SelectedPageOption { get; set; } = "multiple";
-    private string ClipX { get; set; } = "0";
-    private string ClipY { get; set; } = "0";
-    private string ClipWidth { get; set; } = "0";
-    private string ClipHeight { get; set; } = "0";
+    private double ClipX { get; set; } = 0;
+    private double ClipY { get; set; } = 0;
+    private double ClipWidth { get; set; } = 0;
+    private double ClipHeight { get; set; } = 0;
     private double MarginLeft { get; set; } = 0;
     private double MarginTop { get; set; } = 0;
     private double MarginRight { get; set; } = 0;
@@ -218,27 +214,19 @@
         }
     }
     @*Hidden:Lines*@
-    private void PageWidthvalueChanged(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
-    {
-        PageWidth = args.Value;
-    }
-    private void PageHeightvalueChanged(Syncfusion.Blazor.Inputs.ChangeEventArgs<double> args)
-    {
-        PageHeight = args.Value;
-    }
-    private void xvalueChanged(string value)
+    private void xvalueChanged(double value)
     {
         ClipX = value;
     }
-    private void yvalueChanged(string value)
+    private void yvalueChanged(double value)
     {
         ClipY = value;
     }
-    private void widthvalueChanged(string value)
+    private void widthvalueChanged(double value)
     {
         ClipWidth = value;
     }
-    private void heightvalueChanged(string value)
+    private void heightvalueChanged(double value)
     {
         ClipHeight = value;
     }
@@ -251,10 +239,10 @@
         PrintExportRegion = args.Value!.ToString() == "PageSettings" ? DiagramPrintExportRegion.PageSettings : args.Value.ToString() == "Content" ? DiagramPrintExportRegion.Content : args.Value.ToString() == "ClipBounds" ? DiagramPrintExportRegion.ClipBounds : DiagramPrintExportRegion.PageSettings;
         if (PrintExportRegion == DiagramPrintExportRegion.Content || PrintExportRegion == DiagramPrintExportRegion.PageSettings)
         {
-            ClipWidth = "0";
-            ClipHeight = "0";
-            ClipY = "0";
-            ClipX = "0";
+            ClipWidth = 0;
+            ClipHeight = 0;
+            ClipY = 0;
+            ClipX = 0;
         }
         IsClipBoundsEnabled = PrintExportRegion.ToString() == "ClipBounds" ? true : false;
 
@@ -383,7 +371,7 @@
         print.Orientation = orientation;
         print.FitToPage = !IsMultiplePage;
         print.Margin = new DiagramThickness() { Left = MarginLeft, Top = MarginTop, Right = MarginRight, Bottom = MarginBottom };
-        print.ClipBounds = new DiagramRect() { X = double.Parse(ClipX), Y = double.Parse(ClipY), Width = double.Parse(ClipWidth), Height = double.Parse(ClipHeight) };
+        print.ClipBounds = new DiagramRect() { X = ClipX, Y = ClipY, Width = ClipWidth, Height = ClipHeight };
         ExportFormat = SelectedFileFormat == "PNG" ? DiagramExportFormat.PNG : SelectedFileFormat == "JPEG" ? DiagramExportFormat.JPEG : SelectedFileFormat == "SVG" ? DiagramExportFormat.SVG : DiagramExportFormat.PNG;
         if (SelectedFileFormat == "PDF")
         {
@@ -405,7 +393,7 @@
         print.Orientation = orientation;
         print.FitToPage = !IsMultiplePage;
         print.Margin = new DiagramThickness() { Left = MarginLeft, Top = MarginTop, Right = MarginRight, Bottom = MarginBottom };
-        print.ClipBounds = new DiagramRect() { X = double.Parse(ClipX), Y = double.Parse(ClipY), Width = double.Parse(ClipWidth), Height = double.Parse(ClipHeight) };
+        print.ClipBounds = new DiagramRect() { X = ClipX, Y = ClipY, Width = ClipWidth, Height = ClipHeight };
         //To export the diagram into base64
         var images = await DiagramInstance!.ExportAsync(ExportFormat, print);
         var pdforientation = orientation == PageOrientation.Landscape ? PdfPageOrientation.Landscape : PdfPageOrientation.Portrait;

@@ -1,15 +1,14 @@
-﻿@page "/bullet-chart/legend"
+@page "/bullet-chart/legend"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
-@using ThemeHelper
-
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent;
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>A bullet chart with legend is shown in this example. In the chart, the legend is enabled to provide information about the target, range, and value.</p>
+    <p>This example demonstrates how to render a Bullet Chart with an integrated legend. The legend is enabled to provide clear visual information about the chart’s key elements, including the target value, performance ranges, and actual data value. You can customize the legend using the BulletChartLegendSettings property to adjust its appearance and behavior according to your application’s design needs.</p>
 </SampleDescription>
 <ActionDescription>
     <p>In this example, you can see how to render a bullet chart with legend. You can use <a target="_blank" href="https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.BulletChartLegendSettings.html" aria-label="Navigate to the class reference for bullet chart legend settings">BulletChartLegendSettings</a> property to customize the legend in the chart.</p>
@@ -57,10 +56,12 @@
 
     protected override void OnInitialized()
     {
+        @*Hidden:Lines*@
         AdjustChartDimensionsForDevice();
+        @*End:Hidden*@
         ChartTheme=ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
-
+    @*Hidden:Lines*@
     public void AdjustChartDimensionsForDevice()
     {
         if (SampleService != null && SampleService.IsDevice)
@@ -69,4 +70,5 @@
             ChartHeight = "200";
         }
     }
+    @*End:Hidden*@
 }

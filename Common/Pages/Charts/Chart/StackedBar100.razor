@@ -1,7 +1,9 @@
-﻿@page "/chart/percent-stacked-bar"
+@page "/chart/percent-stacked-bar"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using System.Globalization
 @inject NavigationManager NavigationManager
@@ -102,17 +104,19 @@
     {
         
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
                 Width = "100%";
         }
+        @*End:Hidden*@
     }
 
     public void TooltipRender(TooltipRenderEventArgs args)
     { 
         double pointYValue = Convert.ToDouble(args.Data.PointY);
         string value = pointYValue.ToString("N0", System.Globalization.CultureInfo.InvariantCulture);
-         if (args.Point is Syncfusion.Blazor.Charts.Point pointData && pointData.Percentage != null)
+         if (args.Point is Syncfusion.Blazor.Charts.Point pointData && pointData?.Percentage != null)
         {
             args.Text = $"{args.Data.SeriesName}: <b>{value}TWh ({pointData.Percentage:F2}%)</b>";
         }

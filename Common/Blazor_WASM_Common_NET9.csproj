@@ -8,6 +8,9 @@
     <DefineConstants>WASM</DefineConstants>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+  	<CompressionExcludePatterns>
+      $(CompressionExcludePatterns);styles/component-samples/**
+    </CompressionExcludePatterns>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PagesFile Include="wwwroot/scripts/**/*.js" />
     <PagesFile Include="Pages/**" />
   </ItemGroup>
 
@@ -41,50 +45,51 @@
   <ItemGroup>
     <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
     <PackageReference Include="Markdig" Version="0.23.0" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Cards" Version="31.2.2" />
-	<PackageReference Include="Syncfusion.Blazor.DataForm" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Spinner" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.CircularGauge" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.LinearGauge" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Popups" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Diagram" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.ImageEditor" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.QueryBuilder" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Kanban" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Grid" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.MultiColumnComboBox" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.TreeGrid" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Gantt" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.TreeMap" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.FileManager" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.HeatMap" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Maps" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Charts" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.StockChart" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.BulletChart" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.SmithChart" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Sparkline" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.PivotTable" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Chart3D" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Sankey" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Licensing" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.InteractiveChat" Version="31.2.2" />
-    <PackageReference Include="Syncfusion.Blazor.Ribbon" Version="31.2.2" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Cards" Version="32.1.19" />
+	  <PackageReference Include="Syncfusion.Blazor.DataForm" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Spinner" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.BarcodeGenerator" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.CircularGauge" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.LinearGauge" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Notifications" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Popups" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Diagram" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.RichTextEditor" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.ImageEditor" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.QueryBuilder" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Schedule" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Kanban" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.MultiColumnComboBox" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.TreeGrid" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Gantt" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.TreeMap" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.FileManager" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.HeatMap" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.InPlaceEditor" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Maps" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Charts" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.RangeNavigator" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.StockChart" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.BulletChart" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.SmithChart" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Sparkline" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.PivotTable" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Chart3D" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Sankey" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Licensing" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.InteractiveChat" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Ribbon" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.BlockEditor" Version="32.1.19" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="32.1.19" />
   </ItemGroup>
 
   <ItemGroup>
@@ -159,5 +164,11 @@
 	<Content Remove="Pages\DocumentProcessing\PDF\DigitalSignatureValidation.razor" />
   </ItemGroup>
 
+	<ItemGroup Condition=" '$(Configuration)'=='Release' and !$(DefineConstants.Contains('STAGING'))">
+		<Content Update="wwwroot/styles/component-samples/**">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 </Project>
   

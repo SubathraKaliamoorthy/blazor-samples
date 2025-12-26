@@ -5,7 +5,9 @@
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -21,7 +23,7 @@
     <p>More information about print and export can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/print-and-export" aria-label="Blazor TreeMap Print and Export documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
+<div class="col-lg-9 control-section">
     <SfTreeMap @ref="@TreemapRef" WeightValuePath="Percentage" RangeColorValuePath="Percentage" DataSource="@LeafDatasource"
                LayoutType="LayoutMode.SliceAndDiceVertical" AllowPdfExport="true" AllowPrint="true" AllowImageExport="true" Theme="@Theme">
         <TreeMapTitleSettings Text="Top 10 Best Selling Smartphone Brands - 2017">
@@ -43,10 +45,7 @@
         <a href="http://zeenews.india.com/photos/business/worlds-10-best-selling-smartphone-brands-2033958/samsung-2033959" target="_blank" aria-label="zeenews.india.com">zeenews.india.com</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tbody>
                     <tr>
@@ -82,10 +81,7 @@
                     </tr>
                 </tbody>
             </table>
-
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -141,11 +137,11 @@
     }
     private void TreemapValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, FileTypeList> args)
     {
-        FileType = args.Value;
+        FileType = args?.Value ?? FileType;
     }
     private void NameChange(ChangedEventArgs args)
     {
-        FileName = args.Value;
+        FileName = args?.Value ?? FileName;
     }
     public async Task PrintButton()
     {
@@ -171,4 +167,18 @@
         new SmartPhoneData { Product = "Lenovo", Percentage = 3.2 },
         new SmartPhoneData { Product = "Alcate", Percentage = 1.3 },
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreemapRef != null)
+        {
+            await TreemapRef.RefreshAsync();
+        }
+    }
+
 }

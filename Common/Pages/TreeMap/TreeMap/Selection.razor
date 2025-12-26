@@ -1,10 +1,12 @@
-﻿@page "/treemap/selection-highlight"
+@page "/treemap/selection-highlight"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.TreeMap
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -18,8 +20,8 @@
     <p>More information about selection and highlight can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/selection-and-highlight" aria-label="Blazor TreeMap Selection and Highlight documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap WeightValuePath="Sales" DataSource="@LeafDatasource" TValue="ImportExportData" Theme="@Theme">
+<div class="col-lg-9 control-section">
+    <SfTreeMap @ref='TreeMap' WeightValuePath="Sales" DataSource="@LeafDatasource" TValue="ImportExportData" Theme="@Theme">
         <TreeMapTitleSettings Text="Import and Export Details of US">
             <TreeMapTitleTextStyle Size="15px" FontFamily="Segoe UI" />
         </TreeMapTitleSettings>
@@ -46,10 +48,7 @@
         <a href="https://www.indexmundi.com/united_states/imports_commodities.html" target="_blank" aria-label="www.indexmundi.com">www.indexmundi.com</a>
     </div>
 </div>
-<div id="property-panel" class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -103,9 +102,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 40px;
@@ -120,6 +117,7 @@
     }
 </style>
 @code{
+    public SfTreeMap<ImportExportData>? TreeMap;
     public Theme Theme { get; set; }
     public bool HighlightCheckBoxValue = true;
     public HighLightMode HighlightModeValue = HighLightMode.Item;
@@ -154,7 +152,10 @@
     };
     public void HighlightModeValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropdownList> args)
     {
-        Highlight = args.Value;
+        if (args == null)
+            return;
+
+        Highlight = args.Value ?? Highlight;
         if (args.Value == "Item")
         {
             HighlightModeValue = HighLightMode.Item;
@@ -174,7 +175,10 @@
     }
     public void SelectionModeValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, DropdownList> args)
     {
-        SelectionValue = args.Value;
+        if (args == null)
+            return;
+
+        SelectionValue = args.Value ?? SelectionValue;
         if (args.Value == "Item")
         {
             SelectionModeValue = Syncfusion.Blazor.TreeMap.SelectionMode.Item;
@@ -219,4 +223,17 @@
         new ImportExportData { DataType = "Export", Type = "Textile articles", Product = "2010", Sales = 20982380561 },
         new ImportExportData { DataType = "Export", Type = "Textile articles", Product = "2011", Sales = 26016143783 },
     };
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
+    }
+
 }

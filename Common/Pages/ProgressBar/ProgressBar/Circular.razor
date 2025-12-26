@@ -1,8 +1,10 @@
-﻿@page "/progress-bar/circular"
+@page "/progress-bar/circular"
 @using Syncfusion.Blazor.ProgressBar
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager Navigation
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -55,7 +57,7 @@
 
     protected override void OnInitialized()
     {
-        FontFamily = ThemeHelper.GetFontFamily(Navigation.Uri);
+        FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
         InitializeProgressBars();
         SetThemeBasedOnUri();
     }
@@ -73,7 +75,7 @@
 
     private void SetThemeBasedOnUri()
     {
-        Theme = Navigation.Uri switch
+        Theme = NavigationManager.Uri switch
         {
             var uri when uri.Contains("material3-dark") => Theme.Material3Dark,
             var uri when uri.Contains("material3") => Theme.Material3,

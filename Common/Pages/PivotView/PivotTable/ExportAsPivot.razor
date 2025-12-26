@@ -1,14 +1,13 @@
-@page "/pivot-table/export-as-pivot"
+﻿@page "/pivot-table/export-as-pivot"
 @using Syncfusion.Blazor.PivotView
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor
-@using ThemeHelper
-@inject NavigationManager NavigationManager
-
 @*Hidden:Lines*@
+@using ThemeHelper
 @inherits SampleBaseComponent;
 @*End:Hidden*@
+@inject NavigationManager NavigationManager
 
 <SampleDescription>
     <p>
@@ -51,7 +50,7 @@
     <div class="content-wrapper">
         <SfPivotView TValue="SalesAnalysis" Width="100%" Height="450" @ref="pivotView" ShowToolbar="true" Toolbar="@PivotToolbar" AllowExcelExport="true" AllowPdfExport="true" AllowDataCompression="true" ShowFieldList="true" ShowGroupingBar="true">
             <PivotViewEvents TValue="SalesAnalysis" ToolbarRendered="ToolbarRender"></PivotViewEvents>
-            <PivotViewDataSourceSettings TValue="SalesAnalysis" Url="https://blazor.syncfusion.com/services/development/api/pivotengine/post" EnableServerSideAggregation="true" ExpandAll="true" EnableSorting="true">
+            <PivotViewDataSourceSettings TValue="SalesAnalysis" Url="https://blazor.syncfusion.com/services/production/api/pivotengine/post" EnableServerSideAggregation="true" ExpandAll="true" EnableSorting="true">
                 <PivotViewRows>
                     <PivotViewRow Name="Country"></PivotViewRow>
                     <PivotViewRow Name="Products"></PivotViewRow>
@@ -71,7 +70,7 @@
             <PivotViewDisplayOption View=View.Both></PivotViewDisplayOption>
             <PivotChartSettings Title="Sales Analysis" Theme="@Theme">
                 <PivotChartLegendSettings Visible="false"></PivotChartLegendSettings>
-                <PivotChartSeries Type="@ChartType">
+                <PivotChartSeries>
                     <PivotChartSeriesAnimation Enable="false"></PivotChartSeriesAnimation>
                 </PivotChartSeries>
                 <PivotChartPrimaryYAxis>
@@ -83,7 +82,6 @@
 </div>
 
 @code{
-    public ChartSeriesType ChartType = ChartSeriesType.Bar;
     private SfPivotView<SalesAnalysis>? pivotView;
     public List<Syncfusion.Blazor.PivotView.ToolbarItems> PivotToolbar = new List<Syncfusion.Blazor.PivotView.ToolbarItems>
     {

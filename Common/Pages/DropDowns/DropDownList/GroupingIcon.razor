@@ -1,4 +1,4 @@
-﻿@page "/DropDown-List/Grouping-Icon"
+@page "/DropDown-List/Grouping-Icon"
 
 @using Syncfusion.Blazor.DropDowns
 
@@ -23,7 +23,7 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Grouping</label>
-            <SfDropDownList TValue="string" TItem="Vegetables" Placeholder="Select a vegetable" DataSource="@GroupData">
+            <SfDropDownList TValue="string" TItem="Vegetables" PopupHeight="200px" Placeholder="Select a vegetable" DataSource="@GroupData">
                 <DropDownListFieldSettings GroupBy="Category" Text="Vegetable" Value="Id"/>
             </SfDropDownList>
         </div>
@@ -31,13 +31,16 @@
     <div class="col-lg-6">
         <div class="control-wrapper">
             <label class="example-label">Icons</label>
-            <SfDropDownList TValue="string" TItem="SocialMedia" Placeholder="Select a social media" DataSource="@IconData">
+            <SfDropDownList TValue="string" TItem="SocialMedia" PopupHeight="200px" Placeholder="Select a social media" DataSource="@IconData">
                 <DropDownListFieldSettings Text="SocialMediaName" IconCss="Class" Value="Id"/>
             </SfDropDownList>
         </div>
     </div>
 </div>
+
+@*Hidden:Lines*@
 <link href="@(SampleService.WebAssetsPath + "styles/dropdown-list/grouping.css")" rel="stylesheet" />
+@*End:Hidden*@
 
 @code{
     

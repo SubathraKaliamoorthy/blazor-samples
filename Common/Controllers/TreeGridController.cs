@@ -7,14 +7,11 @@
 #endregion
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using System;
-using Syncfusion.Blazor;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Collections;
 using Virtualdata;
-using Microsoft.Extensions.Primitives;
 
 namespace BlazorDemos.Controllers
 {

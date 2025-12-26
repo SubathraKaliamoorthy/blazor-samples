@@ -1,4 +1,4 @@
-﻿@page "/carousel/partial-visible"
+@page "/carousel/partial-visible"
 
 @using Syncfusion.Blazor.Navigations
 @inject NavigationManager UriHelper
@@ -33,7 +33,7 @@
                 {
                     <CarouselItem>
                         <figure class="img-container">
-                            <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/carousel/{item.Image}.png")" alt="@item.AltText" style="height:100%;width:100%;" />
+                            <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/carousel/{item.Image}.png")" alt="@item.AltText" style="height:100%;width:100%;" />
                             <figcaption class="img-caption">@item.Caption</figcaption>
                         </figure>
                     </CarouselItem>
@@ -56,9 +56,9 @@
 
     public class CarouselItemModel
     {
-        public string Image { get; set; }
-        public string Caption { get; set; }
-        public string AltText { get; set; }
+        public string? Image { get; set; }
+        public string? Caption { get; set; }
+        public string? AltText { get; set; }
     }
 }
 

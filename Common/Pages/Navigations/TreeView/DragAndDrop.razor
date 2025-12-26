@@ -1,4 +1,4 @@
-﻿@page "/treeview/drag-and-drop"
+@page "/treeview/drag-and-drop"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Lists
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 tree-data">
+        <div class="col-lg-4 tree-data listview">
             <h4>Consulting Team</h4>
             <div class="content">
                 <div class="tree-list">
@@ -50,7 +50,7 @@
                         <ListViewFieldSettings TValue="TeamDetails" Id="Id" Text="Text"></ListViewFieldSettings>
                         <ListViewTemplates TValue="TeamDetails">
                             <Template>
-                                <div><span>@context.Text</span><span class="custom-delete" @onclick="() => OnListClick(context.Id)"></span></div>
+                                <div><span>@context.Text</span><span class="custom-delete" @onclick="() => OnListClick(context.Id ?? string.Empty)"></span></div>
                             </Template>
                         </ListViewTemplates>
                     </SfListView>
@@ -66,12 +66,12 @@
     
     public class TeamDetails
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Text { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public string? Text { get; set; }
         public bool Expanded { get; set; }
         public bool Selected { get; set; }
-        public List<TeamDetails> Children;
+        public List<TeamDetails>? Children;
     }
     // Specifies the DataSource value for Front End Teams TreeView component.
     private List<TeamDetails> ASPTeam = new List<TeamDetails>();
@@ -82,7 +82,7 @@
     // Specify the value of overlay element display state.
     private bool ShowOverlay { get; set; } = false;
     // Specify the reference of ListView element.
-    private SfListView<TeamDetails> listview;
+    private SfListView<TeamDetails>? listview;
 
     protected override void OnInitialized()
     {
@@ -345,5 +345,8 @@
     .bootstrap5\.3.e-bigger .e-drag-item.e-treeview .e-icons.e-icon-expandable {
         height: 30px;
         width: 30px;
+    }
+    .mobile.e-bigger .col-lg-4.tree-data.listview {
+        width: 58%;
     }
 </style>

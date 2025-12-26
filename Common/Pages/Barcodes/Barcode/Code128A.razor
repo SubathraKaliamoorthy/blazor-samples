@@ -1,4 +1,4 @@
-﻿@page "/barcodes/code-128a"
+@page "/barcodes/code-128a"
 
 @using Syncfusion.Blazor.BarcodeGenerator
 @using Syncfusion.Blazor.Inputs
@@ -33,7 +33,7 @@
         <span style="font-weight: 600;"> Allowed input characters:</span> The Code 128A barcode supports all numeric values (0-9), uppercase alphabetic characters (A-Z), punctuation marks, special characters (ASCII values 32 through 127) and control characters (ASCII values 00 through 95).
     </div>
 </div>
-<div class="col-lg-3 property-section" style="padding-right: 0px; min-width: 36%;border-left:1px solid #D7D7D7;height:750px">
+<PropertyPanel ControlSecClass="col-lg-9">
     <div class="property-panel-header">
         Appearance
     </div>
@@ -53,7 +53,7 @@
                         Width
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@width" Format="n0" Decimals=0 Min=150 Max="250" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeWidthChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -63,7 +63,7 @@
                         Height
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=0 Step=5 Width="110%">
+                        <SfNumericTextBox TValue="double" Value="@height" Format="n0" Decimals=0 Min=100 Max="200" Step=2 Width="110%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BarcodeHeightChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -206,7 +206,7 @@
             </div>
         </div>
     </div>
-</div>
+</PropertyPanel>
 
 <style>
     .centercontrol {

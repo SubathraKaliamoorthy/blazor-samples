@@ -1,4 +1,4 @@
-﻿@page "/ComboBox/Custom-Value"
+@page "/ComboBox/Custom-Value"
 
 @using Syncfusion.Blazor.DropDowns;
 @using Syncfusion.Blazor.Buttons;
@@ -22,7 +22,7 @@
     <div class='control-wrapper'>
         <div class="custom-value">
             <label class="example-label">Select a country</label>
-            <SfComboBox @ref="@countryComboBox" TValue="string" Placeholder="e.g. Australia" TItem="TItem" DataSource="@DataSource" AllowCustom="true" AllowFiltering="true">
+            <SfComboBox @ref="@countryComboBox" PopupHeight="200px" TValue="string" Placeholder="e.g. Australia" TItem="TItem" DataSource="@DataSource" AllowCustom="true" AllowFiltering="true">
                 <ComboBoxFieldSettings Text="Name" Value="Name"></ComboBoxFieldSettings>
                 <ComboBoxEvents TValue="string" Filtering="@OnFiltering" TItem="TItem"/>
                 <ComboBoxTemplates TItem="TItem">

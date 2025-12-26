@@ -1,16 +1,18 @@
-﻿@page "/circular-gauge/semi-circular-gauge"
+@page "/circular-gauge/semi-circular-gauge"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 @*End:Hidden*@
 
 <SampleDescription>
-    <p>This sample shows how to create semi-circular or quarter-circular gauges by modifying a circular gauge with different start and end angles.</p>
+    <p>TThis sample illustrates how to create semi-circular or quarter-circular gauge visualizations by customizing the Circular Gauge component. By adjusting the start and end angles of the gauge, developers can transform the default full-circle layout into partial arcs, such as half or quarter circles. </p>
 </SampleDescription>
 <ActionDescription>
     <p>In this example, a circular gauge is rendered with different start and end angles to create semi-circular or quarter-circular gauges. The radius, start angle, end angle, and center position of the circular gauge can all be customized using the options in the properties panel.</p>
@@ -27,8 +29,8 @@
     }
 </style>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfCircularGauge CenterX="@GaugeCenterX" CenterY="@GaugeCenterY" MoveToCenter="@GaugeMoveToCenter" Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section">
+    <SfCircularGauge @ref='SfCircularGauge' CenterX="@GaugeCenterX" CenterY="@GaugeCenterY" MoveToCenter="@GaugeMoveToCenter" Theme="@Theme" Background="transparent">
         <CircularGaugeAxes>
             <CircularGaugeAxis HideIntersectingLabel="@HideLabelCheck" StartAngle="@GaugeStartAngle" EndAngle="@GaugeEndAngle" Minimum="0" Maximum="100" Radius="@GaugeRadius">
                 <CircularGaugeAxisLineStyle Width="3" />
@@ -50,10 +52,7 @@
         </CircularGaugeAxes>
     </SfCircularGauge>
 </div>
-<div id="semi-circular-gauge" class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table title="Properties" style="width: 100%">
                 <colgroup>
                     <col span="1" style="width: 45%;">
@@ -146,11 +145,10 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
+    public SfCircularGauge? SfCircularGauge { get; set; }
     public Theme Theme { get; set; }
     public double GaugeStartAngle = 270;
     public double GaugeEndAngle = 90;
@@ -217,5 +215,17 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (SfCircularGauge != null)
+        {
+            await SfCircularGauge?.RefreshAsync();
+        }
     }
 }

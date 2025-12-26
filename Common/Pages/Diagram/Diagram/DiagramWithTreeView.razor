@@ -1,4 +1,4 @@
-﻿@page "/diagram/diagramwithtreeview"
+@page "/diagram/diagramwithtreeview"
 
 @using Syncfusion.Blazor.Diagram
 @using System.Collections.ObjectModel
@@ -35,7 +35,7 @@
                                 height: 42px;
                                 left: 12px;
                                 right: 12px;
-                                background-size: 100% 100%;background-image: url(@( SampleService!.WebAssetsPath + "/images/diagram/annotation/layout.png"))">
+                                background-size: 100% 100%;background-image: url(@("https://cdn.syncfusion.com/blazor/images/diagram/annotation/layout.png"))">
             </div>
         </div>
     </div>
@@ -63,6 +63,10 @@
                     </Layout>
                     <SnapSettings Constraints=SnapConstraints.None>
                     </SnapSettings>
+                    <CommandManager>
+                    <CommandManager Commands="@command" Execute="@CommandExecute">
+                    </CommandManager>
+                    </CommandManager>
                 </SfDiagramComponent>
             </div>
         </div>
@@ -176,6 +180,28 @@
     private List<string> array = new List<string>();
     private String[]? Emptystring { get; set; }
     int text = 8;
+    DiagramObjectCollection<KeyboardCommand> command = new DiagramObjectCollection<KeyboardCommand>()
+    {
+        new KeyboardCommand()
+        {
+            Name = "CustomCopy",
+            Gesture = new KeyGesture() { Key = DiagramKeys.C, Modifiers = ModifierKeys.Control }
+        },
+        new KeyboardCommand()
+        {
+            Name = "CustomPaste",
+            Gesture = new KeyGesture() { Key = DiagramKeys.V, Modifiers = ModifierKeys.Control }
+        },
+        new KeyboardCommand()
+        {
+            Name = "CustomCut",
+            Gesture = new KeyGesture() { Key = DiagramKeys.X, Modifiers = ModifierKeys.Control }
+        },
+    };
+    private void CommandExecute(CommandKeyArgs args)
+    {
+        return;
+    }
     public void OnKeyPressHandler(NodeKeyPressEventArgs args)
     {
         if(args.Key == "Delete")
@@ -259,7 +285,6 @@
                 {
                     List<TreeItem> album = new List<TreeItem>();
                     TreeItem Addednode = new TreeItem();
-                    Addednode.Id = id;
                     Addednode.Name = "Craft Personnel" + text;
                     Addednode.ParentId = treeviewnodes[i].Id;
                     album.Add(Addednode);
@@ -295,7 +320,7 @@
         array.Clear();
         for (int i = 0; i < DiagramInstance!.Nodes!.Count; i++)
         {
-            if (args.OldText == DiagramInstance.Nodes[i].Annotations![0].Content)
+            if (args.NodeData.Id == (DiagramInstance.Nodes[i].Data as HierarchicalDetails).Id)
             {
                 DiagramInstance.Nodes[i].Annotations![0].Content = args.NewText;
                 array.Add(args.NodeData.Id.ToString());
@@ -401,7 +426,7 @@
 
         for (int i = 0; i < DiagramInstance!.Nodes!.Count; i++)
         {
-            if (args.NodeData.Id == DiagramInstance.Nodes[i].ID)
+            if (args.NodeData.Id == (DiagramInstance.Nodes[i].Data as HierarchicalDetails).Id)
             {
                 DiagramInstance.Nodes[i].IsExpanded = false;
                 break;
@@ -425,7 +450,7 @@
     {
         for (int i = 0; i < DiagramInstance!.Nodes!.Count; i++)
         {
-            if (args.NodeData.Id == DiagramInstance.Nodes[i].ID)
+            if (args.NodeData.Id == (DiagramInstance.Nodes[i].Data as HierarchicalDetails).Id)
             {
                 DiagramInstance.Select(new ObservableCollection<IDiagramObject>() { DiagramInstance.Nodes[i] });
             }
@@ -441,7 +466,7 @@
         {
             for (int i = 0; i < treeviewnodes.Count; i++)
             {
-                if (treeviewnodes[i].Id.ToString() == (args.Element as Node)!.ID)
+                if (treeviewnodes[i].Id.ToString() == ((args.Element as Node)!.Data as HierarchicalDetails).Id)
                 {
                     if ((args.Element as Node)!.IsExpanded == true)
                     {
@@ -476,7 +501,7 @@
                     {
                         treeviewnodes[i].IsSelected = false;
                     }
-                    if (treeviewnodes[i].Id.ToString() == (args.ActualObject as Node)!.ID)
+                    if (treeviewnodes[i].Id.ToString() == ((args.ActualObject as Node)!.Data as HierarchicalDetails)!.Id)
                     {
                         SelectedNodes = new string[] { treeviewnodes[i].Id.ToString() };
                     }
@@ -521,7 +546,6 @@
             node.Data = System.Text.Json.JsonSerializer.Deserialize<HierarchicalDetails>(node.Data.ToString()!);
         }
         HierarchicalDetails? hierarchicalData = node.Data as HierarchicalDetails;
-        node.ID = hierarchicalData!.Id;
         node.Width = 135;
         node.Height = 40;
         node.Style!.Fill = "CornflowerBlue";
@@ -702,11 +726,13 @@
     bool isMobileDevice = false;
     private void OnCreated()
     {
+        @*Hidden:Lines*@
         if (SampleService!.IsDevice)
         {
             isMobileDevice = SampleService.IsDevice;
             StateHasChanged();
         }
+        @*End:Hidden*@
     }
     [Inject]
     protected IJSRuntime? jsRuntime { get; set; }

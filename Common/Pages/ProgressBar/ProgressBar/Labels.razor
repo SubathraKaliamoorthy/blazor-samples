@@ -1,6 +1,6 @@
-﻿@page "/progress-bar/labels"
+@page "/progress-bar/labels"
 @using Syncfusion.Blazor.ProgressBar
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 @using Syncfusion.Blazor
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -22,13 +22,7 @@
             foreach (var progressBar in ProgressBars)
             {
                 <div class="linear-progress">
-                    <SfProgressBar @ref="progressBar.Ref" Type="ProgressType.Linear" Height="40"
-                    Width="100%" ID="@progressBar.Id"
-                    TrackThickness="24"
-                    ProgressThickness="24" Role="progressBar.Role"
-                    ShowProgressValue="true"
-                    Value="@progressBar.Value" Minimum="0" Maximum="100"
-                    Theme="@Theme"
+                    <SfProgressBar @ref="progressBar.Ref" Type="ProgressType.Linear" Height="40"        Width="100%" TrackThickness="24" ProgressThickness="24" Role="progressBar.Role" ShowProgressValue="true" Value="@progressBar.Value" Minimum="0" Maximum="100" Theme="@Theme"
                     TrackColor="@TrackColor">
                         <ProgressBarLabelStyle Text="@progressBar.Label"
                         TextAlignment="TextAlignmentType.Center"
@@ -79,12 +73,6 @@
 
     private List<ProgressBarModel>? ProgressBars { get; set; }
 
-    // Initialize the SfProgressBar references
-    private SfProgressBar? PercentageProgressBar;
-    private SfProgressBar? RatioProgressBar;
-    private SfProgressBar? ActualProgressBar;
-    private SfProgressBar? CustomProgressBar;
-
     protected override void OnInitialized()
     {
         SetThemeAndColors();
@@ -93,7 +81,7 @@
 
     private void SetThemeAndColors()
     {
-        var uri = Navigation.Uri;
+        var uri = NavigationManager.Uri;
         Theme = uri switch
         {
             var u when u.Contains("material3-dark") => Theme.Material3Dark,
@@ -141,32 +129,28 @@
                 Id = "Percentage",
                 Value = 40,
                 Role = ModeType.Success,
-                Label = "40% Complete (Success)",
-                Ref = PercentageProgressBar ?? null!
+                Label = "40% Complete (Success)"
             },
             new ProgressBarModel
             {
                 Id = "Ratio",
                 Value = 50,
                 Role = ModeType.Info,
-                Label = "50% Complete (Info)",
-                Ref = RatioProgressBar ?? null!
+                Label = "50% Complete (Info)"
             },
             new ProgressBarModel
             {
                 Id = "Actual",
                 Value = 60,
                 Role = ModeType.Warning,
-                Label = "60% Complete (Warning)",
-                Ref = ActualProgressBar ?? null!
+                Label = "60% Complete (Warning)"
             },
             new ProgressBarModel
             {
                 Id = "Custom",
                 Value = 70,
                 Role = ModeType.Danger,
-                Label = "70% Complete (Danger)",
-                Ref = CustomProgressBar ?? null!
+                Label = "70% Complete (Danger)"
             }
         };
     }

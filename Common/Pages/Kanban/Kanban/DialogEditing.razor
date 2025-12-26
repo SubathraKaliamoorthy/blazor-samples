@@ -1,4 +1,4 @@
-﻿@page "/kanban/dialog-editing"
+@page "/kanban/dialog-editing"
 
 @using Syncfusion.Blazor.KanbanDemo
 @using Syncfusion.Blazor.Buttons
@@ -110,12 +110,12 @@
 </style>
 
 @code{
-    private SfKanban<KanbanDataModel> KanbanRef;
-    private SfDropDownList<string, DropDownModel> StatusRef;
-    private SfDropDownList<string, DropDownModel> AssigneeRef;
-    private SfDropDownList<string, DropDownModel> PriorityRef;
-    private SfTextBox SummaryRef;
-    
+    private SfKanban<KanbanDataModel>? KanbanRef;
+    private SfDropDownList<string, DropDownModel>? StatusRef;
+    private SfDropDownList<string, DropDownModel>? AssigneeRef;
+    private SfDropDownList<string, DropDownModel>? PriorityRef;
+    private SfTextBox? SummaryRef;
+
     private List<KanbanDataModel> _cardData = new KanbanDataModel().GetTasks();
 
     private List<ColumnModel> ColumnData = new List<ColumnModel>()
@@ -129,7 +129,7 @@
     private class DropDownModel
     {
         public int Id { get; set; }
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 
     private List<DropDownModel> StatusData = new List<DropDownModel>()
@@ -162,18 +162,21 @@
 
     private async void ShowAddCardDialog()
     {
-        var data = new KanbanDataModel()
+        if (this.KanbanRef != null)
         {
-            Id = "Task " + (this._cardData.Count + 1).ToString(),
-            Title = "",
-            Tags = "",
-            Estimate = 0,
-            Summary = "",
-            Status = "Open",
-            Type = "Story",
-            Priority = "Low",
-            Assignee = "Nancy Davloio"
-        };
-        await this.KanbanRef.OpenDialogAsync(CurrentAction.Add, data);
+            var data = new KanbanDataModel()
+                {
+                    Id = "Task " + (this._cardData.Count + 1).ToString(),
+                    Title = "",
+                    Tags = "",
+                    Estimate = 0,
+                    Summary = "",
+                    Status = "Open",
+                    Type = "Story",
+                    Priority = "Low",
+                    Assignee = "Nancy Davloio"
+                };
+            await this.KanbanRef.OpenDialogAsync(CurrentAction.Add, data);
+        }
     }
 }

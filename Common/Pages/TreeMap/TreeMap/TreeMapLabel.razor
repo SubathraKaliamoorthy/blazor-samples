@@ -1,9 +1,11 @@
-﻿@page "/treemap/label"
+@page "/treemap/label"
 
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.TreeMap
 @using Syncfusion.Blazor.DropDowns
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -17,8 +19,8 @@
     <p>More information about label can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/treemap/labels" aria-label="Blazor TreeMap Labels documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfTreeMap TValue="PopulationDetails" WeightValuePath="Population" Format='N0' EnableGroupingSeparator="true" RangeColorValuePath="Population" DataSource="@LeafDataSource" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfTreeMap @ref='TreeMap' TValue="PopulationDetails" WeightValuePath="Population" Format='N0' EnableGroupingSeparator="true" RangeColorValuePath="Population" DataSource="@LeafDataSource" Theme="@Theme">
         <TreeMapTitleSettings Text="Countries Ordered Based on Population - 2017">
             <TreeMapTitleTextStyle Size="15px" FontFamily="Segoe UI" />
         </TreeMapTitleSettings>
@@ -42,10 +44,7 @@
         <a href="https://www.populationpyramid.net/population-size-per-country/2017" target="_blank" aria-label="www.populationpyramid.net"> www.populationpyramid.net</a>
     </div>
 </div>
-<div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -63,9 +62,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -76,7 +73,7 @@
     }
 </style>
 @code {
-    
+    public SfTreeMap<PopulationDetails>? TreeMap;
     public Theme Theme { get; set; }
     public LabelAlignment LabelAction = LabelAlignment.Trim;
     public string[] LeafColorOne = new string[] { "#4B134F" };
@@ -98,7 +95,10 @@
     };
     public void LabelActionechange(ChangeEventArgs<string, LabelDropdownList> args)
     {
-        LabelActionValue = args.Value;
+        if (args == null)
+            return;
+
+        LabelActionValue = args.Value ?? LabelActionValue;
         if (args.Value == "Trim")
         {
             LabelAction = LabelAlignment.Trim;
@@ -329,5 +329,18 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+
+        if (TreeMap != null)
+        {
+            await TreeMap.RefreshAsync();
+        }
     }
 } 

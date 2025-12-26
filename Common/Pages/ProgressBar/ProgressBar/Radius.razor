@@ -1,8 +1,10 @@
-﻿@page "/progress-bar/radius"
+@page "/progress-bar/radius"
 @using Syncfusion.Blazor.ProgressBar
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager Navigation
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 
@@ -130,8 +132,8 @@
 
     protected override void OnInitialized()
     {
-        FontFamily = ThemeHelper.GetFontFamily(Navigation.Uri);
-        UpdateThemeBasedOnUri(Navigation.Uri);
+        FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
+        UpdateThemeBasedOnUri(NavigationManager.Uri);
     }
 
     private void UpdateThemeBasedOnUri(string uri)

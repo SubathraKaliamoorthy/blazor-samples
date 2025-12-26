@@ -1,4 +1,4 @@
-﻿@page "/MultiColumn-ComboBox/FormSupport"
+@page "/MultiColumn-ComboBox/FormSupport"
 
 @using Syncfusion.Blazor.MultiColumnComboBox
 @using Syncfusion.Blazor.Buttons;
@@ -27,7 +27,7 @@
                 <DataAnnotationsValidator />
                 <div>
                     <label class="example-label">Select a product</label>
-                    <SfMultiColumnComboBox @bind-Value="@ProductModel.Name" DataSource="@Products" ValueField="Name" TextField="Name" Placeholder="Select any product" PopupWidth="600px">
+                    <SfMultiColumnComboBox PopupHeight="200px" @bind-Value="@ProductModel.Name" DataSource="@Products" ValueField="Name" TextField="Name" Placeholder="Select any product" PopupWidth="600px">
                     </SfMultiColumnComboBox>
                     <ValidationMessage For="()=>ProductModel.Name" />
                 </div>

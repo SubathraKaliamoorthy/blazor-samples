@@ -5,7 +5,9 @@
 @using Syncfusion.Blazor.Buttons
 @using System.Globalization;
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -19,8 +21,8 @@
     <p>More information about color mapping can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/color-mapping/" aria-label="Blazor Maps Color Mapping documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-9 control-section sb-property-border">
-    <SfMaps Theme="@Theme" Background="transparent">
+<div class="col-lg-9 control-section" align='center'>
+    <SfMaps @ref="@MapRef" Theme="@Theme" Background="transparent">
         <MapsAreaSettings Background="transparent" />
         <MapsZoomSettings Enable="false" />
         <MapsTitleSettings Text="Spring Precipitation Averages of US States">
@@ -55,10 +57,7 @@
         <a href="https://www.currentresults.com/Weather/US/average-state-precipitation-in-spring.php" target="_blank">www.currentresults.com</a>
     </div>
 </div>
-<div id="property-panel" class="col-lg-3 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-9">
             <table style="width:100%" title="Properties">
                 <colgroup>
                     <col span="1" style="width: 40%;">
@@ -114,9 +113,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -136,6 +133,7 @@
 </style>
 
 @code {
+    public SfMaps? MapRef;
     public string ColorMappingTypeValue = "Range";
     public string[] ShapePropertyPath = { "name" };
     public string LegendText = "Inches";
@@ -224,7 +222,7 @@
 
     private void ColorMappingValueTypeChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, Type> args)
     {
-        ColorMappingTypeValue = args.Value;
+        ColorMappingTypeValue = args?.Value ?? ColorMappingTypeValue;
         if (ColorMappingTypeValue == "Range")
         {
             MinDisplay = "none";
@@ -420,4 +418,5 @@
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
     }
+
 } 

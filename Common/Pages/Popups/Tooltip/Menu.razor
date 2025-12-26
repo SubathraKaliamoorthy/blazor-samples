@@ -1,4 +1,4 @@
-﻿@page "/tooltip/menu"
+@page "/tooltip/menu"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Popups
@@ -19,9 +19,8 @@
     <div class="toolbarContainer">
         @*Initialize the Tooltip component*@
         <SfTooltip @ref="tooltipInstance" Width="170px" ID="tooltip-menu" Target=".custom" OnRender="OnTooltipRender" OpensOn="Click" CssClass="e-tooltip-menu-settings">
-            <TooltipTemplates>
-                <Content>
-                    @if (DynamicContent == "Wireless")
+            <ContentTemplate>
+                @if (DynamicContent == "Wireless")
                     {
                         @*Initialize the Wireless ListView component*@
                         <SfListView CssClass="tooltipMenu-list" ShowIcon="true" DataSource="@ConnectionData" TValue="DataModel">
@@ -45,16 +44,17 @@
                             <ListViewFieldSettings TValue="DataModel" Id="Id" IconCss="IconCss" Text="Text"></ListViewFieldSettings>
                         </SfListView>
                     }
-                </Content>
-            </TooltipTemplates>
+            </ContentTemplate>
             @*Initialize the Toolbar component*@
-            <SfToolbar ID="toolbar-menu" aria-label="Tooltip Menu Toolbar">
-                <ToolbarItems>
-                    <ToolbarItem CssClass="custom" Id="Wireless" Type="ItemType.Button" Text="Wireless" TooltipText="Wireless" Overflow=OverflowOption.Hide PrefixIcon="e-wifi"></ToolbarItem>
-                    <ToolbarItem CssClass="custom" Id="Device" Type="ItemType.Button" Text="Device" TooltipText="Device" Overflow=OverflowOption.Hide PrefixIcon="e-battery"></ToolbarItem>
-                    <ToolbarItem CssClass="custom" Id="Personal" Type="ItemType.Button" Text="Personal" TooltipText="Personal" Overflow=OverflowOption.Hide PrefixIcon="e-security"></ToolbarItem>
-                </ToolbarItems>
-            </SfToolbar>
+            <ChildContent>
+                <SfToolbar ID="toolbar-menu" aria-label="Tooltip Menu Toolbar">
+                    <ToolbarItems>
+                        <ToolbarItem CssClass="custom" Id="Wireless" Type="ItemType.Button" Text="Wireless" TooltipText="Wireless" Overflow=OverflowOption.Hide PrefixIcon="e-wifi"></ToolbarItem>
+                        <ToolbarItem CssClass="custom" Id="Device" Type="ItemType.Button" Text="Device" TooltipText="Device" Overflow=OverflowOption.Hide PrefixIcon="e-battery"></ToolbarItem>
+                        <ToolbarItem CssClass="custom" Id="Personal" Type="ItemType.Button" Text="Personal" TooltipText="Personal" Overflow=OverflowOption.Hide PrefixIcon="e-security"></ToolbarItem>
+                    </ToolbarItems>
+                </SfToolbar>
+            </ChildContent>
         </SfTooltip>
     </div>
 </div>

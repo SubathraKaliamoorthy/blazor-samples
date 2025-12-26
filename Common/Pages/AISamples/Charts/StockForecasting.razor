@@ -1,4 +1,4 @@
-﻿@page "/ai-charts/stock-forecasting"
+@page "/ai-charts/stock-forecasting"
 @page "/chart/ai-stock-forecasting"
 
 @inject AzureAIService OpenAIService
@@ -17,8 +17,8 @@
 @using System.Text;
 @using System.Collections.ObjectModel;
 @using BlazorDemos.Model
-@using ThemeHelper
 @*Hidden:Lines*@
+@using ThemeHelper
 @using BlazorDemos.Service
 @inherits SampleBaseComponent
 @*End:Hidden*@
@@ -54,10 +54,8 @@
         <div style="display: flex;">
             <div>
                 <SfDropDownButton @key="SelectedSymbol">
-                    <ContentTemplate>
-                        <span class="@GetSelectedIconClass()"></span>
-                        <span style="padding-right:8px">@SelectedSymbol</span>
-                    </ContentTemplate>
+                    <span class="@GetSelectedIconClass()"></span>
+                    <span style="padding-right:8px">@SelectedSymbol</span>
                     <DropDownButtonEvents ItemSelected="OnStockItemSelected"></DropDownButtonEvents>
                     <DropDownMenuItems>
                         <DropDownMenuItem IconCss="e-logo-msft" Text="MSFT" Id="MSFT" />
@@ -177,19 +175,19 @@
     }
 
     .e-logo-msft::before {
-        background-image: url('@(SampleService?.WebAssetsPath + "images/chart/microsoft.png")');
+        background-image: url(@(SampleService?.WebAssetsPath + "images/chart/microsoft.png"));
     }
 
     .e-logo-goog::before {
-        background-image: url('@(SampleService?.WebAssetsPath + "images/chart/google.png")');
+        background-image: url(@(SampleService?.WebAssetsPath + "images/chart/google.png"));
     }
 
     .e-logo-amzn::before {
-        background-image: url('@(SampleService?.WebAssetsPath + "images/chart/amazon.png")');
+        background-image: url(@(SampleService?.WebAssetsPath + "images/chart/amazon.png"));
     }
 
     .e-logo-tsla::before {
-        background-image: url('@(SampleService?.WebAssetsPath + "images/chart/tesla.png")');
+        background-image: url(@(SampleService?.WebAssetsPath + "images/chart/tesla.png"));
     }
 
     .control-section {
@@ -312,7 +310,7 @@
             List<ChartPoint>? allData = await Http.GetFromJsonAsync<List<ChartPoint>>(path);
             ChartData = FilterChartData(allData ?? null!, SelectedRange);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             ChartData = new();
         }

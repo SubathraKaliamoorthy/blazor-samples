@@ -1,4 +1,4 @@
-﻿@page "/treeview/node-editing"
+@page "/treeview/node-editing"
 
 @using Syncfusion.Blazor.Navigations
 
@@ -172,12 +172,12 @@
 
     public class TreeData
     {
-        public string Id { get; set; }
-        public string Pid { get; set; }
+        public string? Id { get; set; }
+        public string? Pid { get; set; }
         public bool HasChild { get; set; }
         public bool Expanded { get; set; }
         public bool IsSelected { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }
 

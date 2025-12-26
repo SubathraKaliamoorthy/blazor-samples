@@ -1,8 +1,10 @@
-﻿@page "/progress-bar/angle"
+@page "/progress-bar/angle"
 @using Syncfusion.Blazor.ProgressBar
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
-@inject NavigationManager Navigation
+@*End:Hidden*@
+@inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
 
@@ -69,8 +71,8 @@
 
     protected override void OnInitialized()
     {
-        _currentUri = Navigation.Uri;
-        FontFamily = ThemeHelper.GetFontFamily(_currentUri);
+        _currentUri = NavigationManager.Uri;
+        FontFamily = ThemeHelper.GetFontFamily(NavigationManager.Uri);
         InitializeProgressBars();
         SetThemeAndAnnotations();
     }

@@ -1,7 +1,9 @@
-﻿@page "/chart/recurrence-strip-line"
+@page "/chart/recurrence-strip-line"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor.Buttons
 
@@ -21,8 +23,8 @@
     <p>More information about the stripline can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/chart/strip-line' aria-label="Navigate to the documentation for strip-line in chart component">documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfChart Title="World Pollution Report" Theme="@Theme">
+<div class="col-lg-8 control-section">
+    <SfChart @ref="ChartRef" Title="World Pollution Report" Theme="@Theme">
         <ChartTitleStyle TextOverflow="TextOverflow.Wrap"></ChartTitleStyle>
         <ChartArea>
             <ChartAreaBorder Width="0"></ChartAreaBorder>
@@ -55,10 +57,7 @@
     </SfChart>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <tr style="height: 50px">
                     <td style="width: 80%">
@@ -77,13 +76,11 @@
                     </td>
                 </tr>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 
 @code{
 
-    
+    private SfChart? ChartRef { get; set; }
     private Theme Theme { get; set; }
     public List<StripLineData> PollutionReports { get; set; } = new List<StripLineData>
     {
@@ -119,5 +116,17 @@
         public DateTime Period { get; set; }
         public double PollutionRate1 { get; set; }
         public double PollutionRate2 { get; set; }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (ChartRef != null)
+        {
+            await ChartRef.RefreshAsync(false);
+        }
     }
 }

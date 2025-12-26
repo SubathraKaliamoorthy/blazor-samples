@@ -4,7 +4,9 @@
 @using Syncfusion.Blazor
 @using Syncfusion.Blazor.CircularGauge
 @using Syncfusion.Blazor.Buttons
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -38,7 +40,7 @@
     </defs>
 </svg>
 
-<div class="col-lg-8 control-section sb-property-border">
+<div class="col-lg-8 control-section">
     <SfCircularGauge Title="Speedometer" CenterY="75%" @ref="@Gauge" Theme="@Theme" Background="transparent">
         <CircularGaugeTitleStyle Size="18px" FontFamily="inherit" />
         <CircularGaugeAxes>
@@ -75,10 +77,8 @@
         </CircularGaugeAxes>
     </SfCircularGauge>
 </div>
-<div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<div style="margin-top:-20px">
+<PropertyPanel ControlSecClass="col-lg-8" CollapseChanged="HandlePanelCollapseChangedAsync" InitialRefresh="HandlePanelCollapseChangedAsync">
             <table style="width: 100%">
                 <colgroup>
                     <col span="1" style="width: 60%;">
@@ -103,8 +103,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+</PropertyPanel>
 </div>
 
 @code {
@@ -261,6 +260,18 @@
             syncTimer.Stop();
             syncTimer.Dispose();
             syncTimer = null!;
+        }
+    }
+
+    /// <summary>
+    /// EventCallback handler - invoked when PropertyPanel is expanded/collapsed
+    /// This is triggered by CollapseChanged EventCallback from PropertyPanel
+    /// </summary>
+    public async Task HandlePanelCollapseChangedAsync()
+    {
+        if (Gauge != null)
+        {
+            await Gauge?.RefreshAsync();
         }
     }
 }

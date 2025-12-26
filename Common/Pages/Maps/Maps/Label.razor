@@ -4,7 +4,9 @@
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -18,8 +20,8 @@
     <p>More information about data labels can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/data-labels" aria-label="Blazor Maps DataLabels documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfMaps Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section" align='center'>
+    <SfMaps @ref="@MapRef" Theme="@Theme" Background="transparent">
         <MapsAreaSettings Background="transparent" />
         <MapsZoomSettings Enable="false" />
         <MapsEvents DataLabelRendering="@DataLabelRendering"></MapsEvents>
@@ -36,10 +38,7 @@
         </MapsLayers>
     </SfMaps>
 </div>
-<div id="property-panel" class="col-lg-4 property-section">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8" >
             <table style="width:100%" title="Properties">
                 <tbody>
                     <tr>
@@ -82,9 +81,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     tr {
         height: 50px;
@@ -100,7 +97,7 @@
 </style>
 
 @code {
-    
+    public SfMaps? MapRef;
     public Theme Theme { get; set; }
     public bool DatalabelVisible = true;
     public bool CheckBoxvalue = true;
@@ -131,12 +128,15 @@
     };
     public void Showlabel(Syncfusion.Blazor.Buttons.ChangeEventArgs<bool> args)
     {
+        if (args == null) return;
         CheckBoxvalue = args.Checked;
         DatalabelVisible = args.Checked;
     }
     public void SmartLabelValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, SmartLabelValues> args)
     {
-        SmartLabelModeValue = args.Value;
+        if (args == null) return;
+
+        SmartLabelModeValue = args.Value ?? SmartLabelModeValue;
         if (args.Value == "None")
         {
             DatalabelSmartLabelMode = SmartLabelMode.None;
@@ -152,7 +152,8 @@
     }
     public void IntersectActionValueChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, LabelIntersectValues> args)
     {
-        IntersectActionDataValue = args.Value;
+        if (args == null) return;
+        IntersectActionDataValue = args.Value ?? IntersectActionDataValue;
         if (args.Value == "Trim")
         {
             DatalabelInterSectAction = IntersectAction.Trim;
@@ -182,4 +183,5 @@
             LabelColor = "#FFFFFF";
         }
     }
+
 }

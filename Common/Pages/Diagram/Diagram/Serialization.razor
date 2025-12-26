@@ -1,4 +1,4 @@
-﻿@page "/diagram/serialization"
+@page "/diagram/serialization"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Diagram.SymbolPalette
@@ -25,7 +25,6 @@
 @*Hidden:Lines*@
 
 <div class="control-section">
-    <link href="https://ej2.syncfusion.com/javascript/demos/src/diagram/styles/diagram-common.css" rel="stylesheet">
     @*Hidden:Lines*@
     <div class="sb-mobile-palette-bar">
         <div id="palette-icon" style="float: right;" role="button" @onclick="ShowHideSymbolPalette" class="e-ddb-icons1 e-toggle-palette"></div>
@@ -77,8 +76,8 @@
         </div>
             <SfUploader @ref="@uploadFiles" ID="UploadFiles" ShowFileList="false" AllowedExtensions="@ExtensionType">
                 <UploaderEvents OnUploadStart="@OnUploadFileSelected"></UploaderEvents>
-                   <UploaderAsyncSettings SaveUrl="http://localhost:63028/api/FileUploader/Save"
-                   RemoveUrl="http://localhost:63028/api/FileUploader/Remove"></UploaderAsyncSettings>
+                   <UploaderAsyncSettings SaveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Save"
+                   RemoveUrl="https://blazor.syncfusion.com/services/production/api/FileUploader/Remove"></UploaderAsyncSettings>
             </SfUploader>        
     </div>
 </div>
@@ -292,7 +291,7 @@
     private string ExtensionType = ".json";
 
     //Define palettes symbol margin
-    SymbolMargin symbolMargin = new SymbolMargin { Left = 15, Right = 15, Top = 15, Bottom = 15 };
+    SymbolMargin symbolMargin = new SymbolMargin { Left = 10, Right = 10, Top = 10, Bottom = 10 };
 
     // Reference to symbol palette
     SfSymbolPaletteComponent? symbolPalette;

@@ -1,4 +1,4 @@
-﻿@page "/kanban/overview"
+@page "/kanban/overview"
 
 @using Syncfusion.Blazor.KanbanDemo
 @using Syncfusion.Blazor.Kanban
@@ -57,17 +57,23 @@
                         </div>
                         <div class="e-card-footer">
                             @{
-                                @foreach (string tag in card.CardTags)
+                                if (card != null && card.CardTags != null)
                                 {
-                                    <div class="e-card-tag e-tooltip-text">@tag</div>
+                                    @foreach (string tag in card.CardTags)
+                                    {
+                                        <div class="e-card-tag e-tooltip-text">@tag</div>
+                                    }
                                 }
                             }
                             <div class="e-card-avatar">
                                 @{
-                                    string[] AssigneeName = card.Assignee.Split();
-                                    foreach (string assignee in AssigneeName)
+                                    if (card != null && card.Assignee != null)
                                     {
-                                        @assignee.Substring(0, 1).ToUpper()
+                                        string[] AssigneeName = card.Assignee.Split();
+                                        foreach (string assignee in AssigneeName)
+                                        {
+                                            @assignee.Substring(0, 1).ToUpper()
+                                        }
                                     }
                                 }
                             </div>
@@ -269,6 +275,12 @@
     .fluent-dark .e-kanban .e-kanban-content .e-content-row .e-content-cells .e-card-container .e-card .e-card-tag{
         padding: 0px 4px;
         font-size: 12px;
+    }
+
+    .fluent .e-kanban .e-kanban-content .e-content-row .e-content-cells .e-card-container .e-card .e-card-footer,
+    .fluent-dark .e-kanban .e-kanban-content .e-content-row .e-content-cells .e-card-container .e-card .e-card-footer,
+    {
+        padding-bottom: 16px
     }
 
     .fluent .e-kanban .e-card-avatar {

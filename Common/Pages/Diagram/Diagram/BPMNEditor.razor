@@ -1,4 +1,4 @@
-﻿@page "/diagram/bpmn-editor"
+@page "/diagram/bpmn-editor"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Diagram.SymbolPalette
@@ -180,7 +180,7 @@
     
     DiagramSelectionSettings selectionSettings = new DiagramSelectionSettings();
     public DiagramSize? SymbolPreviewSettings { get; set; }
-    public SymbolMargin? SymbolMarginSettings = new SymbolMargin { Left = 15, Right = 15, Top = 15, Bottom = 15 };
+    public SymbolMargin? SymbolMarginSettings = new SymbolMargin { Left = 10, Right = 10, Top = 10, Bottom = 10 };
     public SfDiagramComponent? DiagramComponentRef { get; set; }
     public SfSymbolPaletteComponent? PaletteComponentRef { get; set; }
     public DiagramObjectCollection<UserHandle> UserHandleCollection = new DiagramObjectCollection<UserHandle>();

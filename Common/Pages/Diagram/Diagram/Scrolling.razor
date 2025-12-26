@@ -1,4 +1,4 @@
-﻿@page "/diagram/scrollsettings"
+@page "/diagram/scrollsettings"
 
 @using Syncfusion.Blazor.Diagram
 @using Syncfusion.Blazor.Diagram.SymbolPalette
@@ -282,7 +282,7 @@
                     X
                 </div>
                 <div class="col-xs-6">
-                    <SfNumericTextBox TValue="double" Value="@x" Enabled="@clipBounds" Format="n0" Decimals=0 Min=0 Step=5 Width="100%">
+                    <SfNumericTextBox TValue="double" Value="@x" Enabled="@clipBounds" Format="n0" Decimals=0 Min=0 Max="2000" Step=5 Width="100%">
                         <NumericTextBoxEvents TValue="double" ValueChange="xvalueChanged" />
                     </SfNumericTextBox>
                 </div>
@@ -292,7 +292,7 @@
                     Y
                 </div>
                 <div class="col-xs-6">
-                    <SfNumericTextBox TValue="double" Value="@y" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Step=5 Width="100%">
+                    <SfNumericTextBox TValue="double" Value="@y" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Max="2000" Step=5 Width="100%">
                         <NumericTextBoxEvents TValue="double" ValueChange="yvalueChanged" />
                     </SfNumericTextBox>
                 </div>
@@ -302,7 +302,7 @@
                     Width
                 </div>
                 <div class="col-xs-6">
-                    <SfNumericTextBox TValue="double" Value="@PageWidth" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Step=5 Width="100%">
+                    <SfNumericTextBox TValue="double" Value="@PageWidth" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Max="2000" Step=5 Width="100%">
                         <NumericTextBoxEvents TValue="double" ValueChange="widthvalueChanged" />
                     </SfNumericTextBox>
                 </div>
@@ -312,7 +312,7 @@
                     Height
                 </div>
                 <div class="col-xs-6">
-                    <SfNumericTextBox TValue="double" Value="@PageHeight" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Step=5 Width="100%">
+                    <SfNumericTextBox TValue="double" Value="@PageHeight" Format="n0" Decimals=0 Enabled="@clipBounds" Min=0 Max="2000" Step=5 Width="100%">
                         <NumericTextBoxEvents TValue="double" ValueChange="heightvalueChanged" />
                     </SfNumericTextBox>
                 </div>
@@ -334,7 +334,7 @@
                         Top
                     </div>
                     <div class="col-xs-6">
-                        <SfNumericTextBox TValue="double" Value="@top" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Step=5 Width="100%">
+                        <SfNumericTextBox TValue="double" Value="@top" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Max="100" Step=5 Width="100%">
                             <NumericTextBoxEvents TValue="double" ValueChange="TopvalueChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -344,7 +344,7 @@
                         Bottom
                     </div>
                     <div class="col-xs-6">
-                        <SfNumericTextBox TValue="double" Value="@bottom" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Step=5 Width="100%">
+                        <SfNumericTextBox TValue="double" Value="@bottom" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Max="100" Step=5 Width="100%">
                             <NumericTextBoxEvents TValue="double" ValueChange="BottomvalueChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -354,7 +354,7 @@
                         Left
                     </div>
                     <div class="col-xs-6">
-                        <SfNumericTextBox TValue="double" Value="@left" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Step=5 Width="100%">
+                        <SfNumericTextBox TValue="double" Value="@left" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Max="100" Step=5 Width="100%">
                             <NumericTextBoxEvents TValue="double" ValueChange="LeftChanged" />
                         </SfNumericTextBox>
                     </div>
@@ -364,7 +364,7 @@
                         Right
                     </div>
                     <div class="col-xs-6">
-                        <SfNumericTextBox TValue="double" Value="@right" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Step=5 Width="100%">
+                        <SfNumericTextBox TValue="double" Value="@right" Enabled="@EnableBorder" Format="n0" Decimals=0 Min=20 Max="100" Step=5 Width="100%">
                             <NumericTextBoxEvents TValue="double" ValueChange="RightChanged" />
                         </SfNumericTextBox>
                     </div>

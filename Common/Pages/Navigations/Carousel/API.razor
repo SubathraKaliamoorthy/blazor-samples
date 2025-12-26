@@ -1,4 +1,4 @@
-﻿@page "/carousel/api"
+@page "/carousel/api"
 
 @using Syncfusion.Blazor.Navigations
 @using Syncfusion.Blazor.Buttons
@@ -32,7 +32,7 @@
                         <CarouselItem>
                             <Template>
                                 <figure class="img-container">
-                                    <img src="@UriHelper.ToAbsoluteUri($"{SampleService.WebAssetsPath}images/carousel/{slide.Image}.png")" alt="@slide.AltText" style="height:100%;width:100%;" />
+                                    <img src="@UriHelper.ToAbsoluteUri($"{SampleService?.WebAssetsPath}images/carousel/{slide.Image}.png")" alt="@slide.AltText" style="height:100%;width:100%;" />
                                     <figcaption class="img-caption">Showing @slide.Caption</figcaption>
                                 </figure>
                             </Template>
@@ -148,14 +148,14 @@
     };
     public class DropDownData
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public CarouselButtonVisibility Value { get; set; }
         public int IntervalValue { get; set; }
     }
     public class CarouselSlide
     {
-        public string Image { get; set; }
-        public string AltText { get; set; }
-        public string Caption { get; set; }
+        public string? Image { get; set; }
+        public string? AltText { get; set; }
+        public string? Caption { get; set; }
     }
 }

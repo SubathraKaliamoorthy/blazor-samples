@@ -1,4 +1,4 @@
-﻿@page "/range-selector/logarithmic"
+@page "/range-selector/logarithmic"
 @using Syncfusion.Blazor.Charts
 @using Syncfusion.Blazor
 @inject NavigationManager NavigationManager
@@ -13,10 +13,10 @@
 </SampleDescription>
 <ActionDescription>
     <p>Logarithmic axis uses logarithmic scale and it is very useful in visualizing when the data has values with both lower order of magnitude (eg: 10^-6) and higher order of magnitude (eg: 10^6). To render Logarithmic axis, set <a target='_blank' href='https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.RangeValueType.html' aria-label="ValueType">ValueType</a> to <code>Logarithmic</code>. Tooltip is enabled in this example, to see the tooltip in action, while the selected range is changed.</p>
-     <p>
+    <p>
         <code>Tooltip</code> is enabled  to show the selected data range, while the selected range is changed.
     </p>
-     <p>More information about the range navigator can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/range-selector/data#logarithmic' aria-label="documentation section" >documentation section</a>.</p>
+    <p>More information about the range navigator can be found in this <a target='_blank' href='https://blazor.syncfusion.com/documentation/range-selector/data#logarithmic' aria-label="documentation section" >documentation section</a>.</p>
 </ActionDescription>
 
 @if (LogarithmicData == null)
@@ -61,7 +61,7 @@ else
     </div>
 }
 @code{
-    
+
     double ZF = 1;
     double ZP = 0;
     object Value = new object[] { 4, 6 };
@@ -103,9 +103,15 @@ else
     string? CurrentUri;
     protected override void OnInitialized()
     {
-        
+
         CurrentUri = NavigationManager.Uri;
-        interval = SampleService != null && SampleService.IsDevice ? 4 : 2;
+        interval = 2;
+        @*Hidden:Lines*@
+        if (SampleService != null && SampleService.IsDevice)
+        {
+            interval = 4;
+        }
+        @*End:Hidden*@
         if (CurrentUri.IndexOf("material3") > -1)
         {
             if (CurrentUri.IndexOf("dark") > -1)

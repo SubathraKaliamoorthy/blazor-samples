@@ -1,7 +1,9 @@
-﻿@page "/chart/axis-label-template"
+@page "/chart/axis-label-template"
 
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @using Syncfusion.Blazor.Charts
 @using PointRender
 
@@ -34,7 +36,13 @@
             <LabelTemplate>
                 @{
                     var data = context as ChartAxisLabelInfo;
-                    var country = SampleService != null && SampleService.IsDevice ? GetCountryLabel(data.Text) : data.Text;
+                    var country = data.Text;
+                    @*Hidden:Lines*@
+                    if (SampleService != null && SampleService.IsDevice)
+                    {
+                        country = GetCountryLabel(data.Text);
+                    }
+                    @*End:Hidden*@
                     var imagePath = GetCountryImagePath(data.Text);
                     var textColor = IsDarkMode() ? "white" : "black";
 
@@ -75,10 +83,12 @@
 
     protected override void OnInitialized()
     {
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Width = "100%";
         }
+        @*End:Hidden*@
         this.SetTheme(null);
     }
 

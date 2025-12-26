@@ -1,4 +1,4 @@
-﻿@page "/AutoComplete/Data-Binding"
+@page "/AutoComplete/Data-Binding"
 
 @using System.Collections.ObjectModel;
 @using Syncfusion.Blazor.DropDowns
@@ -62,7 +62,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Local Data</label>
-                <SfAutoComplete TValue="string" TItem="Countries" Placeholder="e.g. Australia" DataSource="@Country" Autofill=true @bind-Value="@CountryValue">
+                <SfAutoComplete TValue="string" TItem="Countries" PopupHeight="200px" Placeholder="e.g. Australia" DataSource="@Country" Autofill=true @bind-Value="@CountryValue">
                     <AutoCompleteFieldSettings Value="Name"/>
                 </SfAutoComplete>
             </div>
@@ -70,8 +70,8 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Remote Data</label>
-                <SfAutoComplete TValue="string" TItem="EmployeeData" Placeholder="Select a name" Query="@RemoteQuery" Autofill="true" @bind-Value="@EmployeeValue">
-                    <SfDataManager Url="http://localhost:63028/api/Employees" Offline="true" CrossDomain="true" Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
+                <SfAutoComplete TValue="string" TItem="EmployeeData" PopupHeight="200px" Placeholder="Select a name" Query="@RemoteQuery" Autofill="true" @bind-Value="@EmployeeValue">
+                    <SfDataManager Url="https://blazor.syncfusion.com/services/production/api/Employees" Offline="true" CrossDomain="true" Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"></SfDataManager>
                     <AutoCompleteFieldSettings Value="FirstName"/>
                 </SfAutoComplete>
             </div>
@@ -81,7 +81,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">Observable Collection</label>
-                <SfAutoComplete TValue="string" TItem="Colors" PopupHeight="230px" Placeholder="Select a color" DataSource="@ColorsData" @bind-Value="@ColorValue">
+                <SfAutoComplete TValue="string" TItem="Colors" PopupHeight="200px" Placeholder="Select a color" DataSource="@ColorsData" @bind-Value="@ColorValue">
                     <AutoCompleteFieldSettings Value="Color"/>
                 </SfAutoComplete>
             </div>
@@ -89,7 +89,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">ExpandoObject</label>
-                <SfAutoComplete TItem="ExpandoObject" TValue="string" PopupHeight="230px" Placeholder="Select a vehicle" DataSource="@VehicleData" @bind-Value="@VehicleValue">
+                <SfAutoComplete TItem="ExpandoObject" TValue="string" PopupHeight="200px" Placeholder="Select a vehicle" DataSource="@VehicleData" @bind-Value="@VehicleValue">
                     <AutoCompleteFieldSettings Value="Text"/>
                 </SfAutoComplete>
             </div>
@@ -99,7 +99,7 @@
         <div class="col-lg-6">
             <div class="control-wrapper">
                 <label class="example-label">DynamicObject</label>
-                <SfAutoComplete TValue="string" TItem="DynamicDictionary" Placeholder="Select a name" DataSource="@Orders" @bind-Value="@AutoValue">
+                <SfAutoComplete TValue="string" TItem="DynamicDictionary" PopupHeight="200px" Placeholder="Select a name" DataSource="@Orders" @bind-Value="@AutoValue">
                     <AutoCompleteFieldSettings Value="CustomerName"/>
                 </SfAutoComplete>
             </div>

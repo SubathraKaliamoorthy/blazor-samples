@@ -4,7 +4,9 @@
 @using Syncfusion.Blazor.Inputs
 @using Syncfusion.Blazor.Buttons
 @using Syncfusion.Blazor
+@*Hidden:Lines*@
 @using ThemeHelper
+@*End:Hidden*@
 @inject NavigationManager NavigationManager
 @*Hidden:Lines*@
 @inherits SampleBaseComponent
@@ -18,8 +20,8 @@
     <p>More information about zooming and panning can be found in this <a target="_blank" href="https://blazor.syncfusion.com/documentation/maps/user-interactions#zooming" aria-label="Blazor Maps Zooming documentation" >documentation section</a>.</p>
 </ActionDescription>
 
-<div class="col-lg-8 control-section sb-property-border">
-    <SfMaps Theme="@Theme" Background="transparent">
+<div class="col-lg-8 control-section" align='center'>
+    <SfMaps @ref="@MapRef" Theme="@Theme" Background="transparent">
         <MapsAreaSettings Background="transparent" />
         <MapsZoomSettings Enable="@ZoomCheckedState" EnablePanning="@PanCheckedState" ZoomOnClick="SingleClickCheckedState" PinchZooming="@PinchZoomCheckedState"
                           MouseWheelZoom="@MouseWheelCheckedState" DoubleClickZoom="@DoubleClickCheckedState">
@@ -36,10 +38,7 @@
         </MapsLayers>
     </SfMaps>
 </div>
-<div id="property-panel" class="col-lg-4 property-section" style="padding-right:0px">
-    <div class="property-panel-section">
-        <div class="property-panel-header">Properties</div>
-        <div class="property-panel-content">
+<PropertyPanel ControlSecClass="col-lg-8">
             <table style="width:100%" title="Properties">
                 <colgroup>
                     <col span="1" style="width: 56%;">
@@ -130,9 +129,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+</PropertyPanel>
 <style>
     td {
         width: 40%;
@@ -148,6 +145,7 @@
 </style>
 
 @code {
+    public SfMaps? MapRef;
     public Theme Theme { get; set; }
     public string[] ShapePropertyPath = { "continent" };
     public bool DoubleClickDisable = false;
@@ -211,9 +209,12 @@
     protected override void OnInitialized()
     {
         Theme = ThemeHelper.GetCurrentTheme(NavigationManager.Uri);
+        @*Hidden:Lines*@
         if (SampleService != null && SampleService.IsDevice)
         {
             Display = "none";
         }
+        @*End:Hidden*@
     }
+
 }

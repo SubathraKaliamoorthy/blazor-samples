@@ -1,11 +1,10 @@
-﻿@page "/datagrid/foreign-key-column"
+@page "/datagrid/foreign-key-column"
 
 @using Syncfusion.Blazor.Grids
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor
 @*Hidden:Lines*@
-@using blazor_ordersdetails
-@using BlazorDemos
+
 @inherits SampleBaseComponent
 @inject NavigationManager NavigationManager
 
@@ -163,5 +162,21 @@
     {
         public int? EmployeeID { get; set; }
         public string? FirstName { get; set; }
+    }
+
+    public class OrdersDetails
+    {
+        public int? OrderID { get; set; }
+        public string? CustomerID { get; set; }
+        public int? EmployeeID { get; set; }
+        public double? Freight { get; set; }
+        public string? ShipCity { get; set; }
+        public bool Verified { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string? ShipName { get; set; }
+        public string? ShipCountry { get; set; }
+        public DateTime? ShippedDate { get; set; }
+        public string? ShipAddress { get; set; }
+        public string? Email { get; set; }
     }
 }
